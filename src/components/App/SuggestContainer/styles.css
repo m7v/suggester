@@ -1,0 +1,12 @@
+.SuggestContainer__main {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.SuggestContainer__card {
+    padding: 0 12px;
+    min-width: 60%;
+}

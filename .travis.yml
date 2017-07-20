@@ -1,0 +1,8 @@
+language: node_js
+node_js:
+  - 7
+script:
+  - npm test -- --coverage
+  - npm run build
+after_script:
+  - cat ./coverage/lcov.info | codacy-coverage
