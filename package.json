@@ -2,7 +2,7 @@
   "name": "suggester",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://m7v.github.io/",
+  "homepage": "https://m7v.github.io/suggester",
   "dependencies": {
     "axios": "^0.16.1",
     "classnames": "^2.2.5",
