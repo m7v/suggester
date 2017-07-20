@@ -1,8 +1,8 @@
 {
-  "name": "event-manager",
+  "name": "suggester",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://188.120.247.89/",
+  "homepage": "https://m7v.github.io/suggester",
   "dependencies": {
     "axios": "^0.16.1",
     "classnames": "^2.2.5",
@@ -64,8 +64,5 @@
     "serve": "serve -s build",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
-  },
-  "pre-push": [
-    "check:all"
-  ]
+  }
 }
