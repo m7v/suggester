@@ -8,17 +8,30 @@ import {
  * @returns {function(*)}Success
  */
 export function getSuggestions(query) {
-    return dispatch => requestGetSuggestions(query)
-        .then((response) => {
-            const items = response.result.items;
-            const suggestions = items.map(item => {
-                const adm = (item.adm_div && item.adm_div.length) && `${item.adm_div[0].name}-${item.adm_div[0].type}`;
-                return `${item.caption} | ${item.type || item.subtype} [${adm}]`;
+    return dispatch => {
+        dispatch(types.suggestionsRequestStarted());
+
+        return requestGetSuggestions(query)
+            .then((response) => {
+                const cards = response.cards;
+                const suggestions = cards.reduce((pool, card) => {
+                    if (!card.imageUrl) {
+                        return pool;
+                    }
+                    pool.push({
+                        id: card.multiverseid,
+                        name: card.name,
+                        imageUrl: card.imageUrl
+                    });
+                    return pool;
+                }, []);
+                dispatch(batchActions([
+                    types.getSuggestions(suggestions),
+                    types.suggestionsRequestSuccess()
+                ]));
+            })
+            .catch(() => {
+                dispatch(types.suggestionsRequestFailed());
             });
-            dispatch(batchActions([
-                types.getSuggestions(suggestions),
-            ]));
-        })
-        .catch(() => {
-        });
+    };
 }

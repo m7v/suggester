@@ -8,6 +8,6 @@ axios.defaults.adapter = httpAdapter;
  * @returns {Promise}
  */
 export const getSuggestions = query =>
-    axios.get(`${serverApiUrl}suggest/endpoint/list?region_id=1&key=onlinedev&q=${query}`)
+    axios.get(`${serverApiUrl}cards?name=${query}`)
         .then(response => new Promise(resolve => resolve(response.data)))
         .catch(() => new Promise((resolve) => resolve([])));
