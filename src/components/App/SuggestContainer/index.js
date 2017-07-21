@@ -2,7 +2,8 @@ import './styles.css';
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import { bool, number, string, func, shape, arrayOf } from 'prop-types';
+import Img from 'react-image';
 import {
     Paper,
     TextField,
@@ -10,7 +11,7 @@ import {
     RaisedButton,
     CircularProgress
 } from 'material-ui';
-import { cyan500, pinkA200 } from 'material-ui/styles/colors';
+import { cyan500 } from 'material-ui/styles/colors';
 import {
     getSuggestions
 } from '../../../actions/suggestions/suggestions.actions';
@@ -37,7 +38,7 @@ class SuggestContainer extends Component {
 
     render() {
         const primaryColor = cyan500;
-        const secondaryColor = pinkA200;
+        const defaultCard = <img src={'/img/default-card.jpg'} alt={'MTG'} />;
 
         return (
             <section className="SuggestContainer">
@@ -72,7 +73,7 @@ class SuggestContainer extends Component {
                         </section>
                         <section className="SuggestContainer__results">
                             {this.props.suggestions.map(card =>
-                                <img key={card.id} src={card.imageUrl} alt={card.name} />
+                                <Img key={card.id} src={card.imageUrl} loader={defaultCard} unloader={defaultCard} />
                             )}
                         </section>
                     </Paper>
@@ -83,9 +84,12 @@ class SuggestContainer extends Component {
 }
 
 SuggestContainer.propTypes = {
-    loading: PropTypes.bool,
-    suggestions: PropTypes.arrayOf([]),
-    getSuggestions: PropTypes.func.isRequired,
+    loading: bool,
+    suggestions: arrayOf(shape({
+        id: number,
+        imageUrl: string,
+    })),
+    getSuggestions: func.isRequired,
 };
 
 SuggestContainer.defaultProps = {
