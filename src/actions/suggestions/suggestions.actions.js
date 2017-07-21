@@ -12,8 +12,7 @@ export function getSuggestions(query) {
         dispatch(types.suggestionsRequestStarted());
 
         return requestGetSuggestions(query)
-            .then((response) => {
-                const cards = response.cards;
+            .then((cards) => {
                 const suggestions = cards.reduce((pool, card) => {
                     if (!card.imageUrl) {
                         return pool;
