@@ -38,7 +38,7 @@ class SuggestContainer extends Component {
 
     render() {
         const primaryColor = cyan500;
-        const defaultCard = <img src={'/img/default-card.jpg'} alt={'MTG'} />;
+        const defaultCard = <img src={'img/default-card.jpg'} alt={'MTG'} />;
 
         return (
             <section className="SuggestContainer">
