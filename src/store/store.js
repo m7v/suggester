@@ -11,7 +11,7 @@ import queryString from 'query-string';
 const parsed = queryString.parse(window.location.search);
 const initialState = {
     suggester: new Map({
-        query: parsed.q && '',
+        query: parsed.q || '',
         suggestions: []
     })
 };
