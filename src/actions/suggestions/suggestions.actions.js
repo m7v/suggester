@@ -20,7 +20,7 @@ export function getSuggestions(query) {
                     pool.push({
                         id: card.multiverseid,
                         name: card.name,
-                        imageUrl: card.imageUrl
+                        src: card.imageUrl
                     });
                     return pool;
                 }, []);

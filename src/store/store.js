@@ -6,9 +6,12 @@ import {createLogger} from 'redux-logger';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import {rootReducer} from './../reducers/index';
 import {ping} from './../middlewares/ping';
+import queryString from 'query-string';
 
+const parsed = queryString.parse(window.location.search);
 const initialState = {
     suggester: new Map({
+        query: parsed.q && '',
         suggestions: []
     })
 };

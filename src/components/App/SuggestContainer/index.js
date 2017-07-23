@@ -16,10 +16,18 @@ import {
     getSuggestions
 } from '../../../actions/suggestions/suggestions.actions';
 
+const ENTER_KEY_CODE = 13;
+
 class SuggestContainer extends Component {
 
     state = {
-        searchingCard: ''
+        searchingCard: this.props.searchingCard
+    };
+
+    componentWillMount = () => {
+        if (this.state.searchingCard) {
+            this.props.getSuggestions(this.state.searchingCard);
+        }
     };
 
     isValidCard = () => !!this.state.searchingCard.length;
@@ -30,9 +38,16 @@ class SuggestContainer extends Component {
         this.setState({searchingCard: event.target.value});
     };
 
-    handleSearchCard = () => {
+    handleSearchCard = (event) => {
+        event.preventDefault();
         if (!this.props.loading) {
             this.props.getSuggestions(this.state.searchingCard);
+        }
+    };
+
+    handleSearchCardByKeyPress = event => {
+        if (event.keyCode === ENTER_KEY_CODE) {
+            this.handleSearchCard(event);
         }
     };
 
@@ -54,6 +69,7 @@ class SuggestContainer extends Component {
                                         fullWidth
                                         value={this.state.searchingCard}
                                         onChange={this.handleCardChange}
+                                        onKeyDown={this.handleSearchCardByKeyPress}
                                     />
                                 </div>
                             </div>
@@ -73,7 +89,7 @@ class SuggestContainer extends Component {
                         </section>
                         <section className="SuggestContainer__results">
                             {this.props.suggestions.map(card =>
-                                <Img key={card.id} src={card.imageUrl} loader={defaultCard} unloader={defaultCard} />
+                                <Img key={card.id} src={card.src} loader={defaultCard} unloader={defaultCard} />
                             )}
                         </section>
                     </Paper>
@@ -85,20 +101,23 @@ class SuggestContainer extends Component {
 
 SuggestContainer.propTypes = {
     loading: bool,
+    searchingCard: string,
     suggestions: arrayOf(shape({
         id: number,
-        imageUrl: string,
+        src: string,
     })),
     getSuggestions: func.isRequired,
 };
 
 SuggestContainer.defaultProps = {
     loading: false,
+    searchingCard: '',
     suggestions: [],
 };
 
 function mapStateToProps(state) {
     return {
+        searchingCard: state.suggester.get('query'),
         suggestions: state.suggester.get('suggestions'),
         loading: state.suggester.getIn(['meta', 'loading'])
     };

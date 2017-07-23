@@ -27,6 +27,39 @@ const getCardsByFlavor = query =>
  * @param query
  * @returns {Promise}
  */
-export const getSuggestions = (query) =>
-    axios.all([getCardsByName(query), getCardsByFlavor(query)])
-        .then(axios.spread((setByName, setByFlavor) => uniqBy([...setByName.cards, ...setByFlavor.cards], 'id')));
+const getCardsByText = query =>
+    axios.get(`${serverApiUrl}cards?text=${query}`)
+        .then(response => new Promise(resolve => resolve(response.data)))
+        .catch(() => new Promise((resolve) => resolve([])));
+
+/**
+ * @param query
+ * @returns {Promise}
+ */
+const getCardsBySybtype = query =>
+    axios.get(`${serverApiUrl}cards?subtypes=${query}`)
+        .then(response => new Promise(resolve => resolve(response.data)))
+        .catch(() => new Promise((resolve) => resolve([])));
+
+/**
+ * @param query
+ * @returns {Promise}
+ */
+export const getSuggestions = (query) => {
+    const queries = [
+        getCardsByName(query),
+        getCardsByFlavor(query),
+        getCardsByText(query),
+        getCardsBySybtype(query)
+    ];
+
+    return axios.all(queries)
+        .then(axios.spread((setByName, setByFlavor, setByText, setBySubtype) =>
+            uniqBy([
+                ...setByName.cards,
+                ...setByFlavor.cards,
+                ...setByText.cards,
+                ...setBySubtype.cards
+            ], 'id')
+        ));
+};
