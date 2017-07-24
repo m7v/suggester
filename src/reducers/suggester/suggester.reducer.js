@@ -4,7 +4,7 @@ import {
     SUGGESTIONS_REQUEST_STARTED,
     SUGGESTIONS_REQUEST_SUCCESS,
     SUGGESTIONS_REQUEST_FAILED
-} from './suggestions.helper';
+} from './suggester.helper';
 
 /**
  * @param state

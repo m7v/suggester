@@ -1,6 +1,8 @@
 import {combineReducers} from 'redux';
-import suggestionsReducer from './suggestions/suggestions.reducer';
+import suggesterReducer from './suggester/suggester.reducer';
+import deckBuilderReducer from './deckBuilder/deckBuilder.reducer';
 
 export const rootReducer = combineReducers({
-    suggester: suggestionsReducer
+    suggester: suggesterReducer,
+    deckBuilder: deckBuilderReducer,
 });
