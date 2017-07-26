@@ -63,7 +63,7 @@ export function createCard(card) {
 /**
  * @returns {{type}}
  */
-export function     deckBuilderRequestStarted(deckId) {
+export function deckBuilderRequestStarted(deckId) {
     return {
         type: DECK_BUILDER_REQUEST_STARTED,
         payload: {deckId},
@@ -88,7 +88,7 @@ export function deckBuilderRequestSuccess(deckId) {
 export function deckBuilderRequestFailed(deckId) {
     return {
         type: DECK_BUILDER_REQUEST_FAILED,
-        payload: {},
+        payload: {deckId},
         meta: {}
     };
 }

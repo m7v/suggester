@@ -2,9 +2,11 @@ import './styles.css';
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { bool, number, string, func, shape, arrayOf } from 'prop-types';
+import { bool, object, string, func } from 'prop-types';
 import mtgparser from 'mtg-parser';
 import {
+    Tab,
+    Tabs,
     Paper,
     TextField,
     CardActions,
@@ -51,33 +53,50 @@ class DecksContainer extends Component {
             <section className="DecksContainer">
                 <div className="DecksContainer__main" style={{backgroundColor: primaryColor}}>
                     <Paper className="DecksContainer__card" zDepth={2}>
-                        <section>
-                            <div className="DecksContainer__form">
-                                <div className="DecksContainer__input">
-                                    <TextField
-                                        hintText="Insert decklist"
-                                        floatingLabelText="Decklist"
-                                        value={this.state.draftDeck}
-                                        onChange={this.handleCardChange}
-                                        multiLine
-                                        rows={10}
-                                    />
+                        <Tabs>
+                            <Tab label="Item One" >
+                                <div>
+                                    <section>
+                                        <div className="DecksContainer__form">
+                                            <div className="DecksContainer__input">
+                                                <TextField
+                                                    hintText="Insert decklist"
+                                                    floatingLabelText="Decklist"
+                                                    value={this.state.draftDeck}
+                                                    onChange={this.handleCardChange}
+                                                    multiLine
+                                                    rows={10}
+                                                    max-rows={10}
+                                                />
+                                            </div>
+                                        </div>
+                                    </section>
+                                    <CardActions>
+                                        <RaisedButton
+                                            type="submit"
+                                            secondary
+                                            icon={
+                                                this.props.loading && <CircularProgress size={25} thickness={2} />
+                                            }
+                                            disabled={this.isDisabled()}
+                                            onClick={this.handleSearchCard}
+                                            label={'Search'}
+                                            fullWidth
+                                        />
+                                    </CardActions>
                                 </div>
-                            </div>
-                        </section>
-                        <CardActions>
-                            <RaisedButton
-                                type="submit"
-                                secondary
-                                icon={
-                                    this.props.loading && <CircularProgress size={25} thickness={2} />
-                                }
-                                disabled={this.isDisabled()}
-                                onClick={this.handleSearchCard}
-                                label={'Search'}
-                                fullWidth
-                            />
-                        </CardActions>
+                            </Tab>
+                            <Tab label="Item Two" >
+                                <section>
+                                    CARD LIST
+                                </section>
+                            </Tab>
+                            <Tab label="onActive" >
+                                <section>
+                                    CARD LIST
+                                </section>
+                            </Tab>
+                        </Tabs>
                     </Paper>
                 </div>
             </section>
@@ -88,14 +107,8 @@ class DecksContainer extends Component {
 DecksContainer.propTypes = {
     loading: bool,
     draftDeck: string,
-    cards: arrayOf(shape({
-        id: number,
-        src: string,
-    })),
-    decks: arrayOf(shape({
-        id: number,
-        src: string,
-    })),
+    cards: object,
+    decks: object,
     getDeckListByCardNames: func.isRequired,
 };
 
