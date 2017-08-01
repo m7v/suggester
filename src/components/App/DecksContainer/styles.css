@@ -10,3 +10,15 @@
     padding: 0 12px;
     min-width: 60%;
 }
+
+.DecksContainer__floatButton {
+    position: absolute;
+    right: 30px;
+    bottom: 30px;
+}
+
+.DecksContainer__deckCard {
+    margin: 13px;
+    padding: 30px;
+    background: #bbb;
+}

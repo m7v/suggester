@@ -10,11 +10,14 @@ import {
     Tab,
     Tabs,
     Paper,
+    Dialog,
     TextField,
     CardActions,
     RaisedButton,
-    CircularProgress
+    CircularProgress,
+    FloatingActionButton,
 } from 'material-ui';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 import { cyan500 } from 'material-ui/styles/colors';
 import {
     getDeckListByCardNames
@@ -23,7 +26,16 @@ import {
 class DecksContainer extends Component {
 
     state = {
-        draftDeck: this.props.draftDeck
+        draftDeck: this.props.draftDeck,
+        open: false
+    };
+
+    handleOpen = () => {
+        this.setState({open: true});
+    };
+
+    handleClose = () => {
+        this.setState({open: false});
     };
 
     isValidCard = () => !!this.state.draftDeck.length;
@@ -37,7 +49,6 @@ class DecksContainer extends Component {
     handleSearchCard = (event) => {
         event.preventDefault();
         if (!this.props.loading) {
-            this.setState({draftDeck: ''});
             const deck = mtgparser(this.state.draftDeck, 'mtgo');
             this.props.getDeckListByCardNames(deck.cards.reduce((cardNames, card) => {
                 if (!cardNames[card.name]) {
@@ -45,61 +56,82 @@ class DecksContainer extends Component {
                 }
                 return cardNames;
             }, {}));
+            this.setState({open: false});
         }
     };
 
     render() {
         const primaryColor = cyan500;
-        console.log(this.props.decksORM);
-        console.log(this.props.cardsORM);
+        const decks = this.props.decks.map((deck) =>
+            <Paper key={deck.id} className="DecksContainer__deckCard">{deck.name}</Paper>
+        );
+
         return (
             <section className="DecksContainer">
                 <div className="DecksContainer__main" style={{backgroundColor: primaryColor}}>
-                    <Paper className="DecksContainer__card" zDepth={2}>
-                        <Tabs>
-                            <Tab label="Item One">
-                                <div>
-                                    <section>
-                                        <div className="DecksContainer__form">
-                                            <div className="DecksContainer__input">
-                                                <TextField
-                                                    hintText="Insert decklist"
-                                                    floatingLabelText="Decklist"
-                                                    value={this.state.draftDeck}
-                                                    onChange={this.handleCardChange}
-                                                    multiLine
-                                                    rows={10}
-                                                />
+                    <div className="DecksContainer__deckList">
+                        {decks}
+                    </div>
+                    <div className="DecksContainer__createDeckForm">
+                        <FloatingActionButton
+                            className="DecksContainer__floatButton"
+                            onTouchTap={this.handleOpen}
+                            secondary
+                        >
+                            <ContentAdd />
+                        </FloatingActionButton>
+                        <Dialog
+                            title="Dialog With Actions"
+                            modal={false}
+                            open={this.state.open}
+                            onRequestClose={this.handleClose}
+                        >
+                            <Tabs>
+                                <Tab label="Item One">
+                                    <div>
+                                        <section>
+                                            <div className="DecksContainer__form">
+                                                <div className="DecksContainer__input">
+                                                    <TextField
+                                                        hintText="Insert decklist"
+                                                        floatingLabelText="Decklist"
+                                                        value={this.state.draftDeck}
+                                                        onChange={this.handleCardChange}
+                                                        multiLine
+                                                        rows={10}
+                                                    />
+                                                </div>
                                             </div>
-                                        </div>
+                                        </section>
+                                        <CardActions>
+                                            <RaisedButton
+                                                type="submit"
+                                                secondary
+                                                icon={
+                                                    this.props.loading &&
+                                                    <CircularProgress size={25} thickness={2} />
+                                                }
+                                                disabled={this.isDisabled()}
+                                                onClick={this.handleSearchCard}
+                                                label={'Search'}
+                                                fullWidth
+                                            />
+                                        </CardActions>
+                                    </div>
+                                </Tab>
+                                <Tab label="Item Two">
+                                    <section>
+                                        CARD LIST
                                     </section>
-                                    <CardActions>
-                                        <RaisedButton
-                                            type="submit"
-                                            secondary
-                                            icon={
-                                                this.props.loading && <CircularProgress size={25} thickness={2}/>
-                                            }
-                                            disabled={this.isDisabled()}
-                                            onClick={this.handleSearchCard}
-                                            label={'Search'}
-                                            fullWidth
-                                        />
-                                    </CardActions>
-                                </div>
-                            </Tab>
-                            <Tab label="Item Two">
-                                <section>
-                                    CARD LIST
-                                </section>
-                            </Tab>
-                            <Tab label="onActive">
-                                <section>
-                                    CARD LIST
-                                </section>
-                            </Tab>
-                        </Tabs>
-                    </Paper>
+                                </Tab>
+                                <Tab label="onActive">
+                                    <section>
+                                        CARD LIST
+                                    </section>
+                                </Tab>
+                            </Tabs>
+                        </Dialog>
+                    </div>
                 </div>
             </section>
         );
@@ -118,9 +150,7 @@ DecksContainer.defaultProps = {
     loading: false,
     draftDeck: '',
     cards: [],
-    decks: [],
-    decksORM: [],
-    cardsORM: []
+    decks: []
 };
 
 export const ormSelector = function(state) {
@@ -129,19 +159,13 @@ export const ormSelector = function(state) {
 
 const deckSelector = createSelector(orm, ormSelector, session => {
     const decks = session.Deck.all().toModelArray();
-    const decksArray = decks.map(deckRef => {
-        return {
-            ...deckRef.ref,
-            cards: deckRef.cardList.all().toRefArray()
-        };
-    });
-
-    return decksArray;
+    return decks.map(deckRef => ({
+        ...deckRef.ref,
+        cards: deckRef.cardList.all().toRefArray()
+    }));
 });
 
-const cardSelector = createSelector(orm, ormSelector, session => {
-    return session.Card.all().toRefArray();
-});
+const cardSelector = createSelector(orm, ormSelector, session => session.Card.all().toRefArray());
 
 function mapStateToProps(state) {
     return {
