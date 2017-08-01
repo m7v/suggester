@@ -51,9 +51,7 @@ const initialState = {
         '1 Drowned Catacomb\n' +
         '1 Cinder Barrens\n' +
         '1 Dragonskull Summit\n' +
-        '1 Grixis Panorama',
-        cards: new Map({}),
-        decks: new Map({})
+        '1 Grixis Panorama'
     })
 };
 

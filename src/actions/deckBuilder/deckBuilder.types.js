@@ -30,7 +30,7 @@ export function getDeckList(decks) {
  */
 export function createDeck(deck) {
     return {
-        type: CREATE_DECK,
+        type: 'DECK_BUILDER/DECK/ADD',
         payload: {deck},
         meta: {}
     };

@@ -4,7 +4,7 @@ import * as types from './deckBuilder.types';
 import {
     getCardList as requestGetCardList,
     getDeckList as requestGetDeckList,
-    getDeckListByCardNames as requestGetDeckListByCardNames,
+    getDeckListByCardNames as requestGetDeckListByCardNames
 } from '../../services/deckBuilder/deckBuilder.service';
 
 /**
@@ -14,6 +14,7 @@ import {
 export function getDeckListByCardNames(cardList, name = 'newDeck') {
     return dispatch => {
         const deckId = uniqueId('deck');
+
         dispatch(types.deckBuilderRequestStarted(deckId));
 
         return requestGetDeckListByCardNames(cardList)
@@ -21,7 +22,6 @@ export function getDeckListByCardNames(cardList, name = 'newDeck') {
                 const deck = {
                     id: deckId,
                     name,
-                    cards,
                     cardCount: cards.reduce((count, card) => Number(card.count) + count, 0),
                     analytics: {
                         manaRadian: {
@@ -49,9 +49,19 @@ export function getDeckListByCardNames(cardList, name = 'newDeck') {
                         }
                     }
                 };
+
+                const cardDispatches = cards.map(card => ({
+                    type: 'DECK_BUILDER/DECK/ADD_CARD',
+                    payload: {
+                        deckId,
+                        card
+                    }
+                }));
+
                 dispatch(batchActions([
                     types.getCardList(cards),
                     types.createDeck(deck),
+                    ...cardDispatches,
                     types.deckBuilderRequestSuccess(deckId)
                 ]));
             });

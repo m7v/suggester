@@ -2,8 +2,10 @@ import './styles.css';
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { bool, object, string, func } from 'prop-types';
+import { createSelector } from 'redux-orm';
+import { bool, array, string, func } from 'prop-types';
 import mtgparser from 'mtg-parser';
+import orm from '../../../store/models/models';
 import {
     Tab,
     Tabs,
@@ -48,13 +50,14 @@ class DecksContainer extends Component {
 
     render() {
         const primaryColor = cyan500;
-
+        console.log(this.props.decksORM);
+        console.log(this.props.cardsORM);
         return (
             <section className="DecksContainer">
                 <div className="DecksContainer__main" style={{backgroundColor: primaryColor}}>
                     <Paper className="DecksContainer__card" zDepth={2}>
                         <Tabs>
-                            <Tab label="Item One" >
+                            <Tab label="Item One">
                                 <div>
                                     <section>
                                         <div className="DecksContainer__form">
@@ -66,7 +69,6 @@ class DecksContainer extends Component {
                                                     onChange={this.handleCardChange}
                                                     multiLine
                                                     rows={10}
-                                                    max-rows={10}
                                                 />
                                             </div>
                                         </div>
@@ -76,7 +78,7 @@ class DecksContainer extends Component {
                                             type="submit"
                                             secondary
                                             icon={
-                                                this.props.loading && <CircularProgress size={25} thickness={2} />
+                                                this.props.loading && <CircularProgress size={25} thickness={2}/>
                                             }
                                             disabled={this.isDisabled()}
                                             onClick={this.handleSearchCard}
@@ -86,12 +88,12 @@ class DecksContainer extends Component {
                                     </CardActions>
                                 </div>
                             </Tab>
-                            <Tab label="Item Two" >
+                            <Tab label="Item Two">
                                 <section>
                                     CARD LIST
                                 </section>
                             </Tab>
-                            <Tab label="onActive" >
+                            <Tab label="onActive">
                                 <section>
                                     CARD LIST
                                 </section>
@@ -107,23 +109,45 @@ class DecksContainer extends Component {
 DecksContainer.propTypes = {
     loading: bool,
     draftDeck: string,
-    cards: object,
-    decks: object,
-    getDeckListByCardNames: func.isRequired,
+    cards: array,
+    decks: array,
+    getDeckListByCardNames: func.isRequired
 };
 
 DecksContainer.defaultProps = {
     loading: false,
     draftDeck: '',
     cards: [],
-    decks: []
+    decks: [],
+    decksORM: [],
+    cardsORM: []
 };
+
+export const ormSelector = function(state) {
+    return state.entities;
+};
+
+const deckSelector = createSelector(orm, ormSelector, session => {
+    const decks = session.Deck.all().toModelArray();
+    const decksArray = decks.map(deckRef => {
+        return {
+            ...deckRef.ref,
+            cards: deckRef.cardList.all().toRefArray()
+        };
+    });
+
+    return decksArray;
+});
+
+const cardSelector = createSelector(orm, ormSelector, session => {
+    return session.Card.all().toRefArray();
+});
 
 function mapStateToProps(state) {
     return {
+        decks: deckSelector(state),
+        cards: cardSelector(state),
         draftDeck: state.deckBuilder.get('draftDeck'),
-        cards: state.deckBuilder.get('cards'),
-        decks: state.deckBuilder.get('decks'),
         loading: state.deckBuilder.getIn(['meta', 'loading'])
     };
 }
