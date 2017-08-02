@@ -11,7 +11,7 @@ axios.defaults.adapter = httpAdapter;
 export const getDeckListByCardNames = (cardList) => {
     const requests = [];
     Object.keys(cardList).map(cardName => {
-        const promise = axios.get(`${serverApiUrl}cards?name=${cardName}&pageSize=1`)
+        const promise = axios.get(`${serverApiUrl}cards?name="${cardName}"&contains=imageUrl&pageSize=1`)
             .then(response => {
                 if (response.data.cards[0]) {
                     response.data.cards[0].count = cardList[cardName];

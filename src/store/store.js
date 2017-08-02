@@ -16,42 +16,46 @@ const initialState = {
     }),
     deckBuilder: new Map({
         draftDeck:
-        '1 Nicol Bolas, Planeswalker\n' +
-        '1 Blood Tyrant\n' +
-        '1 Deathbringer Regent\n' +
-        '1 Sphinx of Jwar Isle\n' +
-        '2 Flametongue Kavu\n' +
-        '1 Archfiend of Depravity\n' +
-        '2 Nightscape Familiar\n' +
-        '1 Prognostic Sphinx\n' +
-        '1 Icefall Regent\n' +
-        '2 Vampire Nighthawk\n' +
-        '2 Bone Picker\n' +
-        '1 Harvester of Souls\n' +
-        '1 Overseer of the Damned\n' +
-        '1 Baleful Strix\n' +
-        '1 Cruel Ultimatum\n' +
-        '1 Extract from Darkness\n' +
-        '1 Slave of Bolas\n' +
-        '1 Sudden Demise\n' +
-        '1 Dreadbore\n' +
-        '2 Reckless Spite\n' +
-        '2 Doom Blade\n' +
-        '2 Lightning Bolt\n' +
-        '2 Obelisk of Grixis\n' +
-        '1 Talisman of Indulgence\n' +
-        '1 Talisman of Dominance\n' +
-        '1 Soul Ransom\n' +
-        '4 Crumbling Necropolis\n' +
-        '2 Highland Lake\n' +
+        '1 Ajani Vengeant\n' +
+        '1 Ageless Entity\n' +
+        '2 Ajani\'s Pridemate\n' +
+        '1 Briarhorn\n' +
+        '1 Canyon Wildcat\n' +
+        '1 Essence Warden\n' +
+        '1 Firemane Angel\n' +
+        '1 Fleetfoot Panther\n' +
+        '1 Grazing Gladehart\n' +
+        '1 Jade Mage\n' +
+        '1 Kird Ape\n' +
+        '1 Loam Lion\n' +
+        '1 Loxodon Hierarch\n' +
+        '1 Marisi\'s Twinclaws\n' +
+        '1 Nacatl Hunt-Pride\n' +
+        '1 Pride of Lions\n' +
+        '1 Qasali Pridemage\n' +
+        '1 Spitemare\n' +
+        '2 Sylvan Ranger\n' +
+        '1 Wild Nacatl\n' +
+        '1 Woolly Thoctar\n' +
+        '1 Lead the Stampede\n' +
+        '1 Titanic Ultimatum\n' +
+        '1 Lightning Helix\n' +
+        '1 Naya Charm\n' +
+        '2 Sylvan Bounty\n' +
+        '1 Behemoth Sledge\n' +
+        '1 Ajani\'s Mantra\n' +
+        '1 Griffin Guide\n' +
+        '2 Recumbent Bliss\n' +
+        '1 Searing Meditation\n' +
+        '2 Evolving Wilds\n' +
+        '8 Forest\n' +
+        '1 Graypelt Refuge\n' +
+        '2 Jungle Shrine\n' +
+        '1 Kazandu Refuge\n' +
         '3 Mountain\n' +
-        '7 Swamp\n' +
-        '5 Island\n' +
-        '1 Submerged Boneyard\n' +
-        '1 Drowned Catacomb\n' +
-        '1 Cinder Barrens\n' +
-        '1 Dragonskull Summit\n' +
-        '1 Grixis Panorama'
+        '6 Plains\n' +
+        '1 Sapseep Forest\n' +
+        '1 Vitu-Ghazi, the City-Tree\n'
     })
 };
 

@@ -1,10 +1,10 @@
-import { batchActions } from 'redux-batched-actions';
-import { uniqueId } from 'lodash';
+import {batchActions} from 'redux-batched-actions';
+import {uniqueId, size} from 'lodash';
 import * as types from './deckBuilder.types';
 import {
     getCardList as requestGetCardList,
     getDeckList as requestGetDeckList,
-    getDeckListByCardNames as requestGetDeckListByCardNames
+    getDeckListByCardNames as requestGetDeckListByCardNames,
 } from '../../services/deckBuilder/deckBuilder.service';
 
 /**
@@ -24,45 +24,57 @@ export function getDeckListByCardNames(cardList, name = 'newDeck') {
                     name,
                     cardCount: cards.reduce((count, card) => Number(card.count) + count, 0),
                     analytics: {
-                        manaRadian: {
-                            white: 1,
-                            red: 1,
-                            green: 2,
-                            black: 3,
-                            blue: 2
-                        },
-                        manaCurve: {
-                            0: 0,
-                            1: 4,
-                            2: 6,
-                            3: 5,
-                            5: 6,
-                            6: 8
-                        },
-                        deckComposition: {
-                            instant: 5,
-                            sorcery: 10,
-                            enchantment: 2,
-                            artifact: 4,
-                            creatures: 15,
-                            planeswalker: 1
-                        }
-                    }
+                        colorComposition: cards.reduce((composition, card) =>
+                                size(card.colors)
+                                    ? card.colors.reduce((comp, color) => {
+                                        const colorLowerCase = color.toLowerCase();
+                                        comp[colorLowerCase]
+                                            ? comp[colorLowerCase] += card.count
+                                            : comp[colorLowerCase] = card.count;
+                                        return comp;
+                                    }, composition)
+                                    : composition
+                            ,
+                            {}),
+                        cardRarity: cards.reduce((rarity, card) => {
+                            const rarityLowerCase = card.rarity.toLowerCase();
+                            rarity[rarityLowerCase]
+                                ? rarity[rarityLowerCase] += card.count
+                                : rarity[rarityLowerCase] = card.count;
+                            return rarity;
+                        }, {}),
+                        manaCurve: cards.reduce((cmc, card) => {
+                            card.cmc = card.cmc || 0;
+                            cmc[card.cmc]
+                                ? cmc[card.cmc] += card.count
+                                : cmc[card.cmc] = card.count;
+                            return cmc;
+                        }, {}),
+                        deckComposition: cards.reduce((composition, card) =>
+                                card.types.reduce((comp, type) => {
+                                    const typeLowerCase = type.toLowerCase();
+                                    comp[typeLowerCase]
+                                        ? comp[typeLowerCase] += card.count
+                                        : comp[typeLowerCase] = card.count;
+                                    return comp;
+                                }, composition),
+                            {}),
+                    },
                 };
 
                 const cardDispatches = cards.map(card => ({
                     type: 'DECK_BUILDER/DECK/ADD_CARD',
                     payload: {
                         deckId,
-                        card
-                    }
+                        card,
+                    },
                 }));
 
                 dispatch(batchActions([
                     types.getCardList(cards),
                     types.createDeck(deck),
                     ...cardDispatches,
-                    types.deckBuilderRequestSuccess(deckId)
+                    types.deckBuilderRequestSuccess(deckId),
                 ]));
             });
     };
@@ -80,7 +92,7 @@ export function getDeckList() {
                 const decks = [];
                 dispatch(batchActions([
                     types.getDeckList(decks),
-                    types.deckBuilderRequestSuccess()
+                    types.deckBuilderRequestSuccess(),
                 ]));
             })
             .catch(() => {
@@ -101,7 +113,7 @@ export function getCardList() {
                 const decks = [];
                 dispatch(batchActions([
                     types.getCardList(decks),
-                    types.deckBuilderRequestSuccess()
+                    types.deckBuilderRequestSuccess(),
                 ]));
             })
             .catch(() => {
