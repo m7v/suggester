@@ -13,6 +13,7 @@
 }
 
 .SuggestContainer__results {
-    max-width: 300px;
+    max-width: 320px;
+    max-height: 320px;
     margin: 35px auto;
 }

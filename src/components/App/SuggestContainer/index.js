@@ -77,19 +77,9 @@ class SuggestContainer extends Component {
                                     />
                                 </div>
                             </div>
-                            {/*<CardActions>*/}
-                                {/*<RaisedButton*/}
-                                    {/*type="submit"*/}
-                                    {/*secondary*/}
-                                    {/*icon={*/}
-                                        {/*this.props.loading && <CircularProgress size={25} thickness={2} />*/}
-                                    {/*}*/}
-                                    {/*disabled={this.isDisabled()}*/}
-                                    {/*onClick={this.handleSearchCard}*/}
-                                    {/*label={'Search'}*/}
-                                    {/*fullWidth*/}
-                                {/*/>*/}
-                            {/*</CardActions>*/}
+                            {!!this.props.suggestions.length &&
+                                <span>{ `${this.props.suggestions.length} results` }</span>
+                            }
                         </section>
                     </Paper>
                     {!this.props.loading &&
