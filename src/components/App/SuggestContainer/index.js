@@ -40,7 +40,7 @@ class SuggestContainer extends Component {
     getPhoneCardResults = () => (
         <section>
             {!!this.props.suggestions.length &&
-            <Views className="SuggestContainer__results _phone">
+            <Views className="SuggestContainer__resultsPhone">
                 {this.props.suggestions.map(card => (
                     <div key={card.id} className="SuggestContainer__result">
                         <Img
