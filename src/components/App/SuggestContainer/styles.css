@@ -8,10 +8,11 @@
 
 .SuggestContainer__card {
     padding: 0 12px;
+    margin: 15px;
     min-width: 60%;
 }
 
 .SuggestContainer__results {
     max-width: 300px;
-    margin: 15px auto;
+    margin: 35px auto;
 }

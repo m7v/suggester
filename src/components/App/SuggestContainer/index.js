@@ -11,7 +11,7 @@ import {
     TextField,
     // CardActions,
     // RaisedButton,
-    // CircularProgress
+    CircularProgress
 } from 'material-ui';
 import { cyan500 } from 'material-ui/styles/colors';
 import {
@@ -95,13 +95,16 @@ class SuggestContainer extends Component {
 
                     <section>
                         {!!this.props.suggestions.length &&
-                        <Views className="SuggestContainer__results">
-                            {this.props.suggestions.map(card => (
-                                <div key={card.id} className="SuggestContainer__result">
-                                    <Img src={card.src} loader={defaultCard} unloader={defaultCard} />
-                                </div>
-                            ))}
-                        </Views>
+                            <Views className="SuggestContainer__results">
+                                {this.props.suggestions.map(card => (
+                                    <div key={card.id} className="SuggestContainer__result">
+                                        <Img src={card.src} loader={defaultCard} unloader={defaultCard} />
+                                    </div>
+                                ))}
+                            </Views>
+                        }
+                        {this.props.loading &&
+                            <CircularProgress size={80} thickness={5} color="#fff"/>
                         }
                     </section>
                 </div>
