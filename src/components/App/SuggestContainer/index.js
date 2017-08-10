@@ -5,12 +5,13 @@ import { connect } from 'react-redux';
 import SwipeableViews from 'react-swipeable-views';
 import { bindKeyboard } from 'react-swipeable-views-utils';
 import { bool, number, string, func, shape, arrayOf } from 'prop-types';
+import MobileDetect from 'mobile-detect';
 import Img from 'react-image';
 import {
     Paper,
     TextField,
-    // CardActions,
-    // RaisedButton,
+    GridList,
+    GridTile,
     CircularProgress
 } from 'material-ui';
 import { cyan500 } from 'material-ui/styles/colors';
@@ -33,6 +34,48 @@ class SuggestContainer extends Component {
             this.props.getSuggestions(this.state.searchingCard);
         }
     };
+
+    getDefaultCard = () => (<img src={'img/default-card.jpg'} alt={'MTG'} />);
+
+    getPhoneCardResults = () => (
+        <section>
+            {!!this.props.suggestions.length &&
+            <Views className="SuggestContainer__results _phone">
+                {this.props.suggestions.map(card => (
+                    <div key={card.id} className="SuggestContainer__result">
+                        <Img
+                            src={card.src}
+                            loader={this.getDefaultCard()}
+                            unloader={this.getDefaultCard()}
+                        />
+                    </div>
+                ))}
+            </Views>
+            }
+        </section>
+    );
+
+    getDesktopCardResults = () => (
+        <section className="SuggestContainer__results">
+            {!!this.props.suggestions.length &&
+                <GridList
+                    cellHeight={310}
+                    cellWidth={225}
+                    cols={4}
+                >
+                    {this.props.suggestions.map((card) => (
+                        <GridTile key={card.src}>
+                            <Img
+                                src={card.src}
+                                loader={this.getDefaultCard()}
+                                unloader={this.getDefaultCard()}
+                            />
+                        </GridTile>
+                    ))}
+                </GridList>
+            }
+        </section>
+    );
 
     isValidCard = () => !!this.state.searchingCard.length;
 
@@ -57,7 +100,6 @@ class SuggestContainer extends Component {
 
     render() {
         const primaryColor = cyan500;
-        const defaultCard = <img src={'img/default-card.jpg'} alt={'MTG'} />;
 
         return (
             <section className="SuggestContainer">
@@ -82,18 +124,11 @@ class SuggestContainer extends Component {
                             }
                         </section>
                     </Paper>
-                    {!this.props.loading &&
-                        <section>
-                            {!!this.props.suggestions.length &&
-                                <Views className="SuggestContainer__results">
-                                    {this.props.suggestions.map(card => (
-                                        <div key={card.id} className="SuggestContainer__result">
-                                            <Img src={card.src} loader={defaultCard} unloader={defaultCard} />
-                                        </div>
-                                    ))}
-                                </Views>
-                            }
-                        </section>
+                    {(!this.props.loading && this.props.isPhone) &&
+                        this.getPhoneCardResults()
+                    }
+                    {(!this.props.loading && !this.props.isPhone) &&
+                        this.getDesktopCardResults()
                     }
                     {this.props.loading &&
                         <CircularProgress size={80} thickness={5} color="#fff" />
@@ -112,10 +147,12 @@ SuggestContainer.propTypes = {
         src: string,
     })),
     getSuggestions: func.isRequired,
+    isPhone: bool
 };
 
 SuggestContainer.defaultProps = {
     loading: false,
+    isPhone: false,
     searchingCard: '',
     suggestions: [],
 };
@@ -124,7 +161,8 @@ function mapStateToProps(state) {
     return {
         searchingCard: state.suggester.get('query'),
         suggestions: state.suggester.get('suggestions'),
-        loading: state.suggester.getIn(['meta', 'loading'])
+        loading: state.suggester.getIn(['meta', 'loading']),
+        isPhone: new MobileDetect(window.navigator.userAgent).is('iPhone'),
     };
 }
 

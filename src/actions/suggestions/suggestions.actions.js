@@ -1,4 +1,5 @@
 import { batchActions } from 'redux-batched-actions';
+import { uniqBy } from 'lodash';
 import * as types from './suggestions.types';
 import {
     getSuggestions as requestGetSuggestions
@@ -13,7 +14,7 @@ export function getSuggestions(query) {
 
         return requestGetSuggestions(query)
             .then((cards) => {
-                const suggestions = cards.reduce((pool, card) => {
+                const suggestions = uniqBy(cards, 'name').reduce((pool, card) => {
                     if (!card.imageUrl) {
                         return pool;
                     }
