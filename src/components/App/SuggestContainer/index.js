@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import SwipeableViews from 'react-swipeable-views';
+import { bindKeyboard, autoPlay } from 'react-swipeable-views-utils';
 import { bool, number, string, func, shape, arrayOf } from 'prop-types';
 import Img from 'react-image';
 import {
@@ -18,6 +19,8 @@ import {
 } from '../../../actions/suggestions/suggestions.actions';
 
 const ENTER_KEY_CODE = 13;
+
+const Views = bindKeyboard(autoPlay(SwipeableViews));
 
 class SuggestContainer extends Component {
 
@@ -88,18 +91,19 @@ class SuggestContainer extends Component {
                                 />
                             </CardActions>
                         </section>
-                        <section>
-                            {this.props.suggestions.length &&
-                                <SwipeableViews className="SuggestContainer__results">
-                                    {this.props.suggestions.map(card => (
-                                        <div key={card.id} className="SuggestContainer__result">
-                                            <Img src={card.src} loader={defaultCard} unloader={defaultCard} />
-                                        </div>
-                                    ))}
-                                </SwipeableViews>
-                            }
-                        </section>
                     </Paper>
+
+                    <section>
+                        {!!this.props.suggestions.length &&
+                        <Views className="SuggestContainer__results">
+                            {this.props.suggestions.map(card => (
+                                <div key={card.id} className="SuggestContainer__result">
+                                    <Img src={card.src} loader={defaultCard} unloader={defaultCard} />
+                                </div>
+                            ))}
+                        </Views>
+                        }
+                    </section>
                 </div>
             </section>
         );

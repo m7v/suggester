@@ -10,3 +10,8 @@
     padding: 0 12px;
     min-width: 60%;
 }
+
+.SuggestContainer__results {
+    max-width: 300px;
+    margin: 15px auto;
+}
