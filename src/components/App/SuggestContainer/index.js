@@ -3,15 +3,15 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import SwipeableViews from 'react-swipeable-views';
-import { bindKeyboard, autoPlay } from 'react-swipeable-views-utils';
+import { bindKeyboard } from 'react-swipeable-views-utils';
 import { bool, number, string, func, shape, arrayOf } from 'prop-types';
 import Img from 'react-image';
 import {
     Paper,
     TextField,
-    CardActions,
-    RaisedButton,
-    CircularProgress
+    // CardActions,
+    // RaisedButton,
+    // CircularProgress
 } from 'material-ui';
 import { cyan500 } from 'material-ui/styles/colors';
 import {
@@ -20,7 +20,7 @@ import {
 
 const ENTER_KEY_CODE = 13;
 
-const Views = bindKeyboard(autoPlay(SwipeableViews));
+const Views = bindKeyboard(SwipeableViews);
 
 class SuggestContainer extends Component {
 
@@ -77,19 +77,19 @@ class SuggestContainer extends Component {
                                     />
                                 </div>
                             </div>
-                            <CardActions>
-                                <RaisedButton
-                                    type="submit"
-                                    secondary
-                                    icon={
-                                        this.props.loading && <CircularProgress size={25} thickness={2} />
-                                    }
-                                    disabled={this.isDisabled()}
-                                    onClick={this.handleSearchCard}
-                                    label={'Search'}
-                                    fullWidth
-                                />
-                            </CardActions>
+                            {/*<CardActions>*/}
+                                {/*<RaisedButton*/}
+                                    {/*type="submit"*/}
+                                    {/*secondary*/}
+                                    {/*icon={*/}
+                                        {/*this.props.loading && <CircularProgress size={25} thickness={2} />*/}
+                                    {/*}*/}
+                                    {/*disabled={this.isDisabled()}*/}
+                                    {/*onClick={this.handleSearchCard}*/}
+                                    {/*label={'Search'}*/}
+                                    {/*fullWidth*/}
+                                {/*/>*/}
+                            {/*</CardActions>*/}
                         </section>
                     </Paper>
 
