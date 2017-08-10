@@ -2,6 +2,7 @@ import './styles.css';
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import SwipeableViews from 'react-swipeable-views';
 import { bool, number, string, func, shape, arrayOf } from 'prop-types';
 import Img from 'react-image';
 import {
@@ -87,10 +88,16 @@ class SuggestContainer extends Component {
                                 />
                             </CardActions>
                         </section>
-                        <section className="SuggestContainer__results">
-                            {this.props.suggestions.map(card =>
-                                <Img key={card.id} src={card.src} loader={defaultCard} unloader={defaultCard} />
-                            )}
+                        <section>
+                            {this.props.suggestions.length &&
+                                <SwipeableViews className="SuggestContainer__results">
+                                    {this.props.suggestions.map(card => (
+                                        <div key={card.id} className="SuggestContainer__result">
+                                            <Img src={card.src} loader={defaultCard} unloader={defaultCard} />
+                                        </div>
+                                    ))}
+                                </SwipeableViews>
+                            }
                         </section>
                     </Paper>
                 </div>
