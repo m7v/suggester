@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import SwipeableViews from 'react-swipeable-views';
 import { bindKeyboard } from 'react-swipeable-views-utils';
+import NumberEasing from 'react-number-easing';
 import { bool, number, string, func, shape, arrayOf } from 'prop-types';
 import MobileDetect from 'mobile-detect';
 import Img from 'react-image';
@@ -120,7 +121,13 @@ class SuggestContainer extends Component {
                                 </div>
                             </div>
                             {!!this.props.suggestions.length &&
-                                <span>{ `${this.props.suggestions.length} results` }</span>
+                                <span>
+                                    <NumberEasing
+                                        value={this.props.suggestions.length}
+                                        speed={3000}
+                                        ease='quintInOut'
+                                    /> results
+                                </span>
                             }
                         </section>
                     </Paper>

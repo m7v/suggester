@@ -21,6 +21,7 @@
     "react-dom": "^15.5.4",
     "react-dropzone": "^3.13.1",
     "react-image": "^1.0.1",
+    "react-number-easing": "0.0.4",
     "react-redux": "^5.0.4",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
