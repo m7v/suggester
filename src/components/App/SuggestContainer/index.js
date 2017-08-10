@@ -92,21 +92,22 @@ class SuggestContainer extends Component {
                             {/*</CardActions>*/}
                         </section>
                     </Paper>
-
-                    <section>
-                        {!!this.props.suggestions.length &&
-                            <Views className="SuggestContainer__results">
-                                {this.props.suggestions.map(card => (
-                                    <div key={card.id} className="SuggestContainer__result">
-                                        <Img src={card.src} loader={defaultCard} unloader={defaultCard} />
-                                    </div>
-                                ))}
-                            </Views>
-                        }
-                        {this.props.loading &&
-                            <CircularProgress size={80} thickness={5} color="#fff"/>
-                        }
-                    </section>
+                    {!this.props.loading &&
+                        <section>
+                            {!!this.props.suggestions.length &&
+                                <Views className="SuggestContainer__results">
+                                    {this.props.suggestions.map(card => (
+                                        <div key={card.id} className="SuggestContainer__result">
+                                            <Img src={card.src} loader={defaultCard} unloader={defaultCard} />
+                                        </div>
+                                    ))}
+                                </Views>
+                            }
+                        </section>
+                    }
+                    {this.props.loading &&
+                        <CircularProgress size={80} thickness={5} color="#fff" />
+                    }
                 </div>
             </section>
         );
