@@ -1,4 +1,5 @@
 import './styles.css';
+import 'mana-font/css/mana.min.css';
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -9,6 +10,9 @@ import orm from '../../../store/models/models';
 import {
     Tab,
     Tabs,
+    Card,
+    CardMedia,
+    CardTitle,
     Paper,
     Dialog,
     TextField,
@@ -17,7 +21,8 @@ import {
     CircularProgress,
     FloatingActionButton,
 } from 'material-ui';
-import ContentAdd from 'material-ui/svg-icons/content/add';
+import ShowMore from 'material-ui/svg-icons/action/info';
+import ContentAdd from 'material-ui/svg-icons/content/create';
 import { cyan500 } from 'material-ui/styles/colors';
 import {
     getDeckListByCardNames
@@ -62,9 +67,36 @@ class DecksContainer extends Component {
 
     render() {
         const primaryColor = cyan500;
-        const decks = this.props.decks.map((deck) =>
-            <Paper key={deck.id} className="DecksContainer__deckCard">{deck.name}</Paper>
-        );
+        const style = {
+            body: {
+                backgroundColor: '#222'
+            }
+        };
+
+        const decks = this.props.decks.map((deck) => (
+            <div key={deck.id}>
+                <Card className="DecksContainer__deckCard">
+                    <CardMedia>
+                        <img src={deck.headliner} />
+                    </CardMedia>
+                    <div className="DecksContainer__cardDetailsWrapper">
+                        <FloatingActionButton className="DecksContainer__cardDetails">
+                            <ShowMore />
+                        </FloatingActionButton>
+                    </div>
+                    <Paper className="DecksContainer__cardBody" style={style.body}>
+                        <CardTitle className="DecksContainer__cardTitle" titleColor='#fff' title={deck.name} />
+                        <ul className="DecksContainer__cardMana">
+                            <i className="mana mana-w ms ms-w" />
+                            <i className="mana mana-r ms ms-r" />
+                            <i className="mana mana-u ms ms-u" />
+                            <i className="mana mana-b ms ms-b" />
+                            <i className="mana mana-g ms ms-g" />
+                        </ul>
+                    </Paper>
+                </Card>
+            </div>
+        ));
 
         return (
             <section className="DecksContainer">

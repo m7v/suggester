@@ -1,5 +1,5 @@
 import {batchActions} from 'redux-batched-actions';
-import {uniqueId, size} from 'lodash';
+import {uniqueId, size, head} from 'lodash';
 import * as types from './deckBuilder.types';
 import {
     getCardList as requestGetCardList,
@@ -9,6 +9,7 @@ import {
 
 /**
  * @param {Array} cardList
+ * @param {String} name
  * @return {function(*)}
  */
 export function getDeckListByCardNames(cardList, name = 'newDeck') {
@@ -21,6 +22,7 @@ export function getDeckListByCardNames(cardList, name = 'newDeck') {
             .then(cards => {
                 const deck = {
                     id: deckId,
+                    headliner: head(cards).imageUrl,
                     name,
                     cardCount: cards.reduce((count, card) => Number(card.count) + count, 0),
                     analytics: {
