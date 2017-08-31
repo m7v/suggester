@@ -18,6 +18,11 @@
     overflow: hidden;
 }
 
+.SuggestContainer__img {
+    width: 223px;
+    height: 311px;
+}
+
 .SuggestContainer__resultsPhone {
     max-width: 320px;
     max-height: 320px;

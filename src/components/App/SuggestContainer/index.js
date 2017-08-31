@@ -2,6 +2,7 @@ import './styles.css';
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import LazyLoad from 'react-lazyload';
 import SwipeableViews from 'react-swipeable-views';
 import { bindKeyboard } from 'react-swipeable-views-utils';
 import NumberEasing from 'react-number-easing';
@@ -44,11 +45,14 @@ class SuggestContainer extends Component {
             <Views className="SuggestContainer__resultsPhone">
                 {this.props.suggestions.map(card => (
                     <div key={card.id} className="SuggestContainer__result">
-                        <Img
-                            src={card.src}
-                            loader={this.getDefaultCard()}
-                            unloader={this.getDefaultCard()}
-                        />
+                        <LazyLoad height={200} offset={100}>
+                            <Img
+                                className="SuggestContainer__img"
+                                src={card.src}
+                                loader={this.getDefaultCard()}
+                                unloader={this.getDefaultCard()}
+                            />
+                        </LazyLoad>
                     </div>
                 ))}
             </Views>
@@ -66,11 +70,14 @@ class SuggestContainer extends Component {
                 >
                     {this.props.suggestions.map((card) => (
                         <GridTile key={card.src}>
-                            <Img
-                                src={card.src}
-                                loader={this.getDefaultCard()}
-                                unloader={this.getDefaultCard()}
-                            />
+                            <LazyLoad height={200} offset={100}>
+                                <Img
+                                    className="SuggestContainer__img"
+                                    src={card.src}
+                                    loader={this.getDefaultCard()}
+                                    unloader={this.getDefaultCard()}
+                                />
+                            </LazyLoad>
                         </GridTile>
                     ))}
                 </GridList>
