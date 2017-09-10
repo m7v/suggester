@@ -13,6 +13,10 @@ class App extends Component {
         return (
             <Router history="Dashboard">
                 <section className="App">
+                    <section>
+                        <a href="/search">Search</a>
+                        <a href="/decks">Decks</a>
+                    </section>
                     <Route
                         path="/search"
                         component={SuggestContainer}
