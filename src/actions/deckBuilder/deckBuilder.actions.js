@@ -13,12 +13,12 @@ import {
  * @return {function(*)}
  */
 export function getDeckListByCardNames(cardList, name = 'newDeck') {
-    return dispatch => {
-        const deckId = uniqueId('deck2');
+    return (dispatch, getState) => {
+        const deckId = uniqueId(`deck${(new Date()).getTime()}`);
 
         dispatch(types.deckBuilderRequestStarted(deckId));
 
-        return requestGetDeckListByCardNames(cardList)
+        return requestGetDeckListByCardNames(cardList, getState())
             .then(cards => {
                 const deck = {
                     id: deckId,
