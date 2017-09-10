@@ -1,3 +1,4 @@
+import { map } from 'lodash';
 import orm from './models/models';
 import { state } from './state';
 
@@ -13,15 +14,15 @@ function bootstrapState() {
     const decks = {};
     const cards = {};
 
-    entities.Card.items.each(cardId => {
+    map(entities.Card.items, cardId => {
         cards[cardId] = Card.create(entities.Card.itemsById[cardId]);
     });
 
-    entities.Deck.items.each(deckId => {
+    map(entities.Deck.items, deckId => {
         decks[deckId] = Deck.create(entities.Deck.itemsById[deckId]);
     });
 
-    entities.DeckCardList.items.each(cardId => {
+    map(entities.DeckCardList.items, cardId => {
         const cardInDeck = entities.DeckCardList.itemsById[cardId];
         decks[cardInDeck.fromDeckId].cardList.add(cards[cardInDeck.toCardId]);
     });

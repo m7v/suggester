@@ -40,7 +40,7 @@ class Deck extends Model {
                 break;
             }
             default:
-                return deck.getNextState();
+                // noop
         }
     }
 }
@@ -59,7 +59,7 @@ class Card extends Model {
                 break;
             }
             default:
-                return card.getNextState();
+                // noop
         }
     }
 }
