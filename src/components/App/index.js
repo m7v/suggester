@@ -1,15 +1,10 @@
 import React, {Component} from 'react';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import {bindActionCreators} from 'redux';
 import {
     BrowserRouter as Router,
     Route
 } from 'react-router-dom';
-import {connect} from 'react-redux';
 import SuggestContainer from './SuggestContainer';
-import {
-    getSuggestions
-} from '../../actions/suggestions/suggestions.actions';
+import DecksContainer from './DecksContainer';
 import './styles.css';
 
 class App extends Component {
@@ -19,8 +14,12 @@ class App extends Component {
             <Router history="Dashboard">
                 <section className="App">
                     <Route
-                        path="/"
+                        path="/search"
                         component={SuggestContainer}
+                    />
+                    <Route
+                        path="/decks"
+                        component={DecksContainer}
                     />
                 </section>
             </Router>
@@ -28,24 +27,4 @@ class App extends Component {
     }
 }
 
-App.propTypes = {
-    suggester: ImmutablePropTypes.map
-};
-
-App.defaultProps = {
-    suggester: new Map()
-};
-
-function mapStateToProps(state) {
-    return {
-        suggester: state.suggester,
-    };
-}
-
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators({
-        getSuggestions
-    }, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;

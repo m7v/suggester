@@ -1,0 +1,20 @@
+.DecksContainer__main {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.DecksContainer__deckList {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
+}
+
+.DecksContainer__floatButton {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+}

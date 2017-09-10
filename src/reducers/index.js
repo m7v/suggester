@@ -1,6 +1,11 @@
 import {combineReducers} from 'redux';
-import suggestionsReducer from './suggestions/suggestions.reducer';
+import {createReducer} from 'redux-orm';
+import suggesterReducer from './suggester/suggester.reducer';
+import orm from './../store/models/models';
+import {Map} from 'immutable';
 
 export const rootReducer = combineReducers({
-    suggester: suggestionsReducer
+    entities: createReducer(orm),
+    suggester: suggesterReducer,
+    deckBuilder: (state = new Map({})) => state
 });

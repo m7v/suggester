@@ -3,7 +3,7 @@ import {
     SUGGESTIONS_REQUEST_STARTED,
     SUGGESTIONS_REQUEST_SUCCESS,
     SUGGESTIONS_REQUEST_FAILED
-} from '../../reducers/suggestions/suggestions.helper';
+} from '../../reducers/suggester/suggester.helper';
 
 /**
  * @param suggestions
