@@ -11,7 +11,7 @@ import entities from './entites';
 
 const parsed = queryString.parse(window.location.search);
 const initialState = {
-    // entities,
+    entities,
     suggester: new Map({
         query: parsed.q || '',
         suggestions: new List([])

@@ -1,19 +1,17 @@
 import './styles.css';
 import 'mana-font/css/mana.min.css';
-import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import { createSelector } from 'redux-orm';
-import { bool, array, string, func } from 'prop-types';
+import {map} from 'lodash';
+import React, {Component} from 'react';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import {createSelector} from 'redux-orm';
+import {bool, array, string, func} from 'prop-types';
 import mtgparser from 'mtg-parser';
 import orm from '../../../store/models/models';
 import {
     Tab,
     Tabs,
     Card,
-    CardMedia,
-    CardTitle,
-    Paper,
     Dialog,
     TextField,
     CardActions,
@@ -21,26 +19,33 @@ import {
     CircularProgress,
     FloatingActionButton,
 } from 'material-ui';
-import ShowMore from 'material-ui/svg-icons/action/info';
 import ContentAdd from 'material-ui/svg-icons/content/create';
-import { cyan500 } from 'material-ui/styles/colors';
+import {cyan500} from 'material-ui/styles/colors';
 import {
-    getDeckListByCardNames
+    getDeckListByCardNames,
 } from '../../../actions/deckBuilder/deckBuilder.actions';
+
+const manaMap = {
+    white: 'w',
+    red: 'r',
+    black: 'b',
+    green: 'g',
+    blue: 'u',
+};
 
 class DecksContainer extends Component {
 
     state = {
         draftDeck: this.props.draftDeck,
-        open: false
+        open: false,
     };
 
     handleOpen = () => {
-        this.setState({open: true});
+        this.setState({ open: true });
     };
 
     handleClose = () => {
-        this.setState({open: false});
+        this.setState({ open: false });
     };
 
     isValidCard = () => !!this.state.draftDeck.length;
@@ -48,7 +53,7 @@ class DecksContainer extends Component {
     isDisabled = () => !this.isValidCard();
 
     handleCardChange = event => {
-        this.setState({draftDeck: event.target.value});
+        this.setState({ draftDeck: event.target.value });
     };
 
     handleSearchCard = (event) => {
@@ -61,46 +66,66 @@ class DecksContainer extends Component {
                 }
                 return cardNames;
             }, {}));
-            this.setState({open: false});
+            this.setState({ open: false });
         }
     };
 
     render() {
         const primaryColor = cyan500;
-        const style = {
-            body: {
-                backgroundColor: '#222'
-            }
-        };
 
         const decks = this.props.decks.map((deck) => (
             <div key={deck.id}>
-                <Card className="DecksContainer__deckCard">
-                    <CardMedia>
-                        <img src={deck.headliner} />
-                    </CardMedia>
-                    <div className="DecksContainer__cardDetailsWrapper">
-                        <FloatingActionButton className="DecksContainer__cardDetails">
-                            <ShowMore />
-                        </FloatingActionButton>
+                <Card className="Deck__deckCard">
+                    <div className="Deck__deckHead">
+                        <div
+                            className="Deck__cardHeadliner"
+                            style={{ backgroundImage: `url(${deck.headliner})` }}
+                        />
+                        <div className="Deck__cardManaPool">
+                            <ul className="Deck__cardMana">
+                                {map(deck.analytics.colorComposition, (count, mana) => {
+                                    const manaClass = `mana mana-${manaMap[mana]} ms ms-${manaMap[mana]}`;
+                                    return <i key={mana} className={manaClass} />;
+                                })}
+                            </ul>
+                        </div>
+                        <div className="Deck__title">
+                            {deck.name}
+                        </div>
                     </div>
-                    <Paper className="DecksContainer__cardBody" style={style.body}>
-                        <CardTitle className="DecksContainer__cardTitle" titleColor='#fff' title={deck.name} />
-                        <ul className="DecksContainer__cardMana">
-                            <i className="mana mana-w ms ms-w" />
-                            <i className="mana mana-r ms ms-r" />
-                            <i className="mana mana-u ms ms-u" />
-                            <i className="mana mana-b ms ms-b" />
-                            <i className="mana mana-g ms ms-g" />
-                        </ul>
-                    </Paper>
+                    <div className="Deck__manaBar">
+                        {map(deck.analytics.colorComposition, (count, mana) =>
+                            (<div
+                                key={mana}
+                                className={`Deck__mana mana-${manaMap[mana]}`}
+                                style={{
+                                    width: `${(count / deck.cardCount) * 100}%`,
+                                }}
+                            />)
+                        )}
+                    </div>
+                    <div className="Deck__composition">
+                        <div className="Deck__cardMana">
+                            {
+                                map(deck.analytics.deckComposition, (count, type) => {
+                                    const className = `type type-${type} ms ms-${type}`;
+                                    return (
+                                        <span key={type} className="Deck__manaWrapper">
+                                            <div className={className} />
+                                            <span className="Deck__cardManaNumber">{count}</span>
+                                        </span>
+                                    );
+                                })
+                            }
+                        </div>
+                    </div>
                 </Card>
             </div>
         ));
 
         return (
             <section className="DecksContainer">
-                <div className="DecksContainer__main" style={{backgroundColor: primaryColor}}>
+                <div className="DecksContainer__main" style={{ backgroundColor: primaryColor }}>
                     <div className="DecksContainer__deckList">
                         {decks}
                     </div>
@@ -175,14 +200,14 @@ DecksContainer.propTypes = {
     draftDeck: string,
     cards: array,
     decks: array,
-    getDeckListByCardNames: func.isRequired
+    getDeckListByCardNames: func.isRequired,
 };
 
 DecksContainer.defaultProps = {
     loading: false,
     draftDeck: '',
     cards: [],
-    decks: []
+    decks: [],
 };
 
 export const ormSelector = function(state) {
@@ -193,7 +218,7 @@ const deckSelector = createSelector(orm, ormSelector, session => {
     const decks = session.Deck.all().toModelArray();
     return decks.map(deckRef => ({
         ...deckRef.ref,
-        cards: deckRef.cardList.all().toRefArray()
+        cards: deckRef.cardList.all().toRefArray(),
     }));
 });
 
@@ -204,13 +229,13 @@ function mapStateToProps(state) {
         decks: deckSelector(state),
         cards: cardSelector(state),
         draftDeck: state.deckBuilder.get('draftDeck'),
-        loading: state.deckBuilder.getIn(['meta', 'loading'])
+        loading: state.deckBuilder.getIn(['meta', 'loading']),
     };
 }
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        getDeckListByCardNames
+        getDeckListByCardNames,
     }, dispatch);
 }
 

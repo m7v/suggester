@@ -14,7 +14,7 @@ import {
  */
 export function getDeckListByCardNames(cardList, name = 'newDeck') {
     return dispatch => {
-        const deckId = uniqueId('deck');
+        const deckId = uniqueId('deck2');
 
         dispatch(types.deckBuilderRequestStarted(deckId));
 
@@ -27,17 +27,13 @@ export function getDeckListByCardNames(cardList, name = 'newDeck') {
                     cardCount: cards.reduce((count, card) => Number(card.count) + count, 0),
                     analytics: {
                         colorComposition: cards.reduce((composition, card) =>
-                                size(card.colors)
-                                    ? card.colors.reduce((comp, color) => {
-                                        const colorLowerCase = color.toLowerCase();
-                                        comp[colorLowerCase]
-                                            ? comp[colorLowerCase] += card.count
-                                            : comp[colorLowerCase] = card.count;
-                                        return comp;
-                                    }, composition)
-                                    : composition
-                            ,
-                            {}),
+                            size(card.colors) ? card.colors.reduce((comp, color) => {
+                                const colorLowerCase = color.toLowerCase();
+                                comp[colorLowerCase]
+                                    ? comp[colorLowerCase] += card.count
+                                    : comp[colorLowerCase] = card.count;
+                                return comp;
+                            }, composition) : composition, {}),
                         cardRarity: cards.reduce((rarity, card) => {
                             const rarityLowerCase = card.rarity.toLowerCase();
                             rarity[rarityLowerCase]
