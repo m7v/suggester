@@ -1,0 +1,109 @@
+.Deck__deckCard {
+    background-color: #222 !important;
+    position: relative;
+    width: 435px;
+    margin: 15px;
+    padding: 7px;
+}
+
+.Deck__deckHead {
+    width: 100%;
+    height: 150px;
+}
+
+.Deck__cardHeadliner {
+    height: 145px;
+    width: 206px;
+    left: -10px;
+    display: inline-block;
+    float: left;
+    background-position: -9px -29px;
+}
+
+.Deck__cardManaPool {
+    margin: 5px;
+    width: 180px;
+    height: 90px;
+    display: inline-block;
+}
+
+.Deck__manaWrapper {
+    margin: 5px;
+}
+
+.Deck__composition {
+    padding: 10px;
+}
+
+.Deck__cardMana {
+    padding: 0;
+    margin: 0;
+}
+
+.Deck__cardManaNumber {
+    color: #e2e2e2;
+}
+
+.Deck__manaBar {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    white-space: nowrap;
+    vertical-align: top;
+    margin-right: 10px;
+    float: right;
+    width: 265px;
+    padding: 10px;
+    background-color: #222;
+    transform: skewX(-10deg);
+}
+
+.Deck__title {
+    font-family: "Beleren Bold";
+    font-size: 20px;
+    display: block;
+    color: #fff;
+}
+
+.Deck__mana {
+    display: inline-block;
+    margin: 1px;
+    height: 20px;
+}
+
+.type {
+    width: 15px;
+    height: 15px;
+    margin: 3px;
+    padding: 5px;
+    border-radius: 50%;
+    background-color: #e2e2e2;
+}
+
+.mana {
+    width: 15px;
+    height: 15px;
+    margin: 3px;
+    padding: 3px;
+    border-radius: 50%;
+}
+
+.mana-r {
+    background-color: #ff3a36;
+}
+
+.mana-g {
+    background-color: #19b43d;
+}
+
+.mana-b {
+    background-color: #a5a5a5;
+}
+
+.mana-u {
+    background-color: #5297e0;
+}
+
+.mana-w {
+    background-color: #efe9ab;
+}

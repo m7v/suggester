@@ -1,17 +1,16 @@
 import './styles.css';
 import 'mana-font/css/mana.min.css';
-import {map} from 'lodash';
 import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {createSelector} from 'redux-orm';
 import {bool, array, string, func} from 'prop-types';
 import mtgparser from 'mtg-parser';
+import Deck from '../Deck';
 import orm from '../../../store/models/models';
 import {
     Tab,
     Tabs,
-    Card,
     Dialog,
     TextField,
     CardActions,
@@ -24,14 +23,6 @@ import {cyan500} from 'material-ui/styles/colors';
 import {
     getDeckListByCardNames,
 } from '../../../actions/deckBuilder/deckBuilder.actions';
-
-const manaMap = {
-    white: 'w',
-    red: 'r',
-    black: 'b',
-    green: 'g',
-    blue: 'u',
-};
 
 class DecksContainer extends Component {
 
@@ -60,12 +51,13 @@ class DecksContainer extends Component {
         event.preventDefault();
         if (!this.props.loading) {
             const deck = mtgparser(this.state.draftDeck, 'mtgo');
-            this.props.getDeckListByCardNames(deck.cards.reduce((cardNames, card) => {
+            const cards = deck.cards.reduce((cardNames, card) => {
                 if (!cardNames[card.name]) {
                     cardNames[card.name] = card.number;
                 }
                 return cardNames;
-            }, {}));
+            }, {});
+            this.props.getDeckListByCardNames(cards, Object.keys(cards)[0]);
             this.setState({ open: false });
         }
     };
@@ -74,53 +66,7 @@ class DecksContainer extends Component {
         const primaryColor = cyan500;
 
         const decks = this.props.decks.map((deck) => (
-            <div key={deck.id}>
-                <Card className="Deck__deckCard">
-                    <div className="Deck__deckHead">
-                        <div
-                            className="Deck__cardHeadliner"
-                            style={{ backgroundImage: `url(${deck.headliner})` }}
-                        />
-                        <div className="Deck__cardManaPool">
-                            <ul className="Deck__cardMana">
-                                {map(deck.analytics.colorComposition, (count, mana) => {
-                                    const manaClass = `mana mana-${manaMap[mana]} ms ms-${manaMap[mana]}`;
-                                    return <i key={mana} className={manaClass} />;
-                                })}
-                            </ul>
-                        </div>
-                        <div className="Deck__title">
-                            {deck.name}
-                        </div>
-                    </div>
-                    <div className="Deck__manaBar">
-                        {map(deck.analytics.colorComposition, (count, mana) =>
-                            (<div
-                                key={mana}
-                                className={`Deck__mana mana-${manaMap[mana]}`}
-                                style={{
-                                    width: `${(count / deck.cardCount) * 100}%`,
-                                }}
-                            />)
-                        )}
-                    </div>
-                    <div className="Deck__composition">
-                        <div className="Deck__cardMana">
-                            {
-                                map(deck.analytics.deckComposition, (count, type) => {
-                                    const className = `type type-${type} ms ms-${type}`;
-                                    return (
-                                        <span key={type} className="Deck__manaWrapper">
-                                            <div className={className} />
-                                            <span className="Deck__cardManaNumber">{count}</span>
-                                        </span>
-                                    );
-                                })
-                            }
-                        </div>
-                    </div>
-                </Card>
-            </div>
+            <Deck deck={deck} key={deck.id} />
         ));
 
         return (

@@ -53,7 +53,7 @@ class Card extends Model {
     static reducer(action, card) {
         switch (action.type) {
             case ADD_CARD: {
-                card.create(action.payload.card);
+                card.upsert(action.payload.card);
                 break;
             }
         }
