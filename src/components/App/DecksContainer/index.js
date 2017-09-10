@@ -22,6 +22,7 @@ import ContentAdd from 'material-ui/svg-icons/content/create';
 import {cyan500} from 'material-ui/styles/colors';
 import {
     getDeckListByCardNames,
+    removeDeck
 } from '../../../actions/deckBuilder/deckBuilder.actions';
 
 class DecksContainer extends Component {
@@ -66,7 +67,11 @@ class DecksContainer extends Component {
         const primaryColor = cyan500;
 
         const decks = this.props.decks.map((deck) => (
-            <Deck deck={deck} key={deck.id} />
+            <Deck
+                key={deck.id}
+                deck={deck}
+                removeDeck={this.props.removeDeck}
+            />
         ));
 
         return (
@@ -146,6 +151,7 @@ DecksContainer.propTypes = {
     draftDeck: string,
     cards: array,
     decks: array,
+    removeDeck: func.isRequired,
     getDeckListByCardNames: func.isRequired,
 };
 
@@ -182,6 +188,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         getDeckListByCardNames,
+        removeDeck
     }, dispatch);
 }
 

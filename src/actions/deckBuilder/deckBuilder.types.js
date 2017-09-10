@@ -1,7 +1,9 @@
 import {
     GET_DECK_LIST,
     GET_CARD_LIST,
-    CREATE_CARD,
+    ADD_CARD,
+    ADD_DECK,
+    DELETE_DECK,
     DECK_BUILDER_REQUEST_STARTED,
     DECK_BUILDER_REQUEST_SUCCESS,
     DECK_BUILDER_REQUEST_FAILED
@@ -25,8 +27,20 @@ export function getDeckList(decks) {
  */
 export function createDeck(deck) {
     return {
-        type: 'DECK_BUILDER/DECK/ADD',
+        type: ADD_DECK,
         payload: {deck},
+        meta: {}
+    };
+}
+
+/**
+ * @param deckId
+ * @returns {{type, photoList: *}}
+ */
+export function deleteDeck(deckId) {
+    return {
+        type: DELETE_DECK,
+        payload: {deckId},
         meta: {}
     };
 }
@@ -49,7 +63,7 @@ export function getCardList(cards) {
  */
 export function createCard(card) {
     return {
-        type: CREATE_CARD,
+        type: ADD_CARD,
         payload: {card},
         meta: {}
     };

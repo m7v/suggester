@@ -2,7 +2,7 @@ import './styles.css';
 import 'mana-font/css/mana.min.css';
 import {map, sum} from 'lodash';
 import React, {Component} from 'react';
-import {object} from 'prop-types';
+import {object, func} from 'prop-types';
 import {
     Card,
 } from 'material-ui';
@@ -18,7 +18,7 @@ const manaMap = {
 class Deck extends Component {
 
     render() {
-        const deck = this.props.deck;
+        const {deck, removeDeck} = this.props;
         const pureCardCount = sum(Object.values(deck.analytics.colorComposition));
 
         return (
@@ -27,6 +27,7 @@ class Deck extends Component {
                     <div
                         className="Deck__cardHeadliner"
                         style={{ backgroundImage: `url(${deck.headliner})` }}
+                        onClick={() => removeDeck(deck.id)}
                     />
                     <div className="Deck__cardManaPool">
                         <ul className="Deck__cardMana">
@@ -71,6 +72,7 @@ class Deck extends Component {
 
 Deck.propTypes = {
     deck: object.isRequired,
+    removeDeck: func.isRequired
 };
 
 export default Deck;

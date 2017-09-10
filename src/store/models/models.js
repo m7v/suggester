@@ -1,9 +1,10 @@
 import { Model, many, ORM } from 'redux-orm';
-
-const ADD_DECK = 'DECK_BUILDER/DECK/ADD';
-const UPDATE_DECK = 'DECK_BUILDER/DECK/UPDATE';
-const DELETE_DECK = 'DECK_BUILDER/DECK/DELETE';
-const ADD_CARD = 'DECK_BUILDER/DECK/ADD_CARD';
+import {
+    ADD_CARD,
+    ADD_DECK,
+    DELETE_DECK,
+    UPDATE_DECK
+} from '../../reducers/deckBuilder/deckBuilder.helper';
 
 class Deck extends Model {
     static get fields() {

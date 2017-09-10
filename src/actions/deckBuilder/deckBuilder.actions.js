@@ -78,6 +78,12 @@ export function getDeckListByCardNames(cardList, name = 'newDeck') {
     };
 }
 
+export function removeDeck(deckId) {
+    return dispatch => {
+        dispatch(types.deleteDeck(deckId));
+    };
+}
+
 /**
  * @returns {function(*)}Success
  */
