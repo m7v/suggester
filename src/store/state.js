@@ -1,32 +1,41 @@
 export const state = {
     Deck: {
         items: [
+            // Archenemy Nicol Bolas
             'deck15050487013021',
             'deck15050487902081',
             'deck15050488084902',
             'deck15050488247773',
-            'deck15050488855211',
-            'deck15050488931702',
-            'deck15050489129863',
-            'deck15050489282234',
-            'deck15050493746031',
-            'deck15050493816472',
-            'deck15050498369121',
-            'deck15050498428722',
-            'deck15050506947781',
-            'deck15050507475462',
-            'deck15050524621431',
-            'deck15050524868172',
-            'deck15050526509211',
-            'deck15050526915652',
+
+            // Planeswalker intro deck
             'deck15050530587871',
             'deck15050530722152',
             'deck15050530892873',
             'deck15050530979464',
             'deck15050531128145',
             'deck15050531248156',
+
+            // Planeswalker Duel decks
+            'deck15050589326381',
+            'deck15050589431672',
+            'deck15050488855211',
+            'deck15050488931702',
+            'deck15050493746031',
+            'deck15050493816472',
+            'deck15050498369121',
+            'deck15050498428722',
+            'deck15050489129863',
+            'deck15050489282234',
+            'deck15050506947781',
+            'deck15050507475462',
+
+            // Non-planeswalker duel decks
             'deck15050532921901',
-            'deck15050533007372'
+            'deck15050533007372',
+            'deck15050526509211',
+            'deck15050526915652',
+            'deck15050524621431',
+            'deck15050524868172',
         ],
         itemsById: {
             deck15050487013021: {
@@ -982,6 +991,78 @@ export const state = {
                         land: 25
                     }
                 }
+            },
+            deck15050589326381: {
+                id: 'deck15050589326381',
+                headliner: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=417459&type=card',
+                name: 'Ob Nixilis Reignited',
+                cardCount: 60,
+                analytics: {
+                    colorComposition: {
+                        black: 36
+                    },
+                    cardRarity: {
+                        'mythic rare': 1,
+                        uncommon: 12,
+                        common: 19,
+                        rare: 6,
+                        'basic land': 22
+                    },
+                    manaCurve: {
+                        '0': 24,
+                        '1': 5,
+                        '2': 14,
+                        '3': 6,
+                        '4': 5,
+                        '5': 5,
+                        '8': 1
+                    },
+                    deckComposition: {
+                        planeswalker: 1,
+                        creature: 17,
+                        sorcery: 8,
+                        instant: 6,
+                        enchantment: 4,
+                        land: 24
+                    }
+                }
+            },
+            deck15050589431672: {
+                id: 'deck15050589431672',
+                headliner: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=417424&type=card',
+                name: 'Nissa, Voice of Zendikar',
+                cardCount: 60,
+                analytics: {
+                    colorComposition: {
+                        green: 36
+                    },
+                    cardRarity: {
+                        'mythic rare': 1,
+                        uncommon: 11,
+                        common: 24,
+                        rare: 6,
+                        'basic land': 18
+                    },
+                    manaCurve: {
+                        '0': 24,
+                        '1': 5,
+                        '2': 7,
+                        '3': 10,
+                        '4': 5,
+                        '5': 5,
+                        '6': 2,
+                        '7': 1,
+                        '8': 1
+                    },
+                    deckComposition: {
+                        planeswalker: 1,
+                        creature: 28,
+                        sorcery: 2,
+                        instant: 4,
+                        enchantment: 1,
+                        land: 24
+                    }
+                }
             }
         },
         meta: {
@@ -1723,7 +1804,60 @@ export const state = {
             '6d4f2e0aac9b820a6b7bd430cd9686787b69e4da',
             '53f7533b62a2b97f2f6b29262bc05cc7c86531bb',
             '3911d08224bd30e5b80888286e1e4dc9bf21bda4',
-            'c2e4eaf86460891c2e8f64df69ade7506407b89e'
+            'c2e4eaf86460891c2e8f64df69ade7506407b89e',
+            '466ed165528d4f8428877a53971e0a3fff3eca24',
+            '2a5073e7966a00756627c6b6f2f70d8527323e55',
+            'bcdcb455876862a223f19009be1fdc5ef777e27c',
+            '31b79abc7faef56a7d95c7e298e2b36c05937bdf',
+            'cc819d8e3d5f024e7ac3c212f8aee85d1bc4284c',
+            'ea56cf6934e4e6ce39de2ab6236ece8fddc41359',
+            'd9f20f3b8c8828091686abcda7e9e31682bc194a',
+            '6ad2deec17dabcb9303ed4f3688a940f1899f661',
+            '69d57a227f3e5e4c0c8994ade8808538e51f7fbc',
+            'd880e2c667fb159fddeb073026b80b7c6b99de68',
+            '966ab5769766e9eb16f318a1b5ac5890bfbb9faa',
+            '8f754724dc2ce27cf40f97f434f18dc6a3256f2c',
+            'cdbecf2bae98d2261b6c39e6d05bf4d04f1cfc56',
+            '281e72997b5c84b626c510336b8d1a059050eff1',
+            'd64dcc4fa67af3a3c982e093b768ac6dd55e82a2',
+            '07e0d91bd7c5d12f7b8592f81efda1d7b13c52d9',
+            '6034a592602138f06d0536d0ab5ef98150bc7c00',
+            'ac6c779db4c809cc18d1461b40f7cd0a66c6d8bf',
+            '9c16036a2dac9e557a9b8d71110c2cd0fbb3f54c',
+            '57930553c573bdaf3e6829a5027dfe852f657ad8',
+            'aae4d2b62479e01826d37acd3e87853d1613930b',
+            'db043b3ea930eb71ab694d7d77ed78a2372cf1dc',
+            '38e00c3112a8718b8b6e123a0bf9a41d512f266c',
+            '797e480f21b61e2432ce02b29bc5871b738c7a85',
+            '63185248015ad7356c96309afa0ace6b4afeaa93',
+            '0e8f41d22756e4c797d17057698a08a1fe3feaee',
+            'efceda794d01a9f3307aa2a78c564102bb4e31bc',
+            '26102dc7455d558040270619a3958c0491ea6547',
+            '218afef6a5bf635ef4aebb9c9b876a52de70d6d9',
+            '4648cfca3be20fdd1f65429dfe78301687a5fe55',
+            '487bc349cd39e15bdbe80e0324f35585df514a0e',
+            '41a7944b6c1f21fe3f4872d3eed5c93c6f6669b4',
+            'db72c9188d72293acb334ad78133e65cf05ae675',
+            '36461c7f29a365f97a7275c86fcf178ceb234b26',
+            '6f266a493bea14f2adf4d3b9041815c426c5eb25',
+            '6825a8c2a99164af81b72d5c190ba44c899ae8ed',
+            'd37a04612927156aed60a66a75834354af584c8c',
+            'f92e7a4899996f67e3072939181f9e15a53e68d7',
+            '8d9e5592b5283c790f4a75187ab0b798b65f5882',
+            '3060cbd778a5587572fa193f17e15daeb1e4f769',
+            'b1abc5092fd2ec26e0975f8fc72abab51bd4f0bc',
+            'b68952533a8780431b005e6c3ea1b76045699aee',
+            '864a70e60880a52382ddfae10575a665dad810bb',
+            '69a432d61684578e65cae644ae1ea20eb84d35a6',
+            'b699d2dd0690cc706d9ffc6a6b975e9c94f29b35',
+            '7db37e3f63a91210905310bbb3ab82d08e8df47b',
+            '39cc7ff20caa374c852a5faea780066a9c5a8f0f',
+            '66d250b75aa55ea0d038770eacb0d81f81a08608',
+            'b51bd92d04edc898f296e5a60e40dfa01edfd880',
+            'd1dece6c3d1b14216aa5d3368857cc755837b1df',
+            '134b90ef1ef3362e58c734931a9de18ea8945f47',
+            '98cd80cce0ef6b702121331fe988c9ae7061ccd6',
+            '86245eb888d73d5a920594bb7750985e035dd19c'
         ],
         itemsById: {
             '9258b6e1671eb5749d54a3a5d5ba1b97ccbbf37f': {
@@ -2315,7 +2449,7 @@ export const state = {
                 ]
             },
             '3c5f4853d244ea82c59d1f7e5d4ea113c1fd5639': {
-                count: 2,
+                count: 1,
                 artist: 'Wayne Reynolds',
                 cmc: 3,
                 colors: [
@@ -2352,7 +2486,7 @@ export const state = {
                 ]
             },
             f8ece80864bbdf7d2d352500b94e8a900afa6b5b: {
-                count: 1,
+                count: 2,
                 artist: 'Matt Stewart',
                 cmc: 5,
                 colors: [
@@ -2559,7 +2693,7 @@ export const state = {
                 ]
             },
             '7333a347a3d9db18fa1151c1a7d3f3ed10c00a25': {
-                count: 1,
+                count: 2,
                 artist: 'Dan Scott',
                 cmc: 1,
                 colors: [
@@ -2751,7 +2885,7 @@ export const state = {
                 ]
             },
             '961a58ae37bc247a2b64f3f85afcfb663e79a1f8': {
-                count: 10,
+                count: 18,
                 artist: 'John Avon',
                 cmc: 0,
                 id: '961a58ae37bc247a2b64f3f85afcfb663e79a1f8',
@@ -3762,7 +3896,7 @@ export const state = {
                 ]
             },
             '08fcc42f0ea8e0a231182e104eb634140ef1b5f2': {
-                count: 10,
+                count: 22,
                 artist: 'John Avon',
                 cmc: 0,
                 id: '08fcc42f0ea8e0a231182e104eb634140ef1b5f2',
@@ -8658,7 +8792,7 @@ export const state = {
                 ]
             },
             '7421742d00c3c8ca15041b87dabc8c0bc6bb6f4e': {
-                count: 1,
+                count: 2,
                 artist: 'Nils Hamm',
                 cmc: 4,
                 colors: [
@@ -15218,6 +15352,980 @@ export const state = {
                 types: [
                     'Land'
                 ]
+            },
+            '466ed165528d4f8428877a53971e0a3fff3eca24': {
+                count: 1,
+                artist: 'Raymond Swanland',
+                cmc: 5,
+                colors: [
+                    'Black'
+                ],
+                id: '466ed165528d4f8428877a53971e0a3fff3eca24',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=417459&type=card',
+                manaCost: '{3}{B}{B}',
+                name: 'Ob Nixilis Reignited',
+                text: '+1: You draw a card and you lose 1 life.\n−3: Destroy target creature.\n−8: Target opponent gets an emblem with "Whenever a player draws a card, you lose 2 life."',
+                type: 'Planeswalker — Nixilis',
+                rarity: 'Mythic Rare',
+                types: [
+                    'Planeswalker'
+                ]
+            },
+            '2a5073e7966a00756627c6b6f2f70d8527323e55': {
+                count: 2,
+                artist: 'Lius Lasahido',
+                cmc: 2,
+                colors: [
+                    'Black'
+                ],
+                flavor: '"Later we will mourn those we have lost. First we must end their suffering."\n—Drana, Kalastria bloodchief',
+                id: '2a5073e7966a00756627c6b6f2f70d8527323e55',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=417465&type=card',
+                manaCost: '{1}{B}',
+                name: 'Carrier Thrall',
+                text: 'When Carrier Thrall dies, create a 1/1 colorless Eldrazi Scion creature token. It has "Sacrifice this creature: Add {C} to your mana pool."',
+                type: 'Creature — Vampire',
+                rarity: 'Uncommon',
+                types: [
+                    'Creature'
+                ]
+            },
+            bcdcb455876862a223f19009be1fdc5ef777e27c: {
+                count: 2,
+                artist: 'Nils Hamm',
+                cmc: 2,
+                colors: [
+                    'Black'
+                ],
+                id: 'bcdcb455876862a223f19009be1fdc5ef777e27c',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=417471&type=card',
+                manaCost: '{1}{B}',
+                name: 'Fetid Imp',
+                text: 'Flying (This creature can\'t be blocked except by creatures with flying or reach.)\n{B}: Fetid Imp gains deathtouch until end of turn. (Any amount of damage it deals to a creature is enough to destroy it.)',
+                type: 'Creature — Imp',
+                rarity: 'Common',
+                types: [
+                    'Creature'
+                ]
+            },
+            '31b79abc7faef56a7d95c7e298e2b36c05937bdf': {
+                count: 1,
+                artist: 'Greg Staples',
+                cmc: 2,
+                colors: [
+                    'Black'
+                ],
+                flavor: 'Rats and vultures devour. It desecrates.',
+                id: '31b79abc7faef56a7d95c7e298e2b36c05937bdf',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=417468&type=card',
+                manaCost: '{B}{B}',
+                name: 'Despoiler of Souls',
+                text: 'Despoiler of Souls can\'t block.\n{B}{B}, Exile two other creature cards from your graveyard: Return Despoiler of Souls from your graveyard to the battlefield.',
+                type: 'Creature — Horror',
+                rarity: 'Rare',
+                types: [
+                    'Creature'
+                ]
+            },
+            cc819d8e3d5f024e7ac3c212f8aee85d1bc4284c: {
+                count: 1,
+                artist: 'Kev Walker',
+                cmc: 2,
+                colors: [
+                    'Black'
+                ],
+                flavor: 'The imp, unaware of its own odor, paused to catch its breath . . . and promptly died.',
+                id: 'cc819d8e3d5f024e7ac3c212f8aee85d1bc4284c',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=417472&type=card',
+                manaCost: '{B}{B}',
+                name: 'Foul Imp',
+                text: 'Flying\nWhen Foul Imp enters the battlefield, you lose 2 life.',
+                type: 'Creature — Imp',
+                rarity: 'Common',
+                types: [
+                    'Creature'
+                ]
+            },
+            ea56cf6934e4e6ce39de2ab6236ece8fddc41359: {
+                count: 2,
+                artist: 'Daarken',
+                cmc: 3,
+                colors: [
+                    'Black'
+                ],
+                flavor: '"Avoid anything that scuttles, scrabbles, or shambles."\n—Opar, veteran guide',
+                id: 'ea56cf6934e4e6ce39de2ab6236ece8fddc41359',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=417463&type=card',
+                manaCost: '{2}{B}',
+                name: 'Blistergrub',
+                text: 'Swampwalk (This creature can\'t be blocked as long as defending player controls a Swamp.)\nWhen Blistergrub dies, each opponent loses 2 life.',
+                type: 'Creature — Horror',
+                rarity: 'Common',
+                types: [
+                    'Creature'
+                ]
+            },
+            d9f20f3b8c8828091686abcda7e9e31682bc194a: {
+                count: 1,
+                artist: 'Raymond Swanland',
+                cmc: 3,
+                colors: [
+                    'Black'
+                ],
+                flavor: 'Its sting hurts, but death is strangely painless.',
+                id: 'd9f20f3b8c8828091686abcda7e9e31682bc194a',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=417473&type=card',
+                manaCost: '{2}{B}',
+                name: 'Giant Scorpion',
+                text: 'Deathtouch (Any amount of damage this deals to a creature is enough to destroy it.)',
+                type: 'Creature — Scorpion',
+                rarity: 'Common',
+                types: [
+                    'Creature'
+                ]
+            },
+            '6ad2deec17dabcb9303ed4f3688a940f1899f661': {
+                count: 1,
+                artist: 'Dave Kendall',
+                cmc: 3,
+                colors: [
+                    'Black'
+                ],
+                flavor: 'The mouth must be pried open before rigor mortis sets in. Otherwise the returning soul can find no ingress.',
+                id: '6ad2deec17dabcb9303ed4f3688a940f1899f661',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=423456&type=card',
+                manaCost: '{1}{B}{B}',
+                name: 'Cadaver Imp',
+                text: 'Flying\nWhen Cadaver Imp enters the battlefield, you may return target creature card from your graveyard to your hand.',
+                type: 'Creature — Imp',
+                rarity: 'Common',
+                types: [
+                    'Creature'
+                ]
+            },
+            '69d57a227f3e5e4c0c8994ade8808538e51f7fbc': {
+                count: 1,
+                artist: 'Daarken',
+                cmc: 4,
+                colors: [
+                    'Black'
+                ],
+                flavor: 'Fast and lethal, with a penchant for the weak and infirm.',
+                id: '69d57a227f3e5e4c0c8994ade8808538e51f7fbc',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=417462&type=card',
+                manaCost: '{3}{B}',
+                name: 'Bala Ged Scorpion',
+                text: 'When Bala Ged Scorpion enters the battlefield, you may destroy target creature with power 1 or less.',
+                type: 'Creature — Scorpion',
+                rarity: 'Common',
+                types: [
+                    'Creature'
+                ]
+            },
+            d880e2c667fb159fddeb073026b80b7c6b99de68: {
+                count: 1,
+                artist: 'Jason Chan',
+                cmc: 4,
+                colors: [
+                    'Black'
+                ],
+                id: 'd880e2c667fb159fddeb073026b80b7c6b99de68',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=425891&type=card',
+                manaCost: '{2}{B}{B}',
+                name: 'Desecration Demon',
+                text: 'Flying\nAt the beginning of each combat, any opponent may sacrifice a creature. If a player does, tap Desecration Demon and put a +1/+1 counter on it.',
+                type: 'Creature — Demon',
+                rarity: 'Rare',
+                types: [
+                    'Creature'
+                ]
+            },
+            '966ab5769766e9eb16f318a1b5ac5890bfbb9faa': {
+                count: 1,
+                artist: 'Svetlin Velinov',
+                cmc: 4,
+                colors: [
+                    'Black'
+                ],
+                flavor: 'Setting foot in their muck is an open invitation.',
+                id: '966ab5769766e9eb16f318a1b5ac5890bfbb9faa',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=417485&type=card',
+                manaCost: '{2}{B}{B}',
+                name: 'Squelching Leeches',
+                text: 'Squelching Leeches\'s power and toughness are each equal to the number of Swamps you control.',
+                type: 'Creature — Leech',
+                rarity: 'Uncommon',
+                types: [
+                    'Creature'
+                ]
+            },
+            '8f754724dc2ce27cf40f97f434f18dc6a3256f2c': {
+                count: 1,
+                artist: 'Wesley Burt',
+                cmc: 5,
+                colors: [
+                    'Black'
+                ],
+                flavor: 'The promise of anguish is payment enough for services rendered.',
+                id: '8f754724dc2ce27cf40f97f434f18dc6a3256f2c',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=417476&type=card',
+                manaCost: '{3}{B}{B}',
+                name: 'Indulgent Tormentor',
+                text: 'Flying\nAt the beginning of your upkeep, draw a card unless target opponent sacrifices a creature or pays 3 life.',
+                type: 'Creature — Demon',
+                rarity: 'Rare',
+                types: [
+                    'Creature'
+                ]
+            },
+            cdbecf2bae98d2261b6c39e6d05bf4d04f1cfc56: {
+                count: 1,
+                artist: 'David Palumbo',
+                cmc: 5,
+                colors: [
+                    'Black'
+                ],
+                flavor: 'Some will sacrifice everything for but a taste of power.',
+                id: 'cdbecf2bae98d2261b6c39e6d05bf4d04f1cfc56',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=417480&type=card',
+                manaCost: '{3}{B}{B}',
+                name: 'Priest of the Blood Rite',
+                text: 'When Priest of the Blood Rite enters the battlefield, create a 5/5 black Demon creature token with flying.\nAt the beginning of your upkeep, you lose 2 life.',
+                type: 'Creature — Human Cleric',
+                rarity: 'Rare',
+                types: [
+                    'Creature'
+                ]
+            },
+            '281e72997b5c84b626c510336b8d1a059050eff1': {
+                count: 1,
+                artist: 'Tomasz Jedruszek',
+                cmc: 5,
+                colors: [
+                    'Black'
+                ],
+                flavor: 'Confront it at your own peril, for it will confront you for its own amusement.',
+                id: '281e72997b5c84b626c510336b8d1a059050eff1',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=417482&type=card',
+                manaCost: '{3}{B}{B}',
+                name: 'Renegade Demon',
+                type: 'Creature — Demon',
+                rarity: 'Common',
+                types: [
+                    'Creature'
+                ]
+            },
+            d64dcc4fa67af3a3c982e093b768ac6dd55e82a2: {
+                count: 1,
+                artist: 'Justin Sweet',
+                cmc: 8,
+                colors: [
+                    'Black'
+                ],
+                flavor: '"I have schemed too long to be supplanted by dead gods. If I cannot have this world, no one can."',
+                id: 'd64dcc4fa67af3a3c982e093b768ac6dd55e82a2',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=417479&type=card',
+                manaCost: '{5}{B}{B}{B}',
+                name: 'Pestilence Demon',
+                text: 'Flying\n{B}: Pestilence Demon deals 1 damage to each creature and each player.',
+                type: 'Creature — Demon',
+                rarity: 'Rare',
+                types: [
+                    'Creature'
+                ]
+            },
+            '07e0d91bd7c5d12f7b8592f81efda1d7b13c52d9': {
+                count: 1,
+                artist: 'Carl Critchlow',
+                cmc: 1,
+                colors: [
+                    'Black'
+                ],
+                flavor: 'Zombies mourn for the living and celebrate those who will soon be given the gift of death.',
+                id: '07e0d91bd7c5d12f7b8592f81efda1d7b13c52d9',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=205364&type=card',
+                manaCost: '{B}',
+                name: 'Innocent Blood',
+                text: 'Each player sacrifices a creature.',
+                type: 'Sorcery',
+                rarity: 'Common',
+                types: [
+                    'Sorcery'
+                ]
+            },
+            '6034a592602138f06d0536d0ab5ef98150bc7c00': {
+                count: 1,
+                artist: 'Alex Horley-Orlandelli',
+                cmc: 1,
+                colors: [
+                    'Black'
+                ],
+                flavor: 'As the bridge snapped, Berko was sure he heard the swamp laughing at him.',
+                id: '6034a592602138f06d0536d0ab5ef98150bc7c00',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=417478&type=card',
+                manaCost: '{B}',
+                name: 'Mire\'s Toll',
+                text: 'Target player reveals a number of cards from his or her hand equal to the number of Swamps you control. You choose one of them. That player discards that card.',
+                type: 'Sorcery',
+                rarity: 'Common',
+                types: [
+                    'Sorcery'
+                ]
+            },
+            ac6c779db4c809cc18d1461b40f7cd0a66c6d8bf: {
+                count: 2,
+                artist: 'Christopher Moeller',
+                cmc: 2,
+                colors: [
+                    'Black'
+                ],
+                flavor: 'Few among the living understand just how much of their world is shaped by the ruins of the dead.',
+                id: 'ac6c779db4c809cc18d1461b40f7cd0a66c6d8bf',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=417474&type=card',
+                manaCost: '{1}{B}',
+                name: 'Grim Discovery',
+                text: 'Choose one or both —\n• Return target creature card from your graveyard to your hand.\n• Return target land card from your graveyard to your hand.',
+                type: 'Sorcery',
+                rarity: 'Common',
+                types: [
+                    'Sorcery'
+                ]
+            },
+            '9c16036a2dac9e557a9b8d71110c2cd0fbb3f54c': {
+                count: 2,
+                artist: 'Ryan Pancoast',
+                cmc: 2,
+                colors: [
+                    'Black'
+                ],
+                flavor: 'Take away a few things, and a rebellion may ensue. Take away everything, and the oppression will be accepted as fate.',
+                id: '9c16036a2dac9e557a9b8d71110c2cd0fbb3f54c',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=417484&type=card',
+                manaCost: '{B}{B}',
+                name: 'Smallpox',
+                text: 'Each player loses 1 life, discards a card, sacrifices a creature, then sacrifices a land.',
+                type: 'Sorcery',
+                rarity: 'Uncommon',
+                types: [
+                    'Sorcery'
+                ]
+            },
+            '57930553c573bdaf3e6829a5027dfe852f657ad8': {
+                count: 1,
+                artist: 'Junko Taguchi',
+                cmc: 4,
+                colors: [
+                    'Black'
+                ],
+                flavor: '"When you give offense to heaven, to whom can you pray?"\n—Cao Cao, quoting Confucius',
+                id: '57930553c573bdaf3e6829a5027dfe852f657ad8',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=10493&type=card',
+                manaCost: '{3}{B}',
+                name: 'Ambition\'s Cost',
+                text: 'You draw three cards and you lose 3 life.',
+                type: 'Sorcery',
+                rarity: 'Rare',
+                types: [
+                    'Sorcery'
+                ]
+            },
+            aae4d2b62479e01826d37acd3e87853d1613930b: {
+                count: 1,
+                artist: 'David Gaillet',
+                cmc: 5,
+                colors: [
+                    'Black'
+                ],
+                flavor: '"Take what solace you can in the knowledge that you will not be here to witness Zendikar\'s demise."\n—Ob Nixilis',
+                id: 'aae4d2b62479e01826d37acd3e87853d1613930b',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=417466&type=card',
+                manaCost: '{4}{B}',
+                name: 'Demon\'s Grasp',
+                text: 'Target creature gets -5/-5 until end of turn.',
+                type: 'Sorcery',
+                rarity: 'Common',
+                types: [
+                    'Sorcery'
+                ]
+            },
+            db043b3ea930eb71ab694d7d77ed78a2372cf1dc: {
+                count: 1,
+                artist: 'Justin Sweet',
+                cmc: 1,
+                colors: [
+                    'Black'
+                ],
+                flavor: '"Brave scar or unfortunate tale? It all depends on your pain threshold."',
+                id: 'db043b3ea930eb71ab694d7d77ed78a2372cf1dc',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=417469&type=card',
+                manaCost: '{B}',
+                name: 'Disfigure',
+                text: 'Target creature gets -2/-2 until end of turn.',
+                type: 'Instant',
+                rarity: 'Common',
+                types: [
+                    'Instant'
+                ]
+            },
+            '38e00c3112a8718b8b6e123a0bf9a41d512f266c': {
+                count: 1,
+                artist: 'Tyler Jacobson',
+                cmc: 2,
+                colors: [
+                    'Black'
+                ],
+                flavor: '"I will secure my revenge on Zendikar one soul at a time."\n—Ob Nixilis',
+                id: '38e00c3112a8718b8b6e123a0bf9a41d512f266c',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=417460&type=card',
+                manaCost: '{1}{B}',
+                name: 'Altar\'s Reap',
+                text: 'As an additional cost to cast Altar\'s Reap, sacrifice a creature.\nDraw two cards.',
+                type: 'Instant',
+                rarity: 'Common',
+                types: [
+                    'Instant'
+                ]
+            },
+            '797e480f21b61e2432ce02b29bc5871b738c7a85': {
+                count: 1,
+                artist: 'Zoltan Boros & Gabor Szikszai',
+                cmc: 3,
+                colors: [
+                    'Black'
+                ],
+                flavor: '"A little dark magic won\'t stop me. The worse the curse, the better the prize."\n—Radavi, Joraga relic hunter, last words',
+                id: '797e480f21b61e2432ce02b29bc5871b738c7a85',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=205341&type=card',
+                manaCost: '{1}{B}{B}',
+                name: 'Hideous End',
+                text: 'Destroy target nonblack creature. Its controller loses 2 life.',
+                type: 'Instant',
+                rarity: 'Common',
+                types: [
+                    'Instant'
+                ]
+            },
+            '63185248015ad7356c96309afa0ace6b4afeaa93': {
+                count: 1,
+                artist: 'Vance Kovacs',
+                cmc: 4,
+                colors: [
+                    'Black'
+                ],
+                flavor: 'Darkness doesn\'t always send its minions to do its dirty work.',
+                id: '63185248015ad7356c96309afa0ace6b4afeaa93',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=417486&type=card',
+                manaCost: '{3}{B}',
+                name: 'Tendrils of Corruption',
+                text: 'Tendrils of Corruption deals X damage to target creature and you gain X life, where X is the number of Swamps you control.',
+                type: 'Instant',
+                rarity: 'Common',
+                types: [
+                    'Instant'
+                ]
+            },
+            '0e8f41d22756e4c797d17057698a08a1fe3feaee': {
+                count: 2,
+                artist: 'Chris Rahn',
+                cmc: 1,
+                colors: [
+                    'Black'
+                ],
+                id: '0e8f41d22756e4c797d17057698a08a1fe3feaee',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=417481&type=card',
+                manaCost: '{B}',
+                name: 'Quest for the Gravelord',
+                text: 'Whenever a creature dies, you may put a quest counter on Quest for the Gravelord.\nRemove three quest counters from Quest for the Gravelord and sacrifice it: Create a 5/5 black Zombie Giant creature token.',
+                type: 'Enchantment',
+                rarity: 'Uncommon',
+                types: [
+                    'Enchantment'
+                ]
+            },
+            efceda794d01a9f3307aa2a78c564102bb4e31bc: {
+                count: 1,
+                artist: 'Ryan Yee',
+                cmc: 2,
+                colors: [
+                    'Black'
+                ],
+                id: 'efceda794d01a9f3307aa2a78c564102bb4e31bc',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=417483&type=card',
+                manaCost: '{1}{B}',
+                name: 'Shadows of the Past',
+                text: 'Whenever a creature dies, scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)\n{4}{B}: Each opponent loses 2 life and you gain 2 life. Activate this ability only if there are four or more creature cards in your graveyard.',
+                type: 'Enchantment',
+                rarity: 'Uncommon',
+                types: [
+                    'Enchantment'
+                ]
+            },
+            '26102dc7455d558040270619a3958c0491ea6547': {
+                count: 1,
+                artist: 'Volkan Baga',
+                cmc: 3,
+                colors: [
+                    'Black'
+                ],
+                flavor: 'Agreements with demons seldom end at the grave.',
+                id: '26102dc7455d558040270619a3958c0491ea6547',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=417487&type=card',
+                manaCost: '{2}{B}',
+                name: 'Unhallowed Pact',
+                text: 'Enchant creature\nWhen enchanted creature dies, return that card to the battlefield under your control.',
+                type: 'Enchantment — Aura',
+                rarity: 'Common',
+                types: [
+                    'Enchantment'
+                ]
+            },
+            '218afef6a5bf635ef4aebb9c9b876a52de70d6d9': {
+                count: 2,
+                artist: 'Lars Grant-West',
+                cmc: 0,
+                id: '218afef6a5bf635ef4aebb9c9b876a52de70d6d9',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=205401&type=card',
+                name: 'Leechridden Swamp',
+                text: '({T}: Add {B} to your mana pool.)\nLeechridden Swamp enters the battlefield tapped.\n{B}, {T}: Each opponent loses 1 life. Activate this ability only if you control two or more black permanents.',
+                type: 'Land — Swamp',
+                rarity: 'Uncommon',
+                types: [
+                    'Land'
+                ]
+            },
+            '4648cfca3be20fdd1f65429dfe78301687a5fe55': {
+                count: 1,
+                artist: 'Raymond Swanland',
+                cmc: 3,
+                colors: [
+                    'Green'
+                ],
+                id: '4648cfca3be20fdd1f65429dfe78301687a5fe55',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=417424&type=card',
+                manaCost: '{1}{G}{G}',
+                name: 'Nissa, Voice of Zendikar',
+                text: '+1: Create a 0/1 green Plant creature token.\n−2: Put a +1/+1 counter on each creature you control.\n−7: You gain X life and draw X cards, where X is the number of lands you control.',
+                type: 'Planeswalker — Nissa',
+                rarity: 'Mythic Rare',
+                types: [
+                    'Planeswalker'
+                ]
+            },
+            '487bc349cd39e15bdbe80e0324f35585df514a0e': {
+                count: 2,
+                artist: 'Daniel Ljunggren',
+                cmc: 1,
+                colors: [
+                    'Green'
+                ],
+                flavor: 'Eldrazi are not the leopard\'s preferred prey, but they are better than no prey at all.',
+                id: '487bc349cd39e15bdbe80e0324f35585df514a0e',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=417442&type=card',
+                manaCost: '{G}',
+                name: 'Scythe Leopard',
+                text: 'Landfall — Whenever a land enters the battlefield under your control, Scythe Leopard gets +1/+1 until end of turn.',
+                type: 'Creature — Cat',
+                rarity: 'Uncommon',
+                types: [
+                    'Creature'
+                ]
+            },
+            '41a7944b6c1f21fe3f4872d3eed5c93c6f6669b4': {
+                count: 2,
+                artist: 'D. Alexander Gregory',
+                cmc: 2,
+                colors: [
+                    'Green'
+                ],
+                flavor: '"From a tiny sprout, the greatest trees grow and flourish. May the seeds of your mind be equally fruitful."',
+                id: '41a7944b6c1f21fe3f4872d3eed5c93c6f6669b4',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=417431&type=card',
+                manaCost: '{1}{G}',
+                name: 'Elvish Visionary',
+                text: 'When Elvish Visionary enters the battlefield, draw a card.',
+                type: 'Creature — Elf Shaman',
+                rarity: 'Common',
+                types: [
+                    'Creature'
+                ]
+            },
+            db72c9188d72293acb334ad78133e65cf05ae675: {
+                count: 1,
+                artist: 'Anastasia Ovchinnikova',
+                cmc: 2,
+                colors: [
+                    'Green'
+                ],
+                flavor: '"The world was not hostile to us—we were beneath its notice, and presented no danger."\n—The Invokers\' Tales',
+                id: 'db72c9188d72293acb334ad78133e65cf05ae675',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=417440&type=card',
+                manaCost: '{1}{G}',
+                name: 'Oran-Rief Invoker',
+                text: '{8}: Oran-Rief Invoker gets +5/+5 and gains trample until end of turn.',
+                type: 'Creature — Human Shaman',
+                rarity: 'Common',
+                types: [
+                    'Creature'
+                ]
+            },
+            '36461c7f29a365f97a7275c86fcf178ceb234b26': {
+                count: 2,
+                artist: 'Dave Kendall',
+                cmc: 2,
+                colors: [
+                    'Green'
+                ],
+                flavor: 'Their arrows are tipped with basilisk eyes and fletched with cockatrice feathers.',
+                id: '36461c7f29a365f97a7275c86fcf178ceb234b26',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=413731&type=card',
+                manaCost: '{1}{G}',
+                name: 'Thornweald Archer',
+                text: 'Reach (This creature can block creatures with flying.)\nDeathtouch (Any amount of damage this deals to a creature is enough to destroy it.)',
+                type: 'Creature — Elf Archer',
+                rarity: 'Common',
+                types: [
+                    'Creature'
+                ]
+            },
+            '6f266a493bea14f2adf4d3b9041815c426c5eb25': {
+                count: 1,
+                artist: 'Jaime Jones',
+                cmc: 2,
+                colors: [
+                    'Green'
+                ],
+                flavor: 'Once, Nissa selected worthy fighters to defend the Joraga. Now, she gathers forces to defend all of Zendikar.',
+                id: '6f266a493bea14f2adf4d3b9041815c426c5eb25',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=417437&type=card',
+                manaCost: '{G}{G}',
+                name: 'Nissa\'s Chosen',
+                text: 'If Nissa\'s Chosen would die, put it on the bottom of its owner\'s library instead.',
+                type: 'Creature — Elf Warrior',
+                rarity: 'Common',
+                types: [
+                    'Creature'
+                ]
+            },
+            '6825a8c2a99164af81b72d5c190ba44c899ae8ed': {
+                count: 2,
+                artist: 'Steven Belledin',
+                cmc: 3,
+                colors: [
+                    'Green'
+                ],
+                flavor: 'They seek out living trees to glean age-old secrets from sap and wood.',
+                id: '6825a8c2a99164af81b72d5c190ba44c899ae8ed',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=370501&type=card',
+                manaCost: '{2}{G}',
+                name: 'Citanul Woodreaders',
+                text: 'Kicker {2}{G} (You may pay an additional {2}{G} as you cast this spell.)\nWhen Citanul Woodreaders enters the battlefield, if it was kicked, draw two cards.',
+                type: 'Creature — Human Druid',
+                rarity: 'Common',
+                types: [
+                    'Creature'
+                ]
+            },
+            d37a04612927156aed60a66a75834354af584c8c: {
+                count: 2,
+                artist: 'Cyril Van Der Haegen',
+                cmc: 3,
+                colors: [
+                    'Green'
+                ],
+                flavor: '"These alleys are not safe. Come, I can guide you back to the market square."',
+                id: 'd37a04612927156aed60a66a75834354af584c8c',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=413703&type=card',
+                manaCost: '{2}{G}',
+                name: 'Civic Wayfinder',
+                text: 'When Civic Wayfinder enters the battlefield, you may search your library for a basic land card, reveal it, and put it into your hand. If you do, shuffle your library.',
+                type: 'Creature — Elf Warrior Druid',
+                rarity: 'Common',
+                types: [
+                    'Creature'
+                ]
+            },
+            f92e7a4899996f67e3072939181f9e15a53e68d7: {
+                count: 2,
+                artist: 'Darrell Riche',
+                cmc: 3,
+                colors: [
+                    'Green'
+                ],
+                flavor: 'Desmera blinded her seers so that her beauty would be the last image burned in their memories. The act only deepened their insight.',
+                id: 'f92e7a4899996f67e3072939181f9e15a53e68d7',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=417434&type=card',
+                manaCost: '{2}{G}',
+                name: 'Gilt-Leaf Seer',
+                text: '{G}, {T}: Look at the top two cards of your library, then put them back in any order.',
+                type: 'Creature — Elf Shaman',
+                rarity: 'Common',
+                types: [
+                    'Creature'
+                ]
+            },
+            '8d9e5592b5283c790f4a75187ab0b798b65f5882': {
+                count: 1,
+                artist: 'Rebecca Guay',
+                cmc: 3,
+                colors: [
+                    'Green'
+                ],
+                id: '8d9e5592b5283c790f4a75187ab0b798b65f5882',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=4327&type=card',
+                manaCost: '{2}{G}',
+                name: 'Wood Elves',
+                text: 'When Wood Elves enters the battlefield, search your library for a Forest card and put that card onto the battlefield. Then shuffle your library.',
+                type: 'Creature — Elf Scout',
+                rarity: 'Rare',
+                types: [
+                    'Creature'
+                ]
+            },
+            '3060cbd778a5587572fa193f17e15daeb1e4f769': {
+                count: 1,
+                artist: 'Jason Kang',
+                cmc: 4,
+                colors: [
+                    'Green'
+                ],
+                flavor: '"A good lagac will carry you through thick and thin. A bad one . . . well, it\'s a tasty dinner."\n—Raff Slugeater, goblin shortcutter',
+                id: '3060cbd778a5587572fa193f17e15daeb1e4f769',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=417441&type=card',
+                manaCost: '{3}{G}',
+                name: 'Saddleback Lagac',
+                text: 'When Saddleback Lagac enters the battlefield, support 2. (Put a +1/+1 counter on each of up to two other target creatures.)',
+                type: 'Creature — Lizard',
+                rarity: 'Common',
+                types: [
+                    'Creature'
+                ]
+            },
+            b1abc5092fd2ec26e0975f8fc72abab51bd4f0bc: {
+                count: 2,
+                artist: 'Vincent Proce',
+                cmc: 5,
+                colors: [
+                    'Green'
+                ],
+                flavor: 'Nature\'s arms encircle all who are willing to draw close.',
+                id: 'b1abc5092fd2ec26e0975f8fc72abab51bd4f0bc',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=417435&type=card',
+                manaCost: '{4}{G}',
+                name: 'Jaddi Lifestrider',
+                text: 'When Jaddi Lifestrider enters the battlefield, you may tap any number of untapped creatures you control. You gain 2 life for each creature tapped this way.',
+                type: 'Creature — Elemental',
+                rarity: 'Uncommon',
+                types: [
+                    'Creature'
+                ]
+            },
+            b68952533a8780431b005e6c3ea1b76045699aee: {
+                count: 1,
+                artist: 'Ron Spencer',
+                cmc: 5,
+                colors: [
+                    'Green'
+                ],
+                id: 'b68952533a8780431b005e6c3ea1b76045699aee',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=417444&type=card',
+                manaCost: '{3}{G}{G}',
+                name: 'Thicket Elemental',
+                text: 'Kicker {1}{G} (You may pay an additional {1}{G} as you cast this spell.)\nWhen Thicket Elemental enters the battlefield, if it was kicked, you may reveal cards from the top of your library until you reveal a creature card. If you do, put that card onto the battlefield and shuffle all other cards revealed this way into your library.',
+                type: 'Creature — Elemental',
+                rarity: 'Rare',
+                types: [
+                    'Creature'
+                ]
+            },
+            '864a70e60880a52382ddfae10575a665dad810bb': {
+                count: 1,
+                artist: 'Christopher Moeller',
+                cmc: 6,
+                colors: [
+                    'Green'
+                ],
+                id: '864a70e60880a52382ddfae10575a665dad810bb',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=417429&type=card',
+                manaCost: '{2}{G}{G}{G}{G}',
+                name: 'Cloudthresher',
+                text: 'Flash\nReach\nWhen Cloudthresher enters the battlefield, it deals 2 damage to each creature with flying and each player.\nEvoke {2}{G}{G} (You may cast this spell for its evoke cost. If you do, it\'s sacrificed when it enters the battlefield.)',
+                type: 'Creature — Elemental',
+                rarity: 'Rare',
+                types: [
+                    'Creature'
+                ]
+            },
+            '69a432d61684578e65cae644ae1ea20eb84d35a6': {
+                count: 1,
+                artist: 'Jim Nelson',
+                cmc: 7,
+                colors: [
+                    'Green'
+                ],
+                flavor: '"Roam as you will, your roots remain in the strong earth of your Rising."',
+                id: '69a432d61684578e65cae644ae1ea20eb84d35a6',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=417438&type=card',
+                manaCost: '{5}{G}{G}',
+                name: 'Oakgnarl Warrior',
+                text: 'Vigilance, trample',
+                type: 'Creature — Treefolk Warrior',
+                rarity: 'Common',
+                types: [
+                    'Creature'
+                ]
+            },
+            b699d2dd0690cc706d9ffc6a6b975e9c94f29b35: {
+                count: 1,
+                artist: 'Todd Lockwood',
+                cmc: 8,
+                colors: [
+                    'Green'
+                ],
+                id: 'b699d2dd0690cc706d9ffc6a6b975e9c94f29b35',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=370519&type=card',
+                manaCost: '{6}{G}{G}',
+                name: 'Walker of the Grove',
+                text: 'When Walker of the Grove leaves the battlefield, create a 4/4 green Elemental creature token.\nEvoke {4}{G} (You may cast this spell for its evoke cost. If you do, it\'s sacrificed when it enters the battlefield.)',
+                type: 'Creature — Elemental',
+                rarity: 'Common',
+                types: [
+                    'Creature'
+                ]
+            },
+            '7db37e3f63a91210905310bbb3ab82d08e8df47b': {
+                count: 1,
+                artist: 'Rebecca Guay',
+                cmc: 2,
+                colors: [
+                    'Green'
+                ],
+                id: '7db37e3f63a91210905310bbb3ab82d08e8df47b',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=413710&type=card',
+                manaCost: '{1}{G}',
+                name: 'Gaea\'s Blessing',
+                text: 'Target player shuffles up to three target cards from his or her graveyard into his or her library.\nDraw a card.\nWhen Gaea\'s Blessing is put into your graveyard from your library, shuffle your graveyard into your library.',
+                type: 'Sorcery',
+                rarity: 'Uncommon',
+                types: [
+                    'Sorcery'
+                ]
+            },
+            '39cc7ff20caa374c852a5faea780066a9c5a8f0f': {
+                count: 1,
+                artist: 'Min Yum',
+                cmc: 4,
+                colors: [
+                    'Green'
+                ],
+                flavor: '"The horizon is the perpetual ideal, the constant promise of hope."\n—Nissa Revane',
+                id: '39cc7ff20caa374c852a5faea780066a9c5a8f0f',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=417443&type=card',
+                manaCost: '{3}{G}',
+                name: 'Seek the Horizon',
+                text: 'Search your library for up to three basic land cards, reveal them, and put them into your hand. Then shuffle your library.',
+                type: 'Sorcery',
+                rarity: 'Uncommon',
+                types: [
+                    'Sorcery'
+                ]
+            },
+            '66d250b75aa55ea0d038770eacb0d81f81a08608': {
+                count: 1,
+                artist: 'Daniel Ljunggren',
+                cmc: 1,
+                colors: [
+                    'Green'
+                ],
+                flavor: 'Zendikar\'s elves have developed innovative methods to mitigate the effects of the Roil.',
+                id: '66d250b75aa55ea0d038770eacb0d81f81a08608',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=417430&type=card',
+                manaCost: '{G}',
+                name: 'Crop Rotation',
+                text: 'As an additional cost to cast Crop Rotation, sacrifice a land.\nSearch your library for a land card and put that card onto the battlefield. Then shuffle your library.',
+                type: 'Instant',
+                rarity: 'Common',
+                types: [
+                    'Instant'
+                ]
+            },
+            b51bd92d04edc898f296e5a60e40dfa01edfd880: {
+                count: 1,
+                artist: 'Wesley Burt',
+                cmc: 3,
+                colors: [
+                    'Green'
+                ],
+                flavor: '"Zendikar will not surrender, and neither can we."',
+                id: 'b51bd92d04edc898f296e5a60e40dfa01edfd880',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=417436&type=card',
+                manaCost: '{2}{G}',
+                name: 'Natural Connection',
+                text: 'Search your library for a basic land card, put it onto the battlefield tapped, then shuffle your library.',
+                type: 'Instant',
+                rarity: 'Common',
+                types: [
+                    'Instant'
+                ]
+            },
+            d1dece6c3d1b14216aa5d3368857cc755837b1df: {
+                count: 1,
+                artist: 'Rebecca Guay',
+                cmc: 4,
+                colors: [
+                    'Green'
+                ],
+                id: 'd1dece6c3d1b14216aa5d3368857cc755837b1df',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=417425&type=card',
+                manaCost: '{2}{G}{G}',
+                name: 'Abundance',
+                text: 'If you would draw a card, you may instead choose land or nonland and reveal cards from the top of your library until you reveal a card of the chosen kind. Put that card into your hand and put all other cards revealed this way on the bottom of your library in any order.',
+                type: 'Enchantment',
+                rarity: 'Rare',
+                types: [
+                    'Enchantment'
+                ]
+            },
+            '134b90ef1ef3362e58c734931a9de18ea8945f47': {
+                count: 2,
+                artist: 'Andreas Rocha',
+                cmc: 0,
+                id: '134b90ef1ef3362e58c734931a9de18ea8945f47',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=417450&type=card',
+                name: 'Fertile Thicket',
+                text: 'Fertile Thicket enters the battlefield tapped.\nWhen Fertile Thicket enters the battlefield, you may look at the top five cards of your library. If you do, reveal up to one basic land card from among them, then put that card on top of your library and the rest on the bottom in any order.\n{T}: Add {G} to your mana pool.',
+                type: 'Land',
+                rarity: 'Common',
+                types: [
+                    'Land'
+                ]
+            },
+            '98cd80cce0ef6b702121331fe988c9ae7061ccd6': {
+                count: 2,
+                artist: 'Ryan Pancoast',
+                cmc: 0,
+                id: '98cd80cce0ef6b702121331fe988c9ae7061ccd6',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=423547&type=card',
+                name: 'Khalni Garden',
+                text: 'Khalni Garden enters the battlefield tapped.\nWhen Khalni Garden enters the battlefield, create a 0/1 green Plant creature token.\n{T}: Add {G} to your mana pool.',
+                type: 'Land',
+                rarity: 'Common',
+                types: [
+                    'Land'
+                ]
+            },
+            '86245eb888d73d5a920594bb7750985e035dd19c': {
+                count: 1,
+                artist: 'Jeremy Jarvis',
+                cmc: 0,
+                id: '86245eb888d73d5a920594bb7750985e035dd19c',
+                imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=417452&type=card',
+                name: 'Mosswort Bridge',
+                text: 'Hideaway (This land enters the battlefield tapped. When it does, look at the top four cards of your library, exile one face down, then put the rest on the bottom of your library.)\n{T}: Add {G} to your mana pool.\n{G}, {T}: You may play the exiled card without paying its mana cost if creatures you control have total power 10 or greater.',
+                type: 'Land',
+                rarity: 'Rare',
+                types: [
+                    'Land'
+                ]
             }
         },
         meta: {
@@ -16035,7 +17143,69 @@ export const state = {
             806,
             807,
             808,
-            809
+            809,
+            810,
+            811,
+            812,
+            813,
+            814,
+            815,
+            816,
+            817,
+            818,
+            819,
+            820,
+            821,
+            822,
+            823,
+            824,
+            825,
+            826,
+            827,
+            828,
+            829,
+            830,
+            831,
+            832,
+            833,
+            834,
+            835,
+            836,
+            837,
+            838,
+            839,
+            840,
+            841,
+            842,
+            843,
+            844,
+            845,
+            846,
+            847,
+            848,
+            849,
+            850,
+            851,
+            852,
+            853,
+            854,
+            855,
+            856,
+            857,
+            858,
+            859,
+            860,
+            861,
+            862,
+            863,
+            864,
+            865,
+            866,
+            867,
+            868,
+            869,
+            870,
+            871
         ],
         itemsById: {
             '0': {
@@ -20087,10 +21257,320 @@ export const state = {
                 fromDeckId: 'deck15050533007372',
                 toCardId: '961a58ae37bc247a2b64f3f85afcfb663e79a1f8',
                 id: 809
+            },
+            '810': {
+                fromDeckId: 'deck15050589326381',
+                toCardId: '466ed165528d4f8428877a53971e0a3fff3eca24',
+                id: 810
+            },
+            '811': {
+                fromDeckId: 'deck15050589326381',
+                toCardId: '2a5073e7966a00756627c6b6f2f70d8527323e55',
+                id: 811
+            },
+            '812': {
+                fromDeckId: 'deck15050589326381',
+                toCardId: 'bcdcb455876862a223f19009be1fdc5ef777e27c',
+                id: 812
+            },
+            '813': {
+                fromDeckId: 'deck15050589326381',
+                toCardId: '31b79abc7faef56a7d95c7e298e2b36c05937bdf',
+                id: 813
+            },
+            '814': {
+                fromDeckId: 'deck15050589326381',
+                toCardId: 'cc819d8e3d5f024e7ac3c212f8aee85d1bc4284c',
+                id: 814
+            },
+            '815': {
+                fromDeckId: 'deck15050589326381',
+                toCardId: 'ea56cf6934e4e6ce39de2ab6236ece8fddc41359',
+                id: 815
+            },
+            '816': {
+                fromDeckId: 'deck15050589326381',
+                toCardId: 'd9f20f3b8c8828091686abcda7e9e31682bc194a',
+                id: 816
+            },
+            '817': {
+                fromDeckId: 'deck15050589326381',
+                toCardId: '6ad2deec17dabcb9303ed4f3688a940f1899f661',
+                id: 817
+            },
+            '818': {
+                fromDeckId: 'deck15050589326381',
+                toCardId: '69d57a227f3e5e4c0c8994ade8808538e51f7fbc',
+                id: 818
+            },
+            '819': {
+                fromDeckId: 'deck15050589326381',
+                toCardId: 'd880e2c667fb159fddeb073026b80b7c6b99de68',
+                id: 819
+            },
+            '820': {
+                fromDeckId: 'deck15050589326381',
+                toCardId: '966ab5769766e9eb16f318a1b5ac5890bfbb9faa',
+                id: 820
+            },
+            '821': {
+                fromDeckId: 'deck15050589326381',
+                toCardId: '8f754724dc2ce27cf40f97f434f18dc6a3256f2c',
+                id: 821
+            },
+            '822': {
+                fromDeckId: 'deck15050589326381',
+                toCardId: 'cdbecf2bae98d2261b6c39e6d05bf4d04f1cfc56',
+                id: 822
+            },
+            '823': {
+                fromDeckId: 'deck15050589326381',
+                toCardId: '281e72997b5c84b626c510336b8d1a059050eff1',
+                id: 823
+            },
+            '824': {
+                fromDeckId: 'deck15050589326381',
+                toCardId: 'd64dcc4fa67af3a3c982e093b768ac6dd55e82a2',
+                id: 824
+            },
+            '825': {
+                fromDeckId: 'deck15050589326381',
+                toCardId: '07e0d91bd7c5d12f7b8592f81efda1d7b13c52d9',
+                id: 825
+            },
+            '826': {
+                fromDeckId: 'deck15050589326381',
+                toCardId: '6034a592602138f06d0536d0ab5ef98150bc7c00',
+                id: 826
+            },
+            '827': {
+                fromDeckId: 'deck15050589326381',
+                toCardId: 'ac6c779db4c809cc18d1461b40f7cd0a66c6d8bf',
+                id: 827
+            },
+            '828': {
+                fromDeckId: 'deck15050589326381',
+                toCardId: '9c16036a2dac9e557a9b8d71110c2cd0fbb3f54c',
+                id: 828
+            },
+            '829': {
+                fromDeckId: 'deck15050589326381',
+                toCardId: '57930553c573bdaf3e6829a5027dfe852f657ad8',
+                id: 829
+            },
+            '830': {
+                fromDeckId: 'deck15050589326381',
+                toCardId: 'aae4d2b62479e01826d37acd3e87853d1613930b',
+                id: 830
+            },
+            '831': {
+                fromDeckId: 'deck15050589326381',
+                toCardId: 'db043b3ea930eb71ab694d7d77ed78a2372cf1dc',
+                id: 831
+            },
+            '832': {
+                fromDeckId: 'deck15050589326381',
+                toCardId: '38e00c3112a8718b8b6e123a0bf9a41d512f266c',
+                id: 832
+            },
+            '833': {
+                fromDeckId: 'deck15050589326381',
+                toCardId: 'abc50c116357f05ff0c5d3c75f32ae993a1e65ee',
+                id: 833
+            },
+            '834': {
+                fromDeckId: 'deck15050589326381',
+                toCardId: '797e480f21b61e2432ce02b29bc5871b738c7a85',
+                id: 834
+            },
+            '835': {
+                fromDeckId: 'deck15050589326381',
+                toCardId: '63185248015ad7356c96309afa0ace6b4afeaa93',
+                id: 835
+            },
+            '836': {
+                fromDeckId: 'deck15050589326381',
+                toCardId: '0e8f41d22756e4c797d17057698a08a1fe3feaee',
+                id: 836
+            },
+            '837': {
+                fromDeckId: 'deck15050589326381',
+                toCardId: 'efceda794d01a9f3307aa2a78c564102bb4e31bc',
+                id: 837
+            },
+            '838': {
+                fromDeckId: 'deck15050589326381',
+                toCardId: '26102dc7455d558040270619a3958c0491ea6547',
+                id: 838
+            },
+            '839': {
+                fromDeckId: 'deck15050589326381',
+                toCardId: '218afef6a5bf635ef4aebb9c9b876a52de70d6d9',
+                id: 839
+            },
+            '840': {
+                fromDeckId: 'deck15050589326381',
+                toCardId: '08fcc42f0ea8e0a231182e104eb634140ef1b5f2',
+                id: 840
+            },
+            '841': {
+                fromDeckId: 'deck15050589431672',
+                toCardId: '4648cfca3be20fdd1f65429dfe78301687a5fe55',
+                id: 841
+            },
+            '842': {
+                fromDeckId: 'deck15050589431672',
+                toCardId: '487bc349cd39e15bdbe80e0324f35585df514a0e',
+                id: 842
+            },
+            '843': {
+                fromDeckId: 'deck15050589431672',
+                toCardId: '41a7944b6c1f21fe3f4872d3eed5c93c6f6669b4',
+                id: 843
+            },
+            '844': {
+                fromDeckId: 'deck15050589431672',
+                toCardId: 'db72c9188d72293acb334ad78133e65cf05ae675',
+                id: 844
+            },
+            '845': {
+                fromDeckId: 'deck15050589431672',
+                toCardId: '36461c7f29a365f97a7275c86fcf178ceb234b26',
+                id: 845
+            },
+            '846': {
+                fromDeckId: 'deck15050589431672',
+                toCardId: '6f266a493bea14f2adf4d3b9041815c426c5eb25',
+                id: 846
+            },
+            '847': {
+                fromDeckId: 'deck15050589431672',
+                toCardId: '6825a8c2a99164af81b72d5c190ba44c899ae8ed',
+                id: 847
+            },
+            '848': {
+                fromDeckId: 'deck15050589431672',
+                toCardId: 'd37a04612927156aed60a66a75834354af584c8c',
+                id: 848
+            },
+            '849': {
+                fromDeckId: 'deck15050589431672',
+                toCardId: '3c5f4853d244ea82c59d1f7e5d4ea113c1fd5639',
+                id: 849
+            },
+            '850': {
+                fromDeckId: 'deck15050589431672',
+                toCardId: 'f92e7a4899996f67e3072939181f9e15a53e68d7',
+                id: 850
+            },
+            '851': {
+                fromDeckId: 'deck15050589431672',
+                toCardId: '8d9e5592b5283c790f4a75187ab0b798b65f5882',
+                id: 851
+            },
+            '852': {
+                fromDeckId: 'deck15050589431672',
+                toCardId: '7421742d00c3c8ca15041b87dabc8c0bc6bb6f4e',
+                id: 852
+            },
+            '853': {
+                fromDeckId: 'deck15050589431672',
+                toCardId: '3060cbd778a5587572fa193f17e15daeb1e4f769',
+                id: 853
+            },
+            '854': {
+                fromDeckId: 'deck15050589431672',
+                toCardId: 'b1abc5092fd2ec26e0975f8fc72abab51bd4f0bc',
+                id: 854
+            },
+            '855': {
+                fromDeckId: 'deck15050589431672',
+                toCardId: 'b68952533a8780431b005e6c3ea1b76045699aee',
+                id: 855
+            },
+            '856': {
+                fromDeckId: 'deck15050589431672',
+                toCardId: 'f8ece80864bbdf7d2d352500b94e8a900afa6b5b',
+                id: 856
+            },
+            '857': {
+                fromDeckId: 'deck15050589431672',
+                toCardId: '8ccb669b8ee2e789bd199bb53b09629783954ce9',
+                id: 857
+            },
+            '858': {
+                fromDeckId: 'deck15050589431672',
+                toCardId: '864a70e60880a52382ddfae10575a665dad810bb',
+                id: 858
+            },
+            '859': {
+                fromDeckId: 'deck15050589431672',
+                toCardId: '69a432d61684578e65cae644ae1ea20eb84d35a6',
+                id: 859
+            },
+            '860': {
+                fromDeckId: 'deck15050589431672',
+                toCardId: 'b699d2dd0690cc706d9ffc6a6b975e9c94f29b35',
+                id: 860
+            },
+            '861': {
+                fromDeckId: 'deck15050589431672',
+                toCardId: '7db37e3f63a91210905310bbb3ab82d08e8df47b',
+                id: 861
+            },
+            '862': {
+                fromDeckId: 'deck15050589431672',
+                toCardId: '39cc7ff20caa374c852a5faea780066a9c5a8f0f',
+                id: 862
+            },
+            '863': {
+                fromDeckId: 'deck15050589431672',
+                toCardId: '66d250b75aa55ea0d038770eacb0d81f81a08608',
+                id: 863
+            },
+            '864': {
+                fromDeckId: 'deck15050589431672',
+                toCardId: '7333a347a3d9db18fa1151c1a7d3f3ed10c00a25',
+                id: 864
+            },
+            '865': {
+                fromDeckId: 'deck15050589431672',
+                toCardId: 'b51bd92d04edc898f296e5a60e40dfa01edfd880',
+                id: 865
+            },
+            '866': {
+                fromDeckId: 'deck15050589431672',
+                toCardId: 'd1dece6c3d1b14216aa5d3368857cc755837b1df',
+                id: 866
+            },
+            '867': {
+                fromDeckId: 'deck15050589431672',
+                toCardId: '134b90ef1ef3362e58c734931a9de18ea8945f47',
+                id: 867
+            },
+            '868': {
+                fromDeckId: 'deck15050589431672',
+                toCardId: '98cd80cce0ef6b702121331fe988c9ae7061ccd6',
+                id: 868
+            },
+            '869': {
+                fromDeckId: 'deck15050589431672',
+                toCardId: '86245eb888d73d5a920594bb7750985e035dd19c',
+                id: 869
+            },
+            '870': {
+                fromDeckId: 'deck15050589431672',
+                toCardId: 'a36b861c5ef32a79ed35effa5531e2ead59631bd',
+                id: 870
+            },
+            '871': {
+                fromDeckId: 'deck15050589431672',
+                toCardId: '961a58ae37bc247a2b64f3f85afcfb663e79a1f8',
+                id: 871
             }
         },
         meta: {
-            maxId: 809
+            maxId: 871
         }
     }
 };
