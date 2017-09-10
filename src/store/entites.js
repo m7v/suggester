@@ -13,15 +13,15 @@ function bootstrapState() {
     const decks = {};
     const cards = {};
 
-    entities.Card.items.map(cardId => {
+    entities.Card.items.each(cardId => {
         cards[cardId] = Card.create(entities.Card.itemsById[cardId]);
     });
 
-    entities.Deck.items.map(deckId => {
+    entities.Deck.items.each(deckId => {
         decks[deckId] = Deck.create(entities.Deck.itemsById[deckId]);
     });
 
-    entities.DeckCardList.items.map(cardId => {
+    entities.DeckCardList.items.each(cardId => {
         const cardInDeck = entities.DeckCardList.itemsById[cardId];
         decks[cardInDeck.fromDeckId].cardList.add(cards[cardInDeck.toCardId]);
     });

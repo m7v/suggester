@@ -39,6 +39,8 @@ class Deck extends Model {
                     .add(action.payload.card.id);
                 break;
             }
+            default:
+                return deck.getNextState();
         }
     }
 }
@@ -56,6 +58,8 @@ class Card extends Model {
                 card.upsert(action.payload.card);
                 break;
             }
+            default:
+                return card.getNextState();
         }
     }
 }

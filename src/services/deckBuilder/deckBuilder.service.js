@@ -1,6 +1,6 @@
 import axios from 'axios';
 import httpAdapter from 'axios/lib/adapters/http';
-import { pick, compact } from 'lodash';
+import { map, pick, compact } from 'lodash';
 import { serverApiUrl } from './../config.service';
 import orm from './../../store/models/models';
 
@@ -14,7 +14,7 @@ axios.defaults.adapter = httpAdapter;
 export const getDeckListByCardNames = (cardList, state) => {
     const requests = [];
     const session = orm.withMutations(state.entities);
-    Object.keys(cardList).map(cardName => {
+    map(Object.keys(cardList), cardName => {
 
         const promise = new Promise((fullfil) => {
             try {
