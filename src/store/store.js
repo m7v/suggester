@@ -1,5 +1,5 @@
 import {createStore, applyMiddleware} from 'redux';
-import {Map, List} from 'immutable';
+import {Map} from 'immutable';
 import queryString from 'query-string';
 import thunk from 'redux-thunk';
 import {enableBatching} from 'redux-batched-actions';
@@ -14,7 +14,7 @@ const initialState = {
     entities,
     suggester: new Map({
         query: parsed.q || '',
-        suggestions: new List([])
+        suggestions: []
     }),
     deckBuilder: new Map({
         draftDeck: ''

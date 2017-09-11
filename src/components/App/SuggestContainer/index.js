@@ -16,7 +16,6 @@ import {
     GridTile,
     CircularProgress
 } from 'material-ui';
-import { cyan500 } from 'material-ui/styles/colors';
 import {
     getSuggestions
 } from '../../../actions/suggestions/suggestions.actions';
@@ -37,7 +36,13 @@ class SuggestContainer extends Component {
         }
     };
 
-    getDefaultCard = () => (<img src={'img/default-card.jpg'} alt={'MTG'} />);
+    getDefaultCard = () => (
+        <img
+            className="SuggestContainer__img _default"
+            src={'img/default-card.png'}
+            alt={'MTG'}
+        />
+    );
 
     getPhoneCardResults = () => (
         <section>
@@ -107,11 +112,9 @@ class SuggestContainer extends Component {
     };
 
     render() {
-        const primaryColor = cyan500;
-
         return (
             <section className="SuggestContainer">
-                <div className="SuggestContainer__main" style={{backgroundColor: primaryColor}}>
+                <div className="SuggestContainer__main">
                     <Paper className="SuggestContainer__card" zDepth={2}>
                         <section>
                             <div className="SuggestContainer__form">

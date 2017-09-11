@@ -19,7 +19,6 @@ import {
     FloatingActionButton,
 } from 'material-ui';
 import ContentAdd from 'material-ui/svg-icons/content/create';
-import {cyan500} from 'material-ui/styles/colors';
 import {
     getDeckListByCardNames,
     removeDeck
@@ -64,8 +63,6 @@ class DecksContainer extends Component {
     };
 
     render() {
-        const primaryColor = cyan500;
-
         const decks = this.props.decks.map((deck) => (
             <Deck
                 key={deck.id}
@@ -76,7 +73,7 @@ class DecksContainer extends Component {
 
         return (
             <section className="DecksContainer">
-                <div className="DecksContainer__main" style={{ backgroundColor: primaryColor }}>
+                <div className="DecksContainer__main">
                     <div className="DecksContainer__deckList">
                         {decks}
                     </div>

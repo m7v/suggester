@@ -979,14 +979,14 @@ babel-register@^6.24.1:
     mkdirp "^0.5.1"
     source-map-support "^0.4.2"
 
-babel-runtime@6.23.0, babel-runtime@^6.18.0, babel-runtime@^6.20.0, babel-runtime@^6.22.0, babel-runtime@^6.23.0, babel-runtime@^6.6.1:
+babel-runtime@6.23.0, babel-runtime@^6.20.0, babel-runtime@^6.23.0, babel-runtime@^6.6.1:
   version "6.23.0"
   resolved "https://registry.yarnpkg.com/babel-runtime/-/babel-runtime-6.23.0.tgz#0a9489f144de70efb3ce4300accdb329e2fc543b"
   dependencies:
     core-js "^2.4.0"
     regenerator-runtime "^0.10.0"
 
-babel-runtime@^6.26.0:
+babel-runtime@^6.18.0, babel-runtime@^6.22.0, babel-runtime@^6.26.0:
   version "6.26.0"
   resolved "https://registry.yarnpkg.com/babel-runtime/-/babel-runtime-6.26.0.tgz#965c7058668e82b55d7bfe04ff2337bc8b5647fe"
   dependencies:
@@ -1069,6 +1069,10 @@ block-stream@*:
   resolved "https://registry.yarnpkg.com/block-stream/-/block-stream-0.0.9.tgz#13ebfe778a03205cfe03751481ebb4b3300c126a"
   dependencies:
     inherits "~2.0.0"
+
+bluebird@3.4.7:
+  version "3.4.7"
+  resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.4.7.tgz#f72d760be09b7f76d08ed8fae98b289a8d05fab3"
 
 bluebird@3.5.0, bluebird@^3.4.7:
   version "3.5.0"
@@ -5919,7 +5923,7 @@ react-dev-utils@^3.0.0, react-dev-utils@^3.0.2:
     strip-ansi "3.0.1"
     text-table "0.2.0"
 
-react-dom@^15.3.0, react-dom@^15.5.4:
+react-dom@^15.3.0, react-dom@^15.4.2, react-dom@^15.5.4:
   version "15.6.1"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-15.6.1.tgz#2cb0ed4191038e53c209eb3a79a23e2a4cf99470"
   dependencies:
@@ -5934,6 +5938,16 @@ react-dropzone@^3.13.1:
   dependencies:
     attr-accept "^1.0.3"
     prop-types "^15.5.7"
+
+react-easter@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/react-easter/-/react-easter-1.0.6.tgz#b7cde4ee9ce4850605016ef5e71a37bf7d893d24"
+  dependencies:
+    bluebird "3.4.7"
+    lodash "^4.17.4"
+    react "15.4.2"
+    react-dom "^15.4.2"
+    react-shortcut "1.0.6"
 
 react-error-overlay@^1.0.7:
   version "1.0.9"
@@ -6062,6 +6076,15 @@ react-scripts@1.0.7:
   optionalDependencies:
     fsevents "1.0.17"
 
+react-shortcut@1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/react-shortcut/-/react-shortcut-1.0.6.tgz#93d97802561231a04fd9b812fffa79ef0258a3df"
+  dependencies:
+    bluebird "3.4.7"
+    lodash "^4.17.4"
+    react "15.4.2"
+    react-dom "^15.4.2"
+
 react-snapshot@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/react-snapshot/-/react-snapshot-1.1.0.tgz#03bf427065d2d8c70db9bd04d4b8364ab30b8675"
@@ -6132,6 +6155,14 @@ react-transition-group@^1.2.0:
     loose-envify "^1.3.1"
     prop-types "^15.5.6"
     warning "^3.0.0"
+
+react@15.4.2:
+  version "15.4.2"
+  resolved "https://registry.yarnpkg.com/react/-/react-15.4.2.tgz#41f7991b26185392ba9bae96c8889e7e018397ef"
+  dependencies:
+    fbjs "^0.8.4"
+    loose-envify "^1.1.0"
+    object-assign "^4.1.0"
 
 react@^15.3.0, react@^15.5.4:
   version "15.6.1"

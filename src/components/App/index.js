@@ -3,6 +3,7 @@ import {
     BrowserRouter as Router,
     Route
 } from 'react-router-dom';
+import EasterContainer from './EasterContainer';
 import SuggestContainer from './SuggestContainer';
 import DecksContainer from './DecksContainer';
 import './styles.css';
@@ -13,14 +14,21 @@ class App extends Component {
         return (
             <Router history="Dashboard">
                 <section className="App">
-                    <Route
-                        path="/search"
-                        component={SuggestContainer}
-                    />
-                    <Route
-                        path="/"
-                        component={DecksContainer}
-                    />
+                    <EasterContainer>
+                        <SuggestContainer />
+                    </EasterContainer>
+                    <div>
+                        <Route
+                            path="/search"
+                            component={SuggestContainer}
+                        />
+                    </div>
+                    <div>
+                        <Route
+                            path="/"
+                            component={DecksContainer}
+                        />
+                    </div>
                 </section>
             </Router>
         );
