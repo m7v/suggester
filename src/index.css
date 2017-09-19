@@ -5,6 +5,10 @@ html, body {
     font-family: sans-serif;
 }
 
+body {
+    background: #222 url(http://gatherer.wizards.com/Images/background/Gray_Patterned_BG.jpg);
+}
+
 .root {
     height: 100%;
 }

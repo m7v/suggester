@@ -510,7 +510,7 @@ export const state = {
                         rare: 6,
                         common: 20,
                         uncommon: 12,
-                        'basic land': 7
+                        'basic land': 24
                     },
                     manaCurve: {
                         '0': 10,

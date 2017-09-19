@@ -18,7 +18,7 @@ const manaMap = {
 class Deck extends Component {
 
     render() {
-        const {deck, removeDeck} = this.props;
+        const {deck, removeDeck, openDeck} = this.props;
         const pureCardCount = sum(Object.values(deck.analytics.colorComposition));
 
         return (
@@ -29,7 +29,7 @@ class Deck extends Component {
                         style={{ backgroundImage: `url(${deck.headliner})` }}
                         onClick={() => removeDeck(deck.id)}
                     />
-                    <div className="Deck__cardManaPool">
+                    <div className="Deck__cardManaPool" onClick={openDeck}>
                         <ul className="Deck__cardMana">
                             {map(deck.analytics.colorComposition, (count, mana) => {
                                 const manaClass = `mana mana-${manaMap[mana]} ms ms-${manaMap[mana]}`;
@@ -72,7 +72,8 @@ class Deck extends Component {
 
 Deck.propTypes = {
     deck: object.isRequired,
-    removeDeck: func.isRequired
+    removeDeck: func.isRequired,
+    openDeck: func.isRequired
 };
 
 export default Deck;

@@ -5,6 +5,7 @@
   "homepage": "https://m7v.github.io/suggester",
   "dependencies": {
     "axios": "^0.16.1",
+    "chart.js": "^1.1.1",
     "classnames": "^2.2.5",
     "fullcalendar": "^3.4.0",
     "immutable": "^3.8.1",
