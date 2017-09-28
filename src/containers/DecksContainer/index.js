@@ -1,13 +1,13 @@
 import './styles.css';
 import 'mana-font/css/mana.min.css';
 import React, {Component} from 'react';
-import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {bool, array, string, func} from 'prop-types';
 import mtgparser from 'mtg-parser';
-import mapStateToProps from './selectors';
-import Deck from './Deck';
-import Decklist from './Decklist';
+import stateToProps from './connect/stateToProps';
+import dispatchToProps from './connect/dispatchToProps';
+import Deck from '../../components/Deck';
+import Decklist from '../../components/Decklist';
 import {
     Tab,
     Tabs,
@@ -23,10 +23,7 @@ import {
     Stepper,
     StepLabel,
 } from 'material-ui/Stepper';
-import {
-    getDeckListByCardNames,
-    removeDeck
-} from '../../../actions/deckBuilder/deckBuilder.actions';
+
 const LineChart = require('react-chartjs').Line;
 const BarChart = require('react-chartjs').Bar;
 
@@ -34,7 +31,7 @@ const options = {
     datasetFill: false,
     responsive: true,
     scaleLineColor: '#5297e0',
-    scaleFontColor: '#1e2466',
+    scaleFontColor: '#5297e0',
     pointDotRadius: 2,
     title: {
         display: true,
@@ -370,11 +367,4 @@ DecksContainer.defaultProps = {
     decks: [],
 };
 
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators({
-        getDeckListByCardNames,
-        removeDeck
-    }, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(DecksContainer);
+export default connect(stateToProps, dispatchToProps)(DecksContainer);

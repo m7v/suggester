@@ -3,9 +3,10 @@ import {
     BrowserRouter as Router,
     Route
 } from 'react-router-dom';
-import EasterContainer from './EasterContainer';
-import SuggestContainer from './SuggestContainer';
-import DecksContainer from './DecksContainer';
+import EasterContainer from '../../containers/EasterContainer';
+import SuggestContainer from '../../containers/SuggestContainer';
+import DecksContainer from '../../containers/DecksContainer';
+import DeckInfoContainer from '../../containers/DeckInfoContainer';
 import './styles.css';
 
 class App extends Component {
@@ -25,8 +26,14 @@ class App extends Component {
                     </div>
                     <div>
                         <Route
-                            path="/"
+                            path="/decks"
                             component={DecksContainer}
+                        />
+                    </div>
+                    <div>
+                        <Route
+                            path="/deck/:id"
+                            component={(({match}) => <DeckInfoContainer deckId={match.params.id} />)}
                         />
                     </div>
                 </section>

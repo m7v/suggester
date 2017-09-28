@@ -70,6 +70,19 @@ export function createCard(card) {
 }
 
 /**
+ * @param card
+ * @param deckId
+ * @returns {{type, photoList: *}}
+ */
+export function addCard(card, deckId) {
+    return {
+        type: ADD_CARD,
+        payload: {card, deckId},
+        meta: {}
+    };
+}
+
+/**
  * @returns {{type}}
  */
 export function deckBuilderRequestStarted(deckId) {

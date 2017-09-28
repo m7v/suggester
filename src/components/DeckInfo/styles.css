@@ -1,0 +1,128 @@
+.DeckInfo__deckCard {
+    background-color: #222 !important;
+    margin: 15px;
+    padding: 7px;
+}
+
+.DeckInfo__deckHead {
+    width: 100%;
+    background-color: #fdfcf3;
+}
+
+.DeckInfo__avatar {
+    position: relative;
+    display: flex;
+    background-color: #f9f9f9;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.DeckInfo__cardHeadlinerTop {
+}
+
+.DeckInfo__cardHeadlinerWrapper {
+    background-color: #f9f9f9;
+}
+
+.DeckInfo__cardHeadliner {
+    height: 312px;
+    width: 222px;
+    display: block;
+    margin: 0 auto;
+    background-color: #000;
+}
+
+.DeckInfo__description {
+    max-width: 340px;
+    padding: 10px;
+    letter-spacing: 1px;
+}
+
+.DeckInfo__cardManaPool {
+    margin: 0 auto;
+}
+
+.DeckInfo__manaWrapper {
+    margin: 5px;
+}
+
+.DeckInfo__composition {
+    flex-wrap: wrap-reverse;
+}
+
+.DeckInfo__compositionWrapper {
+
+}
+
+.DeckInfo__cardMana {
+    padding: 0;
+    margin: 0;
+}
+
+.DeckInfo__cardManaNumber {
+    color: #e2e2e2;
+    font: 14px Helvetica;
+}
+
+.DeckInfo__manaBar {
+    top: 50px;
+    right: 0;
+    padding: 10px 0;
+    white-space: nowrap;
+    vertical-align: top;
+    background-color: #222;
+}
+
+.DeckInfo__title {
+    font-family: "Beleren Bold";
+    font-size: 20px;
+    display: block;
+    color: #222;
+    cursor: pointer;
+}
+
+.DeckInfo__mana {
+    display: inline-block;
+    margin: 1px;
+    height: 25px;
+}
+
+.type {
+    width: 15px;
+    height: 15px;
+    margin: 3px;
+    padding: 5px;
+    border-radius: 50%;
+    background-color: #e2e2e2;
+}
+
+.mana {
+    margin: 3px;
+    padding: 7px;
+    border-radius: 50%;
+    background-color: #222;
+    color: #f9f9f9;
+    font-size: 20px;
+    height: 20px;
+    width: 20px;
+}
+
+.mana-r {
+    background-color: rgba(255, 54, 52, .9);
+}
+
+.mana-g {
+    background-color: rgba(25, 180, 61, .9);
+}
+
+.mana-b {
+    background-color: rgba(165, 165, 165, .9);
+}
+
+.mana-u {
+    background-color: rgba(82, 151, 224, .9);
+}
+
+.mana-w {
+    background-color: rgba(239, 233, 171, .9);
+}

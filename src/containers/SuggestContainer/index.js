@@ -18,7 +18,7 @@ import {
 } from 'material-ui';
 import {
     getSuggestions
-} from '../../../actions/suggestions/suggestions.actions';
+} from '../../actions/suggestions/suggestions.actions';
 
 const ENTER_KEY_CODE = 13;
 
