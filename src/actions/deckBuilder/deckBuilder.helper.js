@@ -7,6 +7,7 @@ export function buildDeck(deckId, name, cards) {
         name,
         cardCount: cards.reduce((count, card) => Number(card.count) + count, 0),
         analytics: {
+            // @TODO Need to optimize calculate stats.
             colorComposition: buildColorComposition(cards),
             cardRarity: buildCardRarity(cards),
             manaCurve: buildManaCurve(cards),

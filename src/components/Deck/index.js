@@ -68,15 +68,19 @@ class Deck extends Component {
                     <div className="Deck__cardHeadlinerBottom" />
                 </div>
                 <div className="Deck__manaBar">
-                    {map(deck.analytics.colorComposition, (count, mana) =>
-                        (<div
-                            key={mana}
-                            className={`Deck__mana mana-${manaMap[mana]}`}
-                            style={{
-                                width: `${(count / pureCardCount) * 100}%`,
-                            }}
-                        />),
-                    )}
+                    {map(deck.analytics.colorComposition, (count, mana) => {
+                        const manaClass = `ms ms-${manaMap[mana]}`;
+                        return (
+                            <div
+                                key={mana}
+                                className={`Deck__mana mana-${manaMap[mana]}`}
+                                style={{
+                                    width: `${Math.floor((count / pureCardCount) * 100)}%`,
+                                }}
+                            >
+                                <i key={mana} className={manaClass} />
+                            </div>);
+                    })}
                 </div>
                 <div className="stat">
                     <BarChart

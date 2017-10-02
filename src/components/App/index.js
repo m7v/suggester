@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {
     BrowserRouter as Router,
-    Route
+    Link,
+    Route,
 } from 'react-router-dom';
 import EasterContainer from '../../containers/EasterContainer';
 import SuggestContainer from '../../containers/SuggestContainer';
@@ -16,11 +17,16 @@ class App extends Component {
             <Router history="Dashboard">
                 <section className="App">
                     <EasterContainer>
-                        <SuggestContainer />
+                        <ul style={{ listStyleType: 'none', padding: 0 }}>
+                            <li><Link to="/">Suggester</Link></li>
+                            <li><Link to="/decks">Decks</Link></li>
+                            <li><Link to="/cards">Cards</Link></li>
+                        </ul>
                     </EasterContainer>
                     <div>
                         <Route
-                            path="/search"
+                            exact
+                            path="/"
                             component={SuggestContainer}
                         />
                     </div>
@@ -34,6 +40,12 @@ class App extends Component {
                         <Route
                             path="/deck/:id"
                             component={(({match}) => <DeckInfoContainer deckId={match.params.id} />)}
+                        />
+                    </div>
+                    <div>
+                        <Route
+                            path="/cards"
+                            component={() => <div>Card list</div>}
                         />
                     </div>
                 </section>

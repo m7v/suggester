@@ -112,6 +112,12 @@
     height: 25px;
 }
 
+.Deck__mana .ms {
+    color: #fff;
+    font-size: 13px;
+    line-height: 24px;
+}
+
 .type {
     width: 15px;
     height: 15px;
@@ -139,21 +145,21 @@
 }
 
 .mana-r {
-    background-color: rgba(255, 54, 52, .9);
+    background-color: #D32F2F;
 }
 
 .mana-g {
-    background-color: rgba(25, 180, 61, .9);
+    background-color: #388E3C;
 }
 
 .mana-b {
-    background-color: rgba(165, 165, 165, .9);
+    background-color: #616161;
 }
 
 .mana-u {
-    background-color: rgba(82, 151, 224, .9);
+    background-color: #1976D2;
 }
 
 .mana-w {
-    background-color: rgba(239, 233, 171, .9);
+    background-color: #FFEA00;
 }
