@@ -18,15 +18,23 @@ class App extends Component {
                 <section className="App">
                     <EasterContainer>
                         <ul style={{ listStyleType: 'none', padding: 0 }}>
-                            <li><Link to="/">Suggester</Link></li>
+                            {/*<li><Link to="/">Suggester</Link></li>*/}
+                            <li><Link to="/suggester">Suggester</Link></li>
                             <li><Link to="/decks">Decks</Link></li>
                             <li><Link to="/cards">Cards</Link></li>
                         </ul>
                     </EasterContainer>
+                    {/*<div>*/}
+                        {/*<Route*/}
+                            {/*exact*/}
+                            {/*path="/"*/}
+                            {/*component={SuggestContainer}*/}
+                        {/*/>*/}
+                    {/*</div>*/}
                     <div>
                         <Route
                             exact
-                            path="/"
+                            path="/suggester"
                             component={SuggestContainer}
                         />
                     </div>
