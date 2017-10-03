@@ -179,7 +179,7 @@ function mapStateToProps(state) {
         searchingCard: state.suggester.get('query'),
         suggestions: state.suggester.get('suggestions'),
         loading: state.suggester.getIn(['meta', 'loading']),
-        isPhone: new MobileDetect(window.navigator.userAgent).is('iPhone'),
+        isPhone: new MobileDetect(window.navigator.userAgent).mobile(),
     };
 }
 
