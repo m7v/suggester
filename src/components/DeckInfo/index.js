@@ -1,1 +1,2 @@
-export * from './DeckInfo';
+import DeckInfo from './DeckInfo';
+export default DeckInfo;

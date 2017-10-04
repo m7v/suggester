@@ -1,4 +1,4 @@
-import './styles.css';
+import './Deck.css';
 import 'mana-font/css/mana.min.css';
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';

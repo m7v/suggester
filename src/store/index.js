@@ -4,9 +4,9 @@ import thunk from 'redux-thunk';
 import {enableBatching} from 'redux-batched-actions';
 import {createLogger} from 'redux-logger';
 import {composeWithDevTools} from 'redux-devtools-extension';
-import orm from 'src/reducers/entities/index';
-import { rootReducer } from 'src/reducers/index';
-import {ping} from 'src/middlewares/ping';
+import orm from '../reducers/entities/index';
+import rootReducer from '../reducers';
+import {ping} from '../middlewares/ping';
 import initializeDatabase from './database';
 
 const parsed = queryString.parse(window.location.search);

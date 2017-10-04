@@ -1,7 +1,7 @@
 import { Model } from 'redux-orm';
 import {
     ADD_CARD,
-} from 'src/reducers/deckBuilder/deckBuilder.helper';
+} from '../../deckBuilder/deckBuilder.helper';
 
 class Card extends Model {
     static get fields() {

@@ -1,5 +1,5 @@
 import { createSelector } from 'redux-orm';
-import orm from 'src/store/models/models';
+import orm from '../../../reducers/entities';
 
 const ormSelector = function(state) {
     return state.entities;

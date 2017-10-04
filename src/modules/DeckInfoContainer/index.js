@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {string, object} from 'prop-types';
 import { Link } from 'react-router-dom';
-import DeckInfo from 'src/components/DeckInfo/index';
-import { stateToProps } from 'src/containers/DeckInfoContainer/connect/stateToProps';
+import DeckInfo from './../../components/DeckInfo/index';
+import { stateToProps } from './connect/stateToProps';
 
 class DeckInfoContainer extends Component {
 

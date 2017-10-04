@@ -5,8 +5,8 @@ import {Provider} from 'react-redux';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import App from './components/App';
-import store from './store/store';
+import Root from './modules/RootContainer';
+import store from './store';
 
 injectTapEventPlugin();
 
@@ -32,7 +32,7 @@ const muiTheme = getMuiTheme({
 ReactDOM.render(
     <Provider store={store}>
         <MuiThemeProvider muiTheme={muiTheme}>
-            <App />
+            <Root />
         </MuiThemeProvider>
     </Provider>,
     document.getElementById('root')

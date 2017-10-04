@@ -4,7 +4,7 @@ import {
     ADD_DECK,
     DELETE_DECK,
     UPDATE_DECK
-} from 'src/reducers/deckBuilder/deckBuilder.helper';
+} from '../../deckBuilder/deckBuilder.helper';
 
 class Deck extends Model {
     static get fields() {

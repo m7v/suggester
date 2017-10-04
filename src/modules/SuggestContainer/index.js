@@ -14,8 +14,8 @@ import {
     GridTile,
     CircularProgress
 } from 'material-ui';
-import { mapStateToProps } from 'src/containers/SuggestContainer/connect/stateToProps';
-import { mapDispatchToProps } from 'src/containers/SuggestContainer/connect/dispatchToProps';
+import { mapStateToProps } from './connect/stateToProps';
+import { mapDispatchToProps } from './connect/dispatchToProps';
 
 const ENTER_KEY_CODE = 13;
 

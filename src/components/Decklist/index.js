@@ -1,1 +1,2 @@
-export * from './Decklist';
+import Decklist from './Decklist';
+export default Decklist;

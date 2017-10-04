@@ -1,4 +1,4 @@
-import './styles.css';
+import './DecksContainer.css';
 import 'mana-font/css/mana.min.css';
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
@@ -23,8 +23,8 @@ import {
     Stepper,
     StepLabel,
 } from 'material-ui/Stepper';
-import Deck from 'src/components/Deck/Deck';
-import { Decklist } from 'src/components/Decklist';
+import Deck from '../../components/Deck';
+import Decklist from '../../components/Decklist';
 import stateToProps from './connect/stateToProps';
 import dispatchToProps from './connect/dispatchToProps';
 

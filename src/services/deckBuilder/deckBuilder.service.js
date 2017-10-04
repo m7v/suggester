@@ -2,7 +2,7 @@ import axios from 'axios';
 import httpAdapter from 'axios/lib/adapters/http';
 import { map, pick, compact } from 'lodash';
 import { serverApiUrl } from './../config.service';
-import orm from 'src/store/models/models';
+import orm from '../../reducers/entities';
 
 axios.defaults.adapter = httpAdapter;
 

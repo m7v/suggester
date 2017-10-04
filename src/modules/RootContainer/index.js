@@ -1,16 +1,16 @@
+import './RootContainer.css';
 import React, {Component} from 'react';
 import {
     BrowserRouter as Router,
     Link,
     Route,
 } from 'react-router-dom';
-import EasterContainer from '../../containers/EasterContainer';
-import SuggestContainer from '../../containers/SuggestContainer';
-import DecksContainer from '../../containers/DecksContainer';
-import DeckInfoContainer from '../../containers/DeckInfoContainer';
-import './styles.css';
+import EasterContainer from '../EasterContainer';
+import SuggestContainer from '../SuggestContainer';
+import DecksContainer from '../DecksContainer';
+import DeckInfoContainer from '../DeckInfoContainer';
 
-class App extends Component {
+class RootContainer extends Component {
 
     render() {
         return (
@@ -62,4 +62,4 @@ class App extends Component {
     }
 }
 
-export default App;
+export default RootContainer;

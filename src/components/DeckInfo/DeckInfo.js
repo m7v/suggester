@@ -1,4 +1,4 @@
-import './styles.css';
+import './DeckInfo.css';
 import 'mana-font/css/mana.min.css';
 import React, {Component} from 'react';
 import { object } from 'prop-types';
