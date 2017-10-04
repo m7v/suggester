@@ -1,6 +1,7 @@
 import * as firebase from 'firebase';
 import { batchActions } from 'redux-batched-actions';
 import { map } from 'lodash';
+import orm from '../reducers/entities/index';
 import * as types from '../actions/deckBuilder/deckBuilder.types';
 
 const FIREBASE_CONFIG = {
@@ -25,8 +26,19 @@ function bootstrapState(entities) {
 firebase.initializeApp(FIREBASE_CONFIG);
 const db = firebase.database();
 
-export default function initializeDatabase(store) {
+export function getDefaultState() {
+    return orm.getDefaultState();
+}
+
+export function initializeDatabase(store) {
+    const storedData = localStorage.getItem('store.entities');
+    if (storedData) {
+        const actions = bootstrapState(JSON.parse(storedData));
+        store.dispatch(batchActions(actions.decks));
+        store.dispatch(batchActions(actions.cards));
+    }
     db.ref('entities').on('value', data => {
+        localStorage.setItem('store.entities', JSON.stringify(data.val()));
         const actions = bootstrapState(data.val());
         store.dispatch(batchActions(actions.decks));
         store.dispatch(batchActions(actions.cards));

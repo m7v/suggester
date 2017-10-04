@@ -16,7 +16,7 @@ class Deck extends Model {
     static reducer(action, deck) {
         switch (action.type) {
             case ADD_DECK: {
-                deck.create(action.payload.deck);
+                deck.upsert(action.payload.deck);
                 break;
             }
 
@@ -34,10 +34,17 @@ class Deck extends Model {
             }
 
             case ADD_CARD : {
-                deck
-                    .withId(action.payload.deckId)
-                    .cardList
-                    .add(action.payload.card.id);
+                const currentDeck = deck
+                    .withId(action.payload.deckId);
+                if (currentDeck) {
+                    try {
+                        currentDeck
+                            .cardList
+                            .add(action.payload.card.id);
+                    } catch (e) {
+                        // noop
+                    }
+                }
                 break;
             }
             default:
