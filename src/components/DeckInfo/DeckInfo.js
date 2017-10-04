@@ -1,7 +1,7 @@
 import './DeckInfo.css';
 import 'mana-font/css/mana.min.css';
-import React, {Component} from 'react';
-import { object } from 'prop-types';
+import React from 'react';
+import { shape } from 'prop-types';
 import {
     Line as LineChart,
     Bar as BarChart,
@@ -17,7 +17,7 @@ const manaMap = {
     blue: 'u',
 };
 
-class DeckInfo extends Component {
+class DeckInfo extends React.Component {
 
     render() {
         const { deck } = this.props;
@@ -122,7 +122,7 @@ class DeckInfo extends Component {
 }
 
 DeckInfo.propTypes = {
-    deck: object.isRequired,
+    deck: shape({}).isRequired,
 };
 
 export default DeckInfo;

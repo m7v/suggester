@@ -1,11 +1,8 @@
 import './Deck.css';
 import 'mana-font/css/mana.min.css';
-import React, {Component} from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import {
-    object,
-    // func
-} from 'prop-types';
+import { shape } from 'prop-types';
 import { Bar as BarChart } from 'react-chartjs';
 import {map, sum} from 'lodash';
 import { chartOptions } from './config';
@@ -18,14 +15,10 @@ const manaMap = {
     blue: 'u',
 };
 
-class Deck extends Component {
+class Deck extends React.Component {
 
     render() {
-        const {
-            deck,
-            // removeDeck,
-            // openDeck
-        } = this.props;
+        const { deck } = this.props;
         const pureCardCount = sum(Object.values(deck.analytics.colorComposition));
 
         const curve = Object.values(deck.analytics.manaCurve);
@@ -107,9 +100,7 @@ class Deck extends Component {
 }
 
 Deck.propTypes = {
-    deck: object.isRequired,
-    // removeDeck: func.isRequired,
-    // openDeck: func.isRequired
+    deck: shape({}).isRequired
 };
 
 export default Deck;

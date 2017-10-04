@@ -1,4 +1,4 @@
-.SuggestContainer__main {
+.Suggester__main {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -6,24 +6,24 @@
     justify-content: center;
 }
 
-.SuggestContainer__card {
+.Suggester__card {
     padding: 0 12px;
     margin: 15px;
     min-width: 60%;
 }
 
-.SuggestContainer__results {
+.Suggester__results {
     min-width: 900px;
     margin: 35px auto;
     overflow: hidden;
 }
 
-.SuggestContainer__img {
+.Suggester__img {
     width: 223px;
     height: 311px;
 }
 
-.SuggestContainer__resultsPhone {
+.Suggester__resultsPhone {
     max-width: 320px;
     max-height: 320px;
     margin: 35px auto;

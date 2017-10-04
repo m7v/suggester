@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
+import React from 'react';
 import { map } from 'lodash';
-import { object, string, func } from 'prop-types';
+import { shape, string, func } from 'prop-types';
 
-class Decklist extends Component {
+class Decklist extends React.Component {
 
     render() {
         const { deck, selectedCardId, handleShowCard } = this.props;
@@ -41,7 +41,7 @@ class Decklist extends Component {
 }
 
 Decklist.propTypes = {
-    deck: object.isRequired,
+    deck: shape({}).isRequired,
     selectedCardId: string.isRequired,
     handleShowCard: func.isRequired,
 };

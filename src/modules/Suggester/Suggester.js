@@ -1,5 +1,5 @@
-import './SuggestContainer.css';
-import React, { Component } from 'react';
+import './Suggester.css';
+import React from 'react';
 import { connect } from 'react-redux';
 import LazyLoad from 'react-lazyload';
 import SwipeableViews from 'react-swipeable-views';
@@ -21,7 +21,7 @@ const ENTER_KEY_CODE = 13;
 
 const Views = bindKeyboard(SwipeableViews);
 
-class SuggestContainer extends Component {
+class Suggester extends React.Component {
 
     state = {
         searchingCard: this.props.searchingCard
@@ -35,7 +35,7 @@ class SuggestContainer extends Component {
 
     getDefaultCard = () => (
         <img
-            className="SuggestContainer__img _default"
+            className="Suggester__img _default"
             src={'img/default-card.png'}
             alt={'MTG'}
         />
@@ -44,12 +44,12 @@ class SuggestContainer extends Component {
     getPhoneCardResults = () => (
         <section>
             {!!this.props.suggestions.length &&
-            <Views className="SuggestContainer__resultsPhone">
+            <Views className="Suggester__resultsPhone">
                 {this.props.suggestions.map(card => (
-                    <div key={card.id} className="SuggestContainer__result">
+                    <div key={card.id} className="Suggester__result">
                         <LazyLoad height={200} offset={100}>
                             <Img
-                                className="SuggestContainer__img"
+                                className="Suggester__img"
                                 src={card.src}
                                 loader={this.getDefaultCard()}
                                 unloader={this.getDefaultCard()}
@@ -63,7 +63,7 @@ class SuggestContainer extends Component {
     );
 
     getDesktopCardResults = () => (
-        <section className="SuggestContainer__results">
+        <section className="Suggester__results">
             {!!this.props.suggestions.length &&
                 <GridList
                     cellHeight={310}
@@ -74,7 +74,7 @@ class SuggestContainer extends Component {
                         <GridTile key={card.src}>
                             <LazyLoad height={200} offset={100}>
                                 <Img
-                                    className="SuggestContainer__img"
+                                    className="Suggester__img"
                                     src={card.src}
                                     loader={this.getDefaultCard()}
                                     unloader={this.getDefaultCard()}
@@ -110,12 +110,12 @@ class SuggestContainer extends Component {
 
     render() {
         return (
-            <section className="SuggestContainer">
-                <div className="SuggestContainer__main">
-                    <Paper className="SuggestContainer__card" zDepth={2}>
+            <section className="Suggester">
+                <div className="Suggester__main">
+                    <Paper className="Suggester__card" zDepth={2}>
                         <section>
-                            <div className="SuggestContainer__form">
-                                <div className="SuggestContainer__input">
+                            <div className="Suggester__form">
+                                <div className="Suggester__input">
                                     <TextField
                                         type="text"
                                         floatingLabelText="Searching card"
@@ -153,7 +153,7 @@ class SuggestContainer extends Component {
     }
 }
 
-SuggestContainer.propTypes = {
+Suggester.propTypes = {
     loading: bool,
     searchingCard: string,
     suggestions: arrayOf(shape({
@@ -164,11 +164,11 @@ SuggestContainer.propTypes = {
     isPhone: bool
 };
 
-SuggestContainer.defaultProps = {
+Suggester.defaultProps = {
     loading: false,
     isPhone: false,
     searchingCard: '',
     suggestions: [],
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SuggestContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(Suggester);

@@ -1,4 +1,4 @@
-.DecksContainer__main {
+.Decks__main {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -7,14 +7,14 @@
     overflow-x: hidden;
 }
 
-.DecksContainer__deckList {
+.Decks__deckList {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
     flex-direction: row-reverse;
 }
 
-.DecksContainer__floatButton {
+.Decks__floatButton {
     position: fixed;
     right: 15px;
     bottom: 15px;

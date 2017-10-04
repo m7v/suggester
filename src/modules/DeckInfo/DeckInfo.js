@@ -1,22 +1,22 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {string, object} from 'prop-types';
+import React from 'react';
+import { connect } from 'react-redux';
+import { shape } from 'prop-types';
 import { Link } from 'react-router-dom';
-import DeckInfo from './../../components/DeckInfo/index';
+import DeckInfoComponent from './../../components/DeckInfo/index';
 import { stateToProps } from './connect/stateToProps';
 
-class DeckInfoContainer extends Component {
+class DeckInfo extends React.Component {
 
     render() {
         const { deck } = this.props;
         return (
-            <div className="DeckInfoContainer__deckCard">
+            <div className="DeckInfo__deckCard">
                 <Link to={'/decks'} replace >Назад</Link>
                 {!deck.id &&
                     <div>Loading...</div>
                 }
                 {deck.id &&
-                    <DeckInfo
+                    <DeckInfoComponent
                         key={deck.id}
                         deck={deck}
                         openDeck={() => {}}
@@ -28,9 +28,8 @@ class DeckInfoContainer extends Component {
     }
 }
 
-DeckInfoContainer.propTypes = {
-    deckId: string.isRequired,
-    deck: object,
+DeckInfo.propTypes = {
+    deck: shape({}).isRequired
 };
 
-export default connect(stateToProps, null)(DeckInfoContainer);
+export default connect(stateToProps, null)(DeckInfo);
