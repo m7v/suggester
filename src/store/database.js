@@ -1,7 +1,7 @@
 import * as firebase from 'firebase';
 import { batchActions } from 'redux-batched-actions';
 import { map } from 'lodash';
-import * as types from '../actions/deckBuilder/deckBuilder.types';
+import * as types from 'src/actions/deckBuilder/deckBuilder.types';
 
 const FIREBASE_CONFIG = {
     apiKey: 'AIzaSyA5spEBu0NHii_wMNVdnvGmJErkXYzuPEQ',

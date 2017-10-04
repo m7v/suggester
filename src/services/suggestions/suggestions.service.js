@@ -36,7 +36,7 @@ const getCardsByText = query =>
  * @param query
  * @returns {Promise}
  */
-const getCardsBySybtype = query =>
+const getCardsBySubtype = query =>
     axios.get(`${serverApiUrl}cards?subtypes=${query}&layout=normal&contains=imageUrl`)
         .then(response => new Promise(resolve => resolve(response.data)))
         .catch(() => new Promise((resolve) => resolve([])));
@@ -50,7 +50,7 @@ export const getSuggestions = (query) => {
         getCardsByName(query),
         getCardsByFlavor(query),
         getCardsByText(query),
-        getCardsBySybtype(query)
+        getCardsBySubtype(query)
     ];
 
     return axios.all(queries)

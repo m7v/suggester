@@ -1,10 +1,10 @@
-import { Model, many, ORM } from 'redux-orm';
+import { Model, many } from 'redux-orm';
 import {
     ADD_CARD,
     ADD_DECK,
     DELETE_DECK,
     UPDATE_DECK
-} from '../../reducers/deckBuilder/deckBuilder.helper';
+} from 'src/reducers/deckBuilder/deckBuilder.helper';
 
 class Deck extends Model {
     static get fields() {
@@ -41,33 +41,11 @@ class Deck extends Model {
                 break;
             }
             default:
-                // noop
+            // noop
         }
     }
 }
 
 Deck.modelName = 'Deck';
 
-class Card extends Model {
-    static get fields() {
-        return {};
-    }
-
-    static reducer(action, card) {
-        switch (action.type) {
-            case ADD_CARD: {
-                card.upsert(action.payload.card);
-                break;
-            }
-            default:
-                // noop
-        }
-    }
-}
-
-Card.modelName = 'Card';
-
-// Create a Schema instance, and hook up the Post and Comment models
-const orm = new ORM();
-orm.register(Deck, Card);
-export default orm;
+export default Deck;

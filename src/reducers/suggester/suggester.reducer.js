@@ -1,4 +1,3 @@
-import {Map} from 'immutable';
 import {
     GET_SUGGESTIONS,
     SUGGESTIONS_REQUEST_STARTED,
@@ -11,34 +10,51 @@ import {
  * @param suggestions
  */
 function getSuggestions(state, suggestions) {
-    return state.set('suggestions', suggestions);
+    return {
+        ...state,
+        suggestions
+    };
 }
 
 /**
  * @param state
  */
 function suggestionsRequestStarted(state) {
-    return state.setIn(['meta', 'loading'], true);
+    return {
+        ...state,
+        meta: {
+            ...state.meta,
+            loading: true
+        }
+    };
 }
 
 /**
  * @param state
  */
 function suggestionsRequestSuccess(state) {
-    return state.set('meta', new Map({
-        loading: false,
-        error: false
-    }));
+    return {
+        ...state,
+        meta: {
+            ...state.meta,
+            loading: false,
+            error: false
+        }
+    };
 }
 
 /**
  * @param state
  */
 function suggestionsRequestFailed(state) {
-    return state.set('meta', new Map({
-        loading: false,
-        error: true
-    }));
+    return {
+        ...state,
+        meta: {
+            ...state.meta,
+            loading: false,
+            error: true
+        }
+    };
 }
 
 /**
@@ -46,7 +62,7 @@ function suggestionsRequestFailed(state) {
  * @param action
  * @returns {*}
  */
-export default (state = new Map({}), action) => {
+export default (state = {}, action) => {
     switch (action.type) {
         case GET_SUGGESTIONS:
             return getSuggestions(state, action.payload.suggestions);

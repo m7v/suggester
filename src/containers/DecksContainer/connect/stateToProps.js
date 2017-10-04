@@ -1,5 +1,5 @@
 import { createSelector } from 'redux-orm';
-import orm from '../../../store/models/models';
+import orm from 'src/store/models/models';
 
 const ormSelector = function(state) {
     return state.entities;
@@ -19,7 +19,7 @@ export default function stateToProps(state) {
     return {
         decks: deckSelector(state),
         cards: cardSelector(state),
-        draftDeck: state.deckBuilder.get('draftDeck'),
-        loading: state.deckBuilder.getIn(['meta', 'loading']),
+        draftDeck: state.deckBuilder.draftDeck,
+        loading: state.deckBuilder.meta.loading,
     };
 }
