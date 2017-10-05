@@ -1,12 +1,14 @@
 import { createStore, applyMiddleware } from 'redux';
-import queryString from 'query-string';
 import thunk from 'redux-thunk';
 import { enableBatching } from 'redux-batched-actions';
 import { createLogger } from 'redux-logger';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import MobileDetect from 'mobile-detect';
+import queryString from 'query-string';
 import rootReducer from '../reducers';
 import { ping } from '../middlewares/ping';
-import { initializeDatabase, getDefaultState } from './database';
+import { getDefaultState } from './database';
+
 
 const parsed = queryString.parse(window.location.search);
 const initialState = {
@@ -18,6 +20,7 @@ const initialState = {
         },
         query: parsed.q || '',
         suggestions: [],
+        latestQuery: {}
     },
     deckBuilder: {
         meta: {
@@ -27,7 +30,8 @@ const initialState = {
         draftDeck: '',
     },
     appContext: {
-        initial: false
+        initial: false,
+        isMobile: !!new MobileDetect(window.navigator.userAgent).mobile()
     }
 };
 
@@ -42,7 +46,5 @@ const store = createStore(
         ),
     ),
 );
-
-initializeDatabase(store);
 
 export default store;

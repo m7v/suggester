@@ -6,11 +6,20 @@ import {
 } from '../../services/suggestions/suggestions.service';
 
 /**
- * @returns {function(*)}Success
+ * @returns {function(*, *)}Success
  */
 export function getSuggestions(query) {
-    return dispatch => {
+    return (dispatch, getState) => {
+        const state = getState();
+
         dispatch(types.suggestionsRequestStarted());
+
+        if (state.suggester.latestQuery[query.toLowerCase()]) {
+            return dispatch(batchActions([
+                types.getSuggestions(state.suggester.latestQuery[query.toLowerCase()]),
+                types.suggestionsRequestSuccess()
+            ]));
+        }
 
         return requestGetSuggestions(query)
             .then((cards) => {
@@ -21,11 +30,12 @@ export function getSuggestions(query) {
                     pool.push({
                         id: card.multiverseid,
                         name: card.name,
-                        src: card.imageUrl
+                        imageUrl: card.imageUrl
                     });
                     return pool;
                 }, []);
                 dispatch(batchActions([
+                    types.cachedSuggestions(query.toLowerCase(), suggestions),
                     types.getSuggestions(suggestions),
                     types.suggestionsRequestSuccess()
                 ]));

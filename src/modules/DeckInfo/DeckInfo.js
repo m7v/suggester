@@ -1,11 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { shape } from 'prop-types';
+import { string, shape, func } from 'prop-types';
 import { Link } from 'react-router-dom';
 import DeckInfoComponent from './../../components/DeckInfo/index';
 import { stateToProps } from './connect/stateToProps';
+import { dispatchToProps } from './connect/dispatchToProps';
 
 class DeckInfo extends React.Component {
+
+    componentWillMount() {
+        if (this.props.deck.id) {
+            this.props.getCardListByDeckId(this.props.deck.id);
+        }
+    }
 
     render() {
         const { deck } = this.props;
@@ -29,7 +36,9 @@ class DeckInfo extends React.Component {
 }
 
 DeckInfo.propTypes = {
-    deck: shape({}).isRequired
+    deckId: string.isRequired,
+    deck: shape({}).isRequired,
+    getCardListByDeckId: func.isRequired
 };
 
-export default connect(stateToProps, null)(DeckInfo);
+export default connect(stateToProps, dispatchToProps)(DeckInfo);

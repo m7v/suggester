@@ -3,8 +3,9 @@ import 'mana-font/css/mana.min.css';
 import React from 'react';
 import { connect } from 'react-redux';
 import { bool, shape, string, arrayOf, func } from 'prop-types';
-import mtgparser from 'mtg-parser';
 import { FloatingActionButton } from 'material-ui';
+import mtgparser from 'mtg-parser';
+import LazyLoad from 'react-lazyload';
 import ContentAdd from 'material-ui/svg-icons/content/create';
 import Deck from '../../components/Deck';
 import CreateDeckForm from '../../components/CreateDeckForm';
@@ -60,7 +61,11 @@ class Decks extends React.Component {
                 <div className="Decks__main">
                     <div className="Decks__deckList">
                         {this.props.decks.map((deck) => (
-                            <Deck key={deck.id} deck={deck} />
+                            <div key={deck.id}>
+                                <LazyLoad height={355} offset={100}>
+                                    <Deck deck={deck} />
+                                </LazyLoad>
+                            </div>
                         ))}
                     </div>
                     <div className="Decks__createDeckForm">

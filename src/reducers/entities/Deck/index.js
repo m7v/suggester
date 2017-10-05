@@ -34,15 +34,14 @@ class Deck extends Model {
             }
 
             case ADD_CARD : {
-                const currentDeck = deck
-                    .withId(action.payload.deckId);
-                if (currentDeck) {
-                    try {
-                        currentDeck
-                            .cardList
-                            .add(action.payload.card.id);
-                    } catch (e) {
-                        // noop
+                if (action.payload.deckId) {
+                    const currentDeck = deck.withId(action.payload.deckId);
+                    if (currentDeck) {
+                        try {
+                            currentDeck.cardList.add(action.payload.card.id);
+                        } catch (e) {
+                            // noop
+                        }
                     }
                 }
                 break;

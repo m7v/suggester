@@ -1,0 +1,30 @@
+.Cards__main {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.Cards__card {
+    padding: 0 12px;
+    margin: 15px;
+    min-width: 60%;
+}
+
+.Cards__results {
+    min-width: 900px;
+    margin: 35px auto;
+    overflow: hidden;
+}
+
+.Cards__img {
+    width: 223px;
+    height: 311px;
+}
+
+.Cards__resultsPhone {
+    max-width: 320px;
+    max-height: 320px;
+    margin: 35px auto;
+}

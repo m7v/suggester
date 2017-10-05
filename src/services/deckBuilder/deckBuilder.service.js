@@ -1,7 +1,7 @@
 import axios from 'axios';
 import httpAdapter from 'axios/lib/adapters/http';
 import { map, pick, compact } from 'lodash';
-import { serverApiUrl } from './../config.service';
+import { serverApiUrl, databaseApiUrl } from './../config.service';
 import orm from '../../reducers/entities';
 
 axios.defaults.adapter = httpAdapter;
@@ -66,15 +66,64 @@ export const getDeckListByCardNames = (cardList, state) => {
  * @returns {Promise}
  */
 export const getDeckList = () =>
-    axios.get(`${serverApiUrl}cards`)
-        .then(response => new Promise(resolve => resolve(response.data)))
-        .catch(() => new Promise((resolve) => resolve([])));
+    axios.get(`${databaseApiUrl}entities/Deck/itemsById.json`)
+        .then(response => response.data)
+        .catch(() => []);
 
 /**
- * @param query
+ * @param deckId
+ */
+export const getCardsByDeckId = (deckId) =>
+    axios.get(`${databaseApiUrl}entities/DeckCardList/itemsById.json`)
+        .then(response => {
+            const deckCardList = response.data;
+            const relations = deckCardList.filter(relation => relation.fromDeckId === deckId);
+            return relations.map(relation => relation.toCardId);
+        })
+        .catch(() => null);
+
+/**
  * @returns {Promise}
  */
-export const getCardList = query =>
-    axios.get(`${serverApiUrl}cards?flavor=${query}`)
-        .then(response => new Promise(resolve => resolve(response.data)))
-        .catch(() => new Promise((resolve) => resolve([])));
+export const getCardList = () =>
+    axios.get(`${databaseApiUrl}/entities/Card/itemsById.json`)
+        .then(response => response.data)
+        .catch(() => []);
+
+/**
+ * @param cardId
+ */
+export const getCardById = (cardId) =>
+    axios.get(`${databaseApiUrl}entities/Card/itemsById/${cardId}.json`)
+        .then(response => response.data)
+        .catch(() => null);
+
+/**
+ * @param cardIds
+ * @param state
+ * @returns {Promise.<TResult>}
+ */
+export const getCardByIds = (cardIds, state) => {
+    const requests = [];
+    const session = orm.withMutations(state.entities);
+    map(cardIds, cardId => {
+        const promise = new Promise((fulfil) => {
+            try {
+                const card = session.Card.get({ cardId }).ref;
+                fulfil(card);
+            } catch (e) {
+                const request = axios.get(`${databaseApiUrl}entities/Card/itemsById/${cardId}.json`)
+                    .then(response => response.data)
+                    .catch(() => new Promise((resolve) => resolve(null)));
+                fulfil(request);
+            }
+        });
+        requests.push(promise);
+    });
+
+    return axios
+        .all(requests)
+        .then(axios.spread(function() {
+            return compact(Object.values(arguments));
+        }));
+};

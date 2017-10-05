@@ -37,7 +37,8 @@
     "redux-batched-actions": "^0.2.0",
     "redux-logger": "^3.0.1",
     "redux-orm": "^0.9.4",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "reselect": "^3.0.1"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",

@@ -1,5 +1,5 @@
-import {batchActions} from 'redux-batched-actions';
-import {uniqueId} from 'lodash';
+import { batchActions } from 'redux-batched-actions';
+import { uniqueId, map } from 'lodash';
 import * as types from './deckBuilder.types';
 import {
     buildDeck,
@@ -7,6 +7,8 @@ import {
 import {
     getCardList as requestGetCardList,
     getDeckList as requestGetDeckList,
+    getCardByIds as requestGetCardByIds,
+    getCardsByDeckId as requestGetCardsByDeckId,
     getDeckListByCardNames as requestGetDeckListByCardNames,
 } from '../../services/deckBuilder/deckBuilder.service';
 
@@ -26,7 +28,6 @@ export function getDeckListByCardNames(cardList, name = 'newDeck') {
                 const deck = buildDeck(deckId, name, cards);
 
                 dispatch(batchActions([
-                    types.getCardList(cards),
                     types.createDeck(deck),
                     ...cards.map(card => types.addCard(card, deckId)),
                     types.deckBuilderRequestSuccess(deckId),
@@ -46,18 +47,19 @@ export function removeDeck(deckId) {
  */
 export function getDeckList() {
     return dispatch => {
-        dispatch(types.deckBuilderRequestStarted());
+        dispatch(types.deckBuilderRequestStarted(0));
 
         return requestGetDeckList()
-            .then(() => {
-                const decks = [];
-                dispatch(batchActions([
-                    types.getDeckList(decks),
-                    types.deckBuilderRequestSuccess(),
-                ]));
+            .then((decks) => {
+                dispatch(
+                    batchActions([
+                        ...map(decks, deck => types.createDeck(deck)),
+                        types.deckBuilderRequestSuccess(0),
+                    ]),
+                );
             })
             .catch(() => {
-                dispatch(types.deckBuilderRequestFailed());
+                dispatch(types.deckBuilderRequestFailed(0));
             });
     };
 }
@@ -65,20 +67,34 @@ export function getDeckList() {
 /**
  * @returns {function(*)}Success
  */
-export function getCardList() {
-    return dispatch => {
-        dispatch(types.deckBuilderRequestStarted());
+export function getCardListByDeckId(deckId) {
+    return (dispatch, getState) => {
+        dispatch(types.deckBuilderRequestStarted(deckId));
 
-        return requestGetCardList()
-            .then(() => {
-                const decks = [];
-                dispatch(batchActions([
-                    types.getCardList(decks),
-                    types.deckBuilderRequestSuccess(),
-                ]));
+        return requestGetCardsByDeckId(deckId)
+            .then((cardIds) => {
+                requestGetCardByIds(cardIds, getState())
+                    .then(cards => {
+                        dispatch(batchActions([
+                            ...map(cards, card => types.addCard(card, deckId)),
+                            types.deckBuilderRequestSuccess(deckId),
+                        ]));
+                    });
             })
             .catch(() => {
-                dispatch(types.deckBuilderRequestFailed());
+                dispatch(types.deckBuilderRequestFailed(deckId));
             });
     };
+}
+
+export function getCardList() {
+    return dispatch => requestGetCardList()
+        .then(cards => {
+            dispatch(batchActions([
+                ...map(cards, card => types.addCard(card))
+            ]));
+        })
+        .catch((e) => {
+            console.log(e);
+        });
 }

@@ -2,23 +2,28 @@ import './Root.css';
 import React from 'react';
 import { connect } from 'react-redux';
 import { CircularProgress, LinearProgress } from 'material-ui';
-import { bool } from 'prop-types';
+import { bool, func } from 'prop-types';
 import {
     BrowserRouter as Router,
     Link,
     Route,
 } from 'react-router-dom';
 import Easter from '../Easter/container';
-import Suggester from '../Suggester/container';
 import Decks from '../Decks/container';
+import Cards from '../Cards/container';
+import Suggester from '../Suggester/container';
 import DeckInfo from '../DeckInfo/container';
 import { mapStateToProps } from '../Root/connect/stateToProps';
+import { dispatchToProps } from '../Root/connect/dispatchToProps';
 
 class Root extends React.Component {
 
-    render() {
-        console.log('props', this.props);
+    componentWillMount() {
+        this.props.getDeckList()
+            .then(() => this.props.appInitialized());
+    }
 
+    render() {
         return (
             <Router history="Dashboard">
                 <section className="Root">
@@ -61,7 +66,7 @@ class Root extends React.Component {
                     <div>
                         <Route
                             path="/cards"
-                            component={() => <div>Card list</div>}
+                            component={Cards}
                         />
                     </div>
                 </section>
@@ -71,8 +76,9 @@ class Root extends React.Component {
 }
 
 Root.propTypes = {
-    isInitial: bool
+    isInitial: bool.isRequired,
+    getDeckList: func.isRequired,
+    appInitialized: func.isRequired
 };
 
-
-export default connect(mapStateToProps, null)(Root);
+export default connect(mapStateToProps, dispatchToProps)(Root);

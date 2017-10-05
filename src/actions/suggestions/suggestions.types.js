@@ -1,5 +1,6 @@
 import {
     GET_SUGGESTIONS,
+    CACHED_SUGGESTIONS,
     SUGGESTIONS_REQUEST_STARTED,
     SUGGESTIONS_REQUEST_SUCCESS,
     SUGGESTIONS_REQUEST_FAILED
@@ -13,6 +14,21 @@ export function getSuggestions(suggestions) {
     return {
         type: GET_SUGGESTIONS,
         payload: {suggestions},
+        meta: {}
+    };
+}
+/**
+ * @param searchQuery
+ * @param suggestions
+ * @returns {{type, photoList: *}}
+ */
+export function cachedSuggestions(searchQuery, suggestions) {
+    return {
+        type: CACHED_SUGGESTIONS,
+        payload: {
+            searchQuery,
+            suggestions
+        },
         meta: {}
     };
 }
