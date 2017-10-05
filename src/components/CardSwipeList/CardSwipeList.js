@@ -13,7 +13,7 @@ export default class CardSwipeList extends React.Component {
         return (
             <section>
                 {!!this.props.cards.length &&
-                <Views className="CardSwipeList__resultsPhone">
+                <Views className="CardSwipeList__results">
                     {this.props.cards.map(card => (
                         <div key={card.id} className="CardSwipeList__result">
                             <SimpleCard imageUrl={card.imageUrl} />
