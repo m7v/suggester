@@ -11,7 +11,7 @@ export default class SimpleCard extends React.Component {
         return (
             <LazyLoad height={200} offset={100}>
                 <Img
-                    className="CardSwipeList__img"
+                    className="SimpleCard__img"
                     src={this.props.imageUrl}
                     loader={<DefaultCard />}
                     unloader={<DefaultCard />}
