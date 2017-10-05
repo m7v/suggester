@@ -26,6 +26,9 @@ const initialState = {
         },
         draftDeck: '',
     },
+    appContext: {
+        initial: false
+    }
 };
 
 const store = createStore(

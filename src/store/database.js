@@ -3,6 +3,7 @@ import { batchActions } from 'redux-batched-actions';
 import { map } from 'lodash';
 import orm from '../reducers/entities/index';
 import * as types from '../actions/deckBuilder/deckBuilder.types';
+import { appInitialized } from '../actions/appContext/appContext.types';
 
 const FIREBASE_CONFIG = {
     apiKey: 'AIzaSyA5spEBu0NHii_wMNVdnvGmJErkXYzuPEQ',
@@ -14,12 +15,17 @@ const FIREBASE_CONFIG = {
 };
 
 function bootstrapState(entities) {
+    const deckCreations = map(entities.Deck.items, deckId => types.createDeck(entities.Deck.itemsById[deckId]));
+    const cardCreations = map(entities.DeckCardList.items, cardId => {
+        const cardInDeck = entities.DeckCardList.itemsById[cardId];
+        return types.addCard(entities.Card.itemsById[cardInDeck.toCardId], cardInDeck.fromDeckId);
+    });
     return {
-        decks: map(entities.Deck.items, deckId => types.createDeck(entities.Deck.itemsById[deckId])),
-        cards: map(entities.DeckCardList.items, cardId => {
-            const cardInDeck = entities.DeckCardList.itemsById[cardId];
-            return types.addCard(entities.Card.itemsById[cardInDeck.toCardId], cardInDeck.fromDeckId);
-        })
+        decks: deckCreations,
+        cards: [
+            ...cardCreations,
+            appInitialized()
+        ]
     };
 }
 
@@ -31,16 +37,9 @@ export function getDefaultState() {
 }
 
 export function initializeDatabase(store) {
-    const storedData = localStorage.getItem('store.entities');
-    if (storedData) {
-        const actions = bootstrapState(JSON.parse(storedData));
-        store.dispatch(batchActions(actions.decks));
-        store.dispatch(batchActions(actions.cards));
-    }
     db.ref('entities').on('value', data => {
-        localStorage.setItem('store.entities', JSON.stringify(data.val()));
         const actions = bootstrapState(data.val());
-        store.dispatch(batchActions(actions.decks));
-        store.dispatch(batchActions(actions.cards));
+        Promise.resolve(store.dispatch(batchActions(actions.decks)));
+        Promise.resolve(store.dispatch(batchActions(actions.cards)));
     });
 }
