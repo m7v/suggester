@@ -2,7 +2,7 @@ import './CardSwipeList.css';
 import React from 'react';
 import SwipeableViews from 'react-swipeable-views';
 import { bindKeyboard } from 'react-swipeable-views-utils';
-import { arrayOf, shape, string } from 'prop-types';
+import { arrayOf, shape } from 'prop-types';
 import SimpleCard from '../SimpleCard/SimpleCard';
 
 const Views = bindKeyboard(SwipeableViews);
@@ -27,10 +27,7 @@ export default class CardSwipeList extends React.Component {
 }
 
 CardSwipeList.propTypes = {
-    cards: arrayOf(shape({
-        id: string,
-        imageUrl: string,
-    }))
+    cards: arrayOf(shape({}))
 };
 
 CardSwipeList.defaultProps = {

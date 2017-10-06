@@ -37,6 +37,9 @@ class Suggester extends React.Component {
             if (!this.props.loading) {
                 this.props.getSuggestions(this.state.searchingCard);
             }
+            this.props.history.replace(
+                `${this.props.history.location.pathname}?q=${this.state.searchingCard}`
+            );
         }
     };
 
@@ -90,6 +93,7 @@ class Suggester extends React.Component {
 }
 
 Suggester.propTypes = {
+    history: shape({}).isRequired,
     loading: bool,
     searchingCard: string,
     suggestions: arrayOf(shape({
