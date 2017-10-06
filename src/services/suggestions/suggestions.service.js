@@ -10,7 +10,7 @@ axios.defaults.adapter = httpAdapter;
  * @returns {Promise}
  */
 const getCardsByName = query =>
-    axios.get(`${serverApiUrl}cards?name=${query}&layout=normal&contains=imageUrl`)
+    axios.get(`${serverApiUrl}cards?name=${query}&layout=normal|split|flip|double-faced&contains=imageUrl`)
         .then(response => new Promise(resolve => resolve(response.data)))
         .catch(() => new Promise((resolve) => resolve([])));
 
@@ -19,7 +19,7 @@ const getCardsByName = query =>
  * @returns {Promise}
  */
 const getCardsByFlavor = query =>
-    axios.get(`${serverApiUrl}cards?flavor=${query}&layout=normal&contains=imageUrl`)
+    axios.get(`${serverApiUrl}cards?flavor=${query}&layout=normal|split|flip|double-faced&contains=imageUrl`)
         .then(response => new Promise(resolve => resolve(response.data)))
         .catch(() => new Promise((resolve) => resolve([])));
 
@@ -28,7 +28,7 @@ const getCardsByFlavor = query =>
  * @returns {Promise}
  */
 const getCardsByText = query =>
-    axios.get(`${serverApiUrl}cards?text=${query}&layout=normal&contains=imageUrl`)
+    axios.get(`${serverApiUrl}cards?text=${query}&layout=normal|split|flip|double-faced&contains=imageUrl`)
         .then(response => new Promise(resolve => resolve(response.data)))
         .catch(() => new Promise((resolve) => resolve([])));
 
@@ -37,7 +37,7 @@ const getCardsByText = query =>
  * @returns {Promise}
  */
 const getCardsBySubtype = query =>
-    axios.get(`${serverApiUrl}cards?subtypes=${query}&layout=normal&contains=imageUrl`)
+    axios.get(`${serverApiUrl}cards?subtypes=${query}&layout=normal|split|flip|double-faced&contains=imageUrl`)
         .then(response => new Promise(resolve => resolve(response.data)))
         .catch(() => new Promise((resolve) => resolve([])));
 
