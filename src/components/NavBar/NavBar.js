@@ -2,6 +2,7 @@ import './NavBar.css';
 import React from 'react';
 import { BottomNavigation, BottomNavigationItem } from 'material-ui/BottomNavigation';
 import { Link } from 'react-router-dom';
+import classNames from 'classnames';
 import Paper from 'material-ui/Paper';
 import IconViewModule from 'material-ui/svg-icons/action/view-module';
 import IconViewCarousel from 'material-ui/svg-icons/action/view-carousel';
@@ -17,7 +18,7 @@ const cardIcon = <IconViewCarousel />;
 
 const navbarConfig = [
     {
-        path: '/suggester',
+        path: '/search',
         icon: searchIcon,
         label: 'Search',
     },
@@ -43,20 +44,36 @@ const navbarConfig = [
     }
 ];
 
-export default class NavBar extends React.PureComponent {
+export default class NavBar extends React.Component {
+
+    state = {
+        selectedNav: navbarConfig.findIndex(item => window.location.pathname.indexOf(item.path) !== -1)
+    };
+
+    renderNavigationLinks = () => {
+        return navbarConfig.map((item, index) => (
+            <BottomNavigationItem
+                key={item.path}
+                className="NavBar__icon"
+                label={item.label}
+                icon={
+                    <Link
+                        to={item.path}
+                        className={classNames({ 'NavBar__selectedIcon': this.state.selectedNav === index })}
+                    >
+                        {item.icon}
+                    </Link>
+                }
+                onClick={() => this.setState({ selectedNav: index })}
+            />
+        ))
+    };
 
     render() {
         return (
             <Paper className="NavBar__root" zDepth={2}>
-                <BottomNavigation>
-                    {navbarConfig.map(item => (
-                        <Link key={item.path} to={item.path}>
-                            <BottomNavigationItem
-                                label={item.label}
-                                icon={item.icon}
-                            />
-                        </Link>))
-                    }
+                <BottomNavigation selectedIndex={this.state.selectedNav}>
+                    { this.renderNavigationLinks() }
                 </BottomNavigation>
             </Paper>
         );

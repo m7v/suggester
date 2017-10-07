@@ -4,9 +4,6 @@ import {
     ADD_CARD,
     ADD_DECK,
     DELETE_DECK,
-    DECK_BUILDER_REQUEST_STARTED,
-    DECK_BUILDER_REQUEST_SUCCESS,
-    DECK_BUILDER_REQUEST_FAILED
 } from '../../reducers/deckBuilder/deckBuilder.helper';
 
 /**
@@ -78,39 +75,6 @@ export function addCard(card, deckId) {
     return {
         type: ADD_CARD,
         payload: {card, deckId},
-        meta: {}
-    };
-}
-
-/**
- * @returns {{type}}
- */
-export function deckBuilderRequestStarted(deckId) {
-    return {
-        type: DECK_BUILDER_REQUEST_STARTED,
-        payload: {deckId},
-        meta: {}
-    };
-}
-
-/**
- * @returns {{type}}
- */
-export function deckBuilderRequestSuccess(deckId) {
-    return {
-        type: DECK_BUILDER_REQUEST_SUCCESS,
-        payload: {deckId},
-        meta: {}
-    };
-}
-
-/**
- * @returns {{type}}
- */
-export function deckBuilderRequestFailed(deckId) {
-    return {
-        type: DECK_BUILDER_REQUEST_FAILED,
-        payload: {deckId},
         meta: {}
     };
 }

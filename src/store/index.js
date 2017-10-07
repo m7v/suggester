@@ -9,7 +9,6 @@ import rootReducer from '../reducers';
 import { ping } from '../middlewares/ping';
 import { getDefaultState } from './database';
 
-
 const parsed = queryString.parse(window.location.search);
 const initialState = {
     entities: getDefaultState(),
@@ -32,6 +31,22 @@ const initialState = {
     appContext: {
         initial: false,
         isMobile: !!new MobileDetect(window.navigator.userAgent).mobile(),
+        Cards: {
+            loading: false,
+            error: false,
+        },
+        Decks: {
+            loading: false,
+            error: false,
+        },
+        Favorites: {
+            loading: false,
+            error: false,
+        },
+        DeckBuilder: {
+            loading: false,
+            error: false,
+        },
     }
 };
 

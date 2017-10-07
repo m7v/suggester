@@ -1,25 +1,39 @@
 import './CardSwipeList.css';
 import React from 'react';
 import SwipeableViews from 'react-swipeable-views';
-import { bindKeyboard } from 'react-swipeable-views-utils';
+import { virtualize } from 'react-swipeable-views-utils';
 import { arrayOf, shape } from 'prop-types';
 import SimpleCard from '../SimpleCard/SimpleCard';
 
-const Views = bindKeyboard(SwipeableViews);
+const Views = virtualize(SwipeableViews);
 
 export default class CardSwipeList extends React.Component {
+
+    cardRenderer = ({ key }) => {
+        let index;
+        if (key < 0) {
+            index = this.props.cards.length + key;
+        } else {
+            if (this.props.cards.length - 1 >= key) {
+                index = key;
+            } else {
+                index = key - this.props.cards.length;
+            }
+        }
+        const card = this.props.cards[index];
+
+        return (
+            <div key={card.id} className="CardSwipeList__result">
+                <SimpleCard imageUrl={card.imageUrl} />
+            </div>
+        );
+    };
 
     render() {
         return (
             <section>
                 {!!this.props.cards.length &&
-                <Views className="CardSwipeList__results">
-                    {this.props.cards.map(card => (
-                        <div key={card.id} className="CardSwipeList__result">
-                            <SimpleCard imageUrl={card.imageUrl} />
-                        </div>
-                    ))}
-                </Views>
+                    <Views className="CardSwipeList__results" slideRenderer={this.cardRenderer} />
                 }
             </section>
         );

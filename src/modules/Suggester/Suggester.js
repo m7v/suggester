@@ -6,7 +6,7 @@ import { bool, number, string, func, shape, arrayOf } from 'prop-types';
 import {
     Paper,
     TextField,
-    CircularProgress
+    CircularProgress,
 } from 'material-ui';
 import NumberEasing from 'react-number-easing';
 import CardSwipeList from '../../components/CardSwipeList';
@@ -20,7 +20,7 @@ class Suggester extends React.Component {
 
     state = {
         searchingCard: this.props.searchingCard,
-        isInited: false
+        isInited: false,
     };
 
     componentWillMount() {
@@ -30,12 +30,12 @@ class Suggester extends React.Component {
     }
 
     handleCardChange = event => {
-        this.setState({searchingCard: event.target.value});
+        this.setState({ searchingCard: event.target.value });
     };
 
     handleFirstClick = () => {
         if (!this.state.isInited) {
-            this.setState({isInited: true});
+            this.setState({ isInited: true });
         }
     };
 
@@ -46,7 +46,7 @@ class Suggester extends React.Component {
                 this.props.getSuggestions(this.state.searchingCard);
             }
             this.props.history.replace(
-                `${this.props.history.location.pathname}?q=${this.state.searchingCard}`
+                `${this.props.history.location.pathname}?q=${this.state.searchingCard}`,
             );
         }
     };
@@ -56,8 +56,8 @@ class Suggester extends React.Component {
             'Suggester__inputWrapper': true,
             '_mobile': this.props.isMobile,
             '_inited': this.state.isInited ||
-                !!this.state.searchingCard ||
-                !!this.props.suggestions.length
+            !!this.state.searchingCard ||
+            !!this.props.suggestions.length,
         });
 
         return (
@@ -80,28 +80,34 @@ class Suggester extends React.Component {
                                 </div>
                             </div>
                             {!!this.props.suggestions.length &&
-                                <span>
-                                    <NumberEasing
-                                        value={this.props.suggestions.length}
-                                        speed={3000}
-                                        ease='quintInOut'
-                                    /> results
-                                </span>
+                            <span>
+                                <NumberEasing
+                                    value={this.props.suggestions.length}
+                                    speed={3000}
+                                    ease='quintInOut'
+                                /> results
+                            </span>
                             }
                         </section>
                     </Paper>
                     {(!this.props.loading && this.props.isMobile) &&
+                    <div className="Suggester__swipe">
                         <CardSwipeList
                             cards={this.props.suggestions}
                         />
+                    </div>
                     }
                     {(!this.props.loading && !this.props.isMobile) &&
-                        <CardGridList
-                            cards={this.props.suggestions}
-                        />
+                    <CardGridList
+                        cards={this.props.suggestions}
+                    />
                     }
                     {this.props.loading &&
-                        <CircularProgress size={80} thickness={5} color="#fff" />
+                    <div className="Suggester__preloader">
+                        <div className="Suggester__circular">
+                            <CircularProgress size={120} thickness={8} color="#fff" />
+                        </div>
+                    </div>
                     }
                 </div>
             </section>
@@ -118,7 +124,7 @@ Suggester.propTypes = {
         src: string,
     })),
     getSuggestions: func.isRequired,
-    isMobile: bool
+    isMobile: bool,
 };
 
 Suggester.defaultProps = {

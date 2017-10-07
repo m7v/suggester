@@ -20,13 +20,12 @@ import NavBar from '../../components/NavBar';
 class Root extends React.Component {
 
     componentWillMount() {
-        this.props.getDeckList()
-            .then(() => this.props.appInitialized());
+        this.props.appInitialized();
     }
 
     render() {
         return (
-            <Router history="Dashboard">
+            <Router basename="/suggester" >
                 <section className="Root">
                     {!this.props.isInitial &&
                         <div className="Root__preloader">
@@ -41,7 +40,7 @@ class Root extends React.Component {
                     <NavBar />
                     <Easter>
                         <ul style={{ listStyleType: 'none', padding: 0 }}>
-                            <li><Link to="/suggester">Suggester</Link></li>
+                            <li><Link to="/search">Suggester</Link></li>
                             <li><Link to="/decks">Decks</Link></li>
                             <li><Link to="/cards">Cards</Link></li>
                             <li><Link to="/favorites">Favorites</Link></li>
@@ -49,7 +48,7 @@ class Root extends React.Component {
                     </Easter>
                     <Route
                         exact
-                        path="/suggester"
+                        path="/search"
                         component={Suggester}
                     />
                     <Route
@@ -80,7 +79,6 @@ class Root extends React.Component {
 
 Root.propTypes = {
     isInitial: bool.isRequired,
-    getDeckList: func.isRequired,
     appInitialized: func.isRequired
 };
 

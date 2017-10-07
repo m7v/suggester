@@ -11,5 +11,7 @@ export function stateToProps(state) {
     return {
         cards: cardSelector(state),
         isMobile: state.appContext.isMobile,
+        loading: state.appContext.Cards.loading,
+        error: state.appContext.Cards.error,
     };
 }

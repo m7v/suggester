@@ -20,6 +20,7 @@ export default function stateToProps(state) {
         decks: deckSelector(state),
         cards: cardSelector(state),
         draftDeck: state.deckBuilder.draftDeck,
-        loading: state.deckBuilder.meta.loading,
+        loading: state.appContext.Decks.loading,
+        error: state.appContext.Decks.error,
     };
 }

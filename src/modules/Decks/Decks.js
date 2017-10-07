@@ -3,7 +3,7 @@ import 'mana-font/css/mana.min.css';
 import React from 'react';
 import { connect } from 'react-redux';
 import { bool, shape, string, arrayOf, func } from 'prop-types';
-import { FloatingActionButton } from 'material-ui';
+import { CircularProgress, FloatingActionButton } from 'material-ui';
 import mtgparser from 'mtg-parser';
 import LazyLoad from 'react-lazyload';
 import ContentAdd from 'material-ui/svg-icons/content/create';
@@ -26,6 +26,10 @@ class Decks extends React.Component {
             finished: false,
             stepIndex: 0,
         };
+    }
+
+    componentWillMount() {
+        this.props.getDeckList();
     }
 
     handleOpen = () => {
@@ -68,6 +72,13 @@ class Decks extends React.Component {
                             </div>
                         ))}
                     </div>
+                    {this.props.loading &&
+                    <div className="Decks_preloader">
+                        <div className="Decks__circular">
+                            <CircularProgress size={120} thickness={8} color="#fff" />
+                        </div>
+                    </div>
+                    }
                     <div className="Decks__createDeckForm">
                         {!this.props.loading &&
                             <FloatingActionButton
@@ -96,6 +107,7 @@ Decks.propTypes = {
     loading: bool,
     draftDeck: string,
     decks: arrayOf(shape({})),
+    getDeckList: func.isRequired,
     getDeckListByCardNames: func.isRequired,
 };
 

@@ -1,6 +1,7 @@
 import { batchActions } from 'redux-batched-actions';
 import { uniqueId, map } from 'lodash';
-import * as types from './deckBuilder.types';
+import * as deckBuilderTypes from './deckBuilder.types';
+import * as appContextTypes from './../appContext/appContext.types';
 import {
     buildDeck,
 } from './deckBuilder.helper';
@@ -21,24 +22,25 @@ export function getDeckListByCardNames(cardList, name = 'newDeck') {
     return (dispatch, getState) => {
         const deckId = uniqueId(`deck${(new Date()).getTime()}`);
 
-        dispatch(types.deckBuilderRequestStarted(deckId));
+        dispatch(appContextTypes.appDecksRequestStarted());
 
         return requestGetDeckListByCardNames(cardList, getState())
             .then(cards => {
                 const deck = buildDeck(deckId, name, cards);
 
                 dispatch(batchActions([
-                    types.createDeck(deck),
-                    ...cards.map(card => types.addCard(card, deckId)),
-                    types.deckBuilderRequestSuccess(deckId),
+                    deckBuilderTypes.createDeck(deck),
+                    ...cards.map(card => deckBuilderTypes.addCard(card, deckId)),
+                    appContextTypes.appDecksRequestSuccess(),
                 ]));
-            });
+            })
+            .catch(() => dispatch(appContextTypes.appDecksRequestFailed()));
     };
 }
 
 export function removeDeck(deckId) {
     return dispatch => {
-        dispatch(types.deleteDeck(deckId));
+        dispatch(deckBuilderTypes.deleteDeck(deckId));
     };
 }
 
@@ -47,20 +49,18 @@ export function removeDeck(deckId) {
  */
 export function getDeckList() {
     return dispatch => {
-        dispatch(types.deckBuilderRequestStarted(0));
+        dispatch(appContextTypes.appDecksRequestStarted());
 
         return requestGetDeckList()
             .then((decks) => {
                 dispatch(
                     batchActions([
-                        ...map(decks, deck => types.createDeck(deck)),
-                        types.deckBuilderRequestSuccess(0),
+                        ...map(decks, deck => deckBuilderTypes.createDeck(deck)),
+                        appContextTypes.appDecksRequestSuccess(),
                     ]),
                 );
             })
-            .catch(() => {
-                dispatch(types.deckBuilderRequestFailed(0));
-            });
+            .catch(() => dispatch(appContextTypes.appDecksRequestFailed()));
     };
 }
 
@@ -69,32 +69,39 @@ export function getDeckList() {
  */
 export function getCardListByDeckId(deckId) {
     return (dispatch, getState) => {
-        dispatch(types.deckBuilderRequestStarted(deckId));
+        dispatch(appContextTypes.appDecksRequestStarted());
 
         return requestGetCardsByDeckId(deckId)
             .then((cardIds) => {
                 requestGetCardByIds(cardIds, getState())
                     .then(cards => {
                         dispatch(batchActions([
-                            ...map(cards, card => types.addCard(card, deckId)),
-                            types.deckBuilderRequestSuccess(deckId),
+                            ...map(cards, card => deckBuilderTypes.addCard(card, deckId)),
+                            appContextTypes.appDecksRequestSuccess(),
                         ]));
                     });
             })
-            .catch(() => {
-                dispatch(types.deckBuilderRequestFailed(deckId));
-            });
+            .catch(() => dispatch(appContextTypes.appDecksRequestFailed()));
     };
 }
 
 export function getCardList() {
-    return dispatch => requestGetCardList()
-        .then(cards => {
-            dispatch(batchActions([
-                ...map(cards, card => types.addCard(card))
-            ]));
-        })
-        .catch((e) => {
-            console.log(e);
-        });
+    return (dispatch, getState) => {
+        const state = getState();
+
+        dispatch(appContextTypes.appCardsRequestStarted());
+
+        if (state.entities.Card.items.length) {
+            return dispatch(appContextTypes.appCardsRequestSuccess());
+        }
+
+        return requestGetCardList()
+            .then(cards => {
+                dispatch(batchActions([
+                    ...map(cards, card => deckBuilderTypes.addCard(card)),
+                    dispatch(appContextTypes.appCardsRequestSuccess())
+                ]));
+            })
+            .catch(() => dispatch(appContextTypes.appCardsRequestFailed()));
+    };
 }

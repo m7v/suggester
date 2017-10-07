@@ -4,3 +4,12 @@
     bottom: 0;
     z-index: 1;
 }
+
+.NavBar__icon {
+    padding: 8px 0 !important;
+    min-width: 45px !important;
+}
+
+.NavBar__selectedIcon > svg {
+    color: rgb(33, 150, 243) !important;
+}
