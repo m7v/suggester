@@ -1,4 +1,5 @@
 .CardSwipeList__results {
     max-height: 320px;
     width: 100vw;
+    overflow: hidden;
 }
