@@ -6,7 +6,6 @@ import CardSwipeList from '../../components/CardSwipeList';
 import CardGridList from '../../components/CardGridList';
 import { stateToProps } from './connect/stateToProps';
 import { dispatchToProps } from './connect/dispatchToProps';
-import NavBar from '../../components/NavBar/NavBar';
 
 class Cards extends React.Component {
 
@@ -25,7 +24,6 @@ class Cards extends React.Component {
                     <CardGridList cards={this.props.cards} />
                     }
                 </div>
-                <NavBar />
             </section>
         );
     }

@@ -15,6 +15,7 @@ import Suggester from '../Suggester/container';
 import DeckInfo from '../DeckInfo/container';
 import { mapStateToProps } from '../Root/connect/stateToProps';
 import { dispatchToProps } from '../Root/connect/dispatchToProps';
+import NavBar from '../../components/NavBar';
 
 class Root extends React.Component {
 
@@ -37,38 +38,40 @@ class Root extends React.Component {
                             </div>
                         </div>
                     }
+                    <NavBar />
                     <Easter>
                         <ul style={{ listStyleType: 'none', padding: 0 }}>
                             <li><Link to="/suggester">Suggester</Link></li>
                             <li><Link to="/decks">Decks</Link></li>
                             <li><Link to="/cards">Cards</Link></li>
+                            <li><Link to="/favorites">Favorites</Link></li>
                         </ul>
                     </Easter>
-                    <div>
-                        <Route
-                            exact
-                            path="/suggester"
-                            component={Suggester}
-                        />
-                    </div>
-                    <div>
-                        <Route
-                            path="/decks"
-                            component={Decks}
-                        />
-                    </div>
-                    <div>
-                        <Route
-                            path="/deck/:id"
-                            component={(({match}) => <DeckInfo deckId={match.params.id} />)}
-                        />
-                    </div>
-                    <div>
-                        <Route
-                            path="/cards"
-                            component={Cards}
-                        />
-                    </div>
+                    <Route
+                        exact
+                        path="/suggester"
+                        component={Suggester}
+                    />
+                    <Route
+                        path="/decks"
+                        component={Decks}
+                    />
+                    <Route
+                        path="/deck/:id"
+                        component={(({match}) => <DeckInfo deckId={match.params.id} />)}
+                    />
+                    <Route
+                        path="/cards"
+                        component={Cards}
+                    />
+                    <Route
+                        path="/card/:id"
+                        component={(({match}) => <div>Card {match.params.id}</div>)}
+                    />
+                    <Route
+                        path="/favorites"
+                        component={() => <div>Favorites</div>}
+                    />
                 </section>
             </Router>
         );

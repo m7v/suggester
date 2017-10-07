@@ -13,7 +13,6 @@ import CardSwipeList from '../../components/CardSwipeList';
 import CardGridList from '../../components/CardGridList';
 import { mapStateToProps } from './connect/stateToProps';
 import { mapDispatchToProps } from './connect/dispatchToProps';
-import NavBar from '../../components/NavBar/NavBar';
 
 const ENTER_KEY_CODE = 13;
 
@@ -104,7 +103,6 @@ class Suggester extends React.Component {
                     {this.props.loading &&
                         <CircularProgress size={80} thickness={5} color="#fff" />
                     }
-                    <NavBar />
                 </div>
             </section>
         );
