@@ -32,14 +32,6 @@ const initialState = {
     appContext: {
         initial: false,
         isMobile: !!new MobileDetect(window.navigator.userAgent).mobile(),
-        screen: {
-            width: screen.width,
-            height: screen.height,
-            orientation: {
-                type: screen.orientation.type,
-                angle: screen.orientation.angle
-            }
-        }
     }
 };
 

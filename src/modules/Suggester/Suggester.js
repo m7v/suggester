@@ -1,6 +1,7 @@
 import './Suggester.css';
 import React from 'react';
 import { connect } from 'react-redux';
+import classNames from 'classnames';
 import { bool, number, string, func, shape, arrayOf } from 'prop-types';
 import {
     Paper,
@@ -12,13 +13,15 @@ import CardSwipeList from '../../components/CardSwipeList';
 import CardGridList from '../../components/CardGridList';
 import { mapStateToProps } from './connect/stateToProps';
 import { mapDispatchToProps } from './connect/dispatchToProps';
+import NavBar from '../../components/NavBar/NavBar';
 
 const ENTER_KEY_CODE = 13;
 
 class Suggester extends React.Component {
 
     state = {
-        searchingCard: this.props.searchingCard
+        searchingCard: this.props.searchingCard,
+        isInited: false
     };
 
     componentWillMount() {
@@ -29,6 +32,12 @@ class Suggester extends React.Component {
 
     handleCardChange = event => {
         this.setState({searchingCard: event.target.value});
+    };
+
+    handleFirstClick = () => {
+        if (!this.state.isInited) {
+            this.setState({isInited: true});
+        }
     };
 
     handleSearchCardByKeyPress = event => {
@@ -44,10 +53,18 @@ class Suggester extends React.Component {
     };
 
     render() {
+        const inputWrapper = classNames({
+            'Suggester__inputWrapper': true,
+            '_mobile': this.props.isMobile,
+            '_inited': this.state.isInited ||
+                !!this.state.searchingCard ||
+                !!this.props.suggestions.length
+        });
+
         return (
             <section className="Suggester">
                 <div className="Suggester__main">
-                    <Paper className="Suggester__card" zDepth={2}>
+                    <Paper className={inputWrapper} zDepth={2}>
                         <section>
                             <div className="Suggester__form">
                                 <div className="Suggester__input">
@@ -57,6 +74,7 @@ class Suggester extends React.Component {
                                         required="required"
                                         fullWidth
                                         value={this.state.searchingCard}
+                                        onClick={this.handleFirstClick}
                                         onChange={this.handleCardChange}
                                         onKeyDown={this.handleSearchCardByKeyPress}
                                     />
@@ -86,6 +104,7 @@ class Suggester extends React.Component {
                     {this.props.loading &&
                         <CircularProgress size={80} thickness={5} color="#fff" />
                     }
+                    <NavBar />
                 </div>
             </section>
         );

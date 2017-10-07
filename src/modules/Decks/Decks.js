@@ -11,6 +11,7 @@ import Deck from '../../components/Deck';
 import CreateDeckForm from '../../components/CreateDeckForm';
 import stateToProps from './connect/stateToProps';
 import dispatchToProps from './connect/dispatchToProps';
+import NavBar from '../../components/NavBar/NavBar';
 
 class Decks extends React.Component {
 
@@ -87,6 +88,7 @@ class Decks extends React.Component {
                         />
                     </div>
                 </div>
+                <NavBar />
             </section>
         );
     }
