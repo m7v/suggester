@@ -9,13 +9,15 @@ import {
     Route,
 } from 'react-router-dom';
 import Easter from '../Easter/container';
-import Decks from '../Decks/container';
-import Cards from '../Cards/container';
-import Suggester from '../Suggester/container';
-import DeckInfo from '../DeckInfo/container';
+import asyncComponent from '../Async';
 import { mapStateToProps } from '../Root/connect/stateToProps';
 import { dispatchToProps } from '../Root/connect/dispatchToProps';
 import NavBar from '../../components/NavBar';
+
+const Decks = asyncComponent(() => import('../Decks/container'));
+const Cards = asyncComponent(() => import('../Cards/container'));
+const Suggester = asyncComponent(() => import('../Suggester/container'));
+const DeckInfo = asyncComponent(() => import('../DeckInfo/container'));
 
 class Root extends React.Component {
 
