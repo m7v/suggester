@@ -33,7 +33,12 @@ export default class CardSwipeList extends React.Component {
         return (
             <section>
                 {!!this.props.cards.length &&
-                    <Views className="CardSwipeList__results" slideRenderer={this.cardRenderer} />
+                    <Views
+                        overscanSlideBefore={2}
+                        overscanSlideAfter={2}
+                        className="CardSwipeList__results"
+                        slideRenderer={this.cardRenderer}
+                    />
                 }
             </section>
         );

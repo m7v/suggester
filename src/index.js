@@ -20,8 +20,8 @@ injectTapEventPlugin();
 
 const muiTheme = getMuiTheme({
     palette: {
-        primary1Color: blue500,
-        primary2Color: blue500,
+        primary1Color: red900,
+        primary2Color: red900,
         primary3Color: grey600,
         accent1Color: red700,
         accent2Color: red600,
