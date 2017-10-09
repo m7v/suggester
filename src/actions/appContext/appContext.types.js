@@ -58,10 +58,10 @@ export function appDecksRequestSuccess() {
         meta: {}
     };
 }
-export function appDecksRequestFailed() {
+export function appDecksRequestFailed(error) {
     return {
         type: APP_DECKS_REQUEST_FAILED,
-        payload: {},
+        payload: {error},
         meta: {}
     };
 }

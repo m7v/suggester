@@ -2,26 +2,22 @@ import './SimpleCard.css';
 import React from 'react';
 import Img from 'react-image';
 import LazyLoad from 'react-lazyload';
-import { string } from 'prop-types';
-import { DefaultCard } from '../DefaultCard/DefaultCard';
+import { shape } from 'prop-types';
+import DefaultCard from '../DefaultCard';
 
-export default class SimpleCard extends React.Component {
-
-    render() {
-        return (
-            <LazyLoad height={200} offset={100}>
-                <Img
-                    className="SimpleCard__img"
-                    src={this.props.imageUrl}
-                    loader={<DefaultCard />}
-                    unloader={<DefaultCard />}
-                />
-            </LazyLoad>
-
-        );
-    }
-}
+const SimpleCard = ({card}) => (
+    <LazyLoad height={200} offset={100}>
+        <Img
+            className="SimpleCard__img"
+            src={card.imageUrl}
+            loader={<DefaultCard />}
+            unloader={<DefaultCard />}
+        />
+    </LazyLoad>
+);
 
 SimpleCard.propTypes = {
-    imageUrl: string.isRequired
+    card: shape({}).isRequired
 };
+
+export default SimpleCard;

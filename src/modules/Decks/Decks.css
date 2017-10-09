@@ -8,6 +8,7 @@
 }
 
 .Decks__deckList {
+    padding-bottom: 50px;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;

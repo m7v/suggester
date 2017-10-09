@@ -17,6 +17,7 @@ const cardSelector = createSelector(orm, ormSelector, session => session.Card.al
 
 export default function stateToProps(state) {
     return {
+        isMobile: state.appContext.isMobile,
         decks: deckSelector(state),
         cards: cardSelector(state),
         draftDeck: state.deckBuilder.draftDeck,

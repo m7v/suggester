@@ -5,7 +5,7 @@ import {
     GridList,
     GridTile,
 } from 'material-ui';
-import SimpleCard from '../SimpleCard/SimpleCard';
+import SimpleCard from '../SimpleCard';
 
 export default class CardGridList extends React.Component {
 
@@ -16,11 +16,11 @@ export default class CardGridList extends React.Component {
                     <GridList
                         cellHeight={310}
                         cellWidth={225}
-                        cols={4}
+                        cols={this.props.cards.length >= 4 ? 4 : this.props.cards.length}
                     >
                         {this.props.cards.map((card) => (
-                            <GridTile key={card.imageUrl}>
-                                <SimpleCard imageUrl={card.imageUrl} />
+                            <GridTile key={card.id}>
+                                <SimpleCard card={card} />
                             </GridTile>
                         ))}
                     </GridList>

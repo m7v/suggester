@@ -47,7 +47,9 @@ const navbarConfig = [
 export default class NavBar extends React.Component {
 
     state = {
-        selectedNav: navbarConfig.findIndex(item => window.location.pathname.indexOf(item.path) !== -1)
+        // @TODO need for BrowserRouter
+        // selectedNav: navbarConfig.findIndex(item => window.location.pathname.indexOf(item.path) !== -1)
+        selectedNav: navbarConfig.findIndex(item => window.location.hash.indexOf(item.path) !== -1)
     };
 
     getClassName = (index) =>

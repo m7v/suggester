@@ -20,18 +20,18 @@ export function buildDeck(deckId, name, cards) {
 function buildDeckAnalytics(cards) {
     const analytics = {
         colorComposition: {},
-        rarity: {},
-        cmc: {},
-        composition: {},
-        count: 0,
+        cardRarity: {},
+        manaCurve: {},
+        deckComposition: {},
+        cardCount: 0,
     };
 
     return cards.reduce((agg, card) => {
         agg.colorComposition = buildColorComposition(card, agg.colorComposition);
-        agg.cardRarity = buildCardRarity(card, agg.rarity);
-        agg.manaCurve = buildManaCurve(card, agg.cmc);
-        agg.deckComposition = buildDeckComposition(card, agg.composition);
-        agg.cardCount = Number(card.count) + agg.count;
+        agg.cardRarity = buildCardRarity(card, agg.cardRarity);
+        agg.manaCurve = buildManaCurve(card, agg.manaCurve);
+        agg.deckComposition = buildDeckComposition(card, agg.deckComposition);
+        agg.cardCount = Number(card.cardCount) + agg.cardCount;
 
         return agg;
     }, analytics);
@@ -73,13 +73,16 @@ function buildManaCurve(card, cmc) {
 }
 
 function buildDeckComposition(card, composition) {
-    card.types.reduce((comp, type) => {
-        const typeLowerCase = type.toLowerCase();
-        if (comp[typeLowerCase]) {
-            comp[typeLowerCase] += card.count;
-        } else {
-            comp[typeLowerCase] = card.count;
-        }
-        return comp;
-    }, composition);
+    if (size(card.types)) {
+        return card.types.reduce((comp, type) => {
+            const typeLowerCase = type.toLowerCase();
+            if (comp[typeLowerCase]) {
+                comp[typeLowerCase] += card.count;
+            } else {
+                comp[typeLowerCase] = card.count;
+            }
+            return comp;
+        }, composition);
+    }
+    return composition;
 }

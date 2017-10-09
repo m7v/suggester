@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { string, shape, func } from 'prop-types';
 import { Link } from 'react-router-dom';
-import DeckInfoComponent from './../../components/DeckInfo/index';
+import DeckInfoComponent from './../../components/DeckInfo';
 import { stateToProps } from './connect/stateToProps';
 import { dispatchToProps } from './connect/dispatchToProps';
 

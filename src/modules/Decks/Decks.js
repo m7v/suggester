@@ -3,12 +3,12 @@ import 'mana-font/css/mana.min.css';
 import React from 'react';
 import { connect } from 'react-redux';
 import { bool, shape, string, arrayOf, func } from 'prop-types';
-import { CircularProgress, FloatingActionButton } from 'material-ui';
+import {
+    CircularProgress,
+} from 'material-ui';
 import mtgparser from 'mtg-parser';
 import LazyLoad from 'react-lazyload';
-import ContentAdd from 'material-ui/svg-icons/content/create';
 import Deck from '../../components/Deck';
-import CreateDeckForm from '../../components/CreateDeckForm';
 import stateToProps from './connect/stateToProps';
 import dispatchToProps from './connect/dispatchToProps';
 
@@ -60,43 +60,26 @@ class Decks extends React.Component {
     };
 
     render() {
+        const { isMobile, loading, decks } = this.props;
         return (
             <section className="Decks">
                 <div className="Decks__main">
                     <div className="Decks__deckList">
-                        {this.props.decks.map((deck) => (
+                        {decks.map((deck) => (
                             <div key={deck.id}>
                                 <LazyLoad height={355} offset={100}>
-                                    <Deck deck={deck} />
+                                    <Deck deck={deck} mode={isMobile ? 'short' : 'full'} />
                                 </LazyLoad>
                             </div>
                         ))}
                     </div>
-                    {this.props.loading &&
+                    {loading &&
                     <div className="Decks_preloader">
                         <div className="Decks__circular">
                             <CircularProgress size={120} thickness={8} color="#fff" />
                         </div>
                     </div>
                     }
-                    <div className="Decks__createDeckForm">
-                        {!this.props.loading &&
-                            <FloatingActionButton
-                                className="Decks__floatButton"
-                                onTouchTap={this.handleOpen}
-                                secondary
-                            >
-                                <ContentAdd />
-                            </FloatingActionButton>
-                        }
-                        <CreateDeckForm
-                            open={this.state.open}
-                            draftDeck={this.state.draftDeck}
-                            handleCardChange={this.handleCardChange}
-                            handleClose={this.handleClose}
-                            handleSearchCard={this.handleSearchCard}
-                        />
-                    </div>
                 </div>
             </section>
         );
@@ -105,6 +88,7 @@ class Decks extends React.Component {
 
 Decks.propTypes = {
     loading: bool,
+    isMobile: bool,
     draftDeck: string,
     decks: arrayOf(shape({})),
     getDeckList: func.isRequired,
@@ -112,6 +96,7 @@ Decks.propTypes = {
 };
 
 Decks.defaultProps = {
+    isMobile: false,
     loading: false,
     draftDeck: '',
     decks: [],

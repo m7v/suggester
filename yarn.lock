@@ -2296,10 +2296,6 @@ duplexer@^0.1.1, duplexer@~0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/duplexer/-/duplexer-0.1.1.tgz#ace6ff808c1ce66b57d1ebf97977acb02334cfc1"
 
-eases@^1.0.6:
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/eases/-/eases-1.0.8.tgz#f1f5069a6b6ed2ea510f9c6110398d63efe9aee6"
-
 ecc-jsbn@~0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/ecc-jsbn/-/ecc-jsbn-0.1.1.tgz#0fc73a9ed5f0d53c38193398523ef7e543777505"
@@ -4221,14 +4217,6 @@ joi@^6.10.1, joi@^6.4.x:
     moment "2.x.x"
     topo "1.x.x"
 
-jquery-ui@^1.12.1:
-  version "1.12.1"
-  resolved "https://registry.yarnpkg.com/jquery-ui/-/jquery-ui-1.12.1.tgz#bcb4045c8dd0539c134bc1488cdd3e768a7a9e51"
-
-jquery@^3.2.1:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.2.1.tgz#5c4d9de652af6cd0a770154a631bba12b015c787"
-
 js-base64@^2.1.9:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-2.3.2.tgz#a79a923666372b580f8e27f51845c6f7e8fbfbaf"
@@ -6115,12 +6103,6 @@ react-lazyload@^2.2.7:
   resolved "https://registry.yarnpkg.com/react-lazyload/-/react-lazyload-2.2.7.tgz#6adf0713f32240a21c630ab5d1e8cf62d0c264af"
   dependencies:
     prop-types "^15.5.6"
-
-react-number-easing@0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/react-number-easing/-/react-number-easing-0.0.4.tgz#addb9b47d00803c6882463e44061e278e28b6fa9"
-  dependencies:
-    eases "^1.0.6"
 
 react-redux@^5.0.4:
   version "5.0.6"

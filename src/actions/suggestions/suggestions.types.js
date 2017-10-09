@@ -57,10 +57,10 @@ export function suggestionsRequestSuccess() {
 /**
  * @returns {{type}}
  */
-export function suggestionsRequestFailed() {
+export function suggestionsRequestFailed(error) {
     return {
         type: SUGGESTIONS_REQUEST_FAILED,
-        payload: {},
+        payload: {error},
         meta: {}
     };
 }

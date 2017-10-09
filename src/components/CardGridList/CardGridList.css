@@ -1,4 +1,5 @@
 .CardGridList__results {
     margin: 35px auto;
+    padding-bottom: 35px;
     overflow: hidden;
 }

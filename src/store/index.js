@@ -4,12 +4,12 @@ import { enableBatching } from 'redux-batched-actions';
 import { createLogger } from 'redux-logger';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import MobileDetect from 'mobile-detect';
-import queryString from 'query-string';
 import rootReducer from '../reducers';
 import { ping } from '../middlewares/ping';
 import { getDefaultState } from './database';
 
-const parsed = queryString.parse(window.location.search);
+const searchedString = window.location.hash.split('q=')[1];
+
 const initialState = {
     entities: getDefaultState(),
     suggester: {
@@ -17,7 +17,7 @@ const initialState = {
             loading: false,
             error: false,
         },
-        query: parsed.q || '',
+        query: searchedString || '',
         suggestions: [],
         latestQuery: {}
     },

@@ -23,25 +23,13 @@ export function getSuggestions(query) {
 
         return requestGetSuggestions(query)
             .then((cards) => {
-                const suggestions = uniqBy(cards, 'name').reduce((pool, card) => {
-                    if (!card.imageUrl) {
-                        return pool;
-                    }
-                    pool.push({
-                        id: card.multiverseid,
-                        name: card.name,
-                        imageUrl: card.imageUrl
-                    });
-                    return pool;
-                }, []);
+                const suggestions = uniqBy(cards, 'name');
                 dispatch(batchActions([
                     types.cachedSuggestions(query.toLowerCase(), suggestions),
                     types.getSuggestions(suggestions),
                     types.suggestionsRequestSuccess()
                 ]));
             })
-            .catch(() => {
-                dispatch(types.suggestionsRequestFailed());
-            });
+            .catch((e) => dispatch(types.suggestionsRequestFailed(e.message)));
     };
 }

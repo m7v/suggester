@@ -12,6 +12,20 @@
     background-color: #fdfcf3;
 }
 
+.Deck__deckShortHead {
+    width: 100%;
+    padding-top: 15px;
+    background-color: #222;
+}
+
+.Deck__deckShortHead .Deck__cardHeadlinerTop {
+    background-color: #222;
+}
+
+.Deck__deckShortHead .Deck__cardHeadlinerBottom {
+    background-color: #fdfcf3;
+}
+
 .Deck_link {
     text-decoration: none;
 }
@@ -21,6 +35,14 @@
     font-size: 23px;
     display: block;
     color: #222;
+    cursor: pointer;
+}
+
+.Deck__shortTitle {
+    font-family: "Beleren Bold";
+    font-size: 23px;
+    display: block;
+    color: #eee;
     cursor: pointer;
 }
 
@@ -139,6 +161,18 @@
     transition: all 0.25s ease-in-out;
 }
 
+.short-mana {
+    margin: 3px;
+    padding: 7px;
+    border-radius: 50%;
+    background-color: #222;
+    color: #f9f9f9;
+    font-size: 20px;
+    height: 20px;
+    width: 20px;
+    transition: all 0.25s ease-in-out;
+}
+
 .mana:hover {
     background-color: #f9f9f9;
     color: #222;
@@ -161,5 +195,25 @@
 }
 
 .mana-w {
-    background-color: #FFEA00;
+    background-color: #FFFFDA;
+}
+
+.Deck__deckShortHead .short-mana-r {
+    color: #D32F2F;
+}
+
+.Deck__deckShortHead .short-mana-g {
+    color: #388E3C;
+}
+
+.Deck__deckShortHead .short-mana-b {
+    color: #616161;
+}
+
+.Deck__deckShortHead .short-mana-u {
+    color: #1976D2;
+}
+
+.Deck__deckShortHead .short-mana-w {
+    color: #FFFFDA;
 }

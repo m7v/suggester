@@ -2,13 +2,12 @@ import './Suggester.css';
 import React from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
-import { bool, number, string, func, shape, arrayOf } from 'prop-types';
+import { bool, string, func, shape, arrayOf } from 'prop-types';
 import {
     Paper,
     TextField,
     CircularProgress,
 } from 'material-ui';
-import NumberEasing from 'react-number-easing';
 import CardSwipeList from '../../components/CardSwipeList';
 import CardGridList from '../../components/CardGridList';
 import { mapStateToProps } from './connect/stateToProps';
@@ -80,13 +79,7 @@ class Suggester extends React.Component {
                                 </div>
                             </div>
                             {!!this.props.suggestions.length &&
-                            <span>
-                                <NumberEasing
-                                    value={this.props.suggestions.length}
-                                    speed={3000}
-                                    ease='quintInOut'
-                                /> results
-                            </span>
+                            <div>{this.props.suggestions.length} results</div>
                             }
                         </section>
                     </Paper>
@@ -120,8 +113,8 @@ Suggester.propTypes = {
     loading: bool,
     searchingCard: string,
     suggestions: arrayOf(shape({
-        id: number,
-        src: string,
+        id: string,
+        imageUrl: string,
     })),
     getSuggestions: func.isRequired,
     isMobile: bool,

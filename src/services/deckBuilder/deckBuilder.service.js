@@ -32,7 +32,7 @@ const fields = [
  */
 export const getDeckListByCardNames = (cardList, state) => {
     const requests = [];
-    const session = orm.withMutations(state.entities);
+    const session = orm.mutableSession(state.entities);
     map(Object.keys(cardList), cardName => {
 
         const promise = new Promise((fulfil) => {
@@ -107,7 +107,7 @@ export const getCardById = (cardId) =>
  */
 export const getCardByIds = (cardIds, state) => {
     const requests = [];
-    const session = orm.withMutations(state.entities);
+    const session = orm.mutableSession(state.entities);
     map(cardIds, cardId => {
         const promise = new Promise((fulfil) => {
             try {

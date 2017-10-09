@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import { CircularProgress, LinearProgress } from 'material-ui';
 import { bool, func } from 'prop-types';
 import {
-    BrowserRouter as Router,
+    // BrowserRouter as Router,
+    HashRouter as Router,
     Link,
     Route,
 } from 'react-router-dom';

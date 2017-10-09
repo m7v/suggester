@@ -35,7 +35,7 @@ export function getDeckListByCardNames(cardList, name = 'newDeck') {
                     appContextTypes.appDecksRequestSuccess(),
                 ]));
             })
-            .catch(() => dispatch(appContextTypes.appDecksRequestFailed()));
+            .catch((e) => dispatch(appContextTypes.appDecksRequestFailed(e.message)));
     };
 }
 
@@ -61,7 +61,7 @@ export function getDeckList() {
                     ]),
                 );
             })
-            .catch(() => dispatch(appContextTypes.appDecksRequestFailed()));
+            .catch((e) => dispatch(appContextTypes.appDecksRequestFailed(e.message)));
     };
 }
 
@@ -82,7 +82,7 @@ export function getCardListByDeckId(deckId) {
                         ]));
                     });
             })
-            .catch(() => dispatch(appContextTypes.appDecksRequestFailed()));
+            .catch((e) => dispatch(appContextTypes.appDecksRequestFailed(e.message)));
     };
 }
 
@@ -103,6 +103,6 @@ export function getCardList() {
                     dispatch(appContextTypes.appCardsRequestSuccess())
                 ]));
             })
-            .catch(() => dispatch(appContextTypes.appCardsRequestFailed()));
+            .catch((e) => dispatch(appContextTypes.appCardsRequestFailed(e)));
     };
 }
