@@ -9,6 +9,8 @@ import {
     APP_FAVORITES_REQUEST_STARTED,
     APP_FAVORITES_REQUEST_SUCCESS,
     APP_FAVORITES_REQUEST_FAILED,
+    APP_SET_CARDS_COLORS_FILTERS,
+    APP_SET_CARDS_TYPES_FILTERS,
 } from '../../reducers/appContext/appContext.helper';
 
 /**
@@ -83,6 +85,22 @@ export function appFavoritesRequestFailed() {
     return {
         type: APP_FAVORITES_REQUEST_FAILED,
         payload: {},
+        meta: {}
+    };
+}
+
+export function appSetColorFilter(colors) {
+    return {
+        type: APP_SET_CARDS_COLORS_FILTERS,
+        payload: {colors},
+        meta: {}
+    };
+}
+
+export function appSetTypeFilter(types) {
+    return {
+        type: APP_SET_CARDS_TYPES_FILTERS,
+        payload: {types},
         meta: {}
     };
 }

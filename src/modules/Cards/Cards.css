@@ -7,7 +7,13 @@
 }
 
 .Cards__swipe {
-    margin-top: 32%;
+    margin-top: 10px;
+}
+
+.Cards__icon {
+    width: 42px !important;
+    height: 42px !important;
+    padding: 9px !important;
 }
 
 .Cards__preloader {
@@ -24,4 +30,36 @@
 
 .Cards__circular {
     margin: 60px 0;
+}
+
+.type {
+    transition: all 0.25s ease-in-out;
+}
+
+.typeSelected {
+    color: #d6bf84 !important;
+}
+
+.mana {
+    transition: all 0.25s ease-in-out;
+}
+
+.mana-r {
+    color: #D32F2F !important;
+}
+
+.mana-g {
+    color: #388E3C !important;
+}
+
+.mana-b {
+    color: #616161 !important;
+}
+
+.mana-u {
+    color: #1976D2 !important;
+}
+
+.mana-w {
+    color: #FFFFDA !important;
 }

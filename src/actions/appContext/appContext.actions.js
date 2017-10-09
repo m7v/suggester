@@ -6,3 +6,11 @@ import * as types from './appContext.types';
 export function appInitialized() {
     return dispatch => dispatch(types.appInitialized());
 }
+
+export function appSetColorFilter(colors) {
+    return dispath => dispath(types.appSetColorFilter(colors));
+}
+
+export function appSetTypeFilter(cardTypes) {
+    return dispath => dispath(types.appSetTypeFilter(cardTypes));
+}

@@ -1,5 +1,7 @@
 import {
     APP_CONTEXT_INITIALIZED,
+    APP_SET_CARDS_COLORS_FILTERS,
+    APP_SET_CARDS_TYPES_FILTERS,
     APP_CARDS_REQUEST_STARTED,
     APP_CARDS_REQUEST_FAILED,
     APP_CARDS_REQUEST_SUCCESS,
@@ -8,7 +10,7 @@ import {
     APP_DECKS_REQUEST_FAILED,
     APP_FAVORITES_REQUEST_STARTED,
     APP_FAVORITES_REQUEST_SUCCESS,
-    APP_FAVORITES_REQUEST_FAILED
+    APP_FAVORITES_REQUEST_FAILED,
 } from './appContext.helper';
 
 /**
@@ -18,6 +20,38 @@ function appInitialized(state) {
     return {
         ...state,
         initial: true
+    };
+}
+
+function appSetColorFilter(state, colors) {
+    return {
+        ...state,
+        Cards: {
+            ...state.Cards,
+            filters: {
+                ...state.Cards.filters,
+                colors: {
+                    ...state.Cards.filters.colors,
+                    ...colors
+                }
+            }
+        }
+    };
+}
+
+function appSetTypeFilter(state, types) {
+    return {
+        ...state,
+        Cards: {
+            ...state.Cards,
+            filters: {
+                ...state.Cards.filters,
+                types: {
+                    ...state.Cards.filters.types,
+                    ...types
+                }
+            }
+        }
     };
 }
 
@@ -127,6 +161,10 @@ export default (state = {}, action) => {
     switch (action.type) {
         case APP_CONTEXT_INITIALIZED:
             return appInitialized(state);
+        case APP_SET_CARDS_COLORS_FILTERS:
+            return appSetColorFilter(state, action.payload.colors);
+        case APP_SET_CARDS_TYPES_FILTERS:
+            return appSetTypeFilter(state, action.payload.types);
         case APP_CARDS_REQUEST_STARTED:
             return appCardsRequestStarted(state);
         case APP_CARDS_REQUEST_FAILED:

@@ -34,6 +34,25 @@ const initialState = {
         Cards: {
             loading: false,
             error: false,
+            filters: {
+                name: '',
+                colors: {
+                    w: false,
+                    u: false,
+                    b: false,
+                    r: false,
+                    g: false,
+                },
+                types: {
+                    planeswalker: false,
+                    creature: false,
+                    instant: false,
+                    sorcery: false,
+                    enchantment: false,
+                    artifact: false,
+                    land: false,
+                }
+            }
         },
         Decks: {
             loading: false,
