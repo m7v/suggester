@@ -10,12 +10,16 @@ const Views = virtualize(SwipeableViews);
 export default class CardSwipeList extends React.Component {
 
     cardRenderer = ({ key }) => {
-        let orderKey = key;
+        let index;
         if (key < 0) {
-            orderKey *= (-1);
+            const newKey = key * (-1);
+            const multiplier = Math.ceil(newKey / this.props.cards.length);
+            index = multiplier * this.props.cards.length - newKey;
+        } else {
+            const orderKey = key;
+            const multiplier = Math.floor(orderKey / this.props.cards.length);
+            index = orderKey - multiplier * this.props.cards.length;
         }
-        const multiplier = Math.floor(orderKey / this.props.cards.length);
-        const index = orderKey - multiplier * this.props.cards.length;
         const card = this.props.cards[index];
 
         return (
