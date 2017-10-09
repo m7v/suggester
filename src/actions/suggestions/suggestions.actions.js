@@ -1,5 +1,5 @@
 import { batchActions } from 'redux-batched-actions';
-import { uniqBy } from 'lodash';
+import uniqBy from 'lodash/uniqBy';
 import * as types from './suggestions.types';
 import {
     getSuggestions as requestGetSuggestions

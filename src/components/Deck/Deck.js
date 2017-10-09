@@ -4,7 +4,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { shape } from 'prop-types';
 import { Bar as BarChart } from 'react-chartjs';
-import {map, sum} from 'lodash';
+import map from 'lodash/map';
+import sum from 'lodash/sum';
 import { chartOptions } from './config';
 
 const manaMap = {

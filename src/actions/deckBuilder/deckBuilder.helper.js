@@ -1,4 +1,5 @@
-import { size, head } from 'lodash';
+import size from 'lodash/size';
+import head from 'lodash/head';
 
 export function buildDeck(deckId, name, cards) {
     const analytics = buildDeckAnalytics(cards);

@@ -1,6 +1,8 @@
 import axios from 'axios';
 import httpAdapter from 'axios/lib/adapters/http';
-import { map, pick, compact } from 'lodash';
+import map from 'lodash/map';
+import pick from 'lodash/pick';
+import compact from 'lodash/compact';
 import { serverApiUrl, databaseApiUrl } from './../config.service';
 import orm from '../../reducers/entities';
 

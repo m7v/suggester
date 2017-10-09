@@ -1,5 +1,5 @@
 import React from 'react';
-import { map } from 'lodash';
+import map from 'lodash/map';
 import { shape, string, func } from 'prop-types';
 
 class Decklist extends React.Component {

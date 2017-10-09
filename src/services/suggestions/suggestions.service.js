@@ -1,6 +1,6 @@
 import axios from 'axios';
 import httpAdapter from 'axios/lib/adapters/http';
-import { uniqBy } from 'lodash';
+import uniqBy from 'lodash/uniqBy';
 import { serverApiUrl } from './../config.service';
 
 axios.defaults.adapter = httpAdapter;

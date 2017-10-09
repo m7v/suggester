@@ -6,7 +6,8 @@ import {
     Line as LineChart,
     Bar as BarChart,
 } from 'react-chartjs';
-import { map, sum } from 'lodash';
+import map from 'lodash/map';
+import sum from 'lodash/sum';
 import { chartOptions } from './config';
 
 const manaMap = {

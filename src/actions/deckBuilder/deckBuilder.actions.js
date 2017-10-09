@@ -1,5 +1,6 @@
 import { batchActions } from 'redux-batched-actions';
-import { uniqueId, map } from 'lodash';
+import uniqueId from 'lodash/uniqueId';
+import map from 'lodash/map';
 import * as deckBuilderTypes from './deckBuilder.types';
 import * as appContextTypes from './../appContext/appContext.types';
 import {
