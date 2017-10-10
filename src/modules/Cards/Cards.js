@@ -37,13 +37,53 @@ class Cards extends React.Component {
         this.props.getCardList();
     }
 
-    appSetColorFilter(color) {
-        this.props.appSetColorFilter({[color]: !this.props.colors[color]});
-    }
+    appSetColorFilter = color => () => {
+        const query = map(this.props.colors, (val, clr) => {
+            if (color === clr) {
+                return `${clr}=true`;
+            }
+            return `${clr}=${val}`;
+        }).join('|');
 
-    appSetTypeFilter(type) {
+        this.props.history.replace(
+            `${this.props.history.location.pathname}?colors=${query}`,
+        );
+        this.props.appSetColorFilter({[color]: !this.props.colors[color]});
+    };
+
+    appSetTypeFilter = type => () => {
         this.props.appSetTypeFilter({[type]: !this.props.types[type]});
-    }
+    };
+
+    renderTypeFilter = types => map(types, (type, cardType) => {
+        const iconClass = classNames({
+            'Cards__filterType': true,
+            'Cards__filterTypeSelected': !!this.props.types[cardType],
+            'ms': true,
+            [`ms-${cardType}`]: true,
+        });
+
+        return (
+            <IconButton key={type} className="Cards__icon" onClick={this.appSetTypeFilter(cardType)}>
+                <FontIcon className={iconClass} />
+            </IconButton>
+        );
+    });
+
+    renderColorFilter = manaPool => map(manaPool, (color, mana) => {
+        const iconClass = classNames({
+            'Cards__filterMana': true,
+            'ms': true,
+            [`ms-${manaMap[ mana ]}`]: true,
+            [`Cards__filterMana-${manaMap[ mana ]}`]: !!this.props.colors[ color ],
+        });
+
+        return (
+            <IconButton key={color} className="Cards__icon" onClick={this.appSetColorFilter(color)}>
+                <FontIcon className={iconClass} />
+            </IconButton>
+        );
+    });
 
     render() {
         return (
@@ -53,48 +93,14 @@ class Cards extends React.Component {
                         <section>
                             <div className="Cards__form">
                                 <div className="Cards__inputManaFilter">
-                                    {map(manaMap, (color, mana) => {
-                                        const iconClass = classNames({
-                                            'mana': true,
-                                            'ms': true,
-                                            [`ms-${manaMap[mana]}`]: true,
-                                            [`mana-${manaMap[mana]}`]: !!this.props.colors[color]
-                                        });
-
-                                        return (
-                                            <IconButton
-                                                key={color}
-                                                className="Cards__icon"
-                                                onClick={() => this.appSetColorFilter(color)}
-                                            >
-                                                <FontIcon
-                                                    className={iconClass}
-                                                />
-                                            </IconButton>
-                                        );
-                                    })}
+                                    {
+                                        this.renderColorFilter(manaMap)
+                                    }
                                 </div>
                                 <div className="Cards__inputTypeFilter">
-                                    {map(typesMap, (type, cardType) => {
-                                        const iconClass = classNames({
-                                            'type': true,
-                                            'typeSelected': !!this.props.types[cardType],
-                                            'ms': true,
-                                            [`ms-${cardType}`]: true,
-                                        });
-
-                                        return (
-                                            <IconButton
-                                                key={cardType}
-                                                className="Cards__icon"
-                                                onClick={() => this.appSetTypeFilter(cardType)}
-                                            >
-                                                <FontIcon
-                                                    className={iconClass}
-                                                />
-                                            </IconButton>
-                                        );
-                                    })}
+                                    {
+                                        this.renderTypeFilter(typesMap)
+                                    }
                                 </div>
                             </div>
                         </section>
@@ -123,6 +129,7 @@ class Cards extends React.Component {
 Cards.propTypes = {
     cards: arrayOf(shape({})).isRequired,
     colors: shape({}).isRequired,
+    history: shape({}).isRequired,
     types: shape({}).isRequired,
     isMobile: bool,
     loading: bool,

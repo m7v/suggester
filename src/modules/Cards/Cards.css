@@ -32,34 +32,31 @@
     margin: 60px 0;
 }
 
-.type {
+.Cards__filterType,
+.Cards__filterMana{
     transition: all 0.25s ease-in-out;
 }
 
-.typeSelected {
+.Cards__filterTypeSelected {
     color: #d6bf84 !important;
 }
 
-.mana {
-    transition: all 0.25s ease-in-out;
-}
-
-.mana-r {
+.Cards__filterMana-r {
     color: #D32F2F !important;
 }
 
-.mana-g {
+.Cards__filterMana-g {
     color: #388E3C !important;
 }
 
-.mana-b {
+.Cards__filterMana-b {
     color: #616161 !important;
 }
 
-.mana-u {
+.Cards__filterMana-u {
     color: #1976D2 !important;
 }
 
-.mana-w {
+.Cards__filterMana-w {
     color: #FFFFDA !important;
 }

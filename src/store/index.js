@@ -9,6 +9,14 @@ import { ping } from '../middlewares/ping';
 import { getDefaultState } from './database';
 
 const searchedString = window.location.hash.split('q=')[1];
+const colorFilter = window.location.hash
+    .split('colors=')[1]
+    .split('|')
+    .map(i => i.split('='))
+    .reduce((agg, item) => {
+        agg[item[0]] = item[1] === 'true';
+        return agg;
+    }, {});
 
 const initialState = {
     entities: getDefaultState(),
@@ -37,11 +45,11 @@ const initialState = {
             filters: {
                 name: '',
                 colors: {
-                    w: false,
-                    u: false,
-                    b: false,
-                    r: false,
-                    g: false,
+                    w: !!colorFilter.w,
+                    u: !!colorFilter.u,
+                    b: !!colorFilter.b,
+                    r: !!colorFilter.r,
+                    g: !!colorFilter.g,
                 },
                 types: {
                     planeswalker: false,

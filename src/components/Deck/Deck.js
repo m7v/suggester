@@ -39,7 +39,7 @@ class Deck extends React.Component {
                         <div className="Deck__cardManaPool">
                             <ul className="Deck__cardMana">
                                 {map(deck.analytics.colorComposition, (count, mana) => {
-                                    const manaClass = `mana ms ms-${manaMap[mana]} short-mana-${manaMap[mana]}`;
+                                    const manaClass = `DeckMana ms ms-${manaMap[mana]} short-mana-${manaMap[mana]}`;
                                     return <i key={mana} className={manaClass} />;
                                 })}
                             </ul>
@@ -69,7 +69,7 @@ class Deck extends React.Component {
                             <div className="Deck__cardManaPool">
                                 <ul className="Deck__cardMana">
                                     {map(deck.analytics.colorComposition, (count, mana) => {
-                                        const manaClass = `mana ms ms-${manaMap[mana]}`;
+                                        const manaClass = `DeckMana ms ms-${manaMap[mana]}`;
                                         return <i key={mana} className={manaClass} />;
                                     })}
                                 </ul>
@@ -98,7 +98,7 @@ class Deck extends React.Component {
                                 return (
                                     <div
                                         key={mana}
-                                        className={`Deck__mana mana-${manaMap[mana]}`}
+                                        className={`Deck__mana DeckMana-${manaMap[mana]}`}
                                         style={{
                                             width: `${Math.floor((count / pureCardCount) * 100)}%`,
                                         }}
@@ -117,7 +117,7 @@ class Deck extends React.Component {
                         </div>
                         <div className="Deck__composition">
                             {map(deck.analytics.deckComposition, (count, type) => {
-                                const className = `type type-${type} ms ms-${type}`;
+                                const className = `DeckType type-${type} ms ms-${type}`;
                                 return (
                                     <span key={type} className="Deck__compositionWrapper">
                                         <div className={className} />

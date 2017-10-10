@@ -140,7 +140,7 @@
     line-height: 24px;
 }
 
-.type {
+.DeckType {
     width: 15px;
     height: 15px;
     margin: 3px;
@@ -149,7 +149,7 @@
     background-color: #e2e2e2;
 }
 
-.mana {
+.DeckMana {
     margin: 3px;
     padding: 7px;
     border-radius: 50%;
@@ -173,28 +173,28 @@
     transition: all 0.25s ease-in-out;
 }
 
-.mana:hover {
+.DeckMana:hover {
     background-color: #f9f9f9;
     color: #222;
 }
 
-.mana-r {
+.DeckMana-r {
     background-color: #D32F2F;
 }
 
-.mana-g {
+.DeckMana-g {
     background-color: #388E3C;
 }
 
-.mana-b {
+.DeckMana-b {
     background-color: #616161;
 }
 
-.mana-u {
+.DeckMana-u {
     background-color: #1976D2;
 }
 
-.mana-w {
+.DeckMana-w {
     background-color: #FFFFDA;
 }
 
