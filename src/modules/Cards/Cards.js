@@ -40,7 +40,7 @@ class Cards extends React.Component {
     appSetColorFilter = color => () => {
         const query = map(this.props.colors, (val, clr) => {
             if (color === clr) {
-                return `${clr}=true`;
+                return `${clr}=${!this.props.colors[clr]}`;
             }
             return `${clr}=${val}`;
         }).join('|');
