@@ -4,6 +4,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bool, func, shape, arrayOf } from 'prop-types';
 import map from 'lodash/map';
+import debounce from 'lodash/debounce';
 import classNames from 'classnames';
 import Paper from 'material-ui/Paper';
 import IconButton from 'material-ui/IconButton';
@@ -65,7 +66,7 @@ class Cards extends React.Component {
         });
 
         return (
-            <IconButton key={type} className="Cards__icon" onClick={this.appSetTypeFilter(cardType)}>
+            <IconButton key={type} className="Cards__icon" onClick={debounce(this.appSetTypeFilter(cardType), 100)}>
                 <FontIcon className={iconClass} />
             </IconButton>
         );
@@ -80,7 +81,7 @@ class Cards extends React.Component {
         });
 
         return (
-            <IconButton key={color} className="Cards__icon" onClick={this.appSetColorFilter(color)}>
+            <IconButton key={color} className="Cards__icon" onClick={debounce(this.appSetColorFilter(color), 100)}>
                 <FontIcon className={iconClass} />
             </IconButton>
         );
@@ -94,14 +95,10 @@ class Cards extends React.Component {
                         <section>
                             <div className="Cards__form">
                                 <div className="Cards__inputManaFilter">
-                                    {
-                                        this.renderColorFilter(manaMap)
-                                    }
+                                    { this.renderColorFilter(manaMap) }
                                 </div>
                                 <div className="Cards__inputTypeFilter">
-                                    {
-                                        this.renderTypeFilter(typesMap)
-                                    }
+                                    { this.renderTypeFilter(typesMap) }
                                 </div>
                             </div>
                         </section>
