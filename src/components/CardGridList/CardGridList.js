@@ -7,6 +7,8 @@ import {
 } from 'material-ui';
 import SimpleCard from '../SimpleCard';
 
+const COUNT_RERENDER_CARDS = 12;
+
 export default class CardGridList extends React.Component {
 
     render() {
@@ -18,9 +20,9 @@ export default class CardGridList extends React.Component {
                         cellWidth={225}
                         cols={this.props.cards.length >= 4 ? 4 : this.props.cards.length}
                     >
-                        {this.props.cards.map((card) => (
+                        {this.props.cards.map((card, index) => (
                             <GridTile key={card.id}>
-                                <SimpleCard card={card} />
+                                <SimpleCard card={card} needForceCheck={index <= COUNT_RERENDER_CARDS} />
                             </GridTile>
                         ))}
                     </GridList>

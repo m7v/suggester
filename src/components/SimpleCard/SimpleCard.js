@@ -2,13 +2,15 @@ import './SimpleCard.css';
 import React from 'react';
 import Img from 'react-image';
 import LazyLoad, { forceCheck } from 'react-lazyload';
-import { shape } from 'prop-types';
+import { shape, bool } from 'prop-types';
 import DefaultCard from '../DefaultCard';
 
 class SimpleCard extends React.Component {
 
     componentDidUpdate() {
-        forceCheck();
+        if (this.props.needForceCheck) {
+            forceCheck();
+        }
     }
 
     render() {
@@ -28,7 +30,12 @@ class SimpleCard extends React.Component {
 }
 
 SimpleCard.propTypes = {
-    card: shape({}).isRequired
+    needForceCheck: bool,
+    card: shape({}).isRequired,
+};
+
+SimpleCard.defaultProps = {
+    needForceCheck: false,
 };
 
 export default SimpleCard;

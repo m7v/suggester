@@ -5,14 +5,15 @@ import { connect } from 'react-redux';
 import { bool, func, shape, arrayOf } from 'prop-types';
 import map from 'lodash/map';
 import classNames from 'classnames';
-import CardSwipeList from '../../components/CardSwipeList';
-import CardGridList from '../../components/CardGridList';
-import { stateToProps } from './connect/stateToProps';
-import { dispatchToProps } from './connect/dispatchToProps';
 import Paper from 'material-ui/Paper';
 import IconButton from 'material-ui/IconButton';
 import FontIcon from 'material-ui/FontIcon';
 import CircularProgress from 'material-ui/CircularProgress';
+import { dispatchToProps } from './connect/dispatchToProps';
+import { stateToProps } from './connect/stateToProps';
+import asyncComponent from '../Async';
+const CardSwipeList = asyncComponent(() => import('../../components/CardSwipeList'));
+const CardGridList = asyncComponent(() => import('../../components/CardGridList'));
 
 const manaMap = {
     white: 'w',

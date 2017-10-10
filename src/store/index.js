@@ -49,11 +49,11 @@ const initialState = {
             filters: {
                 name: '',
                 colors: {
-                    w: colorFilter && !!colorFilter.w,
-                    u: colorFilter && !!colorFilter.u,
-                    b: colorFilter && !!colorFilter.b,
-                    r: colorFilter && !!colorFilter.r,
-                    g: colorFilter && !!colorFilter.g,
+                    w: !!colorFilter && !!colorFilter.w,
+                    u: !!colorFilter && !!colorFilter.u,
+                    b: !!colorFilter && !!colorFilter.b,
+                    r: !!colorFilter && !!colorFilter.r,
+                    g: !!colorFilter && !!colorFilter.g,
                 },
                 types: {
                     planeswalker: false,

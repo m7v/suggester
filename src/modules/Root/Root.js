@@ -28,7 +28,7 @@ class Root extends React.Component {
 
     render() {
         return (
-            <Router basename="/suggester" >
+            <Router>
                 <section className="Root">
                     {!this.props.isInitial &&
                         <div className="Root__preloader">
