@@ -1,6 +1,8 @@
 import axios from 'axios';
 import httpAdapter from 'axios/lib/adapters/http';
 import uniqBy from 'lodash/uniqBy';
+import map from 'lodash/map';
+import flatten from 'lodash/flatten';
 import { serverApiUrl } from './../config.service';
 
 axios.defaults.adapter = httpAdapter;
@@ -40,6 +42,14 @@ const getCardsBySubtype = query =>
     axios.get(`${serverApiUrl}cards?subtypes=${query}&layout=normal|split|flip|double-faced&contains=imageUrl`)
         .then(response => new Promise(resolve => resolve(response.data)))
         .catch(() => new Promise((resolve) => resolve([])));
+
+export const getCardsByNames = cards => {
+    const queries = map(cards, card => getCardsByName(card.doubleName));
+    return axios.all(queries)
+        .then(axios.spread(function() {
+            return uniqBy(flatten(map(arguments, response => response.cards)), 'id');
+        }));
+};
 
 /**
  * @param query

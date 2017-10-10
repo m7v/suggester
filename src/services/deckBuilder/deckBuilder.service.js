@@ -16,13 +16,19 @@ const fields = [
     'colors',
     'flavor',
     'id',
+    'set',
+    'setName',
+    'layout',
+    'names',
+    'multiverseid',
     'imageUrl',
     'manaCost',
     'name',
     'text',
     'type',
-    'rarity',
-    'types'
+    'types',
+    'supertypes',
+    'rarity'
 ];
 
 /**

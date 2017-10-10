@@ -8,10 +8,10 @@ import {
     TextField,
     CircularProgress,
 } from 'material-ui';
-import CardSwipeList from '../../components/CardSwipeList';
-import CardGridList from '../../components/CardGridList';
+import asyncComponent from '../Async';
 import { mapStateToProps } from './connect/stateToProps';
 import { mapDispatchToProps } from './connect/dispatchToProps';
+const CardGridList = asyncComponent(() => import('../../components/CardGridList'));
 
 const ENTER_KEY_CODE = 13;
 
@@ -82,17 +82,8 @@ class Suggester extends React.Component {
                             }
                         </section>
                     </Paper>
-                    {(!this.props.loading && this.props.isMobile) &&
-                    <div className="Suggester__swipe">
-                        <CardSwipeList
-                            cards={this.props.suggestions}
-                        />
-                    </div>
-                    }
-                    {(!this.props.loading && !this.props.isMobile) &&
-                    <CardGridList
-                        cards={this.props.suggestions}
-                    />
+                    {!this.props.loading &&
+                        <CardGridList cards={this.props.suggestions} />
                     }
                     {this.props.loading &&
                     <div className="Suggester__preloader">

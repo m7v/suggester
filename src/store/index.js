@@ -8,7 +8,8 @@ import rootReducer from '../reducers';
 import { ping } from '../middlewares/ping';
 import { getDefaultState } from './database';
 
-const searchedString = window.location.hash.split('q=')[1];
+const query = window.location.hash.split('q=')[1];
+const searchedString = decodeURI(query || '');
 const colorSearch = window.location.hash.split('colors=')[1];
 let colorFilter;
 if (colorSearch) {
@@ -29,7 +30,7 @@ const initialState = {
             loading: false,
             error: false,
         },
-        query: searchedString || '',
+        query: searchedString,
         suggestions: [],
         latestQuery: {}
     },

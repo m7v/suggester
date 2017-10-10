@@ -13,7 +13,6 @@ import CircularProgress from 'material-ui/CircularProgress';
 import { dispatchToProps } from './connect/dispatchToProps';
 import { stateToProps } from './connect/stateToProps';
 import asyncComponent from '../Async';
-const CardSwipeList = asyncComponent(() => import('../../components/CardSwipeList'));
 const CardGridList = asyncComponent(() => import('../../components/CardGridList'));
 
 const manaMap = {
@@ -103,12 +102,7 @@ class Cards extends React.Component {
                             </div>
                         </section>
                     </Paper>
-                    {!this.props.loading && this.props.isMobile &&
-                    <div className="Cards__swipe">
-                        <CardSwipeList cards={this.props.cards} />
-                    </div>
-                    }
-                    {!this.props.loading && !this.props.isMobile &&
+                    {!this.props.loading &&
                         <CardGridList cards={this.props.cards} />
                     }
                     {this.props.loading &&
