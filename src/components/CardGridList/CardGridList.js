@@ -17,10 +17,10 @@ export default class CardGridList extends React.Component {
                 {!!this.props.cards.length && this.props.cards.map((card, index) => (
                     <div key={card.id} className="CardGridList__result">
                         <Link className="CardGridList__resultName" to={`/card/${card.id}`}>{card.name}</Link>
-                        {card.layout === NORMAL_TYPE &&
+                        {card.layout && card.layout !== DOUBLE_FACED_TYPE &&
                             <SimpleCard card={card} needForceCheck={index <= COUNT_RERENDER_CARDS} />
                         }
-                        {card.layout === DOUBLE_FACED_TYPE &&
+                        {card.layout && card.layout === DOUBLE_FACED_TYPE &&
                             <DoubleFacedCard card={card} needForceCheck={index <= COUNT_RERENDER_CARDS} />
                         }
                         {!card.layout &&
