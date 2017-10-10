@@ -9,8 +9,9 @@ import { dispatchToProps } from './connect/dispatchToProps';
 class DeckInfo extends React.Component {
 
     componentWillMount() {
-        if (this.props.deck.id) {
-            this.props.getCardListByDeckId(this.props.deck.id);
+        if (this.props.deckId) {
+            this.props.getDeckById(this.props.deckId);
+            this.props.getCardListByDeckId(this.props.deckId);
         }
     }
 
@@ -38,7 +39,8 @@ class DeckInfo extends React.Component {
 DeckInfo.propTypes = {
     deckId: string.isRequired,
     deck: shape({}).isRequired,
-    getCardListByDeckId: func.isRequired
+    getDeckById: func.isRequired,
+    getCardListByDeckId: func.isRequired,
 };
 
 export default connect(stateToProps, dispatchToProps)(DeckInfo);

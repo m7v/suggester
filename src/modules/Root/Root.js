@@ -19,6 +19,7 @@ const Decks = asyncComponent(() => import('../Decks/container'));
 const Cards = asyncComponent(() => import('../Cards/container'));
 const Suggester = asyncComponent(() => import('../Suggester/container'));
 const DeckInfo = asyncComponent(() => import('../DeckInfo/container'));
+const CardInfo = asyncComponent(() => import('../CardInfo/container'));
 
 class Root extends React.Component {
 
@@ -68,7 +69,7 @@ class Root extends React.Component {
                     />
                     <Route
                         path="/card/:id"
-                        component={(({match}) => <div>Card {match.params.id}</div>)}
+                        component={(({match}) => <CardInfo cardId={match.params.id} />)}
                     />
                     <Route
                         path="/favorites"

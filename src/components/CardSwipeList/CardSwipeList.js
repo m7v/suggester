@@ -24,7 +24,7 @@ export default class CardSwipeList extends React.Component {
 
         return (
             <div key={key} className="CardSwipeList__result">
-                <SimpleCard card={card} />
+                <SimpleCard card={card} needForceCheck />
             </div>
         );
     };

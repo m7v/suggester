@@ -20,6 +20,7 @@ const getDeck = function(decks, deckId) {
 
 export function stateToProps(state, props) {
     return {
+        deckId: props.deckId,
         deck: getDeck(deckSelector(state), props.deckId)
     };
 }

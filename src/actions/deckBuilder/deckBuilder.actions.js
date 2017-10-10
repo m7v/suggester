@@ -8,6 +8,8 @@ import {
 } from './deckBuilder.helper';
 import {
     getCardList as requestGetCardList,
+    getCardById as requestGetCardById,
+    getDeckById as requestGetDeckById,
     getDeckList as requestGetDeckList,
     getCardByIds as requestGetCardByIds,
     getCardsByDeckId as requestGetCardsByDeckId,
@@ -86,13 +88,36 @@ export function getCardListByDeckId(deckId) {
     };
 }
 
+export function getDeckById(deckId) {
+    return (dispatch, getState) => {
+        const state = getState();
+
+        dispatch(appContextTypes.appDecksRequestStarted());
+
+        if (state.entities.Deck.itemsById[deckId]) {
+            return dispatch(appContextTypes.appDecksRequestSuccess());
+        }
+
+        return requestGetDeckById(deckId)
+            .then((deck) => {
+                dispatch(
+                    batchActions([
+                        deckBuilderTypes.createDeck(deck),
+                        appContextTypes.appDecksRequestSuccess(),
+                    ]),
+                );
+            })
+            .catch((e) => dispatch(appContextTypes.appDecksRequestFailed(e.message)));
+    };
+}
+
 export function getCardList() {
     return (dispatch, getState) => {
         const state = getState();
 
         dispatch(appContextTypes.appCardsRequestStarted());
 
-        if (state.entities.Card.items.length) {
+        if (state.entities.Card.items.length >= 200) {
             return dispatch(appContextTypes.appCardsRequestSuccess());
         }
 
@@ -100,6 +125,27 @@ export function getCardList() {
             .then(cards => {
                 dispatch(batchActions([
                     ...map(cards, card => deckBuilderTypes.addCard(card)),
+                    dispatch(appContextTypes.appCardsRequestSuccess())
+                ]));
+            })
+            .catch((e) => dispatch(appContextTypes.appCardsRequestFailed(e)));
+    };
+}
+
+export function getCardById(cardId) {
+    return (dispatch, getState) => {
+        const state = getState();
+
+        dispatch(appContextTypes.appCardsRequestStarted());
+
+        if (state.entities.Card.itemsById[cardId]) {
+            return dispatch(appContextTypes.appCardsRequestSuccess());
+        }
+
+        return requestGetCardById(cardId)
+            .then(card => {
+                dispatch(batchActions([
+                    deckBuilderTypes.addCard(card),
                     dispatch(appContextTypes.appCardsRequestSuccess())
                 ]));
             })

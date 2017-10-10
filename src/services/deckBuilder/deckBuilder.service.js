@@ -75,6 +75,14 @@ export const getDeckList = () =>
 /**
  * @param deckId
  */
+export const getDeckById = (deckId) =>
+    axios.get(`${databaseApiUrl}entities/Deck/itemsById/${deckId}.json`)
+        .then(response => response.data)
+        .catch(() => []);
+
+/**
+ * @param deckId
+ */
 export const getCardsByDeckId = (deckId) =>
     axios.get(`${databaseApiUrl}entities/DeckCardList/itemsById.json`)
         .then(response => {
