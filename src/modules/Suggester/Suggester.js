@@ -18,18 +18,17 @@ const ENTER_KEY_CODE = 13;
 class Suggester extends React.Component {
 
     state = {
-        searchingCard: this.props.searchingCard,
         isInited: false,
     };
 
     componentWillMount() {
-        if (this.state.searchingCard) {
-            this.props.getSuggestions(this.state.searchingCard);
+        if (this.props.searchingCard) {
+            this.props.getSuggestions(this.props.searchingCard);
         }
     }
 
     handleCardChange = event => {
-        this.setState({ searchingCard: event.target.value });
+        this.props.setQueryString(event.target.value);
     };
 
     handleFirstClick = () => {
@@ -42,10 +41,10 @@ class Suggester extends React.Component {
         if (event.keyCode === ENTER_KEY_CODE) {
             event.preventDefault();
             if (!this.props.loading) {
-                this.props.getSuggestions(this.state.searchingCard);
+                this.props.getSuggestions(this.props.searchingCard);
             }
             this.props.history.replace(
-                `${this.props.history.location.pathname}?q=${this.state.searchingCard}`,
+                `${this.props.history.location.pathname}?q=${this.props.searchingCard}`,
             );
         }
     };
@@ -55,7 +54,7 @@ class Suggester extends React.Component {
             'Suggester__inputWrapper': true,
             '_mobile': this.props.isMobile,
             '_inited': this.state.isInited ||
-            !!this.state.searchingCard ||
+            !!this.props.searchingCard ||
             !!this.props.suggestions.length,
         });
 
@@ -71,7 +70,7 @@ class Suggester extends React.Component {
                                         floatingLabelText="Searching card"
                                         required="required"
                                         fullWidth
-                                        value={this.state.searchingCard}
+                                        value={this.props.searchingCard}
                                         onClick={this.handleFirstClick}
                                         onChange={this.handleCardChange}
                                         onKeyDown={this.handleSearchCardByKeyPress}
@@ -117,6 +116,7 @@ Suggester.propTypes = {
         imageUrl: string,
     })),
     getSuggestions: func.isRequired,
+    setQueryString: func.isRequired,
     isMobile: bool,
 };
 

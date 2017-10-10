@@ -16,6 +16,7 @@ export function getSuggestions(query) {
 
         if (state.suggester.latestQuery[query.toLowerCase()]) {
             return dispatch(batchActions([
+                types.setQueryString(query.toLowerCase()),
                 types.getSuggestions(state.suggester.latestQuery[query.toLowerCase()]),
                 types.suggestionsRequestSuccess()
             ]));
@@ -25,6 +26,7 @@ export function getSuggestions(query) {
             .then((cards) => {
                 const suggestions = uniqBy(cards, 'name');
                 dispatch(batchActions([
+                    types.setQueryString(query.toLowerCase()),
                     types.cachedSuggestions(query.toLowerCase(), suggestions),
                     types.getSuggestions(suggestions),
                     types.suggestionsRequestSuccess()
@@ -32,4 +34,8 @@ export function getSuggestions(query) {
             })
             .catch((e) => dispatch(types.suggestionsRequestFailed(e.message)));
     };
+}
+
+export function setQueryString(query) {
+    return dispatch => dispatch(types.setQueryString(query.toLowerCase()));
 }

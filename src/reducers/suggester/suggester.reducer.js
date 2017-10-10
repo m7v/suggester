@@ -1,10 +1,18 @@
 import {
     GET_SUGGESTIONS,
+    SUGGESTIONS_QUERY_SET,
     CACHED_SUGGESTIONS,
     SUGGESTIONS_REQUEST_STARTED,
     SUGGESTIONS_REQUEST_SUCCESS,
     SUGGESTIONS_REQUEST_FAILED
 } from './suggester.helper';
+
+function setQueryString(state, queryString) {
+    return {
+        ...state,
+        query: queryString
+    };
+}
 
 /**
  * @param state
@@ -82,6 +90,8 @@ export default (state = {}, action) => {
     switch (action.type) {
         case GET_SUGGESTIONS:
             return getSuggestions(state, action.payload.suggestions);
+        case SUGGESTIONS_QUERY_SET:
+            return setQueryString(state, action.payload.searchQuery);
         case CACHED_SUGGESTIONS:
             return cachedSuggestions(state, action.payload.searchQuery, action.payload.suggestions);
         case SUGGESTIONS_REQUEST_STARTED:
