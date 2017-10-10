@@ -55,18 +55,16 @@ export default class NavBar extends React.Component {
     getClassName = (index) =>
         classNames({ 'NavBar__selectedIcon': this.state.selectedNav === index });
 
-    getNavigationIcon = (item, index) =>
-        <Link to={item.path} className={this.getClassName(index)} >{item.icon}</Link>;
-
     renderNavigationLinks() {
         return navbarConfig.map((item, index) => (
-            <BottomNavigationItem
-                key={item.path}
-                className="NavBar__icon"
-                label={item.label}
-                icon={this.getNavigationIcon(item, index)}
-                onClick={() => this.setState({ selectedNav: index })}
-            />
+            <Link key={item.path} to={item.path} className={this.getClassName(index)} >
+                <BottomNavigationItem
+                    className="NavBar__icon"
+                    label={item.label}
+                    icon={item.icon}
+                    onClick={() => this.setState({ selectedNav: index })}
+                />
+            </Link>
         ));
     }
 
