@@ -12,7 +12,7 @@ const searchedString = window.location.hash.split('q=')[1];
 const colorSearch = window.location.hash.split('colors=')[1];
 let colorFilter;
 if (colorSearch) {
-    colorFilter = colorSearch
+    colorFilter = decodeURI(colorSearch)
         .split('|')
         .map(i => i.split('='))
         .reduce((agg, item) => {
