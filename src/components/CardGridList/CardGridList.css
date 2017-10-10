@@ -2,4 +2,24 @@
     margin: 35px auto;
     padding-bottom: 35px;
     overflow: hidden;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
+}
+
+.CardGridList__result {
+    padding: 0 25px;
+    width: 225px;
+    height: 365px;
+}
+
+.CardGridList__resultName {
+    margin-top: 25px;
+    display: block;
+    font-size: 16px;
+    font-family: "Beleren Bold";
+    color: #eee;
+    text-decoration: none;
+    cursor: pointer;
 }

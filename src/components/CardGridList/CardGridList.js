@@ -1,10 +1,7 @@
 import './CardGridList.css';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { arrayOf, shape } from 'prop-types';
-import {
-    GridList,
-    GridTile,
-} from 'material-ui';
 import SimpleCard from '../SimpleCard';
 
 const COUNT_RERENDER_CARDS = 12;
@@ -14,19 +11,12 @@ export default class CardGridList extends React.Component {
     render() {
         return (
             <section className="CardGridList__results">
-                {!!this.props.cards.length &&
-                    <GridList
-                        cellHeight={310}
-                        cellWidth={225}
-                        cols={this.props.cards.length >= 4 ? 4 : this.props.cards.length}
-                    >
-                        {this.props.cards.map((card, index) => (
-                            <GridTile key={card.id}>
-                                <SimpleCard card={card} needForceCheck={index <= COUNT_RERENDER_CARDS} />
-                            </GridTile>
-                        ))}
-                    </GridList>
-                }
+                {!!this.props.cards.length && this.props.cards.map((card, index) => (
+                    <div key={card.id} className="CardGridList__result">
+                        <Link className="CardGridList__resultName" to={`/card/${card.id}`}>{card.name}</Link>
+                        <SimpleCard card={card} needForceCheck={index <= COUNT_RERENDER_CARDS} />
+                    </div>
+                ))}
             </section>
         );
     }

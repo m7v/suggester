@@ -17,14 +17,16 @@ class SimpleCard extends React.Component {
         const { card } = this.props;
 
         return (
-            <LazyLoad height={200} offset={100}>
-                <Img
-                    className="SimpleCard__img"
-                    src={card.imageUrl}
-                    loader={<DefaultCard />}
-                    unloader={<DefaultCard />}
-                />
-            </LazyLoad>
+            <div className="SimpleCard__root">
+                <LazyLoad height={200} offset={100}>
+                    <Img
+                        className="SimpleCard__img"
+                        src={card.imageUrl}
+                        loader={<DefaultCard />}
+                        unloader={<DefaultCard />}
+                    />
+                </LazyLoad>
+            </div>
         );
     }
 }
