@@ -45,7 +45,7 @@ class Suggester extends React.Component {
                 this.props.getSuggestions(this.state.searchingCard);
             }
             this.props.history.replace(
-                `${this.props.history.location.pathname}?q=${this.props.searchingCard}`,
+                `${this.props.history.location.pathname}?q=${this.state.searchingCard}`,
             );
         }
     };
@@ -55,7 +55,7 @@ class Suggester extends React.Component {
             'Suggester__inputWrapper': true,
             '_mobile': this.props.isMobile,
             '_inited': this.state.isInited ||
-            !!this.props.searchingCard ||
+            !!this.state.searchingCard ||
             !!this.props.suggestions.length,
         });
 

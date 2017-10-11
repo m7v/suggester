@@ -1,5 +1,5 @@
 .CardGridList__results {
-    margin: 35px auto;
+    margin: 0 auto;
     padding-bottom: 35px;
     overflow: hidden;
     display: flex;
@@ -9,7 +9,7 @@
 }
 
 .CardGridList__result {
-    padding: 0 25px;
+    padding: 0 70px;
     width: 225px;
     height: 365px;
 }

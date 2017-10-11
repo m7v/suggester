@@ -13,9 +13,7 @@
 }
 
 .Suggester__inputWrapper._mobile {
-    position: fixed;
-    top: 10px;
-    width: 90%;
+    width: 100%;
 }
 
 .Suggester__swipe {
