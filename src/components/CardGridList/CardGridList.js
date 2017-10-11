@@ -7,7 +7,6 @@ import DoubleFacedCard from '../DoubleFacedCard';
 
 const COUNT_RERENDER_CARDS = 12;
 const DOUBLE_FACED_TYPE = 'double-faced';
-const NORMAL_TYPE = 'normal';
 
 export default class CardGridList extends React.Component {
 

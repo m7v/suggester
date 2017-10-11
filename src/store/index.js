@@ -22,7 +22,6 @@ if (colorSearch) {
         }, {});
 }
 
-
 const initialState = {
     entities: getDefaultState(),
     suggester: {

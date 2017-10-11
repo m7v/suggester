@@ -61,7 +61,7 @@ class Root extends React.Component {
                     />
                     <Route
                         path="/deck/:id"
-                        component={(({match}) => <DeckInfo deckId={match.params.id} />)}
+                        component={({match}) => <DeckInfo deckId={match.params.id} />}
                     />
                     <Route
                         path="/cards"
@@ -69,7 +69,7 @@ class Root extends React.Component {
                     />
                     <Route
                         path="/card/:id"
-                        component={(({match}) => <CardInfo cardId={match.params.id} />)}
+                        component={({match}) => <CardInfo cardId={match.params.id} />}
                     />
                     <Route
                         path="/favorites"

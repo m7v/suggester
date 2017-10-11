@@ -18,17 +18,18 @@ const ENTER_KEY_CODE = 13;
 class Suggester extends React.Component {
 
     state = {
+        searchingCard: this.props.searchingCard,
         isInited: false,
     };
 
     componentWillMount() {
         if (this.props.searchingCard) {
-            this.props.getSuggestions(this.props.searchingCard);
+            this.props.getSuggestions(this.state.searchingCard);
         }
     }
 
     handleCardChange = event => {
-        this.props.setQueryString(event.target.value);
+        this.setState({ searchingCard: event.target.value });
     };
 
     handleFirstClick = () => {
@@ -41,7 +42,7 @@ class Suggester extends React.Component {
         if (event.keyCode === ENTER_KEY_CODE) {
             event.preventDefault();
             if (!this.props.loading) {
-                this.props.getSuggestions(this.props.searchingCard);
+                this.props.getSuggestions(this.state.searchingCard);
             }
             this.props.history.replace(
                 `${this.props.history.location.pathname}?q=${this.props.searchingCard}`,
@@ -70,7 +71,7 @@ class Suggester extends React.Component {
                                         floatingLabelText="Searching card"
                                         required="required"
                                         fullWidth
-                                        value={this.props.searchingCard}
+                                        value={this.state.searchingCard}
                                         onClick={this.handleFirstClick}
                                         onChange={this.handleCardChange}
                                         onKeyDown={this.handleSearchCardByKeyPress}
@@ -107,7 +108,6 @@ Suggester.propTypes = {
         imageUrl: string,
     })),
     getSuggestions: func.isRequired,
-    setQueryString: func.isRequired,
     isMobile: bool,
 };
 
