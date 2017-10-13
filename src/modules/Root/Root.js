@@ -34,7 +34,7 @@ class Root extends React.Component {
                     {!this.props.isInitial &&
                         <div className="Root__preloader">
                             <div className="Root__circular">
-                                <CircularProgress size={80} thickness={5} color="#fff" />
+                                <CircularProgress size={80} thickness={5} color="rgb(211, 47, 47)" />
                             </div>
                             <div className="Root__linear">
                                 <LinearProgress mode="indeterminate" />

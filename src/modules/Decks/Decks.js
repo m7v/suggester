@@ -74,7 +74,7 @@ class Decks extends React.Component {
                     {loading &&
                     <div className="Decks_preloader">
                         <div className="Decks__circular">
-                            <CircularProgress size={120} thickness={8} color="#fff" />
+                            <CircularProgress size={120} thickness={8} color="rgb(211, 47, 47)" />
                         </div>
                     </div>
                     }

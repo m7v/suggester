@@ -2,4 +2,5 @@
     width: 223px;
     height: 311px;
     border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0 3px 10px, rgba(0, 0, 0, 0.23) 0 3px 10px;
 }

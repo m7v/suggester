@@ -1074,6 +1074,10 @@ balanced-match@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
 
+baron@2.2.8:
+  version "2.2.8"
+  resolved "https://registry.yarnpkg.com/baron/-/baron-2.2.8.tgz#66e43223d974d4667095bbe476f6506615549e4b"
+
 base64-js@^1.0.2:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/base64-js/-/base64-js-1.2.1.tgz#a91947da1f4a516ea38e5b4ec0ec3773675e0886"
@@ -6009,6 +6013,12 @@ react-autowhatever@^10.1.0:
     react-themeable "^1.1.0"
     section-iterator "^2.0.0"
 
+react-baron@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/react-baron/-/react-baron-0.8.0.tgz#3abcf89404014c9f0f391d36f2ed50ce072682aa"
+  dependencies:
+    baron "2.2.8"
+
 react-chartjs@^0.8.0:
   version "0.8.0"
   resolved "https://registry.yarnpkg.com/react-chartjs/-/react-chartjs-0.8.0.tgz#d41386b3d3cbfef9003f5a655e7ea48a49fbfa19"
@@ -6192,6 +6202,10 @@ react-scripts@1.0.7:
     whatwg-fetch "2.0.3"
   optionalDependencies:
     fsevents "1.0.17"
+
+react-scrollbar-js@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-scrollbar-js/-/react-scrollbar-js-1.0.1.tgz#c13fd5d76c5bb858f94fb320f054f5db2b0eadce"
 
 react-shortcut@1.0.6:
   version "1.0.6"

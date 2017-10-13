@@ -7,13 +7,17 @@
 }
 
 .Suggester__inputWrapper {
+    top: 0;
+    position: absolute;
     padding: 0 12px;
-    min-width: 60%;
+    min-width: 50%;
     z-index: 2;
 }
 
 .Suggester__inputWrapper._mobile {
-    width: 100%;
+    top: 0;
+    position: absolute;
+    min-width: 100%;
 }
 
 .Suggester__swipe {

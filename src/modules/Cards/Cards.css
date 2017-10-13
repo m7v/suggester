@@ -2,8 +2,12 @@
 
 }
 
-.Cards__swipe {
-    margin-top: 10px;
+.Cards__inputWrapper {
+    top: 0;
+    position: absolute;
+    padding: 0 12px;
+    min-width: 100%;
+    z-index: 2;
 }
 
 .Cards__icon {

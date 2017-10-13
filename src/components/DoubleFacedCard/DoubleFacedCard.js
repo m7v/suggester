@@ -2,6 +2,7 @@ import './DoubleFacedCard.css';
 import React from 'react';
 import Img from 'react-image';
 import FlipCard from 'react-flipcard';
+import debounce from 'lodash/debounce';
 import LazyLoad, { forceCheck } from 'react-lazyload';
 import { shape, bool } from 'prop-types';
 import DefaultCard from '../DefaultCard';
@@ -18,24 +19,16 @@ class DoubleFacedCard extends React.Component {
         }
     }
 
-    showBack = () => {
-        this.setState({
-            isFlipped: true
-        });
-    };
+    showBack = debounce(() => this.setState({ isFlipped: true }), 150);
 
-    showFront = () => {
-        this.setState({
-            isFlipped: false
-        });
-    };
+    showFront = debounce(() => this.setState({ isFlipped: false }), 150);
 
     render() {
         const { card } = this.props;
 
         return (
             <div className="DoubleFacedCard__root">
-                <LazyLoad height={200} offset={100}>
+                <LazyLoad height={200} offset={100} overflow>
                     <FlipCard disabled flipped={this.state.isFlipped}>
                         <div onClick={this.showBack}>
                             <Img

@@ -89,7 +89,7 @@ class Suggester extends React.Component {
                     {this.props.loading &&
                     <div className="Suggester__preloader">
                         <div className="Suggester__circular">
-                            <CircularProgress size={120} thickness={8} color="#fff" />
+                            <CircularProgress size={120} thickness={8} color="rgb(211, 47, 47)" />
                         </div>
                     </div>
                     }

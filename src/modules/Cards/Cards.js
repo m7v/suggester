@@ -108,7 +108,7 @@ class Cards extends React.Component {
                     {this.props.loading &&
                     <div className="Cards__preloader">
                         <div className="Cardsr__circular">
-                            <CircularProgress size={120} thickness={8} color="#fff" />
+                            <CircularProgress size={120} thickness={8} color="rgb(211, 47, 47)" />
                         </div>
                     </div>
                     }
