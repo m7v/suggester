@@ -44,14 +44,14 @@ class Deck extends React.Component {
                                 })}
                             </ul>
                         </div>
-                        <Link to={`/deck/${deck.id}`} replace className="Deck_link">
+                        <Link to={`/decks/${deck.id}`} replace className="Deck_link">
                             <div className="Deck__shortTitle" >
                                 {deck.name}
                             </div>
                         </Link>
                         <div className="Deck__avatar">
                             <div className="Deck__cardHeadlinerTop" />
-                            <Link to={`/deck/${deck.id}`} replace >
+                            <Link to={`/decks/${deck.id}`} replace >
                                 <div className="Deck__cardHeadlinerWrapper">
                                     <div
                                         className="Deck__cardHeadliner"
@@ -74,7 +74,7 @@ class Deck extends React.Component {
                                     })}
                                 </ul>
                             </div>
-                            <Link to={`/deck/${deck.id}`} replace className="Deck_link">
+                            <Link to={`/decks/${deck.id}`} replace className="Deck_link">
                                 <div className="Deck__title" >
                                     {deck.name}
                                 </div>
@@ -82,7 +82,7 @@ class Deck extends React.Component {
                         </div>
                         <div className="Deck__avatar">
                             <div className="Deck__cardHeadlinerTop" />
-                            <Link to={`/deck/${deck.id}`} replace >
+                            <Link to={`/decks/${deck.id}`} replace >
                                 <div className="Deck__cardHeadlinerWrapper">
                                     <div
                                         className="Deck__cardHeadliner"

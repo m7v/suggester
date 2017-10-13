@@ -1,6 +1,8 @@
 .DoubleFacedCard__root div {
     display: block;
     outline: none;
+    width: 223px;
+    height: 311px;
 }
 
 .DoubleFacedCard__img {

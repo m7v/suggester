@@ -52,6 +52,14 @@ export const getCardsByNames = cards => {
 };
 
 /**
+ * @param cardId
+ */
+export const getCardById = (cardId) =>
+    axios.get(`${serverApiUrl}cards/${cardId}`)
+        .then(response => response.data.card)
+        .catch(() => null);
+
+/**
  * @param query
  * @returns {Promise}
  */

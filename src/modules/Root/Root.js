@@ -56,22 +56,27 @@ class Root extends React.Component {
                         component={Suggester}
                     />
                     <Route
+                        exact
                         path="/decks"
                         component={Decks}
                     />
                     <Route
-                        path="/deck/:id"
+                        exact
+                        path="/decks/:id"
                         component={({match}) => <DeckInfo deckId={match.params.id} />}
                     />
                     <Route
+                        exact
                         path="/cards"
                         component={Cards}
                     />
                     <Route
-                        path="/card/:id"
+                        exact
+                        path="/cards/:id"
                         component={({match}) => <CardInfo cardId={match.params.id} />}
                     />
                     <Route
+                        exact
                         path="/favorites"
                         component={() => <div>Favorites</div>}
                     />

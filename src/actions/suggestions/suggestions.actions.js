@@ -5,7 +5,7 @@ import * as types from './suggestions.types';
 import {
     getSuggestions as requestGetSuggestions,
     getCardsByNames as requestGetCardsByNames,
-} from '../../services/suggestions/suggestions.service';
+} from '../../services/mtgApi/mtgApi.service';
 
 const DOUBLE_FACED_TYPE = 'double-faced';
 

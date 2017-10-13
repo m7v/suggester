@@ -64,6 +64,13 @@ class Decks extends React.Component {
         return (
             <section className="Decks">
                 <div className="Decks__main">
+                    {loading &&
+                        <div className="Decks_preloader">
+                            <div className="Decks__circular">
+                                <CircularProgress size={120} thickness={8} color="rgb(211, 47, 47)" />
+                            </div>
+                        </div>
+                    }
                     <div className="Decks__deckList">
                         {decks.map((deck) => (
                             <LazyLoad key={deck.id} height={355} offset={100}>
@@ -71,13 +78,6 @@ class Decks extends React.Component {
                             </LazyLoad>
                         ))}
                     </div>
-                    {loading &&
-                    <div className="Decks_preloader">
-                        <div className="Decks__circular">
-                            <CircularProgress size={120} thickness={8} color="rgb(211, 47, 47)" />
-                        </div>
-                    </div>
-                    }
                 </div>
             </section>
         );

@@ -3,7 +3,8 @@
     position: relative;
     width: 290px;
     margin: 15px;
-    padding: 7px;
+    padding: 10px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0 3px 10px, rgba(0, 0, 0, 0.23) 0 3px 10px;
 }
 
 .Deck__deckHead {
@@ -135,7 +136,7 @@
 }
 
 .Deck__mana .ms {
-    color: #fff;
+    color: #222;
     font-size: 13px;
     line-height: 24px;
 }

@@ -1,7 +1,7 @@
 import {bindActionCreators} from 'redux';
 import {
     getCardById,
-} from '../../../actions/deckBuilder/deckBuilder.actions';
+} from '../../../actions/mtgApi/mtgApi.actions';
 
 export function dispatchToProps(dispatch) {
     return bindActionCreators({

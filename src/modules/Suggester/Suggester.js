@@ -63,25 +63,23 @@ class Suggester extends React.Component {
             <section className="Suggester">
                 <div className="Suggester__main">
                     <Paper className={inputWrapper} zDepth={2}>
-                        <section>
-                            <div className="Suggester__form">
-                                <div className="Suggester__input">
-                                    <TextField
-                                        type="text"
-                                        floatingLabelText="Searching card"
-                                        required="required"
-                                        fullWidth
-                                        value={this.state.searchingCard}
-                                        onClick={this.handleFirstClick}
-                                        onChange={this.handleCardChange}
-                                        onKeyDown={this.handleSearchCardByKeyPress}
-                                    />
-                                </div>
+                        <div className="Suggester__form">
+                            <div className="Suggester__input">
+                                <TextField
+                                    type="text"
+                                    floatingLabelText="Searching card"
+                                    required="required"
+                                    fullWidth
+                                    value={this.state.searchingCard}
+                                    onClick={this.handleFirstClick}
+                                    onChange={this.handleCardChange}
+                                    onKeyDown={this.handleSearchCardByKeyPress}
+                                />
                             </div>
-                            {!!this.props.suggestions.length &&
+                        </div>
+                        {!!this.props.suggestions.length &&
                             <div>{this.props.suggestions.length} results</div>
-                            }
-                        </section>
+                        }
                     </Paper>
                     {!this.props.loading &&
                         <CardGridList cards={this.props.suggestions} />
