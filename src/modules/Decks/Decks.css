@@ -4,7 +4,8 @@
     min-height: 100vh;
     align-items: center;
     justify-content: center;
-    overflow-x: hidden;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
 }
 
 .Decks__deckList {

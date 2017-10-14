@@ -1,7 +1,8 @@
 .CardGridList__results {
     padding-top: 15vh;
     height: 80vh;
-    overflow: auto;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
