@@ -28,7 +28,7 @@ export function getSuggestions(query) {
 
         return requestGetSuggestions(query)
             .then((cards) => {
-                const suggestions = uniqBy(cards, 'id');
+                const suggestions = uniqBy(cards, 'name');
                 const doubleFacedCards = suggestions.filter((suggestion) => suggestion.layout === DOUBLE_FACED_TYPE);
 
                 const needToSearchCards = doubleFacedCards.map(card => {
