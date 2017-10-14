@@ -8,10 +8,8 @@ import isEmpty from 'lodash/isEmpty';
 import reduce from 'lodash/reduce';
 import { dispatchToProps } from './connect/dispatchToProps';
 import { stateToProps } from './connect/stateToProps';
-import asyncComponent from '../Async';
-import SearchBar from '../../components/SearchBar/SearchBar';
-const DoubleFacedCard = asyncComponent(() => import('../../components/DoubleFacedCard'));
-const SimpleCard = asyncComponent(() => import('../../components/SimpleCard'));
+import SearchBar from '../../components/SearchBar';
+import Card from '../../components/Card';
 
 const manaMapping = {
     U: 'u',
@@ -47,7 +45,6 @@ const manaMapping = {
     19: '19',
     20: '20',
 };
-const DOUBLE_FACED_TYPE = 'double-faced';
 
 class CardInfo extends React.Component {
 
@@ -139,15 +136,7 @@ class CardInfo extends React.Component {
                         handleSearchCardByKeyPress={this.handleSearchCardByKeyPress}
                     />
                     <div className="CardInfo__card">
-                        {card.layout && card.layout !== DOUBLE_FACED_TYPE &&
-                            <SimpleCard card={card} needForceCheck />
-                        }
-                        {card.layout && card.layout === DOUBLE_FACED_TYPE &&
-                            <DoubleFacedCard card={card} needForceCheck />
-                        }
-                        {!card.layout &&
-                            <SimpleCard card={card} needForceCheck />
-                        }
+                        <Card card={card} needForceCheck />
                         <div className="CardInfo__artist">
                             Artist <span className="CardInfo__artistName">{card.artist}</span>
                         </div>

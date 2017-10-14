@@ -2,11 +2,9 @@ import './CardGridList.css';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { arrayOf, shape } from 'prop-types';
-import DoubleFacedCard from '../../components/DoubleFacedCard';
-import SimpleCard from '../../components/SimpleCard';
+import Card from '../Card';
 
 const COUNT_RERENDER_CARDS = 12;
-const DOUBLE_FACED_TYPE = 'double-faced';
 
 class CardGridList extends React.PureComponent {
 
@@ -16,15 +14,7 @@ class CardGridList extends React.PureComponent {
                 {!!this.props.cards.length && this.props.cards.map((card, index) => (
                     <div key={card.id} className="CardGridList__result">
                         <Link className="CardGridList__resultName" to={`/cards/${card.id}`}>{card.name}</Link>
-                        {card.layout && card.layout !== DOUBLE_FACED_TYPE &&
-                            <SimpleCard card={card} needForceCheck={index <= COUNT_RERENDER_CARDS} />
-                        }
-                        {card.layout && card.layout === DOUBLE_FACED_TYPE &&
-                            <DoubleFacedCard card={card} needForceCheck={index <= COUNT_RERENDER_CARDS} />
-                        }
-                        {!card.layout &&
-                            <SimpleCard card={card} needForceCheck={index <= COUNT_RERENDER_CARDS} />
-                        }
+                        <Card card={card} needForceCheck={index <= COUNT_RERENDER_CARDS} />
                     </div>
                 ))}
             </section>
