@@ -1,0 +1,13 @@
+.SearchBar__inputWrapper {
+    top: 0;
+    position: absolute;
+    padding: 0 12px;
+    min-width: 50%;
+    z-index: 2;
+}
+
+.SearchBar__inputWrapper._mobile {
+    top: 0;
+    position: absolute;
+    min-width: 100%;
+}

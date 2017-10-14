@@ -1,95 +1,50 @@
 import './Suggester.css';
 import React from 'react';
 import { connect } from 'react-redux';
-import classNames from 'classnames';
 import { bool, string, func, shape, arrayOf } from 'prop-types';
-import {
-    Paper,
-    TextField,
-    CircularProgress,
-} from 'material-ui';
-import asyncComponent from '../Async';
-import { mapStateToProps } from './connect/stateToProps';
+import CircularProgress from 'material-ui/CircularProgress';
+import SearchBar from '../../components/SearchBar';
 import { mapDispatchToProps } from './connect/dispatchToProps';
+import { mapStateToProps } from './connect/stateToProps';
+import asyncComponent from '../Async';
 const CardGridList = asyncComponent(() => import('../../components/CardGridList'));
-
-const ENTER_KEY_CODE = 13;
 
 class Suggester extends React.Component {
 
-    state = {
-        searchingCard: this.props.searchingCard,
-        isInited: false,
-    };
-
     componentWillMount() {
         if (this.props.searchingCard) {
-            this.props.getSuggestions(this.state.searchingCard);
+            this.props.getSuggestions(this.props.searchingCard);
         }
     }
 
-    handleCardChange = event => {
-        this.setState({ searchingCard: event.target.value });
-    };
-
-    handleFirstClick = () => {
-        if (!this.state.isInited) {
-            this.setState({ isInited: true });
+    handleSearchCardByKeyPress = (searchingCard) => {
+        if (!this.props.loading) {
+            this.props.getSuggestions(searchingCard);
         }
-    };
-
-    handleSearchCardByKeyPress = event => {
-        if (event.keyCode === ENTER_KEY_CODE) {
-            event.preventDefault();
-            if (!this.props.loading) {
-                this.props.getSuggestions(this.state.searchingCard);
-            }
-            this.props.history.replace(
-                `${this.props.history.location.pathname}?q=${this.state.searchingCard}`,
-            );
-        }
+        this.props.history.replace(
+            `${this.props.history.location.pathname}?q=${searchingCard}`,
+        );
     };
 
     render() {
-        const inputWrapper = classNames({
-            'Suggester__inputWrapper': true,
-            '_mobile': this.props.isMobile,
-            '_inited': this.state.isInited ||
-            !!this.state.searchingCard ||
-            !!this.props.suggestions.length,
-        });
-
         return (
             <section className="Suggester">
                 <div className="Suggester__main">
-                    <Paper className={inputWrapper} zDepth={2}>
-                        <div className="Suggester__form">
-                            <div className="Suggester__input">
-                                <TextField
-                                    type="text"
-                                    floatingLabelText="Searching card"
-                                    required="required"
-                                    fullWidth
-                                    value={this.state.searchingCard}
-                                    onClick={this.handleFirstClick}
-                                    onChange={this.handleCardChange}
-                                    onKeyDown={this.handleSearchCardByKeyPress}
-                                />
-                            </div>
-                        </div>
-                        {!!this.props.suggestions.length &&
-                            <div>{this.props.suggestions.length} results</div>
-                        }
-                    </Paper>
+                    <SearchBar
+                        isMobile={this.props.isMobile}
+                        results={this.props.suggestions.length}
+                        searchingCard={this.props.searchingCard}
+                        handleSearchCardByKeyPress={this.handleSearchCardByKeyPress}
+                    />
                     {!this.props.loading &&
                         <CardGridList cards={this.props.suggestions} />
                     }
                     {this.props.loading &&
-                    <div className="Suggester__preloader">
-                        <div className="Suggester__circular">
-                            <CircularProgress size={120} thickness={8} color="rgb(211, 47, 47)" />
+                        <div className="Suggester__preloader">
+                            <div className="Suggester__circular">
+                                <CircularProgress size={120} thickness={8} color="rgb(211, 47, 47)" />
+                            </div>
                         </div>
-                    </div>
                     }
                 </div>
             </section>

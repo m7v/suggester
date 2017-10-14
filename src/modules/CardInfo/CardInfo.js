@@ -9,6 +9,7 @@ import reduce from 'lodash/reduce';
 import { dispatchToProps } from './connect/dispatchToProps';
 import { stateToProps } from './connect/stateToProps';
 import asyncComponent from '../Async';
+import SearchBar from '../../components/SearchBar/SearchBar';
 const DoubleFacedCard = asyncComponent(() => import('../../components/DoubleFacedCard'));
 const SimpleCard = asyncComponent(() => import('../../components/SimpleCard'));
 
@@ -114,7 +115,12 @@ class CardInfo extends React.Component {
                 agg.replace(this.createRegExp(search), icon), text);
         }
         return text;
-    }
+    };
+
+    handleSearchCardByKeyPress = (searchedCard) => {
+        this.props.setQueryString(searchedCard);
+        this.props.history.push(`/search?q=${searchedCard}`);
+    };
 
     render() {
         const { card } = this.props;
@@ -128,6 +134,10 @@ class CardInfo extends React.Component {
                     </div>
                 </div>
                 <div className="CardInfo__container">
+                    <SearchBar
+                        isMobile={this.props.isMobile}
+                        handleSearchCardByKeyPress={this.handleSearchCardByKeyPress}
+                    />
                     <div className="CardInfo__card">
                         {card.layout && card.layout !== DOUBLE_FACED_TYPE &&
                             <SimpleCard card={card} needForceCheck />
@@ -182,8 +192,10 @@ class CardInfo extends React.Component {
 }
 
 CardInfo.propTypes = {
+    history: shape({}).isRequired,
     cardId: string.isRequired,
     card: shape({}).isRequired,
+    setQueryString: func.isRequired,
     getCardById: func.isRequired,
     isMobile: bool,
     loading: bool,

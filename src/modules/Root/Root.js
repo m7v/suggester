@@ -73,7 +73,7 @@ class Root extends React.Component {
                     <Route
                         exact
                         path="/cards/:id"
-                        component={({match}) => <CardInfo cardId={match.params.id} />}
+                        component={({match, history}) => <CardInfo cardId={match.params.id} history={history} />}
                     />
                     <Route
                         exact
