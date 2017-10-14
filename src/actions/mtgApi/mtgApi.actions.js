@@ -15,7 +15,7 @@ export function getCardById(cardId) {
 
         dispatch(appContextTypes.appCardsRequestStarted());
 
-        if (state.entities.Card.itemsById[cardId]) {
+        if (state.entities.Card.itemsById[ cardId ]) {
             return dispatch(appContextTypes.appCardsRequestSuccess());
         }
 
@@ -23,44 +23,48 @@ export function getCardById(cardId) {
             .then(card => {
                 if (card.layout === DOUBLE_FACED_TYPE) {
                     const needToSearchCards = [];
-                    const [searched] = card.names.filter(name => name !== card.name);
+                    const [ searched ] = card.names.filter(name => name !== card.name);
                     needToSearchCards.push({
                         id: card.id,
-                        doubleName: searched
+                        doubleName: searched,
                     });
                     return requestGetCardsByNames(needToSearchCards)
                         .then((searchedDoubleFacedCards) => {
                             // @TODO Duplicate of Algorithm #1
-                            const shortSearchedDoubleFaceInfo = searchedDoubleFacedCards.reduce((mapping, card) => {
-                                const [searchCard] = needToSearchCards
-                                    .filter(searchedCard => card.name === searchedCard.doubleName);
+                            const shortSearchedDoubleFaceInfo = searchedDoubleFacedCards
+                                .reduce((mapping, doubleFacedCard) => {
+                                    const [ searchCard ] = needToSearchCards
+                                        .filter(searchedCard => doubleFacedCard.name === searchedCard.doubleName);
 
-                                if (searchCard) {
-                                    mapping[searchCard.id] = {
-                                        id: card.id,
-                                        name: card.name,
-                                        imageUrl: card.imageUrl
-                                    };
-                                    needToSearchCards
-                                        .splice(findIndex(needToSearchCards, (c) => card.name === c.doubleName), 1);
-                                }
-                                return mapping;
-                            }, {});
+                                    if (searchCard) {
+                                        mapping[ searchCard.id ] = {
+                                            id: doubleFacedCard.id,
+                                            name: doubleFacedCard.name,
+                                            imageUrl: doubleFacedCard.imageUrl,
+                                        };
+                                        needToSearchCards.splice(
+                                            findIndex(
+                                                needToSearchCards, (c) => doubleFacedCard.name === c.doubleName,
+                                            ),
+                                            1);
+                                    }
+                                    return mapping;
+                                }, {});
 
                             // @TODO Duplicate #2 of ended processing.
-                            const updatedCard = shortSearchedDoubleFaceInfo[card.id]
-                                ? {...card, doubleFace: shortSearchedDoubleFaceInfo[card.id] }
-                                : {...card};
+                            const updatedCard = shortSearchedDoubleFaceInfo[ card.id ]
+                                ? { ...card, doubleFace: shortSearchedDoubleFaceInfo[ card.id ] }
+                                : { ...card };
 
                             return dispatch(batchActions([
                                 deckBuilderTypes.addCard(updatedCard),
-                                dispatch(appContextTypes.appCardsRequestSuccess())
+                                appContextTypes.appCardsRequestSuccess(),
                             ]));
                         });
                 } else {
                     return dispatch(batchActions([
                         deckBuilderTypes.addCard(card),
-                        dispatch(appContextTypes.appCardsRequestSuccess())
+                        appContextTypes.appCardsRequestSuccess(),
                     ]));
                 }
             })

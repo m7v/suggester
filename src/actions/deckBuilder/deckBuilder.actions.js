@@ -125,7 +125,7 @@ export function getCardList() {
             .then(cards => {
                 dispatch(batchActions([
                     ...map(cards, card => deckBuilderTypes.addCard(card)),
-                    dispatch(appContextTypes.appCardsRequestSuccess())
+                    appContextTypes.appCardsRequestSuccess()
                 ]));
             })
             .catch((e) => dispatch(appContextTypes.appCardsRequestFailed(e)));
@@ -146,7 +146,7 @@ export function getCardById(cardId) {
             .then(card => {
                 dispatch(batchActions([
                     deckBuilderTypes.addCard(card),
-                    dispatch(appContextTypes.appCardsRequestSuccess())
+                    appContextTypes.appCardsRequestSuccess()
                 ]));
             })
             .catch((e) => dispatch(appContextTypes.appCardsRequestFailed(e)));

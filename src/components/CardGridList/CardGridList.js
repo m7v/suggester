@@ -2,17 +2,17 @@ import './CardGridList.css';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { arrayOf, shape } from 'prop-types';
-import asyncComponent from '../../modules/Async';
-const DoubleFacedCard = asyncComponent(() => import('../../components/DoubleFacedCard'));
-const SimpleCard = asyncComponent(() => import('../../components/SimpleCard'));
+import DoubleFacedCard from '../../components/DoubleFacedCard';
+import SimpleCard from '../../components/SimpleCard';
 
 const COUNT_RERENDER_CARDS = 12;
 const DOUBLE_FACED_TYPE = 'double-faced';
 
-class CardGridList extends React.Component {
+class CardGridList extends React.PureComponent {
+
     render() {
         return (
-            <section className="CardGridList__results">
+            <section className="CardGridList__results" >
                 {!!this.props.cards.length && this.props.cards.map((card, index) => (
                     <div key={card.id} className="CardGridList__result">
                         <Link className="CardGridList__resultName" to={`/cards/${card.id}`}>{card.name}</Link>

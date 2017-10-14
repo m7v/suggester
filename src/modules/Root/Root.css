@@ -1,6 +1,7 @@
 .Root {
     text-align: center;
     height: 100%;
+    overflow: hidden;
 }
 
 .Root__preloader {

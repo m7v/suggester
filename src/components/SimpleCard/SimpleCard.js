@@ -18,7 +18,7 @@ class SimpleCard extends React.Component {
 
         return (
             <div className="SimpleCard__root">
-                <LazyLoad height={200} offset={100} overflow>
+                <LazyLoad height={200} offset={0} overflow>
                     <Img
                         className="SimpleCard__img"
                         src={card.imageUrl}

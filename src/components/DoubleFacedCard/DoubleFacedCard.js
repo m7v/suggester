@@ -28,7 +28,7 @@ class DoubleFacedCard extends React.Component {
 
         return (
             <div className="DoubleFacedCard__root">
-                <LazyLoad height={200} offset={100} overflow>
+                <LazyLoad height={200} offset={0} overflow>
                     <FlipCard disabled flipped={this.state.isFlipped}>
                         <div onClick={this.showBack}>
                             <Img
