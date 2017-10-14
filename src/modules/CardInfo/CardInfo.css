@@ -11,26 +11,37 @@
 .CardInfo__backgroundComposition {
     width: 100vw;
     height: 100vh;
-    background: no-repeat -45px -91px;
     background-size: cover;
     display: flex;
+}
+
+.CardInfo__backgroundImage {
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    background: no-repeat -82px -163px;
+    background-size: 1016px;
+    filter: blur(5px);
+    position: absolute;
 }
 
 .CardInfo_backgroundTriangle {
     width: 0;
     height: 0;
+    top: 0;
+    left: 0;
+    position: fixed;
     border-bottom: 100vh solid #242424;
-    border-left: 100vh solid transparent;
+    border-left: 105vh solid transparent;
 }
 
 .CardInfo_backgroundRect {
-    background:#242424;
     width: 100vh;
     height: 100vh;
-}
-
-.CardInfo__card {
-
+    top: 0;
+    right: 0;
+    position: fixed;
+    background:#242424;
 }
 
 .CardInfo__container {
@@ -42,9 +53,11 @@
     margin: 0 auto;
     padding: 110px;
 }
+
 .CardInfo__card {
     padding: 30px;
 }
+
 .CardInfo__artist {
     padding: 8px;
     color: #888;
@@ -54,13 +67,12 @@
     text-transform: uppercase;
     text-align: center;
 }
+
 .CardInfo__artistName {
     color: #eee;
     text-transform: none;
 }
-.CardInfo__fullInfo {
 
-}
 .CardInfo__title {
     min-width: 300px;
     min-height: 50px;
@@ -72,10 +84,12 @@
     font-family: "Beleren Bold";
     color: #eee;
 }
+
 .CardInfo__cardBlock {
     padding: 0 27px;
     display: flex;
 }
+
 .CardInfo__details {
     max-width: 200px;
     min-width: 200px;
@@ -85,6 +99,7 @@
     justify-content: center;
     flex-direction: column;
 }
+
 .CardInfo__detailTitle {
     font-size: 12px;
     font-weight: bold;

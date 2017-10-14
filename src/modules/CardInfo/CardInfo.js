@@ -126,6 +126,7 @@ class CardInfo extends React.Component {
             <div className="CardInfo__root">
                 <div className="CardInfo__background">
                     <div className="CardInfo__backgroundComposition">
+                        <div className="CardInfo__backgroundImage" style={{backgroundImage: `url(${card.imageUrl})`}} />
                         <div className="CardInfo_backgroundTriangle" />
                         <div className="CardInfo_backgroundRect" />
                     </div>
