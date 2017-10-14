@@ -1,5 +1,4 @@
 .CardGridList__results {
-    margin: 0 auto;
     padding-top: 15vh;
     height: 80vh;
     overflow: auto;
@@ -25,7 +24,7 @@
 }
 
 .CardGridList__result {
-    padding: 0 70px;
+    padding: 0 40px;
     width: 225px;
     height: 365px;
     user-select: none;
