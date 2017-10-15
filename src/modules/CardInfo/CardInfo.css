@@ -25,23 +25,12 @@
     position: absolute;
 }
 
-.CardInfo_backgroundTriangle {
-    width: 0;
+.CardInfo_backgroundTrapezoid {
     height: 0;
-    top: 0;
-    left: 0;
-    position: fixed;
-    border-bottom: 100vh solid #242424;
-    border-left: 105vh solid transparent;
-}
-
-.CardInfo_backgroundRect {
-    width: 100vh;
-    height: 100vh;
-    top: 0;
-    right: 0;
-    position: fixed;
-    background:#242424;
+    width: 100vw;
+    border-bottom: 103vh solid #242424;
+    border-left: 50vw solid transparent;
+    z-index: 1;
 }
 
 .CardInfo__container {
