@@ -14,3 +14,12 @@ export function appSetColorFilter(colors) {
 export function appSetTypeFilter(cardTypes) {
     return dispath => dispath(types.appSetTypeFilter(cardTypes));
 }
+
+
+export function appSetCardSetColorFilter(colors) {
+    return dispath => dispath(types.appSetCardSetColorFilter(colors));
+}
+
+export function appSetCardSetTypeFilter(cardTypes) {
+    return dispath => dispath(types.appSetCardSetTypeFilter(cardTypes));
+}

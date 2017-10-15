@@ -20,6 +20,8 @@ const Cards = asyncComponent(() => import('../Cards/container'));
 const Suggester = asyncComponent(() => import('../Suggester/container'));
 const DeckInfo = asyncComponent(() => import('../DeckInfo/container'));
 const CardInfo = asyncComponent(() => import('../CardInfo/container'));
+const CardSets = asyncComponent(() => import('../CardSets/container'));
+const CardSet = asyncComponent(() => import('../CardSet/container'));
 
 class Root extends React.Component {
 
@@ -79,6 +81,16 @@ class Root extends React.Component {
                         exact
                         path="/favorites"
                         component={() => <div>Favorites</div>}
+                    />
+                    <Route
+                        exact
+                        path="/browse"
+                        component={CardSets}
+                    />
+                    <Route
+                        exact
+                        path="/browse/:code"
+                        component={({match, history}) => <CardSet code={match.params.code} history={history} />}
                     />
                 </section>
             </Router>

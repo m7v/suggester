@@ -1,0 +1,62 @@
+.CardSet__main {
+    overflow: hidden;
+}
+
+.CardSet__inputWrapper {
+    top: 0;
+    position: absolute;
+    padding: 0 12px;
+    min-width: 100%;
+    z-index: 2;
+}
+
+.CardSet__icon {
+    width: 42px !important;
+    height: 42px !important;
+    padding: 9px !important;
+}
+
+.CardSet__preloader {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 2;
+}
+
+.CardSet__circular {
+    margin: 60px 0;
+}
+
+.CardSet__filterType,
+.CardSet__filterMana{
+    transition: all 0.25s ease-in-out;
+}
+
+.CardSet__filterTypeSelected {
+    color: #e75b0d !important;
+}
+
+.CardSet__filterMana-r {
+    color: #D32F2F !important;
+}
+
+.CardSet__filterMana-g {
+    color: #388E3C !important;
+}
+
+.CardSet__filterMana-b {
+    color: #616161 !important;
+}
+
+.CardSet__filterMana-u {
+    color: #1976D2 !important;
+}
+
+.CardSet__filterMana-w {
+    color: #FFFFDA !important;
+}

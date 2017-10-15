@@ -120,6 +120,12 @@
     text-align: left;
 }
 
+.CardInfo__setName {
+    color: #eee;
+    text-decoration: none;
+    cursor: pointer;
+}
+
 .CardInfo__cardSet.ss {
     height: 17px;
     width: 17px;

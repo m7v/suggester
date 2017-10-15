@@ -2,6 +2,8 @@ import {
     APP_CONTEXT_INITIALIZED,
     APP_SET_CARDS_COLORS_FILTERS,
     APP_SET_CARDS_TYPES_FILTERS,
+    APP_SET_CARDSET_COLORS_FILTERS,
+    APP_SET_CARDSET_TYPES_FILTERS,
     APP_CARDS_REQUEST_STARTED,
     APP_CARDS_REQUEST_FAILED,
     APP_CARDS_REQUEST_SUCCESS,
@@ -11,6 +13,11 @@ import {
     APP_FAVORITES_REQUEST_STARTED,
     APP_FAVORITES_REQUEST_SUCCESS,
     APP_FAVORITES_REQUEST_FAILED,
+    APP_CARD_ADD_INFO,
+    APP_CARDSET_ADD_CARDS,
+    APP_CARDSETS_REQUEST_STARTED,
+    APP_CARDSETS_REQUEST_SUCCESS,
+    APP_CARDSETS_REQUEST_FAILED
 } from './appContext.helper';
 
 /**
@@ -49,6 +56,54 @@ function appSetTypeFilter(state, types) {
                 types: {
                     ...state.Cards.filters.types,
                     ...types
+                }
+            }
+        }
+    };
+}
+
+function appSetCardSetColorFilter(state, colors) {
+    return {
+        ...state,
+        CardSets: {
+            ...state.CardSets,
+            filters: {
+                ...state.CardSets.filters,
+                colors: {
+                    ...state.CardSets.filters.colors,
+                    ...colors
+                }
+            }
+        }
+    };
+}
+
+function appSetCardSetTypeFilter(state, types) {
+    return {
+        ...state,
+        CardSets: {
+            ...state.CardSets,
+            filters: {
+                ...state.CardSets.filters,
+                types: {
+                    ...state.CardSets.filters.types,
+                    ...types
+                }
+            }
+        }
+    };
+}
+
+function appAddCardInfo(state, card) {
+    return {
+        ...state,
+        CardInfo: {
+            ...state.CardInfo,
+            data: {
+                ...state.CardInfo.data,
+                [card.id]: {
+                    ...state.CardInfo.data[card.id],
+                    ...card
                 }
             }
         }
@@ -151,6 +206,51 @@ function appFavoritesRequestFailed(state) {
     };
 }
 
+function appCardSetsRequestStarted(state) {
+    return {
+        ...state,
+        CardSets: {
+            ...state.CardSets,
+            loading: true,
+            error: false
+        }
+    };
+}
+
+function appCardSetsRequestSuccess(state) {
+    return {
+        ...state,
+        CardSets: {
+            ...state.CardSets,
+            loading: false,
+            error: false
+        }
+    };
+}
+
+function appCardSetsRequestFailed(state) {
+    return {
+        ...state,
+        CardSets: {
+            ...state.CardSets,
+            loading: false,
+            error: true
+        }
+    };
+}
+
+function appCardSetsAddCards(state, code, cards) {
+    return {
+        ...state,
+        CardSets: {
+            ...state.CardSets,
+            data: {
+                ...state.CardSets.data,
+                [code]: cards
+            }
+        }
+    };
+}
 
 /**
  * @param state
@@ -165,6 +265,12 @@ export default (state = {}, action) => {
             return appSetColorFilter(state, action.payload.colors);
         case APP_SET_CARDS_TYPES_FILTERS:
             return appSetTypeFilter(state, action.payload.types);
+        case APP_SET_CARDSET_COLORS_FILTERS:
+            return appSetCardSetColorFilter(state, action.payload.colors);
+        case APP_SET_CARDSET_TYPES_FILTERS:
+            return appSetCardSetTypeFilter(state, action.payload.types);
+        case APP_CARD_ADD_INFO:
+            return appAddCardInfo(state, action.payload.card);
         case APP_CARDS_REQUEST_STARTED:
             return appCardsRequestStarted(state);
         case APP_CARDS_REQUEST_FAILED:
@@ -183,6 +289,14 @@ export default (state = {}, action) => {
             return appFavoritesRequestSuccess(state);
         case APP_FAVORITES_REQUEST_FAILED:
             return appFavoritesRequestFailed(state);
+        case APP_CARDSETS_REQUEST_STARTED:
+            return appCardSetsRequestStarted(state);
+        case APP_CARDSETS_REQUEST_SUCCESS:
+            return appCardSetsRequestSuccess(state);
+        case APP_CARDSETS_REQUEST_FAILED:
+            return appCardSetsRequestFailed(state);
+        case APP_CARDSET_ADD_CARDS:
+            return appCardSetsAddCards(state, action.payload.setCode, action.payload.cards);
         default:
             return state;
     }

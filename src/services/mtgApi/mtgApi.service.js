@@ -2,10 +2,34 @@ import axios from 'axios';
 import httpAdapter from 'axios/lib/adapters/http';
 import uniqBy from 'lodash/uniqBy';
 import map from 'lodash/map';
+import pick from 'lodash/pick';
 import flatten from 'lodash/flatten';
 import { serverApiUrl } from './../config.service';
 
 axios.defaults.adapter = httpAdapter;
+
+const fields = [
+    'count',
+    'artist',
+    'cmc',
+    'colorIndentity',
+    'colors',
+    'flavor',
+    'id',
+    'set',
+    'setName',
+    'layout',
+    'names',
+    'multiverseid',
+    'imageUrl',
+    'manaCost',
+    'name',
+    'text',
+    'type',
+    'types',
+    'supertypes',
+    'rarity'
+];
 
 /**
  * @param query
@@ -56,7 +80,18 @@ export const getCardsByNames = cards => {
  */
 export const getCardById = (cardId) =>
     axios.get(`${serverApiUrl}cards/${cardId}`)
-        .then(response => response.data.card)
+        .then(response => pick(response.data.card, fields))
+        .catch(() => null);
+
+export const getSetList = () =>
+    axios.get(`${serverApiUrl}sets`)
+        .then(response => response.data.sets)
+        .catch(() => null);
+
+
+export const getSetCardsByCode = (code) =>
+    axios.get(`${serverApiUrl}cards?set=${code}`)
+        .then(response => map(response.data.cards, card => pick(card, fields)))
         .catch(() => null);
 
 /**

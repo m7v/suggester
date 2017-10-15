@@ -1,19 +1,15 @@
-import './Cards.css';
+import './CardSet.css';
 import 'mana-font/css/mana.min.css';
 import React from 'react';
 import { connect } from 'react-redux';
-import { bool, func, shape, arrayOf } from 'prop-types';
 import map from 'lodash/map';
 import debounce from 'lodash/debounce';
 import classNames from 'classnames';
-import Paper from 'material-ui/Paper';
-import IconButton from 'material-ui/IconButton';
-import FontIcon from 'material-ui/FontIcon';
-import CircularProgress from 'material-ui/CircularProgress';
-import { dispatchToProps } from './connect/dispatchToProps';
-import { stateToProps } from './connect/stateToProps';
-import asyncComponent from '../Async';
-const CardGridList = asyncComponent(() => import('../../components/CardGridList'));
+import { bool, string, arrayOf, shape, func } from 'prop-types';
+import { CircularProgress, FontIcon, IconButton, Paper } from 'material-ui';
+import CardGridList from '../../components/CardGridList';
+import stateToProps from './connect/stateToProps';
+import dispatchToProps from './connect/dispatchToProps';
 
 const manaMap = {
     white: 'w',
@@ -32,10 +28,12 @@ const typesMap = {
     land: 'Land',
 };
 
-class Cards extends React.Component {
+class CardSet extends React.Component {
 
     componentWillMount() {
-        this.props.getCardList();
+        if (this.props.code) {
+            this.props.getSetCardsByCode(this.props.code);
+        }
     }
 
     appSetColorFilter = color => () => {
@@ -49,23 +47,23 @@ class Cards extends React.Component {
         this.props.history.replace(
             `${this.props.history.location.pathname}?colors=${query}`,
         );
-        this.props.appSetColorFilter({[color]: !this.props.colors[color]});
+        this.props.appSetCardSetColorFilter({[color]: !this.props.colors[color]});
     };
 
     appSetTypeFilter = type => () => {
-        this.props.appSetTypeFilter({[type]: !this.props.types[type]});
+        this.props.appSetCardSetTypeFilter({[type]: !this.props.types[type]});
     };
 
     renderTypeFilter = types => map(types, (type, cardType) => {
         const iconClass = classNames({
-            'Cards__filterType': true,
-            'Cards__filterTypeSelected': !!this.props.types[cardType],
+            'CardSet__filterType': true,
+            'CardSet__filterTypeSelected': !!this.props.types[cardType],
             'ms': true,
             [`ms-${cardType}`]: true,
         });
 
         return (
-            <IconButton key={type} className="Cards__icon" onClick={debounce(this.appSetTypeFilter(cardType), 100)}>
+            <IconButton key={type} className="CardSet__icon" onClick={debounce(this.appSetTypeFilter(cardType), 100)}>
                 <FontIcon className={iconClass} />
             </IconButton>
         );
@@ -73,14 +71,14 @@ class Cards extends React.Component {
 
     renderColorFilter = manaPool => map(manaPool, (color, mana) => {
         const iconClass = classNames({
-            'Cards__filterMana': true,
+            'CardSet__filterMana': true,
             'ms': true,
             [`ms-${manaMap[ mana ]}`]: true,
-            [`Cards__filterMana-${manaMap[ mana ]}`]: !!this.props.colors[ color ],
+            [`CardSet__filterMana-${manaMap[ mana ]}`]: !!this.props.colors[ color ],
         });
 
         return (
-            <IconButton key={color} className="Cards__icon" onClick={debounce(this.appSetColorFilter(color), 100)}>
+            <IconButton key={color} className="CardSet__icon" onClick={debounce(this.appSetColorFilter(color), 100)}>
                 <FontIcon className={iconClass} />
             </IconButton>
         );
@@ -88,15 +86,15 @@ class Cards extends React.Component {
 
     render() {
         return (
-            <section className="Cards">
-                <div className="Cards__main">
-                    <Paper className="Cards__inputWrapper" zDepth={2}>
+            <section className="CardSet">
+                <div className="CardSet__main">
+                    <Paper className="CardSet__inputWrapper" zDepth={2}>
                         <section>
-                            <div className="Cards__form">
-                                <div className="Cards__inputManaFilter">
+                            <div className="CardSet__form">
+                                <div className="CardSet__inputManaFilter">
                                     { this.renderColorFilter(manaMap) }
                                 </div>
-                                <div className="Cards__inputTypeFilter">
+                                <div className="CardSet__inputTypeFilter">
                                     { this.renderTypeFilter(typesMap) }
                                 </div>
                             </div>
@@ -106,8 +104,8 @@ class Cards extends React.Component {
                         <CardGridList cards={this.props.cards} />
                     }
                     {this.props.loading &&
-                    <div className="Cards__preloader">
-                        <div className="Cards__circular">
+                    <div className="CardSet__preloader">
+                        <div className="CardSet__circular">
                             <CircularProgress size={120} thickness={8} color="rgb(211, 47, 47)" />
                         </div>
                     </div>
@@ -118,20 +116,20 @@ class Cards extends React.Component {
     }
 }
 
-Cards.propTypes = {
-    cards: arrayOf(shape({})).isRequired,
-    colors: shape({}).isRequired,
+CardSet.propTypes = {
+    code: string.isRequired,
     history: shape({}).isRequired,
+    colors: shape({}).isRequired,
     types: shape({}).isRequired,
+    cards: arrayOf(shape({})).isRequired,
+    getSetCardsByCode: func.isRequired,
+    appSetCardSetTypeFilter: func.isRequired,
+    appSetCardSetColorFilter: func.isRequired,
     loading: bool,
-    getCardList: func.isRequired,
-    appSetTypeFilter: func.isRequired,
-    appSetColorFilter: func.isRequired,
 };
 
-Cards.defaultProps = {
-    cards: [],
-    loading: false
+CardSet.defaultProps = {
+    loading: false,
 };
 
-export default connect(stateToProps, dispatchToProps)(Cards);
+export default connect(stateToProps, dispatchToProps)(CardSet);

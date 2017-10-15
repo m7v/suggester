@@ -29,7 +29,6 @@ export function stateToProps(state) {
         colors: getColorFilter(state),
         types: getTypeFilter(state),
         cards: getCardsByFilter(state),
-        isMobile: state.appContext.isMobile,
         loading: state.appContext.Cards.loading,
         error: state.appContext.Cards.error,
     };

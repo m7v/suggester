@@ -3,6 +3,7 @@ import 'mana-font/css/mana.min.css';
 import 'keyrune/css/keyrune.min.css';
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { bool, string, func, shape } from 'prop-types';
 import isEmpty from 'lodash/isEmpty';
 import reduce from 'lodash/reduce';
@@ -161,8 +162,10 @@ class CardInfo extends React.Component {
                                 {card.setName &&
                                     <div className="CardInfo__set">
                                         <div className="CardInfo__detailTitle">Expansion</div>
-                                        {card.setName}
-                                        {this.getSetIcon(card)}
+                                        <Link className="CardInfo__setName" to={`/browse/${card.set.toLowerCase()}`}>
+                                            {card.setName}
+                                            {this.getSetIcon(card)}
+                                        </Link>
                                     </div>
                                 }
                             </div>

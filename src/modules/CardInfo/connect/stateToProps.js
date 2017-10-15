@@ -1,16 +1,12 @@
-import { createSelector as createSelectorORM } from 'redux-orm';
-import orm from '../../../reducers/entities';
+import { createSelector } from 'reselect';
 
-const ormSelector = function(state) {
-    return state.entities;
-};
+const getCardInfo = (state) => state.appContext.CardInfo.data;
 
-const cardSelector = createSelectorORM(orm, ormSelector, session => session.Card.all().toRefArray());
+const cardSelector = createSelector([
+    getCardInfo
+], cards => cards);
 
-const getCard = function(cards, cardId) {
-    const currentCard = cards.find(card => card.id === cardId);
-    return currentCard || {};
-};
+const getCard = (cards, cardId) => cards[cardId] || {};
 
 export function stateToProps(state, props) {
     return {

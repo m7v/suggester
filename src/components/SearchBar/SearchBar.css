@@ -4,6 +4,7 @@
     padding: 0 12px;
     min-width: 50%;
     z-index: 2;
+    will-change: transform;
 }
 
 .SearchBar__inputWrapper._mobile {

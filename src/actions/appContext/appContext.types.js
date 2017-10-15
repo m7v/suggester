@@ -9,8 +9,14 @@ import {
     APP_FAVORITES_REQUEST_STARTED,
     APP_FAVORITES_REQUEST_SUCCESS,
     APP_FAVORITES_REQUEST_FAILED,
+    APP_CARD_ADD_INFO,
+    APP_CARDSETS_REQUEST_STARTED,
+    APP_CARDSETS_REQUEST_SUCCESS,
+    APP_CARDSETS_REQUEST_FAILED,
     APP_SET_CARDS_COLORS_FILTERS,
     APP_SET_CARDS_TYPES_FILTERS,
+    APP_SET_CARDSET_COLORS_FILTERS,
+    APP_SET_CARDSET_TYPES_FILTERS
 } from '../../reducers/appContext/appContext.helper';
 
 /**
@@ -67,6 +73,36 @@ export function appDecksRequestFailed(error) {
         meta: {}
     };
 }
+
+export function appAddCardInfo(card) {
+    return {
+        type: APP_CARD_ADD_INFO,
+        payload: {card},
+        meta: {}
+    };
+}
+
+export function appCardSetsRequestStarted() {
+    return {
+        type: APP_CARDSETS_REQUEST_STARTED,
+        payload: {},
+        meta: {}
+    };
+}
+export function appCardSetsRequestSuccess() {
+    return {
+        type: APP_CARDSETS_REQUEST_SUCCESS,
+        payload: {},
+        meta: {}
+    };
+}
+export function appCardSetsRequestFailed(error) {
+    return {
+        type: APP_CARDSETS_REQUEST_FAILED,
+        payload: {error},
+        meta: {}
+    };
+}
 export function appFavoritesRequestStarted() {
     return {
         type: APP_FAVORITES_REQUEST_STARTED,
@@ -100,6 +136,22 @@ export function appSetColorFilter(colors) {
 export function appSetTypeFilter(types) {
     return {
         type: APP_SET_CARDS_TYPES_FILTERS,
+        payload: {types},
+        meta: {}
+    };
+}
+
+export function appSetCardSetColorFilter(colors) {
+    return {
+        type: APP_SET_CARDSET_COLORS_FILTERS,
+        payload: {colors},
+        meta: {}
+    };
+}
+
+export function appSetCardSetTypeFilter(types) {
+    return {
+        type: APP_SET_CARDSET_TYPES_FILTERS,
         payload: {types},
         meta: {}
     };

@@ -7,11 +7,11 @@ import Paper from 'material-ui/Paper';
 import IconViewModule from 'material-ui/svg-icons/action/view-module';
 import IconViewCarousel from 'material-ui/svg-icons/action/view-carousel';
 import IconSearch from 'material-ui/svg-icons/action/search';
-// import IconFavorite from 'material-ui/svg-icons/action/favorite';
-// import IconBrowse from 'material-ui/svg-icons/action/explore';
+import IconFavorite from 'material-ui/svg-icons/action/favorite';
+import IconBrowse from 'material-ui/svg-icons/action/explore';
 
-// const browseIcon = <IconBrowse />;
-// const favoritesIcon = <IconFavorite />;
+const browseIcon = <IconBrowse />;
+const favoritesIcon = <IconFavorite />;
 const searchIcon = <IconSearch />;
 const deckIcon = <IconViewModule />;
 const cardIcon = <IconViewCarousel />;
@@ -22,16 +22,16 @@ const navbarConfig = [
         icon: searchIcon,
         label: 'Search',
     },
-    // {
-    //     path: '/favorites',
-    //     icon: favoritesIcon,
-    //     label: 'Favorites',
-    // },
-    // {
-    //     path: '/browse',
-    //     icon: browseIcon,
-    //     label: 'Browse',
-    // },
+    {
+        path: '/favorites',
+        icon: favoritesIcon,
+        label: 'Favorites',
+    },
+    {
+        path: '/browse',
+        icon: browseIcon,
+        label: 'Browse',
+    },
     {
         path: '/cards',
         icon: cardIcon,

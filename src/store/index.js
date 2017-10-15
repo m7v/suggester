@@ -66,6 +66,33 @@ const initialState = {
                 }
             }
         },
+        CardSets: {
+            data: {},
+            filters: {
+                name: '',
+                colors: {
+                    w: !!colorFilter && !!colorFilter.w,
+                    u: !!colorFilter && !!colorFilter.u,
+                    b: !!colorFilter && !!colorFilter.b,
+                    r: !!colorFilter && !!colorFilter.r,
+                    g: !!colorFilter && !!colorFilter.g,
+                },
+                types: {
+                    planeswalker: false,
+                    creature: false,
+                    instant: false,
+                    sorcery: false,
+                    enchantment: false,
+                    artifact: false,
+                    land: false,
+                }
+            },
+            loading: false,
+            error: false,
+        },
+        CardInfo: {
+            data: {}
+        },
         Decks: {
             loading: false,
             error: false,
