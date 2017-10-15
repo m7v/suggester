@@ -18,7 +18,7 @@ class DeckInfo extends React.Component {
     render() {
         const { deck } = this.props;
         return (
-            <div className="DeckInfo__deckCard">
+            <div className="DeckInfo__root">
                 <Link to={'/decks'} replace >Назад</Link>
                 {!deck.id &&
                     <div>Loading...</div>

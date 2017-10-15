@@ -1,7 +1,19 @@
 .DeckInfo__deckCard {
+    overflow: auto;
+    height: 92vh;
     background-color: #222 !important;
     margin: 15px;
     padding: 7px;
+}
+
+.DeckInfo__deckCard::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #696969;
+}
+
+.DeckInfo__deckCard::-webkit-scrollbar {
+    width: 10px;
+    background-color: #696969;
 }
 
 .DeckInfo__deckHead {
