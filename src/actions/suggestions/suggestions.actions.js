@@ -1,5 +1,6 @@
 import { batchActions } from 'redux-batched-actions';
 import uniqBy from 'lodash/uniqBy';
+import compact from 'lodash/compact';
 import findIndex from 'lodash/findIndex';
 import * as types from './suggestions.types';
 import {
@@ -81,6 +82,9 @@ export function getSuggestions(query) {
 
                             // @TODO Duplicate #2 of ended processing.
                             const compositions = suggestions.map(suggest => {
+                                if (!suggest.manaCost && suggest.types.indexOf('Land') === -1) {
+                                    return null;
+                                }
                                 if (unitedDFcards[suggest.id]) {
                                     return {
                                         ...suggest,
@@ -94,14 +98,17 @@ export function getSuggestions(query) {
 
                             return dispatch(batchActions([
                                 types.setQueryString(query.toLowerCase()),
-                                types.cachedSuggestions(query.toLowerCase(), compositions),
-                                types.getSuggestions(compositions),
+                                types.cachedSuggestions(query.toLowerCase(), compact(compositions)),
+                                types.getSuggestions(compact(compositions)),
                                 types.suggestionsRequestSuccess()
                             ]));
                         });
                 }
                 // @TODO Duplicate #2 of ended processing.
                 const compositions = suggestions.map(suggest => {
+                    if (!suggest.manaCost && suggest.types.indexOf('Land') === -1) {
+                        return null;
+                    }
                     if (shortDoubleFaceInfo[suggest.id]) {
                         return {
                             ...suggest,
@@ -115,8 +122,8 @@ export function getSuggestions(query) {
 
                 return dispatch(batchActions([
                     types.setQueryString(query.toLowerCase()),
-                    types.cachedSuggestions(query.toLowerCase(), compositions),
-                    types.getSuggestions(compositions),
+                    types.cachedSuggestions(query.toLowerCase(), compact(compositions)),
+                    types.getSuggestions(compact(compositions)),
                     types.suggestionsRequestSuccess()
                 ]));
             })

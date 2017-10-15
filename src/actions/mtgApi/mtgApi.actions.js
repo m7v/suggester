@@ -1,5 +1,6 @@
 import { batchActions } from 'redux-batched-actions';
 import findIndex from 'lodash/findIndex';
+import compact from 'lodash/compact';
 import map from 'lodash/map';
 import * as appContextTypes from './../appContext/appContext.types';
 import * as mtgApiTypes from './../mtgApi/mtgApi.types';
@@ -159,6 +160,9 @@ export function getSetCardsByCode(code) {
 
                             // @TODO Duplicate #2 of ended processing.
                             const compositions = cardsFromSet.map(cardFromSet => {
+                                if (!cardFromSet.manaCost && cardFromSet.types.indexOf('Land') === -1) {
+                                    return null;
+                                }
                                 if (unitedDFcards[cardFromSet.id]) {
                                     return {
                                         ...cardFromSet,
@@ -171,7 +175,7 @@ export function getSetCardsByCode(code) {
                             });
 
                             return dispatch(batchActions([
-                                mtgApiTypes.addSetCards(code, compositions),
+                                mtgApiTypes.addSetCards(code, compact(compositions)),
                                 appContextTypes.appCardSetsRequestSuccess(),
                             ]));
                         });
@@ -179,6 +183,9 @@ export function getSetCardsByCode(code) {
 
                 // @TODO Duplicate #2 of ended processing.
                 const compositions = cardsFromSet.map(suggest => {
+                    if (!suggest.manaCost && suggest.types.indexOf('Land') === -1) {
+                        return null;
+                    }
                     if (shortDoubleFaceInfo[suggest.id]) {
                         return {
                             ...suggest,
@@ -191,7 +198,7 @@ export function getSetCardsByCode(code) {
                 });
 
                 return dispatch(batchActions([
-                    mtgApiTypes.addSetCards(code, compositions),
+                    mtgApiTypes.addSetCards(code, compact(compositions)),
                     appContextTypes.appCardSetsRequestSuccess(),
                 ]));
             })
