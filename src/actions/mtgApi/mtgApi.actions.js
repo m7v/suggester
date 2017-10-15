@@ -131,6 +131,52 @@ export function getSetCardsByCode(code) {
                     }
                     return mapping;
                 }, {});
+
+                if (needToSearchCards.length) {
+                    return requestGetCardsByNames(needToSearchCards)
+                        .then((searchedDoubleFacedCards) => {
+                            // @TODO Duplicate of Algorithm #1
+                            const shortSearchedDoubleFaceInfo = searchedDoubleFacedCards.reduce((mapping, card) => {
+                                const [searchCard] = needToSearchCards
+                                    .filter(searchedCard => card.name === searchedCard.doubleName);
+
+                                if (searchCard) {
+                                    mapping[searchCard.id] = {
+                                        id: card.id,
+                                        name: card.name,
+                                        imageUrl: card.imageUrl
+                                    };
+                                    needToSearchCards
+                                        .splice(findIndex(needToSearchCards, (c) => card.name === c.doubleName), 1);
+                                }
+                                return mapping;
+                            }, {});
+
+                            const unitedDFcards = {
+                                ...shortDoubleFaceInfo,
+                                ...shortSearchedDoubleFaceInfo,
+                            };
+
+                            // @TODO Duplicate #2 of ended processing.
+                            const compositions = cardsFromSet.map(cardFromSet => {
+                                if (unitedDFcards[cardFromSet.id]) {
+                                    return {
+                                        ...cardFromSet,
+                                        doubleFace: unitedDFcards[cardFromSet.id]
+                                    };
+                                }
+                                return {
+                                    ...cardFromSet
+                                };
+                            });
+
+                            return dispatch(batchActions([
+                                mtgApiTypes.addSetCards(code, compositions),
+                                appContextTypes.appCardSetsRequestSuccess(),
+                            ]));
+                        });
+                }
+
                 // @TODO Duplicate #2 of ended processing.
                 const compositions = cardsFromSet.map(suggest => {
                     if (shortDoubleFaceInfo[suggest.id]) {
