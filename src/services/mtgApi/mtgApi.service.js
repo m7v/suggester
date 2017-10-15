@@ -88,11 +88,71 @@ export const getSetList = () =>
         .then(response => response.data.sets)
         .catch(() => null);
 
+const getSetPlaneswalkerCardsByCode = (code) =>
+    axios.get(
+        `${serverApiUrl}cards?set=${code}&types=planeswalker&layout=normal|split|flip|double-faced&contains=imageUrl`
+    )
+        .then(response => response.data)
+        .catch(() => ({cards: []}));
 
-export const getSetCardsByCode = (code) =>
-    axios.get(`${serverApiUrl}cards?set=${code}`)
-        .then(response => map(response.data.cards, card => pick(card, fields)))
+const getSetCreatureCardsByCode = (code) =>
+    axios.get(`${serverApiUrl}cards?set=${code}&types=creature&layout=normal|split|flip|double-faced&contains=imageUrl`)
+        .then(response => response.data)
+        .catch(() => ({cards: []}));
+
+const getSetInstantCardsByCode = (code) =>
+    axios.get(`${serverApiUrl}cards?set=${code}&types=instant&layout=normal|split|flip|double-faced&contains=imageUrl`)
+        .then(response => response.data)
+        .catch(() => ({cards: []}));
+
+const getSetSorceryCardsByCode = (code) =>
+    axios.get(`${serverApiUrl}cards?set=${code}&types=sorcery&layout=normal|split|flip|double-faced&contains=imageUrl`)
+        .then(response => response.data)
+        .catch(() => ({cards: []}));
+
+const getSetEnchantmentCardsByCode = (code) =>
+    axios.get(
+        `${serverApiUrl}cards?set=${code}&types=enchantment&layout=normal|split|flip|double-faced&contains=imageUrl`
+    )
+        .then(response => response.data)
+        .catch(() => ({cards: []}));
+
+const getSetArtifactCardsByCode = (code) =>
+    axios.get(`${serverApiUrl}cards?set=${code}&types=artifact&layout=normal|split|flip|double-faced&contains=imageUrl`)
+        .then(response => response.data)
+        .catch(() => ({cards: []}));
+
+const getSetLandCardsByCode = (code) =>
+    axios.get(`${serverApiUrl}cards?set=${code}&types=land&layout=normal|split|flip|double-faced&contains=imageUrl`)
+        .then(response => response.data)
+        .catch(() => ({cards: []}));
+
+export const getSetCardsByCode = (code) => {
+    const queries = [
+        getSetPlaneswalkerCardsByCode(code),
+        getSetCreatureCardsByCode(code),
+        getSetInstantCardsByCode(code),
+        getSetSorceryCardsByCode(code),
+        getSetEnchantmentCardsByCode(code),
+        getSetArtifactCardsByCode(code),
+        getSetLandCardsByCode(code),
+    ];
+
+    return axios.all(queries)
+        .then(axios.spread((planeswalker, creature, instant, sorcery, enchantment, artifact, land) =>
+            uniqBy([
+                ...planeswalker.cards,
+                ...creature.cards,
+                ...instant.cards,
+                ...sorcery.cards,
+                ...enchantment.cards,
+                ...artifact.cards,
+                ...land.cards
+            ], 'id')
+        ))
+        .then(cards => map(cards, card => pick(card, fields)))
         .catch(() => null);
+};
 
 /**
  * @param query
