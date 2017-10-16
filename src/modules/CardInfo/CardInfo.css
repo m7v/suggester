@@ -86,7 +86,6 @@
     min-height: 130px;
     margin-top: 9px;
     display: flex;
-    justify-content: center;
     flex-direction: column;
 }
 
