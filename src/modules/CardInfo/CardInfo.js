@@ -1,10 +1,12 @@
 import './CardInfo.css';
+import './CardInfoMobile.css';
 import 'mana-font/css/mana.min.css';
 import 'keyrune/css/keyrune.min.css';
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { bool, string, func, shape } from 'prop-types';
+import classNames from 'classnames';
 import isEmpty from 'lodash/isEmpty';
 import reduce from 'lodash/reduce';
 import { dispatchToProps } from './connect/dispatchToProps';
@@ -120,64 +122,116 @@ class CardInfo extends React.Component {
         this.props.history.push(`/search?q=${searchedCard}`);
     };
 
+    renderDesktopCard = (card) => (
+        <div className="CardInfo__container">
+            <div className="CardInfo__card">
+                <Card card={card} needForceCheck />
+                <div className="CardInfo__artist">
+                    Artist <span className="CardInfo__artistName">{card.artist}</span>
+                </div>
+            </div>
+            <div className="CardInfo__fullInfo">
+                <div className="CardInfo__title">
+                    {card.name}
+                </div>
+                <div className="CardInfo__cardBlock">
+                    <div className="CardInfo__details">
+                        <div className="CardInfo__type">
+                            <div className="CardInfo__detailTitle">Types</div>
+                            {card.type}
+                        </div>
+                        {card.manaCost &&
+                            <div className="CardInfo__manaCost">
+                                <div className="CardInfo__detailTitle">Mana cost</div>
+                                <div className="CardInfo__manaCostIcon">{this.getManaCost()}</div>
+                            </div>
+                        }
+                        {card.setName &&
+                            <div className="CardInfo__set">
+                                <div className="CardInfo__detailTitle">Expansion</div>
+                                <Link className="CardInfo__setName" to={`/browse/${card.set.toLowerCase()}`}>
+                                    {card.setName}
+                                    {this.getSetIcon(card)}
+                                </Link>
+                            </div>
+                        }
+                    </div>
+                    <div className="CardInfo__textInfo">
+                        {card.text && card.text.split('\n').map((text, key) =>
+                            <div key={key} dangerouslySetInnerHTML={{__html: this.formatText(text)}} />
+                        )}
+                        <br />
+                        {card.flavor && <div className="CardInfo__textFlavor">{card.flavor}</div>}
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+
+    renderMobileCard = (card) => (
+        <div className="CardInfoMobile__container">
+            <div className="CardInfoMobile__card">
+                <div className="CardInfoMobile__title">
+                    {card.name}
+                </div>
+                <Card card={card} needForceCheck />
+                <div className="CardInfoMobile__artist">
+                    Artist <span className="CardInfoMobile__artistName">{card.artist}</span>
+                </div>
+                <div className="CardInfoMobile__details">
+                    <div className="CardInfoMobile__type">
+                        <div className="CardInfoMobile__detailTitle">Types</div>
+                        {card.type}
+                    </div>
+                    {card.manaCost &&
+                        <div className="CardInfoMobile__manaCost">
+                            <div className="CardInfoMobile__detailTitle">Mana cost</div>
+                            <div className="CardInfoMobile__manaCostIcon">{this.getManaCost()}</div>
+                        </div>
+                    }
+                    {card.setName &&
+                        <div className="CardInfoMobile__set">
+                            <div className="CardInfoMobile__detailTitle">Expansion</div>
+                            <Link className="CardInfoMobile__setName" to={`/browse/${card.set.toLowerCase()}`}>
+                                {card.setName}
+                            </Link>
+                            <div>{this.getSetIcon(card)}</div>
+                        </div>
+                    }
+                </div>
+                <div className="CardInfoMobile__textInfo">
+                    {card.text && card.text.split('\n').map((text, key) =>
+                        <div key={key} dangerouslySetInnerHTML={{__html: this.formatText(text)}} />
+                    )}
+                    <br />
+                    {card.flavor && <div className="CardInfoMobile__textFlavor">{card.flavor}</div>}
+                </div>
+            </div>
+        </div>
+    );
+
     render() {
         const { card } = this.props;
 
+        const root = classNames({
+            'CardInfo__root': true,
+            '_mobile': this.props.isMobile,
+        });
+
         return (
-            <div className="CardInfo__root">
+            <div className={root}>
+                <SearchBar
+                    isMobile={this.props.isMobile}
+                    handleSearchCardByKeyPress={this.handleSearchCardByKeyPress}
+                />
                 <div className="CardInfo__background">
                     <div className="CardInfo__backgroundComposition">
                         <div className="CardInfo__backgroundImage" style={{backgroundImage: `url(${card.imageUrl})`}} />
                         <div className="CardInfo_backgroundTrapezoid" />
                     </div>
                 </div>
-                <div className="CardInfo__container">
-                    <SearchBar
-                        isMobile={this.props.isMobile}
-                        handleSearchCardByKeyPress={this.handleSearchCardByKeyPress}
-                    />
-                    <div className="CardInfo__card">
-                        <Card card={card} needForceCheck />
-                        <div className="CardInfo__artist">
-                            Artist <span className="CardInfo__artistName">{card.artist}</span>
-                        </div>
-                    </div>
-                    <div className="CardInfo__fullInfo">
-                        <div className="CardInfo__title">
-                            {card.name}
-                        </div>
-                        <div className="CardInfo__cardBlock">
-                            <div className="CardInfo__details">
-                                <div className="CardInfo__type">
-                                    <div className="CardInfo__detailTitle">Types</div>
-                                    {card.type}
-                                </div>
-                                {card.manaCost &&
-                                    <div className="CardInfo__manaCost">
-                                        <div className="CardInfo__detailTitle">Mana cost</div>
-                                        <div className="CardInfo__manaCostIcon">{this.getManaCost()}</div>
-                                    </div>
-                                }
-                                {card.setName &&
-                                    <div className="CardInfo__set">
-                                        <div className="CardInfo__detailTitle">Expansion</div>
-                                        <Link className="CardInfo__setName" to={`/browse/${card.set.toLowerCase()}`}>
-                                            {card.setName}
-                                            {this.getSetIcon(card)}
-                                        </Link>
-                                    </div>
-                                }
-                            </div>
-                            <div className="CardInfo__textInfo">
-                                {card.text && card.text.split('\n').map((text, key) =>
-                                    <div key={key} dangerouslySetInnerHTML={{__html: this.formatText(text)}} />
-                                )}
-                                <br />
-                                {card.flavor && <div className="CardInfo__textFlavor">{card.flavor}</div>}
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {!this.props.isMobile && this.renderDesktopCard(card) }
+                {this.props.isMobile && this.renderMobileCard(card) }
             </div>
         );
     }

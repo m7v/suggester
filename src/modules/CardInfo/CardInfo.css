@@ -6,6 +6,10 @@
     justify-content: center;
 }
 
+.CardInfo__root._mobile {
+    align-items: initial;
+}
+
 .CardInfo__background {
     position: fixed;
     z-index: -1;
