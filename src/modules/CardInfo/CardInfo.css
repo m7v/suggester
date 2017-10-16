@@ -1,6 +1,9 @@
 .CardInfo__root {
     width: 100vw;
     height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .CardInfo__background {
@@ -39,8 +42,6 @@
     flex-direction: row;
     flex-wrap: nowrap;
     width: 750px;
-    margin: 0 auto;
-    padding: 110px;
 }
 
 .CardInfo__card {
