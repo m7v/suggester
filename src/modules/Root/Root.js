@@ -80,7 +80,7 @@ class Root extends React.Component {
                     <Route
                         exact
                         path="/favorites"
-                        component={() => <div>Favorites</div>}
+                        component={() => <div className="Root__comingSoon"><div>Coming soon...</div></div>}
                     />
                     <Route
                         exact

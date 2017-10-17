@@ -1,12 +1,12 @@
 .CardGridList__results {
-    padding-top: 15vh;
     height: 77vh;
-    overflow: auto;
-    -webkit-overflow-scrolling: touch;
+    padding: 15vh 15vw;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
     flex-direction: row-reverse;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .CardGridList__results::-webkit-scrollbar-track {
