@@ -1,5 +1,6 @@
 .CardInfoMobile__container {
     width: 100vw;
+    background: rgba(33,33,33,.7);
     overflow: auto;
     -webkit-overflow-scrolling: touch;
 }
