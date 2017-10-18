@@ -3,6 +3,7 @@ import uniqueId from 'lodash/uniqueId';
 import map from 'lodash/map';
 import * as deckBuilderTypes from './deckBuilder.types';
 import * as appContextTypes from './../appContext/appContext.types';
+import orm from '../../reducers/entities';
 import {
     buildDeck,
 } from './deckBuilder.helper';
@@ -13,8 +14,10 @@ import {
     getDeckList as requestGetDeckList,
     getCardByIds as requestGetCardByIds,
     getCardsByDeckId as requestGetCardsByDeckId,
-    getDeckListByCardNames as requestGetDeckListByCardNames,
 } from '../../services/deckBuilder/deckBuilder.service';
+import {
+    getDeckListByCardNames as requestGetDeckListByCardNames,
+} from '../../services/mtgApi/mtgApi.service';
 
 /**
  * @param {Array} cardList
@@ -26,11 +29,11 @@ export function getDeckListByCardNames(cardList, name = 'newDeck') {
         const deckId = uniqueId(`deck${(new Date()).getTime()}`);
 
         dispatch(appContextTypes.appDecksRequestStarted());
+        const session = orm.mutableSession(getState().entities);
 
-        return requestGetDeckListByCardNames(cardList, getState())
+        return requestGetDeckListByCardNames(cardList, session)
             .then(cards => {
                 const deck = buildDeck(deckId, name, cards);
-
                 dispatch(batchActions([
                     deckBuilderTypes.createDeck(deck),
                     ...cards.map(card => deckBuilderTypes.addCard(card, deckId)),

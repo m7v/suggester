@@ -1,14 +1,9 @@
 import React from 'react';
-import {
-    Dialog,
-    RaisedButton,
-    FlatButton,
-    TextField,
-} from 'material-ui';
+import { string, func } from 'prop-types';
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
 import { Step, Stepper, StepLabel } from 'material-ui/Stepper';
-import { bool, string, func } from 'prop-types';
-
-const contentStyle = { margin: '0 16px' };
 
 export default class CreateDeckForm extends React.Component {
 
@@ -31,7 +26,7 @@ export default class CreateDeckForm extends React.Component {
                                     hintText="Insert decklist"
                                     floatingLabelText="Decklist"
                                     value={this.props.draftDeck}
-                                    onChange={this.props.handleCardChange}
+                                    onChange={this.props.handleDeckListChange}
                                     multiLine
                                     rows={10}
                                 />
@@ -47,6 +42,8 @@ export default class CreateDeckForm extends React.Component {
                                 <TextField
                                     hintText="Enter title"
                                     floatingLabelText="Title of deck"
+                                    value={this.props.deckTitle}
+                                    onChange={this.props.handleDeckTitleChange}
                                 />
                             </div>
                         </div>
@@ -64,13 +61,13 @@ export default class CreateDeckForm extends React.Component {
         return stepIndex === 2 ? 'Finish' : 'Next';
     };
 
-    isValidCard = () => !!this.state.draftDeck.length;
+    isValidCard = () => !!this.props.draftDeck.length;
 
     isDisabled = () => !this.isValidCard();
 
     handleStepAction = () => {
         const { stepIndex } = this.state;
-        return stepIndex === 2 ? this.handleSearchCard : this.handleNext;
+        return stepIndex === 2 ? this.handleSubmitForm : this.handleNext;
     };
 
     handleNext = () => {
@@ -88,63 +85,58 @@ export default class CreateDeckForm extends React.Component {
         }
     };
 
-    handleSearchCard = (event) => {
+    handleSubmitForm = (event) => {
+        event.preventDefault();
         this.setState({ stepIndex: 0, finished: false });
-        this.props.handleSearchCard(event);
+        this.props.handleSubmitForm();
     };
 
     render() {
         const { stepIndex, finished } = this.state;
 
         return (
-            <Dialog
-                title="Dialog With Actions"
-                modal={false}
-                open={this.props.open}
-                onRequestClose={this.props.handleClose}
-            >
-                <div style={{ width: '100%', maxWidth: 700, margin: 'auto' }}>
-                    <Stepper activeStep={stepIndex}>
-                        <Step>
-                            <StepLabel>Added Decklist</StepLabel>
-                        </Step>
-                        <Step>
-                            <StepLabel>Enter the name</StepLabel>
-                        </Step>
-                        <Step>
-                            <StepLabel>Confirm creation</StepLabel>
-                        </Step>
-                    </Stepper>
-                    <div style={contentStyle}>
-                        {!finished &&
-                            <div>
-                                <div>{this.getStepContent()}</div>
-                                <div style={{ marginTop: 12 }}>
-                                    <FlatButton
-                                        label="Back"
-                                        disabled={stepIndex === 0}
-                                        onClick={this.handlePrev}
-                                        style={{ marginRight: 12 }}
-                                    />
-                                    <RaisedButton
-                                        label={this.getButtonLabel()}
-                                        primary
-                                        onClick={this.handleStepAction()}
-                                    />
-                                </div>
+            <div>
+                <Stepper activeStep={stepIndex} orientation="vertical">
+                    <Step>
+                        <StepLabel>Added Decklist</StepLabel>
+                    </Step>
+                    <Step>
+                        <StepLabel>Enter the name</StepLabel>
+                    </Step>
+                    <Step>
+                        <StepLabel>Confirm creation</StepLabel>
+                    </Step>
+                </Stepper>
+                <div>
+                    {!finished &&
+                        <div>
+                            <div>{this.getStepContent()}</div>
+                            <div style={{ marginTop: 12 }}>
+                                <FlatButton
+                                    label="Back"
+                                    disabled={stepIndex === 0}
+                                    onClick={this.handlePrev}
+                                    style={{ marginRight: 12 }}
+                                />
+                                <RaisedButton
+                                    disabled={this.isDisabled()}
+                                    label={this.getButtonLabel()}
+                                    primary
+                                    onClick={this.handleStepAction()}
+                                />
                             </div>
-                        }
-                    </div>
+                        </div>
+                    }
                 </div>
-            </Dialog>
+            </div>
         );
     }
 }
 
 CreateDeckForm.propTypes = {
-    open: bool.isRequired,
     draftDeck: string.isRequired,
-    handleClose: func.isRequired,
-    handleSearchCard: func.isRequired,
-    handleCardChange: func.isRequired,
+    deckTitle: string.isRequired,
+    handleDeckListChange: func.isRequired,
+    handleDeckTitleChange: func.isRequired,
+    handleSubmitForm: func.isRequired,
 };

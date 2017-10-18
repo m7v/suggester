@@ -15,6 +15,7 @@ import { mapStateToProps } from '../Root/connect/stateToProps';
 import { dispatchToProps } from '../Root/connect/dispatchToProps';
 import NavBar from '../../components/NavBar';
 
+const DeckBuilder = asyncComponent(() => import('../DeckBuilder/container'));
 const Decks = asyncComponent(() => import('../Decks/container'));
 const Cards = asyncComponent(() => import('../Cards/container'));
 const Suggester = asyncComponent(() => import('../Suggester/container'));
@@ -81,6 +82,11 @@ class Root extends React.Component {
                         exact
                         path="/favorites"
                         component={() => <div className="Root__comingSoon"><div>Coming soon...</div></div>}
+                    />
+                    <Route
+                        exact
+                        path="/deck/add"
+                        component={DeckBuilder}
                     />
                     <Route
                         exact
