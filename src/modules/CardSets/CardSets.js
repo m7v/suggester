@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { bool, shape, func } from 'prop-types';
 import classNames from 'classnames';
-import { CircularProgress } from 'material-ui';
+import Loader from '../../components/Loader';
 import map from 'lodash/map';
 import stateToProps from './connect/stateToProps';
 import dispatchToProps from './connect/dispatchToProps';
@@ -61,9 +61,9 @@ class CardSets extends React.Component {
             <section className="CardSets">
                 <div className="CardSets__main">
                     {loading &&
-                        <div className="CardSets_preloader">
+                        <div className="CardSets__preloader">
                             <div className="CardSets__circular">
-                                <CircularProgress size={120} thickness={8} color="rgb(211, 47, 47)" />
+                                <Loader />
                             </div>
                         </div>
                     }

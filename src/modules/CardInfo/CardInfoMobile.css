@@ -23,7 +23,7 @@
 .CardInfoMobile__card {
     display: flex;
     flex-direction: column;
-    padding: 80px 0 0 0;
+    padding: 60px 0 0 0;
     justify-content: center;
     align-items: center;
 }

@@ -114,10 +114,8 @@ export function getSetCardsByCode(code) {
                                 ...getFullCardsInfo(searchedDoubleFacedCards),
                             };
 
-                            const compositions = buildDoubleFaceCards(cardsFromSet, unitedDFcards);
-
                             return dispatch(batchActions([
-                                mtgApiTypes.addSetCards(code, compositions),
+                                mtgApiTypes.addSetCards(code, buildDoubleFaceCards(cardsFromSet, unitedDFcards)),
                                 appContextTypes.appCardSetsRequestSuccess(),
                             ]));
                         })

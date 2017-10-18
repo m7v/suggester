@@ -1,0 +1,34 @@
+.CardFilter__type,
+.CardFilter__mana{
+    transition: all 0.25s ease-in-out;
+}
+
+.CardFilter__typeSelected {
+    color: #e75b0d !important;
+}
+
+.CardFilter__icon {
+    width: 42px !important;
+    height: 42px !important;
+    padding: 9px !important;
+}
+
+.CardFilter__mana-r {
+    color: #D32F2F !important;
+}
+
+.CardFilter__mana-g {
+    color: #388E3C !important;
+}
+
+.CardFilter__mana-b {
+    color: #616161 !important;
+}
+
+.CardFilter__mana-u {
+    color: #1976D2 !important;
+}
+
+.CardFilter__mana-w {
+    color: #FFFFDA !important;
+}

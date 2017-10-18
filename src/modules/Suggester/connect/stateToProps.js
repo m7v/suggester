@@ -18,6 +18,5 @@ export function mapStateToProps(state) {
         searchingCard: querySelector(state),
         suggestions: suggestionsSelector(state),
         loading: state.suggester.meta.loading,
-        isMobile: state.appContext.isMobile,
     };
 }

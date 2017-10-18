@@ -1,7 +1,7 @@
 import './Root.css';
 import React from 'react';
 import { connect } from 'react-redux';
-import { CircularProgress, LinearProgress } from 'material-ui';
+import Loader from '../../components/Loader';
 import { bool, func } from 'prop-types';
 import {
     // BrowserRouter as Router,
@@ -37,10 +37,7 @@ class Root extends React.Component {
                     {!this.props.isInitial &&
                         <div className="Root__preloader">
                             <div className="Root__circular">
-                                <CircularProgress size={80} thickness={5} color="rgb(211, 47, 47)" />
-                            </div>
-                            <div className="Root__linear">
-                                <LinearProgress mode="indeterminate" />
+                                <Loader />
                             </div>
                         </div>
                     }

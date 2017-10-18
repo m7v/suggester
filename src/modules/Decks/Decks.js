@@ -3,9 +3,7 @@ import 'mana-font/css/mana.min.css';
 import React from 'react';
 import { connect } from 'react-redux';
 import { bool, shape, string, arrayOf, func } from 'prop-types';
-import {
-    CircularProgress,
-} from 'material-ui';
+import Loader from '../../components/Loader';
 import mtgparser from 'mtg-parser';
 import LazyLoad from 'react-lazyload';
 import Deck from '../../components/Deck';
@@ -67,7 +65,7 @@ class Decks extends React.Component {
                     {loading &&
                         <div className="Decks_preloader">
                             <div className="Decks__circular">
-                                <CircularProgress size={120} thickness={8} color="rgb(211, 47, 47)" />
+                                <Loader />
                             </div>
                         </div>
                     }

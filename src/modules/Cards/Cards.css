@@ -2,18 +2,11 @@
     overflow: hidden;
 }
 
-.Cards__inputWrapper {
-    top: 0;
+.Cards__filter {
     position: absolute;
-    padding: 0 12px;
-    min-width: 100%;
-    z-index: 2;
-}
-
-.Cards__icon {
-    width: 42px !important;
-    height: 42px !important;
-    padding: 9px !important;
+    top: 22px;
+    right: 20px;
+    z-index: 1;
 }
 
 .Cards__preloader {
@@ -24,39 +17,11 @@
     position: fixed;
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-direction: column;
     z-index: 2;
 }
 
 .Cards__circular {
     margin: 60px 0;
-}
-
-.Cards__filterType,
-.Cards__filterMana{
-    transition: all 0.25s ease-in-out;
-}
-
-.Cards__filterTypeSelected {
-    color: #e75b0d !important;
-}
-
-.Cards__filterMana-r {
-    color: #D32F2F !important;
-}
-
-.Cards__filterMana-g {
-    color: #388E3C !important;
-}
-
-.Cards__filterMana-b {
-    color: #616161 !important;
-}
-
-.Cards__filterMana-u {
-    color: #1976D2 !important;
-}
-
-.Cards__filterMana-w {
-    color: #FFFFDA !important;
 }

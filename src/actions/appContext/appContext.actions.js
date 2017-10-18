@@ -8,18 +8,18 @@ export function appInitialized() {
 }
 
 export function appSetColorFilter(colors) {
-    return dispath => dispath(types.appSetColorFilter(colors));
+    return dispatch => dispatch(types.appSetColorFilter(colors));
 }
 
 export function appSetTypeFilter(cardTypes) {
-    return dispath => dispath(types.appSetTypeFilter(cardTypes));
+    return dispatch => dispatch(types.appSetTypeFilter(cardTypes));
 }
 
 
 export function appSetCardSetColorFilter(colors) {
-    return dispath => dispath(types.appSetCardSetColorFilter(colors));
+    return dispatch => dispatch(types.appSetCardSetColorFilter(colors));
 }
 
 export function appSetCardSetTypeFilter(cardTypes) {
-    return dispath => dispath(types.appSetCardSetTypeFilter(cardTypes));
+    return dispatch => dispatch(types.appSetCardSetTypeFilter(cardTypes));
 }

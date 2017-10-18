@@ -2,8 +2,8 @@ import './Suggester.css';
 import React from 'react';
 import { connect } from 'react-redux';
 import { bool, string, func, shape, arrayOf } from 'prop-types';
-import CircularProgress from 'material-ui/CircularProgress';
-import SearchBar from '../../components/SearchBar';
+import Loader from '../../components/Loader';
+import SearchBarMini from '../../components/SearchBarMini';
 import { mapDispatchToProps } from './connect/dispatchToProps';
 import { mapStateToProps } from './connect/stateToProps';
 import asyncComponent from '../Async';
@@ -30,9 +30,8 @@ class Suggester extends React.Component {
         return (
             <section className="Suggester">
                 <div className="Suggester__main">
-                    <SearchBar
-                        isMobile={this.props.isMobile}
-                        results={this.props.suggestions.length}
+                    <SearchBarMini
+                        className="Suggester__search"
                         searchingCard={this.props.searchingCard}
                         handleSearchCardByKeyPress={this.handleSearchCardByKeyPress}
                     />
@@ -42,7 +41,7 @@ class Suggester extends React.Component {
                     {this.props.loading &&
                         <div className="Suggester__preloader">
                             <div className="Suggester__circular">
-                                <CircularProgress size={120} thickness={8} color="rgb(211, 47, 47)" />
+                                <Loader />
                             </div>
                         </div>
                     }
@@ -61,12 +60,10 @@ Suggester.propTypes = {
         imageUrl: string,
     })),
     getSuggestions: func.isRequired,
-    isMobile: bool,
 };
 
 Suggester.defaultProps = {
     loading: false,
-    isMobile: false,
     searchingCard: '',
     suggestions: [],
 };

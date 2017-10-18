@@ -2,21 +2,23 @@ import compact from 'lodash/compact';
 import uniqBy from 'lodash/uniqBy';
 import findIndex from 'lodash/findIndex';
 
-const buildDoubleFaceCard = shortDoubleFaceInfo => suggest => {
-    if (!suggest.manaCost && suggest.types.indexOf('Land') === -1) {
+const DOUBLE_FACED_TYPE = 'double-faced';
+
+const buildDoubleFaceCard = shortDoubleFaceInfo => card => {
+    if (!card.manaCost && card.layout === DOUBLE_FACED_TYPE && card.types.indexOf('Land') === -1) {
         return {
-            ...shortDoubleFaceInfo[suggest.id],
-            doubleFace: suggest
+            ...shortDoubleFaceInfo[card.id],
+            doubleFace: card
         };
     }
-    if (shortDoubleFaceInfo[suggest.id]) {
+    if (shortDoubleFaceInfo[card.id]) {
         return {
-            ...suggest,
-            doubleFace: shortDoubleFaceInfo[suggest.id]
+            ...card,
+            doubleFace: shortDoubleFaceInfo[card.id]
         };
     }
     return {
-        ...suggest
+        ...card
     };
 };
 

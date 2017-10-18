@@ -1,10 +1,11 @@
 import './DefaultCard.css';
 import React from 'react';
+import defaultCard from './assets/default-card.png';
 
 const DefaultCard = () => (
     <img
         className="DefaultCard__img _default"
-        src={'img/default-card.png'}
+        src={defaultCard}
         alt={'MTG'}
     />
 );

@@ -11,7 +11,7 @@ import isEmpty from 'lodash/isEmpty';
 import reduce from 'lodash/reduce';
 import { dispatchToProps } from './connect/dispatchToProps';
 import { stateToProps } from './connect/stateToProps';
-import SearchBar from '../../components/SearchBar';
+import SearchBarMini from '../../components/SearchBarMini';
 import Card from '../../components/Card';
 
 const manaMapping = {
@@ -220,7 +220,8 @@ class CardInfo extends React.Component {
 
         return (
             <div className={root}>
-                <SearchBar
+                <SearchBarMini
+                    className="CardInfo__search"
                     isMobile={this.props.isMobile}
                     handleSearchCardByKeyPress={this.handleSearchCardByKeyPress}
                 />

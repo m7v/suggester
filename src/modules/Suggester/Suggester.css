@@ -6,6 +6,13 @@
     justify-content: center;
 }
 
+.Suggester__search {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1;
+}
+
 .Suggester__preloader {
     width: 100%;
     height: 100%;
@@ -14,6 +21,7 @@
     position: fixed;
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-direction: column;
     z-index: 2;
 }

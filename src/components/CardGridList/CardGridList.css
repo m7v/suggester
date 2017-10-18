@@ -1,7 +1,8 @@
 .CardGridList__results {
-    height: 77vh;
-    padding: 15vh 15vw;
+    height: 100vh;
     display: flex;
+    padding: 20px 15vw;
+    box-sizing: border-box;
     justify-content: space-around;
     flex-wrap: wrap;
     flex-direction: row-reverse;
