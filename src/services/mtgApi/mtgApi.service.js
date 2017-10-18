@@ -36,9 +36,9 @@ const layouts = [
     'normal',
     'split',
     'flip',
+    'double-faced',
     'meld',
-    'double-face',
-    'aftermath'
+    'aftermath',
 ].join('|');
 
 /**
@@ -85,7 +85,7 @@ export const getDeckListByCardNames = (cardList, session) => {
  * @returns {Promise}
  */
 const getCardsByName = query =>
-    axios.get(`${serverApiUrl}cards?name=${query}&layout=${layouts}d&contains=imageUrl`)
+    axios.get(`${serverApiUrl}cards?name=${query}&layout=${layouts}&contains=imageUrl`)
         .then(response => new Promise(resolve => resolve(response.data)))
         .catch(() => new Promise((resolve) => resolve([])));
 
@@ -94,7 +94,7 @@ const getCardsByName = query =>
  * @returns {Promise}
  */
 const getCardsByFlavor = query =>
-    axios.get(`${serverApiUrl}cards?flavor=${query}&layout=${layouts}d&contains=imageUrl`)
+    axios.get(`${serverApiUrl}cards?flavor=${query}&layout=${layouts}&contains=imageUrl`)
         .then(response => new Promise(resolve => resolve(response.data)))
         .catch(() => new Promise((resolve) => resolve([])));
 
@@ -103,7 +103,7 @@ const getCardsByFlavor = query =>
  * @returns {Promise}
  */
 const getCardsByText = query =>
-    axios.get(`${serverApiUrl}cards?text=${query}&layout=${layouts}d&contains=imageUrl`)
+    axios.get(`${serverApiUrl}cards?text=${query}&layout=${layouts}&contains=imageUrl`)
         .then(response => new Promise(resolve => resolve(response.data)))
         .catch(() => new Promise((resolve) => resolve([])));
 
@@ -112,7 +112,7 @@ const getCardsByText = query =>
  * @returns {Promise}
  */
 const getCardsBySubtype = query =>
-    axios.get(`${serverApiUrl}cards?subtypes=${query}&layout=${layouts}d&contains=imageUrl`)
+    axios.get(`${serverApiUrl}cards?subtypes=${query}&layout=${layouts}&contains=imageUrl`)
         .then(response => new Promise(resolve => resolve(response.data)))
         .catch(() => new Promise((resolve) => resolve([])));
 
@@ -139,40 +139,40 @@ export const getSetList = () =>
 
 const getSetPlaneswalkerCardsByCode = (code) =>
     axios.get(
-        `${serverApiUrl}cards?set=${code}&types=planeswalker&layout=${layouts}d&contains=imageUrl`
+        `${serverApiUrl}cards?set=${code}&types=planeswalker&layout=${layouts}&contains=imageUrl`
     )
         .then(response => response.data)
         .catch(() => ({cards: []}));
 
 const getSetCreatureCardsByCode = (code) =>
-    axios.get(`${serverApiUrl}cards?set=${code}&types=creature&layout=${layouts}d&contains=imageUrl`)
+    axios.get(`${serverApiUrl}cards?set=${code}&types=creature&layout=${layouts}&contains=imageUrl`)
         .then(response => response.data)
         .catch(() => ({cards: []}));
 
 const getSetInstantCardsByCode = (code) =>
-    axios.get(`${serverApiUrl}cards?set=${code}&types=instant&layout=${layouts}d&contains=imageUrl`)
+    axios.get(`${serverApiUrl}cards?set=${code}&types=instant&layout=${layouts}&contains=imageUrl`)
         .then(response => response.data)
         .catch(() => ({cards: []}));
 
 const getSetSorceryCardsByCode = (code) =>
-    axios.get(`${serverApiUrl}cards?set=${code}&types=sorcery&layout=${layouts}d&contains=imageUrl`)
+    axios.get(`${serverApiUrl}cards?set=${code}&types=sorcery&layout=${layouts}&contains=imageUrl`)
         .then(response => response.data)
         .catch(() => ({cards: []}));
 
 const getSetEnchantmentCardsByCode = (code) =>
     axios.get(
-        `${serverApiUrl}cards?set=${code}&types=enchantment&layout=${layouts}d&contains=imageUrl`
+        `${serverApiUrl}cards?set=${code}&types=enchantment&layout=${layouts}&contains=imageUrl`
     )
         .then(response => response.data)
         .catch(() => ({cards: []}));
 
 const getSetArtifactCardsByCode = (code) =>
-    axios.get(`${serverApiUrl}cards?set=${code}&types=artifact&layout=${layouts}d&contains=imageUrl`)
+    axios.get(`${serverApiUrl}cards?set=${code}&types=artifact&layout=${layouts}&contains=imageUrl`)
         .then(response => response.data)
         .catch(() => ({cards: []}));
 
 const getSetLandCardsByCode = (code) =>
-    axios.get(`${serverApiUrl}cards?set=${code}&types=land&layout=${layouts}d&contains=imageUrl`)
+    axios.get(`${serverApiUrl}cards?set=${code}&types=land&layout=${layouts}&contains=imageUrl`)
         .then(response => response.data)
         .catch(() => ({cards: []}));
 
