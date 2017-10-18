@@ -1,6 +1,4 @@
 import { batchActions } from 'redux-batched-actions';
-import findIndex from 'lodash/findIndex';
-import compact from 'lodash/compact';
 import map from 'lodash/map';
 import * as appContextTypes from './../appContext/appContext.types';
 import * as mtgApiTypes from './../mtgApi/mtgApi.types';
@@ -10,6 +8,10 @@ import {
     getSetList as requestGetSetList,
     getSetCardsByCode as requestGetSetCardsByCode,
 } from '../../services/mtgApi/mtgApi.service';
+import {
+    buildDoubleFaceCards,
+    fullCardsInfoLens
+} from './../../helpers/doubleFacedCards';
 
 const DOUBLE_FACED_TYPE = 'double-faced';
 
@@ -34,37 +36,20 @@ export function getCardById(cardId) {
                     });
                     return requestGetCardsByNames(needToSearchCards)
                         .then((searchedDoubleFacedCards) => {
-                            // @TODO Duplicate of Algorithm #1
-                            const shortSearchedDoubleFaceInfo = searchedDoubleFacedCards
-                                .reduce((mapping, doubleFacedCard) => {
-                                    const [ searchCard ] = needToSearchCards
-                                        .filter(searchedCard => doubleFacedCard.name === searchedCard.doubleName);
+                            const getFullCardsInfo = fullCardsInfoLens(needToSearchCards);
+                            const shortDoubleFaceInfo = getFullCardsInfo(searchedDoubleFacedCards);
 
-                                    if (searchCard) {
-                                        mapping[ searchCard.id ] = {
-                                            id: doubleFacedCard.id,
-                                            name: doubleFacedCard.name,
-                                            imageUrl: doubleFacedCard.imageUrl,
-                                        };
-                                        needToSearchCards.splice(
-                                            findIndex(
-                                                needToSearchCards, (c) => doubleFacedCard.name === c.doubleName,
-                                            ),
-                                            1);
-                                    }
-                                    return mapping;
-                                }, {});
-
-                            // @TODO Duplicate #2 of ended processing.
-                            const updatedCard = shortSearchedDoubleFaceInfo[ card.id ]
-                                ? { ...card, doubleFace: shortSearchedDoubleFaceInfo[ card.id ] }
-                                : { ...card };
+                            const newCard = { info: { ...card } };
+                            if (shortDoubleFaceInfo[ card.id ]) {
+                                newCard.info = { ...card, doubleFace: shortDoubleFaceInfo[ card.id ] };
+                            }
 
                             return dispatch(batchActions([
-                                appContextTypes.appAddCardInfo(updatedCard),
+                                appContextTypes.appAddCardInfo(newCard.info),
                                 appContextTypes.appCardsRequestSuccess(),
                             ]));
-                        });
+                        })
+                        .catch((e) => dispatch(appContextTypes.appCardsRequestFailed(e)));
                 }
                 return dispatch(batchActions([
                     appContextTypes.appAddCardInfo(card),
@@ -108,7 +93,8 @@ export function getSetCardsByCode(code) {
 
         return requestGetSetCardsByCode(code)
             .then(cardsFromSet => {
-                const doubleFacedCards = cardsFromSet.filter((cardFromSet) => cardFromSet.layout === DOUBLE_FACED_TYPE);
+                const doubleFacedCards = cardsFromSet.filter((cardFromSet) =>
+                    cardFromSet.layout === DOUBLE_FACED_TYPE);
 
                 const needToSearchCards = doubleFacedCards.map(card => {
                     const [ searched ] = card.names.filter(name => name !== card.name);
@@ -117,88 +103,29 @@ export function getSetCardsByCode(code) {
                         doubleName: searched,
                     };
                 });
-                // @TODO Algorithm #1. Need to optimize.
-                const shortDoubleFaceInfo = doubleFacedCards.reduce((mapping, card) => {
-                    const [ searchCard ] = needToSearchCards
-                        .filter(searchedCard => card.name === searchedCard.doubleName);
-
-                    if (searchCard) {
-                        mapping[ searchCard.id ] = {
-                            id: card.id,
-                            name: card.name,
-                            imageUrl: card.imageUrl,
-                        };
-                        needToSearchCards.splice(findIndex(needToSearchCards, (c) => card.name === c.doubleName), 1);
-                    }
-                    return mapping;
-                }, {});
+                const getFullCardsInfo = fullCardsInfoLens(needToSearchCards);
+                const shortDoubleFaceInfo = getFullCardsInfo(doubleFacedCards);
 
                 if (needToSearchCards.length) {
                     return requestGetCardsByNames(needToSearchCards)
                         .then((searchedDoubleFacedCards) => {
-                            // @TODO Duplicate of Algorithm #1
-                            const shortSearchedDoubleFaceInfo = searchedDoubleFacedCards.reduce((mapping, card) => {
-                                const [searchCard] = needToSearchCards
-                                    .filter(searchedCard => card.name === searchedCard.doubleName);
-
-                                if (searchCard) {
-                                    mapping[searchCard.id] = {
-                                        id: card.id,
-                                        name: card.name,
-                                        imageUrl: card.imageUrl
-                                    };
-                                    needToSearchCards
-                                        .splice(findIndex(needToSearchCards, (c) => card.name === c.doubleName), 1);
-                                }
-                                return mapping;
-                            }, {});
-
                             const unitedDFcards = {
                                 ...shortDoubleFaceInfo,
-                                ...shortSearchedDoubleFaceInfo,
+                                ...getFullCardsInfo(searchedDoubleFacedCards),
                             };
 
-                            // @TODO Duplicate #2 of ended processing.
-                            const compositions = cardsFromSet.map(cardFromSet => {
-                                if (!cardFromSet.manaCost && cardFromSet.types.indexOf('Land') === -1) {
-                                    return null;
-                                }
-                                if (unitedDFcards[cardFromSet.id]) {
-                                    return {
-                                        ...cardFromSet,
-                                        doubleFace: unitedDFcards[cardFromSet.id]
-                                    };
-                                }
-                                return {
-                                    ...cardFromSet
-                                };
-                            });
+                            const compositions = buildDoubleFaceCards(cardsFromSet, unitedDFcards);
 
                             return dispatch(batchActions([
-                                mtgApiTypes.addSetCards(code, compact(compositions)),
+                                mtgApiTypes.addSetCards(code, compositions),
                                 appContextTypes.appCardSetsRequestSuccess(),
                             ]));
-                        });
+                        })
+                        .catch((e) => dispatch(appContextTypes.appCardSetsRequestFailed(e)));
                 }
 
-                // @TODO Duplicate #2 of ended processing.
-                const compositions = cardsFromSet.map(suggest => {
-                    if (!suggest.manaCost && suggest.types.indexOf('Land') === -1) {
-                        return null;
-                    }
-                    if (shortDoubleFaceInfo[suggest.id]) {
-                        return {
-                            ...suggest,
-                            doubleFace: shortDoubleFaceInfo[suggest.id]
-                        };
-                    }
-                    return {
-                        ...suggest
-                    };
-                });
-
                 return dispatch(batchActions([
-                    mtgApiTypes.addSetCards(code, compact(compositions)),
+                    mtgApiTypes.addSetCards(code, buildDoubleFaceCards(cardsFromSet, shortDoubleFaceInfo)),
                     appContextTypes.appCardSetsRequestSuccess(),
                 ]));
             })

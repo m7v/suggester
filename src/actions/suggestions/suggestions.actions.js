@@ -1,8 +1,10 @@
 import { batchActions } from 'redux-batched-actions';
 import uniqBy from 'lodash/uniqBy';
-import compact from 'lodash/compact';
-import findIndex from 'lodash/findIndex';
 import * as types from './suggestions.types';
+import {
+    buildDoubleFaceCards,
+    fullCardsInfoLens
+} from './../../helpers/doubleFacedCards';
 import {
     getSuggestions as requestGetSuggestions,
     getCardsByNames as requestGetCardsByNames,
@@ -39,91 +41,34 @@ export function getSuggestions(query) {
                         doubleName: searched
                     };
                 });
-                // @TODO Algorithm #1. Need to optimize.
-                const shortDoubleFaceInfo = doubleFacedCards.reduce((mapping, card) => {
-                    const [searchCard] = needToSearchCards
-                        .filter(searchedCard => card.name === searchedCard.doubleName);
-
-                    if (searchCard) {
-                        mapping[searchCard.id] = {
-                            id: card.id,
-                            name: card.name,
-                            imageUrl: card.imageUrl
-                        };
-                        needToSearchCards.splice(findIndex(needToSearchCards, (c) => card.name === c.doubleName), 1);
-                    }
-                    return mapping;
-                }, {});
+                const getFullCardsInfo = fullCardsInfoLens(needToSearchCards);
+                const shortDoubleFaceInfo = getFullCardsInfo(doubleFacedCards);
 
                 if (needToSearchCards.length) {
                     return requestGetCardsByNames(needToSearchCards)
                         .then((searchedDoubleFacedCards) => {
-                            // @TODO Duplicate of Algorithm #1
-                            const shortSearchedDoubleFaceInfo = searchedDoubleFacedCards.reduce((mapping, card) => {
-                                const [searchCard] = needToSearchCards
-                                    .filter(searchedCard => card.name === searchedCard.doubleName);
-
-                                if (searchCard) {
-                                    mapping[searchCard.id] = {
-                                        id: card.id,
-                                        name: card.name,
-                                        imageUrl: card.imageUrl
-                                    };
-                                    needToSearchCards
-                                        .splice(findIndex(needToSearchCards, (c) => card.name === c.doubleName), 1);
-                                }
-                                return mapping;
-                            }, {});
-
                             const unitedDFcards = {
                                 ...shortDoubleFaceInfo,
-                                ...shortSearchedDoubleFaceInfo,
+                                ...getFullCardsInfo(searchedDoubleFacedCards),
                             };
 
-                            // @TODO Duplicate #2 of ended processing.
-                            const compositions = suggestions.map(suggest => {
-                                if (!suggest.manaCost && suggest.types.indexOf('Land') === -1) {
-                                    return null;
-                                }
-                                if (unitedDFcards[suggest.id]) {
-                                    return {
-                                        ...suggest,
-                                        doubleFace: unitedDFcards[suggest.id]
-                                    };
-                                }
-                                return {
-                                    ...suggest
-                                };
-                            });
+                            const compositions = buildDoubleFaceCards(suggestions, unitedDFcards);
 
                             return dispatch(batchActions([
                                 types.setQueryString(query.toLowerCase()),
-                                types.cachedSuggestions(query.toLowerCase(), compact(compositions)),
-                                types.getSuggestions(compact(compositions)),
+                                types.cachedSuggestions(query.toLowerCase(), compositions),
+                                types.getSuggestions(compositions),
                                 types.suggestionsRequestSuccess()
                             ]));
-                        });
+                        })
+                        .catch((e) => dispatch(types.suggestionsRequestFailed(e.message)));
                 }
-                // @TODO Duplicate #2 of ended processing.
-                const compositions = suggestions.map(suggest => {
-                    if (!suggest.manaCost && suggest.types.indexOf('Land') === -1) {
-                        return null;
-                    }
-                    if (shortDoubleFaceInfo[suggest.id]) {
-                        return {
-                            ...suggest,
-                            doubleFace: shortDoubleFaceInfo[suggest.id]
-                        };
-                    }
-                    return {
-                        ...suggest
-                    };
-                });
+                const compositions = buildDoubleFaceCards(suggestions, shortDoubleFaceInfo);
 
                 return dispatch(batchActions([
                     types.setQueryString(query.toLowerCase()),
-                    types.cachedSuggestions(query.toLowerCase(), compact(compositions)),
-                    types.getSuggestions(compact(compositions)),
+                    types.cachedSuggestions(query.toLowerCase(), compositions),
+                    types.getSuggestions(compositions),
                     types.suggestionsRequestSuccess()
                 ]));
             })

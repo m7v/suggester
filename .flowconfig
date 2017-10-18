@@ -1,0 +1,14 @@
+[ignore]
+./build/*
+./node_modules/*
+./public/*
+
+[include]
+./src/*
+
+[libs]
+./node_modules/fbjs/flow/lib
+
+[lints]
+
+[options]
