@@ -1,7 +1,7 @@
 .CardGridList__results {
     height: 100vh;
     display: flex;
-    padding: 20px 15vw;
+    padding: 20px 15vw 100px;
     box-sizing: border-box;
     justify-content: space-around;
     flex-wrap: wrap;
