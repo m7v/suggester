@@ -1,10 +1,18 @@
 .NavBar__root {
-    position: absolute;
-    top: 15px;
-    left: 15px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
     z-index: 1;
+    will-change: transform;
 }
 
 .NavBar__icon {
-    padding: 16px 0 !important;
+    padding: 8px 0 !important;
+    min-width: 45px !important;
+}
+
+.NavBar__selectedIcon svg,
+.NavBar__selectedIcon div {
+    color: #d32f2f !important;
+    fill: #d32f2f !important;
 }
