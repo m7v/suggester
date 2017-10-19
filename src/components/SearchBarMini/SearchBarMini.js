@@ -3,6 +3,7 @@ import React from 'react';
 import { func, string } from 'prop-types';
 
 const ENTER_KEY_CODE = 13;
+const MAX_INPUT_LENGTH = 30;
 
 class SearchBarMini extends React.PureComponent {
 
@@ -18,6 +19,12 @@ class SearchBarMini extends React.PureComponent {
 
     onCardChange = event => {
         this.setState({ searchingCard: event.target.value });
+    };
+
+    onFocusInput = () => {
+        setTimeout(() => {
+            this.searchInput.selectionStart = this.searchInput.selectionEnd = 10000;
+        }, 0);
     };
 
     onSearchCardByKeyPress = event => {
@@ -41,9 +48,11 @@ class SearchBarMini extends React.PureComponent {
                     className="SearchBarMini__input"
                     type="search"
                     value={this.state.searchingCard}
+                    maxLength={MAX_INPUT_LENGTH}
                     placeholder="Search"
                     onChange={this.onCardChange}
                     onKeyDown={this.onSearchCardByKeyPress}
+                    onFocus={this.onFocusInput}
                 />
             </div>
         );
