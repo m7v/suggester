@@ -2,6 +2,7 @@ import './Suggester.css';
 import React from 'react';
 import { connect } from 'react-redux';
 import { bool, string, func, shape, arrayOf } from 'prop-types';
+import last from 'lodash/last';
 import Loader from '../../components/Loader';
 import SearchBarMini from '../../components/SearchBarMini';
 import { mapDispatchToProps } from './connect/dispatchToProps';
@@ -9,7 +10,7 @@ import { mapStateToProps } from './connect/stateToProps';
 import asyncComponent from '../Async';
 const CardGridList = asyncComponent(() => import('../../components/CardGridList'));
 
-class Suggester extends React.Component {
+class Suggester extends React.PureComponent {
 
     componentWillMount() {
         if (this.props.searchingCard) {
@@ -17,13 +18,20 @@ class Suggester extends React.Component {
         }
     }
 
+    componentWillUpdate() {
+        const searchedCard = last(window.location.hash.split('?q='));
+        if (searchedCard) {
+            this.props.getSuggestions(searchedCard);
+        }
+    }
+
     handleSearchCardByKeyPress = (searchingCard) => {
         if (!this.props.loading) {
             this.props.getSuggestions(searchingCard);
         }
-        this.props.history.replace(
-            `${this.props.history.location.pathname}?q=${searchingCard}`,
-        );
+        if (window.location.search.indexOf(this.props.searchingCard) < 0) {
+            this.props.history.push(`${this.props.history.location.pathname}?q=${searchingCard}`);
+        }
     };
 
     render() {
