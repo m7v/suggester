@@ -1,170 +1,107 @@
-.Loader__root,
-.Loader__root > div {
+.Loader,
+.Loader > div {
     position: relative;
     box-sizing: border-box;
 }
-.Loader__root {
+.Loader {
     display: block;
     font-size: 0;
-    color: #d32f2f;
+    color: #fff;
 }
 
-.Loader__root > div {
+.Loader > div {
     display: inline-block;
     float: none;
     background-color: currentColor;
     border: 0 solid currentColor;
 }
 
-.Loader__root > div:nth-child(1),
-.Loader__root > div:nth-child(2) {
-    position: absolute;
-    left: 0;
+.Loader > div {
     width: 100%;
-}
-.Loader__root > div:nth-child(1) {
-    top: -25%;
-    z-index: 1;
     height: 100%;
-    border-radius: 10%;
-    animation: square-jelly-box-animate .6s -.1s linear infinite;
-}
-.Loader__root > div:nth-child(2) {
-    bottom: -9%;
-    height: 10%;
-    background: #000;
-    border-radius: 50%;
-    opacity: .2;
-    animation: square-jelly-box-shadow .6s -.1s linear infinite;
+    border-radius: 0;
+    animation: square-spin 3s 0s cubic-bezier(.09, .57, .49, .9) infinite;
 }
 
-.Loader__root {
-    width: 64px;
-    height: 64px;
+.Loader {
+    width: 60px;
+    height: 80px;
+    border-radius: 4px;
+}
+
+.Loader > div {
+    background: #382d14 url(./assets/default-card.png) no-repeat;
+    background-size: 60px 80px;
 }
 
 /*
- * Animations
+ * Animation
  */
-@-webkit-keyframes square-jelly-box-animate {
-    17% {
-        border-bottom-right-radius: 10%;
+@-webkit-keyframes square-spin {
+    0% {
+        transform: perspective(100px) rotateX(0) rotateY(0);
     }
     25% {
-        -webkit-transform: translateY(25%) rotate(22.5deg);
-        transform: translateY(25%) rotate(22.5deg);
+        transform: perspective(100px) rotateX(180deg) rotateY(0);
     }
     50% {
-        border-bottom-right-radius: 100%;
-        -webkit-transform: translateY(50%) scale(1, .9) rotate(45deg);
-        transform: translateY(50%) scale(1, .9) rotate(45deg);
+        transform: perspective(100px) rotateX(180deg) rotateY(180deg);
     }
     75% {
-        -webkit-transform: translateY(25%) rotate(67.5deg);
-        transform: translateY(25%) rotate(67.5deg);
+        transform: perspective(100px) rotateX(0) rotateY(180deg);
     }
     100% {
-        -webkit-transform: translateY(0) rotate(90deg);
-        transform: translateY(0) rotate(90deg);
+        transform: perspective(100px) rotateX(0) rotateY(360deg);
     }
 }
-@-moz-keyframes square-jelly-box-animate {
-    17% {
-        border-bottom-right-radius: 10%;
+@-moz-keyframes square-spin {
+    0% {
+        transform: perspective(100px) rotateX(0) rotateY(0);
     }
     25% {
-        -moz-transform: translateY(25%) rotate(22.5deg);
-        transform: translateY(25%) rotate(22.5deg);
+        transform: perspective(100px) rotateX(180deg) rotateY(0);
     }
     50% {
-        border-bottom-right-radius: 100%;
-        -moz-transform: translateY(50%) scale(1, .9) rotate(45deg);
-        transform: translateY(50%) scale(1, .9) rotate(45deg);
+        transform: perspective(100px) rotateX(180deg) rotateY(180deg);
     }
     75% {
-        -moz-transform: translateY(25%) rotate(67.5deg);
-        transform: translateY(25%) rotate(67.5deg);
+        transform: perspective(100px) rotateX(0) rotateY(180deg);
     }
     100% {
-        -moz-transform: translateY(0) rotate(90deg);
-        transform: translateY(0) rotate(90deg);
+        transform: perspective(100px) rotateX(0) rotateY(360deg);
     }
 }
-@-o-keyframes square-jelly-box-animate {
-    17% {
-        border-bottom-right-radius: 10%;
+@-o-keyframes square-spin {
+    0% {
+        transform: perspective(100px) rotateX(0) rotateY(0);
     }
     25% {
-        -o-transform: translateY(25%) rotate(22.5deg);
-        transform: translateY(25%) rotate(22.5deg);
+        transform: perspective(100px) rotateX(180deg) rotateY(0);
     }
     50% {
-        border-bottom-right-radius: 100%;
-        -o-transform: translateY(50%) scale(1, .9) rotate(45deg);
-        transform: translateY(50%) scale(1, .9) rotate(45deg);
+        transform: perspective(100px) rotateX(180deg) rotateY(180deg);
     }
     75% {
-        -o-transform: translateY(25%) rotate(67.5deg);
-        transform: translateY(25%) rotate(67.5deg);
+        transform: perspective(100px) rotateX(0) rotateY(180deg);
     }
     100% {
-        -o-transform: translateY(0) rotate(90deg);
-        transform: translateY(0) rotate(90deg);
+        transform: perspective(100px) rotateX(0) rotateY(360deg);
     }
 }
-@keyframes square-jelly-box-animate {
-    17% {
-        border-bottom-right-radius: 10%;
+@keyframes square-spin {
+    0% {
+        transform: perspective(100px) rotateX(0) rotateY(0);
     }
     25% {
-        -webkit-transform: translateY(25%) rotate(22.5deg);
-        -moz-transform: translateY(25%) rotate(22.5deg);
-        -o-transform: translateY(25%) rotate(22.5deg);
-        transform: translateY(25%) rotate(22.5deg);
+        transform: perspective(100px) rotateX(180deg) rotateY(0);
     }
     50% {
-        border-bottom-right-radius: 100%;
-        -webkit-transform: translateY(50%) scale(1, .9) rotate(45deg);
-        -moz-transform: translateY(50%) scale(1, .9) rotate(45deg);
-        -o-transform: translateY(50%) scale(1, .9) rotate(45deg);
-        transform: translateY(50%) scale(1, .9) rotate(45deg);
+        transform: perspective(100px) rotateX(180deg) rotateY(180deg);
     }
     75% {
-        -webkit-transform: translateY(25%) rotate(67.5deg);
-        -moz-transform: translateY(25%) rotate(67.5deg);
-        -o-transform: translateY(25%) rotate(67.5deg);
-        transform: translateY(25%) rotate(67.5deg);
+        transform: perspective(100px) rotateX(0) rotateY(180deg);
     }
     100% {
-        -webkit-transform: translateY(0) rotate(90deg);
-        -moz-transform: translateY(0) rotate(90deg);
-        -o-transform: translateY(0) rotate(90deg);
-        transform: translateY(0) rotate(90deg);
-    }
-}
-@-webkit-keyframes square-jelly-box-shadow {
-    50% {
-        -webkit-transform: scale(1.25, 1);
-        transform: scale(1.25, 1);
-    }
-}
-@-moz-keyframes square-jelly-box-shadow {
-    50% {
-        -moz-transform: scale(1.25, 1);
-        transform: scale(1.25, 1);
-    }
-}
-@-o-keyframes square-jelly-box-shadow {
-    50% {
-        -o-transform: scale(1.25, 1);
-        transform: scale(1.25, 1);
-    }
-}
-@keyframes square-jelly-box-shadow {
-    50% {
-        -webkit-transform: scale(1.25, 1);
-        -moz-transform: scale(1.25, 1);
-        -o-transform: scale(1.25, 1);
-        transform: scale(1.25, 1);
+        transform: perspective(100px) rotateX(0) rotateY(360deg);
     }
 }

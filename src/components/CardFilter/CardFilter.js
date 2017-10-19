@@ -6,8 +6,7 @@ import map from 'lodash/map';
 import compact from 'lodash/compact';
 import debounce from 'lodash/debounce';
 import IconButton from 'material-ui/IconButton';
-import FontIcon from 'material-ui/FontIcon';
-import IconFilter from 'material-ui/svg-icons/content/filter-list';
+import IconFilter from 'material-ui-icons/FilterList';
 import Drawer from 'material-ui/Drawer';
 
 const manaMap = {
@@ -68,7 +67,7 @@ class CardFilter extends React.PureComponent {
                 className="CardFilter__icon"
                 onClick={debounce(this.appSetTypeFilter(cardType), 100)}
             >
-                <FontIcon className={iconClass} />
+                <div className={iconClass} />
             </IconButton>
         );
     });
@@ -83,7 +82,7 @@ class CardFilter extends React.PureComponent {
 
         return (
             <IconButton key={color} className="CardFilter__icon" onClick={debounce(this.appSetColorFilter(color), 100)}>
-                <FontIcon className={iconClass} />
+                <div className={iconClass} />
             </IconButton>
         );
     });
@@ -104,24 +103,19 @@ class CardFilter extends React.PureComponent {
                     <IconFilter />
                 </IconButton>
                 <Drawer
-                    docked={false}
-                    width={320}
+                    anchor='top'
                     open={this.state.open}
-                    onRequestChange={(open) => this.setState({open})}
-                    swipeAreaWidth={10}
-                    openSecondary
+                    onRequestClose={this.handleToggle}
                 >
                     <div className="CardFilter__inputWrapper">
-                        <section>
-                            <div className="CardFilter__form">
-                                <div className="CardFilter__inputManaFilter">
-                                    { this.renderColorFilter(manaMap) }
-                                </div>
-                                <div className="CardFilter__inputTypeFilter">
-                                    { this.renderTypeFilter(typesMap) }
-                                </div>
+                        <div className="CardFilter__form">
+                            <div className="CardFilter__inputManaFilter">
+                                { this.renderColorFilter(manaMap) }
                             </div>
-                        </section>
+                            <div className="CardFilter__inputTypeFilter">
+                                { this.renderTypeFilter(typesMap) }
+                            </div>
+                        </div>
                     </div>
                 </Drawer>
             </div>

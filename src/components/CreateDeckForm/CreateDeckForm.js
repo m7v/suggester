@@ -1,9 +1,12 @@
 import React from 'react';
 import { string, func } from 'prop-types';
 import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
-import FlatButton from 'material-ui/FlatButton';
-import { Step, Stepper, StepLabel } from 'material-ui/Stepper';
+import Button from 'material-ui/Button';
+import Paper from 'material-ui/Paper';
+import Typography from 'material-ui/Typography';
+import MobileStepper from 'material-ui/MobileStepper';
+import KeyboardArrowLeft from 'material-ui-icons/KeyboardArrowLeft';
+import KeyboardArrowRight from 'material-ui-icons/KeyboardArrowRight';
 
 export default class CreateDeckForm extends React.Component {
 
@@ -14,6 +17,19 @@ export default class CreateDeckForm extends React.Component {
             finished: false
         };
     }
+
+    getStepHeader = () => {
+        switch (this.state.stepIndex) {
+            case 0:
+                return 'Added Decklist';
+            case 1:
+                return 'Enter the name';
+            case 2:
+                return 'Confirm creation';
+            default:
+                return 'No label';
+        }
+    };
 
     getStepContent = () => {
         switch (this.state.stepIndex) {
@@ -92,42 +108,30 @@ export default class CreateDeckForm extends React.Component {
     };
 
     render() {
-        const { stepIndex, finished } = this.state;
-
         return (
             <div>
-                <Stepper activeStep={stepIndex} orientation="vertical">
-                    <Step>
-                        <StepLabel>Added Decklist</StepLabel>
-                    </Step>
-                    <Step>
-                        <StepLabel>Enter the name</StepLabel>
-                    </Step>
-                    <Step>
-                        <StepLabel>Confirm creation</StepLabel>
-                    </Step>
-                </Stepper>
-                <div>
-                    {!finished &&
-                        <div>
-                            <div>{this.getStepContent()}</div>
-                            <div style={{ marginTop: 12 }}>
-                                <FlatButton
-                                    label="Back"
-                                    disabled={stepIndex === 0}
-                                    onClick={this.handlePrev}
-                                    style={{ marginRight: 12 }}
-                                />
-                                <RaisedButton
-                                    disabled={this.isDisabled()}
-                                    label={this.getButtonLabel()}
-                                    primary
-                                    onClick={this.handleStepAction()}
-                                />
-                            </div>
-                        </div>
+                <Paper square elevation={0} className="">
+                    <Typography>{this.getStepHeader()}</Typography>
+                </Paper>
+                <div>{this.getStepContent()}</div>
+                <MobileStepper
+                    type="progress"
+                    steps={6}
+                    position="static"
+                    activeStep={this.state.activeStep}
+                    nextButton={
+                        <Button dense onClick={this.handleStepAction()} disabled={this.state.activeStep === 5}>
+                            Next
+                            <KeyboardArrowRight />
+                        </Button>
                     }
-                </div>
+                    backButton={
+                        <Button dense onClick={this.handlePrev} disabled={this.state.activeStep === 0}>
+                            <KeyboardArrowLeft />
+                            Back
+                        </Button>
+                    }
+                />
             </div>
         );
     }
