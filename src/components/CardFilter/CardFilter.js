@@ -3,6 +3,7 @@ import React from 'react';
 import { func, shape, string } from 'prop-types';
 import classNames from 'classnames';
 import map from 'lodash/map';
+import compact from 'lodash/compact';
 import debounce from 'lodash/debounce';
 import IconButton from 'material-ui/IconButton';
 import FontIcon from 'material-ui/FontIcon';
@@ -89,11 +90,17 @@ class CardFilter extends React.PureComponent {
 
 
     render() {
-        const className = this.props.className || 'CardFilter__root';
+        const { colors, types, className } = this.props;
+        const hasColorFilter = compact(Object.values(colors)).length;
+        const hasTypeFilter = compact(Object.values(types)).length;
+        const iconStyle = classNames({
+            'CardFilter__icon': true,
+            '_active': hasColorFilter || hasTypeFilter
+        });
 
         return (
-            <div className={className}>
-                <IconButton className="CardFilter__icon" onClick={this.handleToggle}>
+            <div className={className || 'CardFilter__root'}>
+                <IconButton className={iconStyle} onClick={this.handleToggle}>
                     <IconFilter />
                 </IconButton>
                 <Drawer

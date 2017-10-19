@@ -13,6 +13,10 @@
     padding: 9px !important;
 }
 
+.CardFilter__icon._active svg {
+    color: #d32f2f !important;
+}
+
 .CardFilter__mana-r {
     color: #D32F2F !important;
 }
