@@ -1,6 +1,7 @@
 import './NavBar.css';
 import React from 'react';
 import BottomNavigation, { BottomNavigationButton } from 'material-ui/BottomNavigation';
+import { shape } from 'prop-types';
 import withRouter from 'react-router-dom/withRouter';
 import classNames from 'classnames';
 import Paper from 'material-ui/Paper';
@@ -44,27 +45,12 @@ const navbarConfig = [
     }
 ];
 
-const BottomRouteNavigationButton = withRouter(({ history, className, label, icon, path, handleClick }) => (
-    <BottomNavigationButton
-        className={className}
-        label={label}
-        icon={icon}
-        value={path}
-        onClick={() => {
-            handleClick();
-            if (window.location.hash.indexOf(path) < 0) {
-                history.push(path);
-            }
-        }}
-    />
-));
-
-export default class NavBar extends React.PureComponent {
+class NavBar extends React.PureComponent {
 
     state = {
         // @TODO need for BrowserRouter
-        // selectedNav: navbarConfig.findIndex(item => window.location.pathname.indexOf(item.path) !== -1)
-        selectedNav: window.location.hash.split('#')[1]
+        selectedNav: navbarConfig.findIndex(item => window.location.pathname.indexOf(item.path) !== -1)
+        // selectedNav: window.location.hash.split('#')[1]
     };
 
     getClassName = (index) =>
@@ -76,12 +62,17 @@ export default class NavBar extends React.PureComponent {
 
     renderNavigationLinks() {
         return navbarConfig.map((item, index) => (
-            <BottomRouteNavigationButton
+            <BottomNavigationButton
                 key={item.path}
                 label={item.label}
                 icon={item.icon}
-                path={item.path}
-                handleClick={() => this.setState({ selectedNav: index })}
+                value={index}
+                onClick={() => {
+                    this.setState({ selectedNav: index });
+                    if (window.location.hash.indexOf(item.path) < 0) {
+                        this.props.history.push(item.path);
+                    }
+                }}
             />
         ));
     }
@@ -96,3 +87,9 @@ export default class NavBar extends React.PureComponent {
         );
     }
 }
+
+NavBar.propTypes = {
+    history: shape({}).isRequired,
+};
+
+export default withRouter(NavBar);

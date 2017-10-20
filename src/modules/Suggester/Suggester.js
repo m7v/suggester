@@ -2,7 +2,7 @@ import './Suggester.css';
 import React from 'react';
 import { connect } from 'react-redux';
 import { bool, string, func, shape, arrayOf } from 'prop-types';
-import last from 'lodash/last';
+// import last from 'lodash/last';
 import Loader from '../../components/Loader';
 import SearchBarMini from '../../components/SearchBarMini';
 import { mapDispatchToProps } from './connect/dispatchToProps';
@@ -18,12 +18,12 @@ class Suggester extends React.PureComponent {
         }
     }
 
-    componentWillUpdate() {
-        const searchedCard = last(window.location.hash.split('?q='));
-        if (searchedCard) {
-            this.props.getSuggestions(searchedCard);
-        }
-    }
+    // componentWillUpdate(nextProps) {
+        // const searchedCard = last(window.location.hash.split('?q='));
+        // if (!nextProps.loading && searchedCard && this.props.searchingCard !== nextProps.searchingCard) {
+        //     nextProps.getSuggestions(searchedCard);
+        // }
+    // }
 
     handleSearchCardByKeyPress = (searchingCard) => {
         if (!this.props.loading) {
