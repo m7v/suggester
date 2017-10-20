@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
+import red from 'material-ui/colors/red';
 import store from './store';
 import Root from './modules/Root/container';
 
@@ -12,6 +13,7 @@ injectTapEventPlugin();
 const muiTheme = createMuiTheme({
     palette: {
         type: 'dark',
+        primary: red,
     },
 });
 
