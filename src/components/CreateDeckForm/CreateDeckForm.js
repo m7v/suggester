@@ -1,3 +1,4 @@
+import './CreateDeckForm.css';
 import React from 'react';
 import { string, func } from 'prop-types';
 import TextField from 'material-ui/TextField';
@@ -27,7 +28,7 @@ export default class CreateDeckForm extends React.Component {
             case 2:
                 return 'Confirm creation';
             default:
-                return 'No label';
+                return 'Deck is created';
         }
     };
 
@@ -39,12 +40,14 @@ export default class CreateDeckForm extends React.Component {
                         <div className="Decks__form">
                             <div className="Decks__input">
                                 <TextField
-                                    hintText="Insert decklist"
-                                    floatingLabelText="Decklist"
+                                    id="multiline-static"
+                                    rows="16"
+                                    defaultValue="Default Value"
+                                    margin="normal"
+                                    multiline
+                                    label="Enter Deck list"
                                     value={this.props.draftDeck}
                                     onChange={this.props.handleDeckListChange}
-                                    multiLine
-                                    rows={10}
                                 />
                             </div>
                         </div>
@@ -56,8 +59,8 @@ export default class CreateDeckForm extends React.Component {
                         <div className="Decks__form">
                             <div className="Decks__input">
                                 <TextField
-                                    hintText="Enter title"
-                                    floatingLabelText="Title of deck"
+                                    margin="normal"
+                                    label="Enter deck's title"
                                     value={this.props.deckTitle}
                                     onChange={this.props.handleDeckTitleChange}
                                 />
@@ -68,7 +71,7 @@ export default class CreateDeckForm extends React.Component {
             case 2:
                 return 'This is the bit I really care about!';
             default:
-                return 'You\'re a long way from home sonny jim!';
+                return 'Deck is created';
         }
     };
 
@@ -101,9 +104,9 @@ export default class CreateDeckForm extends React.Component {
         }
     };
 
-    handleSubmitForm = (event) => {
-        event.preventDefault();
-        this.setState({ stepIndex: 0, finished: false });
+    handleSubmitForm = () => {
+        const { stepIndex } = this.state;
+        this.setState({ stepIndex: stepIndex + 1 });
         this.props.handleSubmitForm();
     };
 
@@ -116,17 +119,17 @@ export default class CreateDeckForm extends React.Component {
                 <div>{this.getStepContent()}</div>
                 <MobileStepper
                     type="progress"
-                    steps={6}
-                    position="static"
-                    activeStep={this.state.activeStep}
+                    steps={3}
+                    className="CreateDeckForm__stepper"
+                    activeStep={this.state.stepIndex}
                     nextButton={
-                        <Button dense onClick={this.handleStepAction()} disabled={this.state.activeStep === 5}>
+                        <Button dense onClick={this.handleStepAction()} disabled={this.state.stepIndex === 3}>
                             Next
                             <KeyboardArrowRight />
                         </Button>
                     }
                     backButton={
-                        <Button dense onClick={this.handlePrev} disabled={this.state.activeStep === 0}>
+                        <Button dense onClick={this.handlePrev} disabled={this.state.stepIndex === 0}>
                             <KeyboardArrowLeft />
                             Back
                         </Button>

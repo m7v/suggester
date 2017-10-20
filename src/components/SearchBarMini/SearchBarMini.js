@@ -3,6 +3,7 @@ import React from 'react';
 import { func, string } from 'prop-types';
 
 const ENTER_KEY_CODE = 13;
+const ESC_KEY_CODE = 27;
 const MAX_INPUT_LENGTH = 30;
 
 class SearchBarMini extends React.PureComponent {
@@ -28,6 +29,10 @@ class SearchBarMini extends React.PureComponent {
     };
 
     onSearchCardByKeyPress = event => {
+        if (event.keyCode === ESC_KEY_CODE) {
+            event.preventDefault();
+            this.searchInput.blur();
+        }
         if (event.keyCode === ENTER_KEY_CODE) {
             event.preventDefault();
             this.props.handleSearchCardByKeyPress(this.state.searchingCard);

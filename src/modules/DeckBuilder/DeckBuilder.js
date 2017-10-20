@@ -4,6 +4,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { func } from 'prop-types';
 import mtgparser from 'mtg-parser';
+import sum from 'lodash/sum';
 import { dispatchToProps } from './connect/dispatchToProps';
 import { stateToProps } from './connect/stateToProps';
 import CreateDeckForm from '../../components/CreateDeckForm';
@@ -20,8 +21,7 @@ class DeckBuilder extends React.Component {
 
     handleSubmitForm = () => {
         const decklist = mtgparser(this.state.deckList, 'mtgo');
-        console.log('decklist', decklist);
-        if (decklist.cards.length) {
+        if (decklist.cards.length >= 11 && sum(Object.values(decklist.cards))) {
             const deckFormated = decklist.cards.reduce((agg, card) => {
                 agg[card.name] = Number(card.number);
                 return agg;

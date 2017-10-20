@@ -1,1 +1,8 @@
-export const ping = () => next => action => next(action);
+export const ping = () => {
+    return next => {
+        return action => {
+            console.log('Logger', action.type);
+            return next(action);
+        };
+    };
+};
