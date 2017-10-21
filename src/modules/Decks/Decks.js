@@ -69,13 +69,15 @@ class Decks extends React.Component {
                             </div>
                         </div>
                     }
-                    <div className="Decks__deckList">
-                        {decks.map((deck) => (
-                            <LazyLoad key={deck.id} height={355} offset={100}>
-                                <Deck deck={deck} mode={isMobile ? 'short' : 'full'} />
-                            </LazyLoad>
-                        ))}
-                    </div>
+                    {!loading &&
+                        <div className="Decks__deckList">
+                            {decks.map((deck) => (
+                                <LazyLoad key={deck.id} height={355} offset={100}>
+                                    <Deck deck={deck} mode={isMobile ? 'short' : 'full'} />
+                                </LazyLoad>
+                            ))}
+                        </div>
+                    }
                 </div>
             </section>
         );
