@@ -126,7 +126,7 @@ class CardInfo extends React.Component {
         <div className="CardInfo__container">
             <div className="CardInfo__card">
                 <Card card={card} needForceCheck />
-                <Link className="CardInfo__artist" to={`search?q=${card.artist}`}>
+                <Link className="CardInfo__artist" to={`/search?q=${card.artist}`}>
                     Artist <span className="CardInfo__artistName">{card.artist}</span>
                 </Link>
             </div>
