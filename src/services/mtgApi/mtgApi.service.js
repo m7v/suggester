@@ -93,6 +93,15 @@ const getCardsByName = query =>
  * @param query
  * @returns {Promise}
  */
+const getCardsByArtist = query =>
+    axios.get(`${serverApiUrl}cards?artist=${query}&layout=${layouts}&contains=imageUrl`)
+        .then(response => new Promise(resolve => resolve(response.data)))
+        .catch(() => new Promise((resolve) => resolve([])));
+
+/**
+ * @param query
+ * @returns {Promise}
+ */
 const getCardsByFlavor = query =>
     axios.get(`${serverApiUrl}cards?flavor=${query}&layout=${layouts}&contains=imageUrl`)
         .then(response => new Promise(resolve => resolve(response.data)))
@@ -210,6 +219,7 @@ export const getSetCardsByCode = (code) => {
 export const getSuggestions = (query) => {
     const queries = [
         getCardsByName(query),
+        getCardsByArtist(query),
         getCardsByFlavor(query),
         getCardsByText(query),
         getCardsBySubtype(query)

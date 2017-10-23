@@ -9,7 +9,7 @@ import MobileStepper from 'material-ui/MobileStepper';
 import KeyboardArrowLeft from 'material-ui-icons/KeyboardArrowLeft';
 import KeyboardArrowRight from 'material-ui-icons/KeyboardArrowRight';
 
-export default class CreateDeckForm extends React.Component {
+export default class CreateDeckForm extends React.PureComponent {
 
     constructor(props) {
         super(props);

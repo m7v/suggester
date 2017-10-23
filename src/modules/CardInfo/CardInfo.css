@@ -67,6 +67,8 @@
     line-height: 16px;
     text-transform: uppercase;
     text-align: center;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .CardInfo__artistName {

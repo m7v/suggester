@@ -24,7 +24,7 @@ const CardInfo = asyncComponent(() => import('../CardInfo/container'));
 const CardSets = asyncComponent(() => import('../CardSets/container'));
 const CardSet = asyncComponent(() => import('../CardSet/container'));
 
-class Root extends React.Component {
+class Root extends React.PureComponent {
 
     componentWillMount() {
         this.props.appInitialized();

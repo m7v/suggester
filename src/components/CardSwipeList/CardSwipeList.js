@@ -7,7 +7,7 @@ import SimpleCard from '../SimpleCard';
 
 const Views = virtualize(SwipeableViews);
 
-export default class CardSwipeList extends React.Component {
+export default class CardSwipeList extends React.PureComponent {
 
     cardRenderer = ({ key }) => {
         let index;

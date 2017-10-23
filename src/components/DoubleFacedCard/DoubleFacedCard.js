@@ -7,7 +7,7 @@ import LazyLoad, { forceCheck } from 'react-lazyload';
 import { shape, bool } from 'prop-types';
 import DefaultCard from '../DefaultCard';
 
-class DoubleFacedCard extends React.Component {
+class DoubleFacedCard extends React.PureComponent {
 
     state = {
         isFlipped: false

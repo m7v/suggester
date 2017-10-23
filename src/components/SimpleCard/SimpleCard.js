@@ -5,7 +5,7 @@ import LazyLoad, { forceCheck } from 'react-lazyload';
 import { shape, bool } from 'prop-types';
 import DefaultCard from '../DefaultCard';
 
-class SimpleCard extends React.Component {
+class SimpleCard extends React.PureComponent {
 
     componentDidUpdate() {
         if (this.props.needForceCheck) {

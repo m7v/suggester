@@ -16,7 +16,7 @@ const manaMap = {
     blue: 'u',
 };
 
-class Deck extends React.Component {
+class Deck extends React.PureComponent {
 
     render() {
         const { deck, mode } = this.props;

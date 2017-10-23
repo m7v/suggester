@@ -126,9 +126,9 @@ class CardInfo extends React.Component {
         <div className="CardInfo__container">
             <div className="CardInfo__card">
                 <Card card={card} needForceCheck />
-                <div className="CardInfo__artist">
+                <Link className="CardInfo__artist" to={`search?q=${card.artist}`}>
                     Artist <span className="CardInfo__artistName">{card.artist}</span>
-                </div>
+                </Link>
             </div>
             <div className="CardInfo__fullInfo">
                 <div className="CardInfo__title">
@@ -175,9 +175,9 @@ class CardInfo extends React.Component {
                     {card.name}
                 </div>
                 <Card card={card} needForceCheck />
-                <div className="CardInfoMobile__artist">
+                <Link className="CardInfoMobile__artist" to={`/search?q=${card.artist}`}>
                     Artist <span className="CardInfoMobile__artistName">{card.artist}</span>
-                </div>
+                </Link>
                 <div className="CardInfoMobile__details">
                     <div className="CardInfoMobile__type">
                         <div className="CardInfoMobile__detailTitle">Types</div>
