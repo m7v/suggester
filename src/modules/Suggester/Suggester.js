@@ -2,7 +2,6 @@ import './Suggester.css';
 import React from 'react';
 import { connect } from 'react-redux';
 import { bool, string, func, shape, arrayOf } from 'prop-types';
-// import last from 'lodash/last';
 import Loader from '../../components/Loader';
 import SearchBarMini from '../../components/SearchBarMini';
 import { mapDispatchToProps } from './connect/dispatchToProps';
@@ -10,7 +9,7 @@ import { mapStateToProps } from './connect/stateToProps';
 import asyncComponent from '../Async';
 const CardGridList = asyncComponent(() => import('../../components/CardGridList'));
 
-class Suggester extends React.PureComponent {
+class Suggester extends React.Component {
 
     componentWillMount() {
         if (this.props.searchingCard) {
@@ -18,18 +17,19 @@ class Suggester extends React.PureComponent {
         }
     }
 
-    // componentWillUpdate(nextProps) {
-        // const searchedCard = last(window.location.hash.split('?q='));
-        // if (!nextProps.loading && searchedCard && this.props.searchingCard !== nextProps.searchingCard) {
-        //     nextProps.getSuggestions(searchedCard);
-        // }
-    // }
+    shouldComponentUpdate(nextProps) {
+        return this.props.suggestions.length !== nextProps.suggestions;
+    }
+
+    componentWillUpdate(nextProps) {
+        if (!nextProps.loading && this.props.searchingCard !== nextProps.searchingCard) {
+            nextProps.getSuggestions(nextProps.searchingCard);
+        }
+    }
 
     handleSearchCardByKeyPress = (searchingCard) => {
-        if (!this.props.loading) {
-            this.props.getSuggestions(searchingCard);
-        }
-        if (window.location.search.indexOf(this.props.searchingCard) < 0) {
+        if (this.props.searchingCard !== searchingCard && window.location.search.indexOf(searchingCard) < 0) {
+            this.props.setQueryString(searchingCard);
             this.props.history.push(`${this.props.history.location.pathname}?q=${searchingCard}`);
         }
     };
@@ -68,6 +68,7 @@ Suggester.propTypes = {
         imageUrl: string,
     })),
     getSuggestions: func.isRequired,
+    setQueryString: func.isRequired,
 };
 
 Suggester.defaultProps = {

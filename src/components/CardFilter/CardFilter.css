@@ -1,23 +1,14 @@
-.CardFilter__inputWrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.CardFilter__inputManaFilter {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
+.CardFilter__inputWrapper,
+.CardFilter__inputManaFilter,
+.CardFilter__inputRarityFilter,
 .CardFilter__inputTypeFilter {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-
 .CardFilter__type,
+.CardFilter__rarity,
 .CardFilter__mana{
     transition: all 0.25s ease-in-out;
 }

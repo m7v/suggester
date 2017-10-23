@@ -99,6 +99,11 @@
     height: 25px;
 }
 
+.DeckInfo__stat {
+    box-sizing: border-box;
+    padding: 100px 0;
+}
+
 .type {
     width: 15px;
     height: 15px;

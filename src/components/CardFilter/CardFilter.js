@@ -9,6 +9,12 @@ import IconButton from 'material-ui/IconButton';
 import IconFilter from 'material-ui-icons/FilterList';
 import Drawer from 'material-ui/Drawer';
 
+const rarityMap = {
+    common: 'common',
+    uncommon: 'uncommon',
+    rare: 'rare',
+    mythic: 'mythic',
+};
 const manaMap = {
     white: 'w',
     red: 'r',
@@ -26,7 +32,7 @@ const typesMap = {
     land: 'Land',
 };
 
-class CardFilter extends React.PureComponent {
+class CardFilter extends React.Component {
 
     constructor(props) {
         super(props);
@@ -51,6 +57,10 @@ class CardFilter extends React.PureComponent {
 
     appSetTypeFilter = type => () => {
         this.props.appSetTypeFilter({[type]: !this.props.types[type]});
+    };
+
+    appSetRarityFilter = rareType => () => {
+        this.props.appSetRarityFilter({[rareType]: !this.props.rarity[rareType]});
     };
 
     renderTypeFilter = types => map(types, (type, cardType) => {
@@ -87,14 +97,33 @@ class CardFilter extends React.PureComponent {
         );
     });
 
+    renderRarityFilter = rareTypes => map(rareTypes, (type, cardType) => {
+        const iconClass = classNames({
+            'CardFilter__rarity': true,
+            [`ss-${cardType}`]: !!this.props.rarity[cardType],
+            'ss': true,
+            [`ss-${this.props.currentSet}`]: true,
+        });
+        return (
+            <IconButton
+                key={type}
+                className="CardFilter__icon"
+                onClick={debounce(this.appSetRarityFilter(cardType), 100)}
+            >
+                <div className={iconClass} />
+            </IconButton>
+        );
+    });
+
 
     render() {
-        const { colors, types, className } = this.props;
+        const { colors, types, rarity, className } = this.props;
         const hasColorFilter = compact(Object.values(colors)).length;
         const hasTypeFilter = compact(Object.values(types)).length;
+        const hasRarityFilter = compact(Object.values(rarity)).length;
         const iconStyle = classNames({
             'CardFilter__icon': true,
-            '_active': hasColorFilter || hasTypeFilter
+            '_active': hasColorFilter || hasTypeFilter || hasRarityFilter
         });
 
         return (
@@ -115,6 +144,9 @@ class CardFilter extends React.PureComponent {
                             <div className="CardFilter__inputTypeFilter">
                                 { this.renderTypeFilter(typesMap) }
                             </div>
+                            <div className="CardFilter__inputRarityFilter">
+                                { this.renderRarityFilter(rarityMap) }
+                            </div>
                         </div>
                     </div>
                 </Drawer>
@@ -125,15 +157,21 @@ class CardFilter extends React.PureComponent {
 
 CardFilter.propTypes = {
     className: string,
+    currentSet: string,
+    rarity: shape({}),
+    appSetRarityFilter: func,
     colors: shape({}).isRequired,
-    history: shape({}).isRequired,
     types: shape({}).isRequired,
+    history: shape({}).isRequired,
     appSetTypeFilter: func.isRequired,
     appSetColorFilter: func.isRequired,
 };
 
 CardFilter.defaultProps = {
     className: '',
+    currentSet: '',
+    rarity: {},
+    appSetRarityFilter: () => {}
 };
 
 export default CardFilter;

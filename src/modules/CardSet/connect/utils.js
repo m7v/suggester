@@ -1,6 +1,12 @@
 import intersection from 'lodash/intersection';
 import sortBy from 'lodash/sortBy';
 
+const rarityMap = {
+    common: 'Common',
+    uncommon: 'Uncommon',
+    rare: 'Rare',
+    mythic: 'Mythic Rare',
+};
 const colorMap = {
     r: 'Red',
     w: 'White',
@@ -23,6 +29,8 @@ const filters = {
         intersection(card.colors, selectedFilters).length === card.colors.length,
 
     types: selectedFilters => card => !!intersection(card.types, selectedFilters).length,
+
+    rarity: selectedFilters => card => selectedFilters.includes(card.rarity),
 };
 
 const getActiveFilters = mapping => filter => Object.keys(filter)
@@ -31,6 +39,7 @@ const getActiveFilters = mapping => filter => Object.keys(filter)
 
 export const getActiveTypeFilter = getActiveFilters(typesMap);
 export const getActiveColorFilter = getActiveFilters(colorMap);
+export const getActiveRarityFilter = getActiveFilters(rarityMap);
 
 export const createCardFilter = (selectedFilters, property) => cards => {
     if (!cards.length) {

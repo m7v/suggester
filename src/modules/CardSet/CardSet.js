@@ -1,5 +1,4 @@
 import './CardSet.css';
-import 'mana-font/css/mana.min.css';
 import React from 'react';
 import { connect } from 'react-redux';
 import { bool, string, arrayOf, shape, func } from 'prop-types';
@@ -22,11 +21,14 @@ class CardSet extends React.Component {
             <section className="CardSet">
                 <CardFilter
                     className={'CardSet__filter'}
+                    currentSet={this.props.code}
+                    rarity={this.props.rarity}
                     types={this.props.types}
                     colors={this.props.colors}
                     history={this.props.history}
                     appSetTypeFilter={this.props.appSetCardSetTypeFilter}
                     appSetColorFilter={this.props.appSetCardSetColorFilter}
+                    appSetRarityFilter={this.props.appSetCardSetRarityFilter}
                 />
                 <div className="CardSet__main">
                     {!this.props.loading &&
@@ -48,12 +50,14 @@ class CardSet extends React.Component {
 CardSet.propTypes = {
     code: string.isRequired,
     history: shape({}).isRequired,
+    rarity: shape({}).isRequired,
     colors: shape({}).isRequired,
     types: shape({}).isRequired,
     cards: arrayOf(shape({})).isRequired,
     getSetCardsByCode: func.isRequired,
     appSetCardSetTypeFilter: func.isRequired,
     appSetCardSetColorFilter: func.isRequired,
+    appSetCardSetRarityFilter: func.isRequired,
     loading: bool,
 };
 

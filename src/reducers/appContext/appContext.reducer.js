@@ -2,8 +2,10 @@ import {
     APP_CONTEXT_INITIALIZED,
     APP_SET_CARDS_COLORS_FILTERS,
     APP_SET_CARDS_TYPES_FILTERS,
+    APP_SET_CARDS_RARITY_FILTERS,
     APP_SET_CARDSET_COLORS_FILTERS,
     APP_SET_CARDSET_TYPES_FILTERS,
+    APP_SET_CARDSET_RARITY_FILTERS,
     APP_CARDS_REQUEST_STARTED,
     APP_CARDS_REQUEST_FAILED,
     APP_CARDS_REQUEST_SUCCESS,
@@ -62,6 +64,22 @@ function appSetTypeFilter(state, types) {
     };
 }
 
+function appSetRarityFilter(state, rarity) {
+    return {
+        ...state,
+        Cards: {
+            ...state.Cards,
+            filters: {
+                ...state.Cards.filters,
+                rarity: {
+                    ...state.Cards.filters.rarity,
+                    ...rarity
+                }
+            }
+        }
+    };
+}
+
 function appSetCardSetColorFilter(state, colors) {
     return {
         ...state,
@@ -72,6 +90,22 @@ function appSetCardSetColorFilter(state, colors) {
                 colors: {
                     ...state.CardSets.filters.colors,
                     ...colors
+                }
+            }
+        }
+    };
+}
+
+function appSetCardSetRariryFilter(state, rarity) {
+    return {
+        ...state,
+        CardSets: {
+            ...state.CardSets,
+            filters: {
+                ...state.CardSets.filters,
+                rarity: {
+                    ...state.CardSets.filters.rarity,
+                    ...rarity
                 }
             }
         }
@@ -263,8 +297,12 @@ export default (state = {}, action) => {
             return appInitialized(state);
         case APP_SET_CARDS_COLORS_FILTERS:
             return appSetColorFilter(state, action.payload.colors);
+        case APP_SET_CARDS_RARITY_FILTERS:
+            return appSetRarityFilter(state, action.payload.rarity);
         case APP_SET_CARDS_TYPES_FILTERS:
             return appSetTypeFilter(state, action.payload.types);
+        case APP_SET_CARDSET_RARITY_FILTERS:
+            return appSetCardSetRariryFilter(state, action.payload.rarity);
         case APP_SET_CARDSET_COLORS_FILTERS:
             return appSetCardSetColorFilter(state, action.payload.colors);
         case APP_SET_CARDSET_TYPES_FILTERS:

@@ -4,13 +4,15 @@ import {
 } from '../../../actions/deckBuilder/deckBuilder.actions';
 import {
     appSetColorFilter,
-    appSetTypeFilter
+    appSetTypeFilter,
+    appSetRarityFilter
 } from '../../../actions/appContext/appContext.actions';
 
 export function dispatchToProps(dispatch) {
     return bindActionCreators({
         getCardList,
         appSetColorFilter,
-        appSetTypeFilter
+        appSetTypeFilter,
+        appSetRarityFilter
     }, dispatch);
 }

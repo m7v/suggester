@@ -1,4 +1,6 @@
 import './Root.css';
+import 'mana-font/css/mana.min.css';
+import 'keyrune/css/keyrune.min.css';
 import React from 'react';
 import { connect } from 'react-redux';
 import Loader from '../../components/Loader';
@@ -28,6 +30,10 @@ class Root extends React.PureComponent {
 
     componentWillMount() {
         this.props.appInitialized();
+    }
+
+    shouldComponentUpdate(nextProps) {
+        return this.props.isInitial !== nextProps.isInitial;
     }
 
     render() {

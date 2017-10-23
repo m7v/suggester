@@ -1,5 +1,4 @@
 import './DeckBuilder.css';
-import 'mana-font/css/mana.min.css';
 import React from 'react';
 import { connect } from 'react-redux';
 import { func } from 'prop-types';

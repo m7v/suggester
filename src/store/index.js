@@ -48,6 +48,12 @@ const initialState = {
             error: false,
             filters: {
                 name: '',
+                rarity: {
+                    common: false,
+                    uncommon: false,
+                    rare: false,
+                    mythic: false,
+                },
                 colors: {
                     w: !!colorFilter && !!colorFilter.w,
                     u: !!colorFilter && !!colorFilter.u,
@@ -70,6 +76,12 @@ const initialState = {
             data: {},
             filters: {
                 name: '',
+                rarity: {
+                    common: false,
+                    uncommon: false,
+                    rare: false,
+                    mythic: false,
+                },
                 colors: {
                     w: !!colorFilter && !!colorFilter.w,
                     u: !!colorFilter && !!colorFilter.u,

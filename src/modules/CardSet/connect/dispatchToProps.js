@@ -4,13 +4,15 @@ import {
 } from '../../../actions/mtgApi/mtgApi.actions';
 import {
     appSetCardSetColorFilter,
-    appSetCardSetTypeFilter
+    appSetCardSetTypeFilter,
+    appSetCardSetRarityFilter
 } from '../../../actions/appContext/appContext.actions';
 
 export default function dispatchToProps(dispatch) {
     return bindActionCreators({
         getSetCardsByCode,
         appSetCardSetColorFilter,
-        appSetCardSetTypeFilter
+        appSetCardSetTypeFilter,
+        appSetCardSetRarityFilter
     }, dispatch);
 }

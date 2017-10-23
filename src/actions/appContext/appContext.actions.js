@@ -16,10 +16,18 @@ export function appSetTypeFilter(cardTypes) {
 }
 
 
+export function appSetRarityFilter(cardRarity) {
+    return dispatch => dispatch(types.appSetRarityFilter(cardRarity));
+}
+
 export function appSetCardSetColorFilter(colors) {
     return dispatch => dispatch(types.appSetCardSetColorFilter(colors));
 }
 
 export function appSetCardSetTypeFilter(cardTypes) {
     return dispatch => dispatch(types.appSetCardSetTypeFilter(cardTypes));
+}
+
+export function appSetCardSetRarityFilter(cardRarity) {
+    return dispatch => dispatch(types.appSetCardSetRarityFilter(cardRarity));
 }

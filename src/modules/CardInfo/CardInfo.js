@@ -1,7 +1,5 @@
 import './CardInfo.css';
 import './CardInfoMobile.css';
-import 'mana-font/css/mana.min.css';
-import 'keyrune/css/keyrune.min.css';
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -82,6 +80,8 @@ class CardInfo extends React.Component {
 
     createRegExp = (search) => {
         switch (search) {
+            case '{P}':
+            case '{E}':
             case '{W}':
             case '{R}':
             case '{B}':

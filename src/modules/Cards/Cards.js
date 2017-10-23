@@ -1,5 +1,4 @@
 import './Cards.css';
-import 'mana-font/css/mana.min.css';
 import React from 'react';
 import { connect } from 'react-redux';
 import { bool, func, shape, arrayOf } from 'prop-types';
@@ -22,10 +21,12 @@ class Cards extends React.PureComponent {
                 <CardFilter
                     className={'Cards__filter'}
                     types={this.props.types}
+                    rarity={this.props.rarity}
                     colors={this.props.colors}
                     history={this.props.history}
                     appSetTypeFilter={this.props.appSetTypeFilter}
                     appSetColorFilter={this.props.appSetColorFilter}
+                    appSetRarityFilter={this.props.appSetRarityFilter}
                 />
                 <div className="Cards__main">
                     {!this.props.loading &&
@@ -46,12 +47,14 @@ class Cards extends React.PureComponent {
 
 Cards.propTypes = {
     cards: arrayOf(shape({})).isRequired,
+    rarity: shape({}).isRequired,
     colors: shape({}).isRequired,
     history: shape({}).isRequired,
     types: shape({}).isRequired,
     loading: bool,
     getCardList: func.isRequired,
     appSetTypeFilter: func.isRequired,
+    appSetRarityFilter: func.isRequired,
     appSetColorFilter: func.isRequired,
 };
 

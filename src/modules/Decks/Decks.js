@@ -1,5 +1,4 @@
 import './Decks.css';
-import 'mana-font/css/mana.min.css';
 import React from 'react';
 import { connect } from 'react-redux';
 import { bool, shape, string, arrayOf, func } from 'prop-types';
@@ -12,50 +11,14 @@ import dispatchToProps from './connect/dispatchToProps';
 
 class Decks extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            draftDeck: this.props.draftDeck,
-            open: false,
-            currentDeck: {},
-            manaCurve: {},
-            cardRarity: {},
-            deckComposition: {},
-            finished: false,
-            stepIndex: 0,
-        };
-    }
-
     componentWillMount() {
         this.props.getDeckList();
     }
 
-    handleOpen = () => {
-        this.setState({ open: true });
-    };
-
-    handleClose = () => {
-        this.setState({ open: false });
-    };
-
-    handleCardChange = (event) => {
-        this.setState({ draftDeck: event.target.value.trim() });
-    };
-
-    handleSearchCard = (event) => {
-        event.preventDefault();
-        if (!this.props.loading) {
-            const deck = mtgparser(this.state.draftDeck, 'mtgo');
-            const cards = deck.cards.reduce((cardNames, card) => {
-                if (!cardNames[ card.name ]) {
-                    cardNames[ card.name ] = card.number;
-                }
-                return cardNames;
-            }, {});
-            this.props.getDeckListByCardNames(cards, Object.keys(cards)[ 0 ]);
-            this.setState({ open: false });
-        }
-    };
+    shouldComponentUpdate(nextProps) {
+        return this.props.decks.length !== nextProps.decks.length ||
+            this.props.loading !== nextProps.loading;
+    }
 
     render() {
         const { isMobile, loading, decks } = this.props;
@@ -87,16 +50,13 @@ class Decks extends React.Component {
 Decks.propTypes = {
     loading: bool,
     isMobile: bool,
-    draftDeck: string,
     decks: arrayOf(shape({})),
     getDeckList: func.isRequired,
-    getDeckListByCardNames: func.isRequired,
 };
 
 Decks.defaultProps = {
     isMobile: false,
     loading: false,
-    draftDeck: '',
     decks: [],
 };
 
