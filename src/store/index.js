@@ -25,8 +25,16 @@ if (colorSearch) {
 const initialState = {
     entities: getDefaultState(),
     data: {
-        Cards: {},
-        Decks: {}
+        cards: {
+            loading: false,
+            error: false,
+            items: []
+        },
+        decks: {
+            loading: false,
+            error: false,
+            items: []
+        }
     },
     suggester: {
         meta: {
