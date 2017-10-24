@@ -256,10 +256,13 @@ export const getSuggestions = (query) => {
     ];
 
     return axios.all(queries)
-        .then(axios.spread((setByName, setByFlavor, setByText, setBySubtype) => [
-            ...setByName.cards,
-            ...setByFlavor.cards,
-            ...setByText.cards,
-            ...setBySubtype.cards
-        ]));
+        .then(axios.spread((setByName, setByArtist, setByFlavor, setByText, setBySubtype) =>
+            uniqBy([
+                ...setByName.cards,
+                ...setByArtist.cards,
+                ...setByFlavor.cards,
+                ...setByText.cards,
+                ...setBySubtype.cards
+            ], 'multiverseid')
+        ));
 };
