@@ -29,6 +29,7 @@ class CardSet extends React.Component {
                     appSetTypeFilter={this.props.appSetCardSetTypeFilter}
                     appSetColorFilter={this.props.appSetCardSetColorFilter}
                     appSetRarityFilter={this.props.appSetCardSetRarityFilter}
+                    resultCount={this.props.cards.length}
                 />
                 <div className="CardSet__main">
                     {!this.props.loading &&

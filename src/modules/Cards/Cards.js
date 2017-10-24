@@ -27,6 +27,7 @@ class Cards extends React.PureComponent {
                     appSetTypeFilter={this.props.appSetTypeFilter}
                     appSetColorFilter={this.props.appSetColorFilter}
                     appSetRarityFilter={this.props.appSetRarityFilter}
+                    resultCount={this.props.cards.length}
                 />
                 <div className="Cards__main">
                     {!this.props.loading &&

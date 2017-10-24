@@ -13,6 +13,14 @@
     transition: all 0.25s ease-in-out;
 }
 
+.CardFilter__result {
+    padding: 12px;
+    display: flex;
+    justify-content: center;
+    font-family: "Beleren Bold";
+    color: #eee;
+}
+
 .CardFilter__typeSelected {
     color: #e75b0d !important;
 }

@@ -1,6 +1,6 @@
 import './CardFilter.css';
 import React from 'react';
-import { func, shape, string } from 'prop-types';
+import { func, shape, string, number } from 'prop-types';
 import classNames from 'classnames';
 import map from 'lodash/map';
 import compact from 'lodash/compact';
@@ -147,6 +147,9 @@ class CardFilter extends React.Component {
                             <div className="CardFilter__inputRarityFilter">
                                 { this.renderRarityFilter(rarityMap) }
                             </div>
+                            <div className="CardFilter__result">
+                                {this.props.resultCount} cards
+                            </div>
                         </div>
                     </div>
                 </Drawer>
@@ -156,10 +159,11 @@ class CardFilter extends React.Component {
 }
 
 CardFilter.propTypes = {
+    resultCount: number,
     className: string,
     currentSet: string,
-    rarity: shape({}),
-    appSetRarityFilter: func,
+    rarity: shape({}).isRequired,
+    appSetRarityFilter: func.isRequired,
     colors: shape({}).isRequired,
     types: shape({}).isRequired,
     history: shape({}).isRequired,
@@ -170,8 +174,7 @@ CardFilter.propTypes = {
 CardFilter.defaultProps = {
     className: '',
     currentSet: '',
-    rarity: {},
-    appSetRarityFilter: () => {}
+    resultCount: 0,
 };
 
 export default CardFilter;
