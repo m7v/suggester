@@ -226,12 +226,10 @@ export const getSuggestions = (query) => {
     ];
 
     return axios.all(queries)
-        .then(axios.spread((setByName, setByFlavor, setByText, setBySubtype) =>
-            uniqBy([
-                ...setByName.cards,
-                ...setByFlavor.cards,
-                ...setByText.cards,
-                ...setBySubtype.cards
-            ], 'id')
-        ));
+        .then(axios.spread((setByName, setByFlavor, setByText, setBySubtype) => [
+            ...setByName.cards,
+            ...setByFlavor.cards,
+            ...setByText.cards,
+            ...setBySubtype.cards
+        ]));
 };
