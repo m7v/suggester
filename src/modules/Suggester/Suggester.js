@@ -6,8 +6,8 @@ import Loader from '../../components/Loader';
 import SearchBarMini from '../../components/SearchBarMini';
 import { mapDispatchToProps } from './connect/dispatchToProps';
 import { mapStateToProps } from './connect/stateToProps';
-import asyncComponent from '../Async';
-const CardGridList = asyncComponent(() => import('../../components/CardGridList'));
+import Async from '../Async';
+const CardGridList = (props) => <Async load={import('../../components/CardGridList')} componentProps={props} />;
 
 class Suggester extends React.Component {
 

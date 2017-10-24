@@ -7,7 +7,6 @@ import { bool, shape, func } from 'prop-types';
 import classNames from 'classnames';
 import Loader from '../../components/Loader';
 import map from 'lodash/map';
-import size from 'lodash/size';
 import stateToProps from './connect/stateToProps';
 import dispatchToProps from './connect/dispatchToProps';
 

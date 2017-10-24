@@ -1,27 +1,36 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export default function asyncComponent(importComponent) {
-    class AsyncComponent extends React.PureComponent {
-        constructor(props) {
-            super(props);
+class Async extends React.Component {
+    componentWillMount = () => {
+        this.cancelUpdate = false;
+        this.props.load.then((c) => {
+            this.C = c;
+            if (!this.cancelUpdate) {
+                this.forceUpdate();
+            }
+        });
+    };
 
-            this.state = {
-                component: null
-            };
-        }
+    componentWillUnmount = () => {
+        this.cancelUpdate = true;
+    };
 
-        async componentWillMount() {
-            const { default: component } = await importComponent();
-
-            this.setState({ component });
-        }
-
-        render() {
-            const C = this.state.component;
-
-            return C ? <C {...this.props} /> : null;
-        }
-    }
-
-    return AsyncComponent;
+    render = () => {
+        const { componentProps } = this.props;
+        /* eslint-disable */
+        return this.C
+            ? this.C.default
+                ? <this.C.default {...componentProps} />
+                : <this.C {...componentProps} />
+            : null;
+        /* eslint-enable */
+    };
 }
+
+Async.propTypes = {
+    componentProps: PropTypes.shape({}).isRequired,
+    load: PropTypes.instanceOf(Promise).isRequired
+};
+
+export default Async;
