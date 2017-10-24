@@ -24,6 +24,10 @@ if (colorSearch) {
 
 const initialState = {
     entities: getDefaultState(),
+    data: {
+        Cards: {},
+        Decks: {}
+    },
     suggester: {
         meta: {
             loading: false,
@@ -43,6 +47,35 @@ const initialState = {
     appContext: {
         initial: false,
         isMobile: !!new MobileDetect(window.navigator.userAgent).mobile(),
+        Suggestions: {
+            loading: false,
+            error: false,
+            filters: {
+                name: '',
+                rarity: {
+                    common: false,
+                    uncommon: false,
+                    rare: false,
+                    mythic: false,
+                },
+                colors: {
+                    w: !!colorFilter && !!colorFilter.w,
+                    u: !!colorFilter && !!colorFilter.u,
+                    b: !!colorFilter && !!colorFilter.b,
+                    r: !!colorFilter && !!colorFilter.r,
+                    g: !!colorFilter && !!colorFilter.g,
+                },
+                types: {
+                    planeswalker: false,
+                    creature: false,
+                    instant: false,
+                    sorcery: false,
+                    enchantment: false,
+                    artifact: false,
+                    land: false,
+                }
+            }
+        },
         Cards: {
             loading: false,
             error: false,
