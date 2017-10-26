@@ -1,35 +1,34 @@
 import axios from 'axios';
 import httpAdapter from 'axios/lib/adapters/http';
 import map from 'lodash/map';
-import pick from 'lodash/pick';
 import compact from 'lodash/compact';
-import { serverApiUrl, databaseApiUrl } from './../config.service';
+import { databaseApiUrl } from './../config.service';
 import orm from '../../reducers/entities';
 
 axios.defaults.adapter = httpAdapter;
-
-const fields = [
-    'count',
-    'artist',
-    'cmc',
-    'colorIndentity',
-    'colors',
-    'flavor',
-    'id',
-    'set',
-    'setName',
-    'layout',
-    'names',
-    'multiverseid',
-    'imageUrl',
-    'manaCost',
-    'name',
-    'text',
-    'type',
-    'types',
-    'supertypes',
-    'rarity'
-];
+//
+// const fields = [
+//     'count',
+//     'artist',
+//     'cmc',
+//     'colorIndentity',
+//     'colors',
+//     'flavor',
+//     'id',
+//     'set',
+//     'setName',
+//     'layout',
+//     'names',
+//     'multiverseid',
+//     'imageUrl',
+//     'manaCost',
+//     'name',
+//     'text',
+//     'type',
+//     'types',
+//     'supertypes',
+//     'rarity'
+// ];
 
 /**
  * @returns {Promise}

@@ -17,7 +17,7 @@ import { mapStateToProps } from '../Root/connect/stateToProps';
 import { dispatchToProps } from '../Root/connect/dispatchToProps';
 import NavBar from '../../components/NavBar';
 
-const DeckBuilder = (props) => <Async load={import('../DeckBuilder/container')} componentProps={props} />;
+// const DeckBuilder = (props) => <Async load={import('../DeckBuilder/container')} componentProps={props} />;
 const Decks = (props) => <Async load={import('../Decks/container')} componentProps={props} />;
 const Cards = (props) => <Async load={import('../Cards/container')} componentProps={props} />;
 const Suggester = (props) => <Async load={import('../Suggester/container')} componentProps={props} />;
@@ -85,11 +85,6 @@ class Root extends React.PureComponent {
                         exact
                         path="/favorites"
                         component={() => <div className="Root__comingSoon"><div>Coming soon...</div></div>}
-                    />
-                    <Route
-                        exact
-                        path="/deck/add"
-                        component={DeckBuilder}
                     />
                     <Route
                         exact

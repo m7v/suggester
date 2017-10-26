@@ -1,9 +1,8 @@
 import './Decks.css';
 import React from 'react';
 import { connect } from 'react-redux';
-import { bool, shape, string, arrayOf, func } from 'prop-types';
+import { bool, shape, arrayOf, func } from 'prop-types';
 import Loader from '../../components/Loader';
-import mtgparser from 'mtg-parser';
 import LazyLoad from 'react-lazyload';
 import Deck from '../../components/Deck';
 import stateToProps from './connect/stateToProps';
