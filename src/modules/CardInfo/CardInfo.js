@@ -80,6 +80,7 @@ class CardInfo extends React.Component {
 
     createRegExp = (search) => {
         switch (search) {
+            case '{T}':
             case '{P}':
             case '{E}':
             case '{W}':
@@ -88,7 +89,19 @@ class CardInfo extends React.Component {
             case '{U}':
             case '{G}':
             case '{C}':
+            case '{X}':
                 return new RegExp(`${search}`, 'g');
+            case '{1}':
+            case '{2}':
+            case '{3}':
+            case '{4}':
+            case '{5}':
+            case '{6}':
+            case '{7}':
+            case '{8}':
+            case '{9}':
+                const str = '{[0-9]}';
+                return new RegExp(`${str}`, 'g');
             default:
                 return search;
         }
