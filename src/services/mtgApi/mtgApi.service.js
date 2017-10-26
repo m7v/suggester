@@ -81,6 +81,38 @@ export const getDeckListByCardNames = (cardList, session) => {
         }));
 };
 
+const getCardRequestByTypeAndCode = (code, type) => {
+    const queries = [
+        axios.get(
+            `${serverApiUrl}cards?colors=black&set=${code}&types=${type}&layout=${layouts}&contains=imageUrl`
+        ),
+        axios.get(
+            `${serverApiUrl}cards?colors=red&set=${code}&types=${type}&layout=${layouts}&contains=imageUrl`
+        ),
+        axios.get(
+            `${serverApiUrl}cards?colors=blue&set=${code}&types=${type}&layout=${layouts}&contains=imageUrl`
+        ),
+        axios.get(
+            `${serverApiUrl}cards?colors=white&set=${code}&types=${type}&layout=${layouts}&contains=imageUrl`
+        ),
+        axios.get(
+            `${serverApiUrl}cards?colors=green&set=${code}&types=${type}&layout=${layouts}&contains=imageUrl`
+        )
+    ];
+
+    return axios.all(queries)
+        .then(axios.spread((black, red, blue, white, green) => ({
+            cards: [
+                ...black.data.cards,
+                ...red.data.cards,
+                ...blue.data.cards,
+                ...white.data.cards,
+                ...green.data.cards,
+            ]
+        })))
+        .catch(() => ({cards: []}));
+};
+
 /**
  * @param query
  * @returns {Promise}
@@ -154,10 +186,7 @@ const getSetPlaneswalkerCardsByCode = (code) =>
         .then(response => response.data)
         .catch(() => ({cards: []}));
 
-const getSetCreatureCardsByCode = (code) =>
-    axios.get(`${serverApiUrl}cards?set=${code}&types=creature&layout=${layouts}&contains=imageUrl`)
-        .then(response => response.data)
-        .catch(() => ({cards: []}));
+const getSetCreatureCardsByCode = (code) => getCardRequestByTypeAndCode(code, 'creature');
 
 const getSetInstantCardsByCode = (code) =>
     axios.get(`${serverApiUrl}cards?set=${code}&types=instant&layout=${layouts}&contains=imageUrl`)
