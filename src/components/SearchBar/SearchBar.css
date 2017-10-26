@@ -1,0 +1,44 @@
+input.SearchBar__input {
+    outline: none;
+}
+
+input.SearchBar__input::-webkit-search-decoration,
+input.SearchBar__input::-webkit-search-cancel-button {
+    display: none;
+}
+
+input.SearchBar__input[type=search] {
+    max-width: 500px;
+    min-width: 260px;
+    height: 25px;
+    color: #000;
+    cursor: auto;
+    background: #eee url(./assets/searchIcon.png) no-repeat 9px center;
+    background-size: 15px;
+    border: solid 1px #a7a7a7;
+    padding: 9px 10px 9px 32px;
+    /**/
+    border-radius: 20px;
+    /**/
+    transition: all .5s;
+
+    box-sizing: content-box;
+    font-family: inherit;
+    font-size: 100%;
+    -webkit-appearance: textfield;
+}
+
+input.SearchBar__input[type=search]._desktop {
+    width: 100%;
+}
+
+input.SearchBar__input[type=search]._submitted {
+    height: 15px;
+}
+
+input.SearchBar__input:-moz-placeholder {
+    color: transparent;
+}
+input.SearchBar__input::-webkit-input-placeholder {
+    color: transparent;
+}

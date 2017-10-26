@@ -2,11 +2,13 @@ import './Suggester.css';
 import React from 'react';
 import { connect } from 'react-redux';
 import { bool, string, func, shape, arrayOf } from 'prop-types';
+import classNames from 'classnames';
 import Loader from '../../components/Loader';
-import SearchBarMini from '../../components/SearchBarMini';
+import SearchBar from '../../components/SearchBar';
 import { mapDispatchToProps } from './connect/dispatchToProps';
 import { mapStateToProps } from './connect/stateToProps';
 import Async from '../Async';
+
 const CardGridList = (props) => <Async load={import('../../components/CardGridList')} componentProps={props} />;
 
 class Suggester extends React.Component {
@@ -35,18 +37,32 @@ class Suggester extends React.Component {
     };
 
     render() {
+        const { isMobile, suggestions, loading, searchingCard } = this.props;
         return (
             <section className="Suggester">
+                <div className={classNames({
+                    'Suggester__background': true,
+                    '_inited': !!searchingCard,
+                })}
+                >
+                    <div className="Suggester__img" />
+                    <div className="Suggester__cover" />
+                </div>
                 <div className="Suggester__main">
-                    <SearchBarMini
-                        className="Suggester__search"
-                        searchingCard={this.props.searchingCard}
+                    <SearchBar
+                        className={classNames({
+                            'Suggester__search': true,
+                            '_submitted': !!searchingCard,
+                        })}
+                        isMobile={isMobile}
+                        searchingCard={searchingCard}
+                        isSubmitted={!!searchingCard}
                         handleSearchCardByKeyPress={this.handleSearchCardByKeyPress}
                     />
-                    {!this.props.loading &&
-                        <CardGridList cards={this.props.suggestions} />
+                    {!loading &&
+                        <CardGridList cards={suggestions} />
                     }
-                    {this.props.loading &&
+                    {loading &&
                         <div className="Suggester__preloader">
                             <div className="Suggester__circular">
                                 <Loader />
@@ -62,6 +78,7 @@ class Suggester extends React.Component {
 Suggester.propTypes = {
     history: shape({}).isRequired,
     loading: bool,
+    isMobile: bool,
     searchingCard: string,
     suggestions: arrayOf(shape({
         id: string,
@@ -73,6 +90,7 @@ Suggester.propTypes = {
 
 Suggester.defaultProps = {
     loading: false,
+    isMobile: false,
     searchingCard: '',
     suggestions: [],
 };

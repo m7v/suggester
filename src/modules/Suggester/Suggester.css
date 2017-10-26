@@ -1,3 +1,36 @@
+@keyframes scrollBgGridLinks {
+    from {
+        transform: translateY(0px);
+    }
+    to {
+        transform: translateY(-500px);
+    }
+}
+
+.Suggester__background._inited {
+    display: none;
+}
+
+.Suggester__img {
+    height: 100%;
+    width: 100%;
+    background-color: #000000;
+    background-image: url(./assets/background.jpg);
+    background-position: 0 0;
+    background-size: cover;
+    padding-bottom: 500px;
+    position: fixed;
+    animation: scrollBgGridLinks 45s linear;
+}
+.Suggester__cover {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    position: fixed;
+    background: rgba(0,0,0,.5);
+}
+
 .Suggester__main {
     display: flex;
     flex-direction: column;
@@ -7,10 +40,18 @@
 }
 
 .Suggester__search {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    z-index: 1;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 40%;
+    z-index: 2;
+}
+
+.Suggester__search._submitted {
+    top: 0;
+    height: 40px;
+    padding-top: 5px;
 }
 
 .Suggester__preloader {
