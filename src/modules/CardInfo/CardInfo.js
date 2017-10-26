@@ -11,6 +11,7 @@ import { dispatchToProps } from './connect/dispatchToProps';
 import { stateToProps } from './connect/stateToProps';
 import SearchBarMini from '../../components/SearchBarMini';
 import Card from '../../components/Card';
+import Loader from '../../components/Loader/Loader';
 
 const manaMapping = {
     U: 'u',
@@ -138,9 +139,9 @@ class CardInfo extends React.Component {
     renderDesktopCard = (card) => (
         <div className="CardInfo__container">
             <div className="CardInfo__card">
-                <Card card={card} needForceCheck />
+                <Card card={card} needForceCheck oversize />
                 <Link className="CardInfo__artist" to={`/search?q=${card.artist}`}>
-                    Artist <span className="CardInfo__artistName">{card.artist}</span>
+                    Artist <span className="CardInfo__artistName">{card.artist}</span> <span>#{card.number}</span>
                 </Link>
             </div>
             <div className="CardInfo__fullInfo">
@@ -189,7 +190,7 @@ class CardInfo extends React.Component {
                 </div>
                 <Card card={card} needForceCheck />
                 <Link className="CardInfoMobile__artist" to={`/search?q=${card.artist}`}>
-                    Artist <span className="CardInfoMobile__artistName">{card.artist}</span>
+                    Artist <span className="CardInfoMobile__artistName">{card.artist}</span> <span>#{card.number}</span>
                 </Link>
                 <div className="CardInfoMobile__details">
                     <div className="CardInfoMobile__type">
@@ -224,7 +225,7 @@ class CardInfo extends React.Component {
     );
 
     render() {
-        const { card } = this.props;
+        const { card, isMobile, loading } = this.props;
 
         const root = classNames({
             'CardInfo__root': true,
@@ -235,17 +236,27 @@ class CardInfo extends React.Component {
             <div className={root}>
                 <SearchBarMini
                     className="CardInfo__search"
-                    isMobile={this.props.isMobile}
+                    isMobile={isMobile}
                     handleSearchCardByKeyPress={this.handleSearchCardByKeyPress}
                 />
                 <div className="CardInfo__background">
                     <div className="CardInfo__backgroundComposition">
-                        <div className="CardInfo__backgroundImage" style={{backgroundImage: `url(${card.imageUrl})`}} />
-                        <div className="CardInfo_backgroundTrapezoid" />
+                        <div
+                            className="CardInfo__backgroundImage"
+                            style={{backgroundImage: `url(${card.imageUrlLarge})`}}
+                        />
+                        <div className="CardInfo__backgroundTrapezoid" />
                     </div>
                 </div>
-                {!this.props.isMobile && this.renderDesktopCard(card) }
-                {this.props.isMobile && this.renderMobileCard(card) }
+                {loading &&
+                    <div className="CardInfo__preloader">
+                        <div className="CardInfo__circular">
+                            <Loader />
+                        </div>
+                    </div>
+                }
+                {!isMobile && !loading && this.renderDesktopCard(card) }
+                {isMobile && !loading && this.renderMobileCard(card) }
             </div>
         );
     }

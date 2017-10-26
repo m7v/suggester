@@ -2,6 +2,7 @@ import './DoubleFacedCard.css';
 import React from 'react';
 import Img from 'react-image';
 import FlipCard from 'react-flipcard';
+import classNames from 'classnames';
 import debounce from 'lodash/debounce';
 import LazyLoad, { forceCheck } from 'react-lazyload';
 import { shape, bool } from 'prop-types';
@@ -24,26 +25,42 @@ class DoubleFacedCard extends React.PureComponent {
     showFront = debounce(() => this.setState({ isFlipped: false }), 150);
 
     render() {
-        const { card } = this.props;
+        const { card, oversize } = this.props;
+        const imageUrl = oversize ? card.imageUrlLarge : card.imageUrl;
+        const imageUrlFromBackSide = oversize ? card.doubleFace.imageUrlLarge : card.doubleFace.imageUrl;
 
         return (
-            <div className="DoubleFacedCard__root">
+            <div
+                className={classNames({
+                    'DoubleFacedCard__root': true,
+                    '_default': !oversize,
+                    '_oversize': oversize
+                })}
+            >
                 <LazyLoad height={200} offset={0} overflow>
                     <FlipCard disabled flipped={this.state.isFlipped}>
                         <div onClick={this.showBack}>
                             <Img
-                                className="DoubleFacedCard__img"
-                                src={card.imageUrl}
-                                loader={<DefaultCard />}
-                                unloader={<DefaultCard />}
+                                className={classNames({
+                                    'DoubleFacedCard__img': true,
+                                    '_default': !oversize,
+                                    '_oversize': oversize
+                                })}
+                                src={imageUrl}
+                                loader={<DefaultCard oversize={oversize} />}
+                                unloader={<DefaultCard oversize={oversize} />}
                             />
                         </div>
                         <div onClick={this.showFront}>
                             <Img
-                                className="DoubleFacedCard__img"
-                                src={card.doubleFace.imageUrl}
-                                loader={<DefaultCard />}
-                                unloader={<DefaultCard />}
+                                className={classNames({
+                                    'DoubleFacedCard__img': true,
+                                    '_default': !oversize,
+                                    '_oversize': oversize
+                                })}
+                                src={imageUrlFromBackSide}
+                                loader={<DefaultCard oversize={oversize} />}
+                                unloader={<DefaultCard oversize={oversize} />}
                             />
                         </div>
                     </FlipCard>
@@ -56,10 +73,12 @@ class DoubleFacedCard extends React.PureComponent {
 DoubleFacedCard.propTypes = {
     card: shape({}).isRequired,
     needForceCheck: bool,
+    oversize: bool,
 };
 
 DoubleFacedCard.defaultProps = {
     needForceCheck: false,
+    oversize: false,
 };
 
 export default DoubleFacedCard;

@@ -14,16 +14,17 @@ class SimpleCard extends React.PureComponent {
     }
 
     render() {
-        const { card } = this.props;
+        const { card, oversize } = this.props;
+        const imageUrl = oversize ? card.imageUrlLarge : card.imageUrl;
 
         return (
             <div className="SimpleCard__root">
                 <LazyLoad height={200} offset={0} overflow>
                     <Img
                         className="SimpleCard__img"
-                        src={card.imageUrl}
-                        loader={<DefaultCard />}
-                        unloader={<DefaultCard />}
+                        src={imageUrl}
+                        loader={<DefaultCard oversize={oversize} />}
+                        unloader={<DefaultCard oversize={oversize} />}
                     />
                 </LazyLoad>
             </div>
@@ -33,11 +34,13 @@ class SimpleCard extends React.PureComponent {
 
 SimpleCard.propTypes = {
     needForceCheck: bool,
+    oversize: bool,
     card: shape({}).isRequired,
 };
 
 SimpleCard.defaultProps = {
     needForceCheck: false,
+    oversize: false,
 };
 
 export default SimpleCard;

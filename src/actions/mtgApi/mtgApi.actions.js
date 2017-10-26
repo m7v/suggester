@@ -38,12 +38,13 @@ export function getCardById(cardId) {
                         .then((searchedDoubleFacedCards) => {
                             const getFullCardsInfo = fullCardsInfoLens(needToSearchCards);
                             const shortDoubleFaceInfo = getFullCardsInfo(searchedDoubleFacedCards);
-
-                            const newCard = { info: { ...card } };
+                            const newCard = { info: {
+                                ...card,
+                                imageUrlLarge: `https://magiccards.info/scans/en/${card.set.toLowerCase()}/${card.number}.jpg`
+                            }};
                             if (shortDoubleFaceInfo[ card.id ]) {
-                                newCard.info = { ...card, doubleFace: shortDoubleFaceInfo[ card.id ] };
+                                newCard.info = { ...newCard.info, doubleFace: shortDoubleFaceInfo[ card.id ] };
                             }
-
                             return dispatch(batchActions([
                                 appContextTypes.appAddCardInfo(newCard.info),
                                 appContextTypes.appCardsRequestSuccess(),
@@ -52,7 +53,10 @@ export function getCardById(cardId) {
                         .catch((e) => dispatch(appContextTypes.appCardsRequestFailed(e)));
                 }
                 return dispatch(batchActions([
-                    appContextTypes.appAddCardInfo(card),
+                    appContextTypes.appAddCardInfo({
+                        ...card,
+                        imageUrlLarge: `https://magiccards.info/scans/en/${card.set.toLowerCase()}/${card.number}.jpg`
+                    }),
                     appContextTypes.appCardsRequestSuccess(),
                 ]));
             })

@@ -13,6 +13,7 @@ const fields = [
     'count',
     'artist',
     'cmc',
+    'number',
     'colorIndentity',
     'colors',
     'flavor',
