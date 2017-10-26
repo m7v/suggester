@@ -8,10 +8,8 @@ import { bool, func } from 'prop-types';
 import {
     // BrowserRouter as Router,
     HashRouter as Router,
-    Link,
     Route,
 } from 'react-router-dom';
-import Easter from '../Easter/container';
 import Async from '../Async';
 import { mapStateToProps } from '../Root/connect/stateToProps';
 import { dispatchToProps } from '../Root/connect/dispatchToProps';
@@ -48,14 +46,6 @@ class Root extends React.PureComponent {
                         </div>
                     }
                     <NavBar />
-                    <Easter>
-                        <ul style={{ listStyleType: 'none', padding: 0 }}>
-                            <li><Link to="/search">Suggester</Link></li>
-                            <li><Link to="/decks">Decks</Link></li>
-                            <li><Link to="/cards">Cards</Link></li>
-                            <li><Link to="/favorites">Favorites</Link></li>
-                        </ul>
-                    </Easter>
                     <Route
                         exact
                         path="/search"
