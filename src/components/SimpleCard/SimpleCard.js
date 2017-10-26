@@ -1,8 +1,9 @@
 import './SimpleCard.css';
 import React from 'react';
-import Img from 'react-image';
-import LazyLoad, { forceCheck } from 'react-lazyload';
+import classNames from 'classnames';
 import { shape, bool } from 'prop-types';
+import LazyLoad, { forceCheck } from 'react-lazyload';
+import Img from 'react-image';
 import DefaultCard from '../DefaultCard';
 
 class SimpleCard extends React.PureComponent {
@@ -21,7 +22,11 @@ class SimpleCard extends React.PureComponent {
             <div className="SimpleCard__root">
                 <LazyLoad height={200} offset={0} overflow>
                     <Img
-                        className="SimpleCard__img"
+                        className={classNames({
+                            'SimpleCard__img': true,
+                            '_default': !oversize,
+                            '_oversize': oversize
+                        })}
                         src={imageUrl}
                         loader={<DefaultCard oversize={oversize} />}
                         unloader={<DefaultCard oversize={oversize} />}

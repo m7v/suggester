@@ -2,7 +2,16 @@
 }
 
 .SimpleCard__img {
-    height: 100%;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.16) 0 3px 10px, rgba(0, 0, 0, 0.23) 0 3px 10px;
+}
+
+.SimpleCard__img._default {
+    width: 223px;
+    height: 311px;
+}
+
+.SimpleCard__img._oversize {
+    width: 312px;
+    height: 445px;
 }
