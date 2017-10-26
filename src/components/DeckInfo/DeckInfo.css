@@ -1,9 +1,15 @@
+.DeckInfo__root {
+    display: flex;
+    justify-content: center;
+}
+
 .DeckInfo__deckCard {
     overflow: auto;
     height: 92vh;
     background-color: #222 !important;
     margin: 15px;
     padding: 7px;
+    width: 320px;
 }
 
 .DeckInfo__deckCard::-webkit-scrollbar-track {

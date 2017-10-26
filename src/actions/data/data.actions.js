@@ -1,4 +1,36 @@
+import uniqueId from 'lodash/uniqueId';
+import { batchActions } from 'redux-batched-actions';
 import * as types from './data.types';
+import { getFullCardInfo, buildDeck } from './data.helpers';
+
+const requestGetCardsByName = () => Promise.resolve({});
+
+export function createDeck(deckTitle, decklist = [], setName = '') {
+    return (dispatch, getState) => {
+        dispatch(types.dataDeckRequestStarted());
+        const state = getState();
+        const deckId = uniqueId(`deck${(new Date()).getTime()}`);
+
+        if (state.data.cards.length) {
+            const cardResults = getFullCardInfo(decklist, state.data.cards);
+
+            if (!cardResults.notFound.length) {
+                return dispatch(batchActions([
+                    types.dataDeckCreate(buildDeck(deckId, deckTitle, cardResults.found)),
+                    types.dataDeckRequestSuccess(),
+                ]));
+            }
+        }
+
+        return requestGetCardsByName(Object.keys(decklist), setName)
+            .then(cards =>
+                dispatch(batchActions([
+                    types.dataDeckCreate(buildDeck(deckId, deckTitle, cards)),
+                    types.dataDeckRequestSuccess(),
+                ]))
+            );
+    };
+}
 
 export function dataDeckRequestStarted() {
     return dispatch => dispatch(types.dataDeckRequestStarted());
