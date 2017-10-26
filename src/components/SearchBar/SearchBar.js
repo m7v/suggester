@@ -59,7 +59,7 @@ class SearchBar extends React.PureComponent {
                     type="search"
                     value={this.state.searchingCard}
                     maxLength={MAX_INPUT_LENGTH}
-                    placeholder="Search"
+                    placeholder="Search card"
                     onChange={this.onCardChange}
                     onKeyDown={this.onSearchCardByKeyPress}
                     onFocus={this.onFocusInput}

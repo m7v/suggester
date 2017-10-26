@@ -35,10 +35,3 @@ input.SearchBar__input[type=search]._desktop {
 input.SearchBar__input[type=search]._submitted {
     height: 15px;
 }
-
-input.SearchBar__input:-moz-placeholder {
-    color: transparent;
-}
-input.SearchBar__input::-webkit-input-placeholder {
-    color: transparent;
-}
