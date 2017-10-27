@@ -3,7 +3,7 @@
         transform: translateY(0px);
     }
     to {
-        transform: translateY(-500px);
+        transform: translateY(-550px);
     }
 }
 
@@ -16,11 +16,12 @@
     width: 100%;
     background-color: #000000;
     background-image: url(./assets/background.jpg);
-    background-position: 0 0;
+    background-position: center center;
     background-size: cover;
     padding-bottom: 500px;
     position: fixed;
-    animation: scrollBgGridLinks 45s linear;
+    animation: scrollBgGridLinks 50s linear;
+    animation-fill-mode: forwards;
 }
 .Suggester__cover {
     bottom: 0;
