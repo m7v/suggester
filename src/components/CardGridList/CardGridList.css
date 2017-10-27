@@ -5,7 +5,7 @@
     box-sizing: border-box;
     justify-content: space-around;
     flex-wrap: wrap;
-    flex-direction: row-reverse;
+    flex-direction: row;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
 }

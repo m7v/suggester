@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+import sortBy from 'lodash/sortBy';
 import {
     createCardFilter,
     getActiveColorFilter,
@@ -41,7 +42,10 @@ export default function stateToProps(state, props) {
         types: typeFilter,
         rarity: rarityFilter,
         code: props.code,
-        cards: getCardsByCode(getCardSetsSelector(state), props.code, typeFilter, rarityFilter, colorFilter),
+        cards: sortBy(
+            getCardsByCode(getCardSetsSelector(state), props.code, typeFilter, rarityFilter, colorFilter),
+            o => Number(o.number)
+        ),
         loading: state.appContext.CardSets.loading,
     };
 }
