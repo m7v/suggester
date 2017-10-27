@@ -1,13 +1,10 @@
-input.SearchBar__input {
-    outline: none;
-}
-
 input.SearchBar__input::-webkit-search-decoration,
 input.SearchBar__input::-webkit-search-cancel-button {
     display: none;
 }
 
 input.SearchBar__input[type=search] {
+    outline: none;
     max-width: 500px;
     min-width: 260px;
     height: 25px;
@@ -17,11 +14,9 @@ input.SearchBar__input[type=search] {
     background-size: 15px;
     border: solid 1px #a7a7a7;
     padding: 9px 10px 9px 32px;
-    /**/
     border-radius: 20px;
-    /**/
     transition: all .5s;
-
+    box-shadow: 4px 11px 14px 10px rgba(0,0,0,.16), 1px 10px 11px 1px rgba(0,0,0,.23);
     box-sizing: content-box;
     font-family: inherit;
     font-size: 100%;
