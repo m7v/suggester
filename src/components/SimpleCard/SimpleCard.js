@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { shape, bool } from 'prop-types';
 import LazyLoad, { forceCheck } from 'react-lazyload';
 import Img from 'react-image';
-import DefaultCard from '../DefaultCard';
+import DefaultCard from 'components/DefaultCard';
 
 class SimpleCard extends React.PureComponent {
 

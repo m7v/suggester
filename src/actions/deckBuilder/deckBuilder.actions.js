@@ -2,8 +2,8 @@ import { batchActions } from 'redux-batched-actions';
 import uniqueId from 'lodash/uniqueId';
 import map from 'lodash/map';
 import * as deckBuilderTypes from './deckBuilder.types';
-import * as appContextTypes from './../appContext/appContext.types';
-import orm from '../../reducers/entities';
+import * as appContextTypes from 'actions/appContext/appContext.types';
+import orm from 'reducers/entities';
 import {
     buildDeck,
 } from './deckBuilder.helper';
@@ -14,10 +14,10 @@ import {
     getDeckList as requestGetDeckList,
     getCardByIds as requestGetCardByIds,
     getCardsByDeckId as requestGetCardsByDeckId,
-} from '../../services/deckBuilder/deckBuilder.service';
+} from 'services/deckBuilder/deckBuilder.service';
 import {
     getDeckListByCardNames as requestGetDeckListByCardNames,
-} from '../../services/mtgApi/mtgApi.service';
+} from 'services/mtgApi/mtgApi.service';
 
 /**
  * @param {Array} cardList

@@ -9,9 +9,9 @@ import isEmpty from 'lodash/isEmpty';
 import reduce from 'lodash/reduce';
 import { dispatchToProps } from './connect/dispatchToProps';
 import { stateToProps } from './connect/stateToProps';
-import SearchBarMini from '../../components/SearchBarMini';
-import Card from '../../components/Card';
-import Loader from '../../components/Loader/Loader';
+import SearchBarMini from 'components/SearchBarMini';
+import Card from 'components/Card';
+import Loader from 'components/Loader/Loader';
 
 const manaMapping = {
     U: 'u',

@@ -1,7 +1,7 @@
 import React from 'react';
 import { shape, bool } from 'prop-types';
-import SimpleCard from '../SimpleCard/SimpleCard';
-import DoubleFacedCard from '../DoubleFacedCard/DoubleFacedCard';
+import SimpleCard from 'components/SimpleCard/SimpleCard';
+import DoubleFacedCard from 'components/DoubleFacedCard/DoubleFacedCard';
 
 const DOUBLE_FACED_TYPE = 'double-faced';
 

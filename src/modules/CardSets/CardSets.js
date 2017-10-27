@@ -4,9 +4,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { bool, shape, func } from 'prop-types';
-import classNames from 'classnames';
-import Loader from '../../components/Loader';
 import map from 'lodash/map';
+import classNames from 'classnames';
+import Loader from 'components/Loader';
 import stateToProps from './connect/stateToProps';
 import dispatchToProps from './connect/dispatchToProps';
 

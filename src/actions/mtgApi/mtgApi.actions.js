@@ -1,17 +1,17 @@
 import { batchActions } from 'redux-batched-actions';
 import map from 'lodash/map';
-import * as appContextTypes from './../appContext/appContext.types';
-import * as mtgApiTypes from './../mtgApi/mtgApi.types';
+import * as appContextTypes from 'actions/appContext/appContext.types';
+import * as mtgApiTypes from 'actions/mtgApi/mtgApi.types';
 import {
     getCardById as requestGetCardById,
     getCardsByNames as requestGetCardsByNames,
     getSetList as requestGetSetList,
     getSetCardsByCode as requestGetSetCardsByCode,
-} from '../../services/mtgApi/mtgApi.service';
+} from 'services/mtgApi/mtgApi.service';
 import {
     buildDoubleFaceCards,
     fullCardsInfoLens
-} from './../../helpers/doubleFacedCards';
+} from 'helpers/doubleFacedCards';
 
 const DOUBLE_FACED_TYPE = 'double-faced';
 

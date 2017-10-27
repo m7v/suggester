@@ -19,7 +19,7 @@ import {
     APP_SET_CARDSET_COLORS_FILTERS,
     APP_SET_CARDSET_RARITY_FILTERS,
     APP_SET_CARDSET_TYPES_FILTERS
-} from '../../reducers/appContext/appContext.helper';
+} from 'reducers/appContext/appContext.helper';
 
 /**
  * @param suggestions

@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import debounce from 'lodash/debounce';
 import LazyLoad, { forceCheck } from 'react-lazyload';
 import { shape, bool } from 'prop-types';
-import DefaultCard from '../DefaultCard';
+import DefaultCard from 'components/DefaultCard';
 
 class DoubleFacedCard extends React.PureComponent {
 

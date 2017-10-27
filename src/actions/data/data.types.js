@@ -13,7 +13,7 @@ import {
     DATA_CARD_UPDATE,
     DATA_CARD_DELETE,
     DATA_CARD_GET_LIST,
-} from '../../reducers/data/data.helper';
+} from 'reducers/data/data.helper';
 
 export function dataDeckRequestStarted() {
     return {

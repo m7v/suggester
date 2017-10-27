@@ -2,9 +2,9 @@ import './Decks.css';
 import React from 'react';
 import { connect } from 'react-redux';
 import { bool, shape, arrayOf, func } from 'prop-types';
-import Loader from '../../components/Loader';
 import LazyLoad from 'react-lazyload';
-import Deck from '../../components/Deck';
+import Loader from 'components/Loader';
+import Deck from 'components/Deck';
 import stateToProps from './connect/stateToProps';
 import dispatchToProps from './connect/dispatchToProps';
 

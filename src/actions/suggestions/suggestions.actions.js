@@ -4,11 +4,11 @@ import * as types from './suggestions.types';
 import {
     buildDoubleFaceCards,
     fullCardsInfoLens
-} from './../../helpers/doubleFacedCards';
+} from 'helpers/doubleFacedCards';
 import {
     getSuggestions as requestGetSuggestions,
     getCardsByNames as requestGetCardsByNames,
-} from '../../services/mtgApi/mtgApi.service';
+} from 'services/mtgApi/mtgApi.service';
 
 const DOUBLE_FACED_TYPE = 'double-faced';
 

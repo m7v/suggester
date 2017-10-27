@@ -1,5 +1,5 @@
 import { createSelector } from 'redux-orm';
-import orm from '../../../reducers/entities';
+import orm from 'reducers/entities';
 import sortBy from 'lodash/sortBy';
 import reduce from 'lodash/reduce';
 import reverse from 'lodash/reverse';

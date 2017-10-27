@@ -3,7 +3,6 @@ import 'mana-font/css/mana.min.css';
 import 'keyrune/css/keyrune.min.css';
 import React from 'react';
 import { connect } from 'react-redux';
-import Loader from '../../components/Loader';
 import { bool, func } from 'prop-types';
 import {
     // BrowserRouter as Router,
@@ -11,18 +10,19 @@ import {
     Route,
 } from 'react-router-dom';
 import Async from '../Async';
-import { mapStateToProps } from '../Root/connect/stateToProps';
-import { dispatchToProps } from '../Root/connect/dispatchToProps';
-import NavBar from '../../components/NavBar';
+import { mapStateToProps } from './connect/stateToProps';
+import { dispatchToProps } from './connect/dispatchToProps';
+import NavBar from 'components/NavBar';
+import Loader from 'components/Loader';
 
 // const DeckBuilder = (props) => <Async load={import('../DeckBuilder/container')} componentProps={props} />;
-const Decks = (props) => <Async load={import('../Decks/container')} componentProps={props} />;
-const Cards = (props) => <Async load={import('../Cards/container')} componentProps={props} />;
-const Suggester = (props) => <Async load={import('../Suggester/container')} componentProps={props} />;
-const DeckInfo = (props) => <Async load={import('../DeckInfo/container')} componentProps={props} />;
-const CardInfo = (props) => <Async load={import('../CardInfo/container')} componentProps={props} />;
-const CardSets = (props) => <Async load={import('../CardSets/container')} componentProps={props} />;
-const CardSet = (props) => <Async load={import('../CardSet/container')} componentProps={props} />;
+const Decks = (props) => <Async load={import('modules/Decks/container')} componentProps={props} />;
+const Cards = (props) => <Async load={import('modules/Cards/container')} componentProps={props} />;
+const Suggester = (props) => <Async load={import('modules/Suggester/container')} componentProps={props} />;
+const DeckInfo = (props) => <Async load={import('modules/DeckInfo/container')} componentProps={props} />;
+const CardInfo = (props) => <Async load={import('modules/CardInfo/container')} componentProps={props} />;
+const CardSets = (props) => <Async load={import('modules/CardSets/container')} componentProps={props} />;
+const CardSet = (props) => <Async load={import('modules/CardSet/container')} componentProps={props} />;
 
 class Root extends React.PureComponent {
 

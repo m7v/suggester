@@ -2,12 +2,12 @@ import './CardSet.css';
 import React from 'react';
 import { connect } from 'react-redux';
 import { bool, string, arrayOf, shape, func } from 'prop-types';
-import Async from '../Async';
-import Loader from '../../components/Loader';
+import Async from 'modules/Async';
+import Loader from 'components/Loader';
 import stateToProps from './connect/stateToProps';
 import dispatchToProps from './connect/dispatchToProps';
-const CardGridList = (props) => <Async load={import('../../components/CardGridList')} componentProps={props} />;
-const CardFilter = (props) => <Async load={import('../../components/CardFilter')} componentProps={props} />;
+const CardGridList = (props) => <Async load={import('components/CardGridList')} componentProps={props} />;
+const CardFilter = (props) => <Async load={import('components/CardFilter')} componentProps={props} />;
 
 class CardSet extends React.Component {
 
