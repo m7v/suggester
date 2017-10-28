@@ -10,8 +10,9 @@ import {
 } from 'services/mtgApi/mtgApi.service';
 import {
     buildDoubleFaceCards,
-    fullCardsInfoLens
-} from 'helpers/doubleFacedCards';
+    fullCardsInfoLens,
+    getOversizedCardUrl
+} from 'helpers/mtgCard.helper';
 
 const DOUBLE_FACED_TYPE = 'double-faced';
 
@@ -40,7 +41,7 @@ export function getCardById(cardId) {
                             const shortDoubleFaceInfo = getFullCardsInfo(searchedDoubleFacedCards);
                             const newCard = { info: {
                                 ...card,
-                                imageUrlLarge: `https://magiccards.info/scans/en/${card.set.toLowerCase()}/${card.number}.jpg`
+                                imageUrlLarge: getOversizedCardUrl(card)
                             }};
                             if (shortDoubleFaceInfo[ card.id ]) {
                                 newCard.info = { ...newCard.info, doubleFace: shortDoubleFaceInfo[ card.id ] };
@@ -55,7 +56,7 @@ export function getCardById(cardId) {
                 return dispatch(batchActions([
                     appContextTypes.appAddCardInfo({
                         ...card,
-                        imageUrlLarge: `https://magiccards.info/scans/en/${card.set.toLowerCase()}/${card.number}.jpg`
+                        imageUrlLarge: getOversizedCardUrl(card)
                     }),
                     appContextTypes.appCardsRequestSuccess(),
                 ]));

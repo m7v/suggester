@@ -8,12 +8,27 @@ const COUNT_RERENDER_CARDS = 12;
 
 class CardGridList extends React.PureComponent {
 
+    getCardTitle = (card) => {
+        if (card.rarity === 'Basic Land') {
+            return (
+                <div className="CardGridList__resultName _basicLand">
+                    {card.name}
+                </div>
+            );
+        }
+        return (
+            <Link className="CardGridList__resultName" to={`/cards/${card.id}`}>
+                {card.name}
+            </Link>
+        );
+    };
+
     render() {
         return (
             <section className="CardGridList__results" >
                 {!!this.props.cards.length && this.props.cards.map((card, index) => (
                     <div key={card.id} className="CardGridList__result">
-                        <Link className="CardGridList__resultName" to={`/cards/${card.id}`}>{card.name}</Link>
+                        { this.getCardTitle(card) }
                         <Card card={card} needForceCheck={index <= COUNT_RERENDER_CARDS} />
                     </div>
                 ))}

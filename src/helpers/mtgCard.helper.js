@@ -4,13 +4,20 @@ import findIndex from 'lodash/findIndex';
 
 const DOUBLE_FACED_TYPE = 'double-faced';
 
+export const getOversizedCardUrl = (card) => {
+    // Hack for Kaladesh MasterPieces.
+    // We have different setName on `api.magicthegathering.io` and on `magiccards.info`
+    const setName = card.set === 'MPS' ? 'mpskld' : card.set.replace('_', '').toLowerCase();
+    return `https://magiccards.info/scans/en/${setName}/${card.number}.jpg`;
+};
+
 const buildDoubleFaceCard = shortDoubleFaceInfo => card => {
     if (!card.manaCost && card.layout === DOUBLE_FACED_TYPE && card.types.indexOf('Land') === -1) {
         return {
             ...shortDoubleFaceInfo[card.id],
             doubleFace: {
                 ...card,
-                imageUrlLarge: `https://magiccards.info/scans/en/${card.set.toLowerCase()}/${card.number}.jpg`
+                imageUrlLarge: getOversizedCardUrl(card)
             }
         };
     }
@@ -20,7 +27,7 @@ const buildDoubleFaceCard = shortDoubleFaceInfo => card => {
             ...card,
             doubleFace: {
                 ...sdfi,
-                imageUrlLarge: `https://magiccards.info/scans/en/${sdfi.set.toLowerCase()}/${sdfi.number}.jpg`
+                imageUrlLarge: getOversizedCardUrl(card)
             }
         };
     }
@@ -36,7 +43,7 @@ export const fullCardsInfoLens = needToSearchCards => doubleFacedCards =>
         if (searchCard) {
             mapping[searchCard.id] = {
                 ...card,
-                imageUrlLarge: `https://magiccards.info/scans/en/${card.set.toLowerCase()}/${card.number}.jpg`
+                imageUrlLarge: getOversizedCardUrl(card)
             };
             needToSearchCards
                 .splice(findIndex(needToSearchCards, (c) => card.name === c.doubleName), 1);
@@ -46,5 +53,4 @@ export const fullCardsInfoLens = needToSearchCards => doubleFacedCards =>
 
 export const buildDoubleFaceCards = (suggestions, shortDoubleFaceInfo) =>
     uniqBy(compact(suggestions.map(buildDoubleFaceCard(shortDoubleFaceInfo))), 'id');
-
 

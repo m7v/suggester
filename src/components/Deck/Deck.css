@@ -180,19 +180,19 @@
 }
 
 .DeckMana-r {
-    background-color: #D32F2F;
+    background-color: #e5a081;
 }
 
 .DeckMana-g {
-    background-color: #388E3C;
+    background-color: #a3d1a3;
 }
 
 .DeckMana-b {
-    background-color: #616161;
+    background-color: #919191;
 }
 
 .DeckMana-u {
-    background-color: #1976D2;
+    background-color: #b2e6fb;
 }
 
 .DeckMana-w {
@@ -200,19 +200,19 @@
 }
 
 .Deck__deckShortHead .short-mana-r {
-    color: #D32F2F;
+    color: #e5a081;
 }
 
 .Deck__deckShortHead .short-mana-g {
-    color: #388E3C;
+    color: #a3d1a3;
 }
 
 .Deck__deckShortHead .short-mana-b {
-    color: #616161;
+    color: #919191;
 }
 
 .Deck__deckShortHead .short-mana-u {
-    color: #1976D2;
+    color: #b2e6fb;
 }
 
 .Deck__deckShortHead .short-mana-w {

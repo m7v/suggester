@@ -79,7 +79,7 @@ class NavBar extends React.PureComponent {
 
     render() {
         return (
-            <Paper className="NavBar__root" elevation={2}>
+            <Paper className="NavBar__root" elevation={4}>
                 <BottomNavigation value={this.state.selectedNav} onChange={this.handleChange}>
                     { this.renderNavigationLinks() }
                 </BottomNavigation>

@@ -4,7 +4,7 @@ import * as types from './suggestions.types';
 import {
     buildDoubleFaceCards,
     fullCardsInfoLens
-} from 'helpers/doubleFacedCards';
+} from 'helpers/mtgCard.helper';
 import {
     getSuggestions as requestGetSuggestions,
     getCardsByNames as requestGetCardsByNames,

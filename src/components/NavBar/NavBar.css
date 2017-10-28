@@ -13,6 +13,6 @@
 
 .NavBar__selectedIcon svg,
 .NavBar__selectedIcon div {
-    color: #d32f2f !important;
-    fill: #d32f2f !important;
+    color: #e5a081 !important;
+    fill: #e5a081 !important;
 }

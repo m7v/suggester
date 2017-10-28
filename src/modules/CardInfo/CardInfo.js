@@ -101,8 +101,7 @@ class CardInfo extends React.Component {
             case '{7}':
             case '{8}':
             case '{9}':
-                const str = '{[0-9]}';
-                return new RegExp(`${str}`, 'g');
+                return new RegExp('{[0-9]}', 'g');
             default:
                 return search;
         }
@@ -141,7 +140,8 @@ class CardInfo extends React.Component {
             <div className="CardInfo__card">
                 <Card card={card} needForceCheck oversize />
                 <Link className="CardInfo__artist" to={`/search?q=${card.artist}`}>
-                    Artist <span className="CardInfo__artistName">{card.artist}</span> <span>#{card.number}</span>
+                    Artist <span className="CardInfo__artistName">{card.artist}</span>
+                    {card.number && <span> #{card.number}</span>}
                 </Link>
             </div>
             <div className="CardInfo__fullInfo">
@@ -150,10 +150,12 @@ class CardInfo extends React.Component {
                 </div>
                 <div className="CardInfo__cardBlock">
                     <div className="CardInfo__details">
-                        <div className="CardInfo__type">
-                            <div className="CardInfo__detailTitle">Types</div>
-                            {card.type}
-                        </div>
+                        {card.type &&
+                            <div className="CardInfo__type">
+                                <div className="CardInfo__detailTitle">Types</div>
+                                {card.type}
+                            </div>
+                        }
                         {card.manaCost &&
                             <div className="CardInfo__manaCost">
                                 <div className="CardInfo__detailTitle">Mana cost</div>
@@ -170,13 +172,15 @@ class CardInfo extends React.Component {
                             </div>
                         }
                     </div>
-                    <div className="CardInfo__textInfo">
-                        {card.text && card.text.split('\n').map((text, key) =>
-                            <div key={key} dangerouslySetInnerHTML={{__html: this.formatText(text)}} />
-                        )}
-                        <br />
-                        {card.flavor && <div className="CardInfo__textFlavor">{card.flavor}</div>}
-                    </div>
+                    {(card.text || card.flavor) &&
+                        <div className="CardInfo__textInfo">
+                            {card.text && card.text.split('\n').map((text, key) =>
+                                <div key={key} dangerouslySetInnerHTML={{ __html: this.formatText(text) }} />
+                            )}
+                            <br />
+                            {card.flavor && <div className="CardInfo__textFlavor">{card.flavor}</div>}
+                        </div>
+                    }
                 </div>
             </div>
         </div>

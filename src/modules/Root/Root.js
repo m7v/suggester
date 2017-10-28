@@ -9,13 +9,14 @@ import {
     HashRouter as Router,
     Route,
 } from 'react-router-dom';
+import { AnimatedRoute } from 'react-router-transition';
 import Async from '../Async';
 import { mapStateToProps } from './connect/stateToProps';
 import { dispatchToProps } from './connect/dispatchToProps';
 import NavBar from 'components/NavBar';
 import Loader from 'components/Loader';
 
-// const DeckBuilder = (props) => <Async load={import('../DeckBuilder/container')} componentProps={props} />;
+const DeckBuilder = (props) => <Async load={import('../DeckBuilder/container')} componentProps={props} />;
 const Decks = (props) => <Async load={import('modules/Decks/container')} componentProps={props} />;
 const Cards = (props) => <Async load={import('modules/Cards/container')} componentProps={props} />;
 const Suggester = (props) => <Async load={import('modules/Suggester/container')} componentProps={props} />;
@@ -35,10 +36,11 @@ class Root extends React.PureComponent {
     }
 
     render() {
+        const { isMobile, isInitial } = this.props;
         return (
             <Router>
                 <section className="Root">
-                    {!this.props.isInitial &&
+                    {!isInitial &&
                         <div className="Root__preloader">
                             <div className="Root__circular">
                                 <Loader />
@@ -66,15 +68,26 @@ class Root extends React.PureComponent {
                         path="/cards"
                         component={Cards}
                     />
-                    <Route
+                    <AnimatedRoute
                         exact
                         path="/cards/:id"
                         component={({match, history}) => <CardInfo cardId={match.params.id} history={history} />}
+                        atEnter={{ offset: -100 }}
+                        atLeave={{ offset: -110 }}
+                        atActive={{ offset: 0 }}
+                        mapStyles={(styles) => ({
+                            transform: isMobile ? `translateY(${styles.offset}%)` : `translateX(${styles.offset}%)`,
+                        })}
                     />
                     <Route
                         exact
                         path="/favorites"
                         component={() => <div className="Root__comingSoon"><div>Coming soon...</div></div>}
+                    />
+                    <Route
+                        exact
+                        path="/deck/add"
+                        component={DeckBuilder}
                     />
                     <Route
                         exact
@@ -94,6 +107,7 @@ class Root extends React.PureComponent {
 
 Root.propTypes = {
     isInitial: bool.isRequired,
+    isMobile: bool.isRequired,
     appInitialized: func.isRequired
 };
 

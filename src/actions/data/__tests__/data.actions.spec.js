@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { assert } from 'chai';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import fetchMock from 'fetch-mock';
@@ -358,13 +358,11 @@ describe('DECK/BUILD', () => {
                 '4 Haunted Dead\n' +
                 '4 Lord of the Accursed\n' +
                 '4 Prized Amalgam\n' +
-                '\n' +
                 '4 Liliana\'s Mastery\n' +
                 '2 Wander in Death\n' +
                 '2 Dark Salvation\n' +
                 '2 Grave Strength\n' +
                 '2 Gisa\'s Bidding\n' +
-                '\n' +
                 '10 Island\n' +
                 '14 Swamp';
             const store = mockStore({
@@ -375,7 +373,7 @@ describe('DECK/BUILD', () => {
             });
             const decklist = mtgparser(inputDeckList, 'mtgo');
             const cardResults = getFullCardInfo(decklist.cards, store.getState().data.cards);
-            expect(cardResults.notFound).to.deep.equal([]);
+            assert.deepEqual(cardResults.notFound, []);
         });
 
         it('Some cards missing in store', () => {
@@ -386,11 +384,9 @@ describe('DECK/BUILD', () => {
                 '4 Haunted Dead\n' +
                 '4 Lord of the Accursed\n' +
                 '4 Prized Amalgam\n' +
-                '\n' +
                 '4 Liliana\'s Mastery\n' +
                 '4 Dark Salvation\n' +
                 '4 Gisa\'s Bidding\n' +
-                '\n' +
                 '10 Island\n' +
                 '14 Swamp';
 
@@ -448,7 +444,7 @@ describe('DECK/BUILD', () => {
             });
             const decklist = mtgparser(inputDeckList, 'mtgo');
             const cardResults = getFullCardInfo(decklist.cards, store.getState().data.cards);
-            expect(cardResults.notFound).to.deep.equal(expected);
+            assert.deepEqual(cardResults.notFound, expected);
         });
     });
 
@@ -493,13 +489,11 @@ describe('DECK/BUILD', () => {
             '4 Haunted Dead\n' +
             '4 Lord of the Accursed\n' +
             '4 Prized Amalgam\n' +
-            '\n' +
             '4 Liliana\'s Mastery\n' +
             '2 Wander in Death\n' +
             '2 Dark Salvation\n' +
             '2 Grave Strength\n' +
             '2 Gisa\'s Bidding\n' +
-            '\n' +
             '10 Island\n' +
             '14 Swamp';
         const store = mockStore({
@@ -510,8 +504,8 @@ describe('DECK/BUILD', () => {
         });
         const decklist = mtgparser(inputDeckList, 'mtgo');
         const cardResults = getFullCardInfo(decklist.cards, store.getState().data.cards);
-        const buildedDeck = buildDeck('deck15089519647361', 'Simple Deck', cardResults.found);
-        expect(buildedDeck).to.deep.equal(expected);
+        const builtDeck = buildDeck('deck15089519647361', 'Simple Deck', cardResults.found);
+        assert.deepEqual(builtDeck, expected);
     });
 
 });

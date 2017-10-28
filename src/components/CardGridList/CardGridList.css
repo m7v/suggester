@@ -41,3 +41,7 @@
     text-decoration: none;
     cursor: pointer;
 }
+
+.CardGridList__resultName._basicLand {
+    cursor: auto;
+}
