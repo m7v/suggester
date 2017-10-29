@@ -3,14 +3,13 @@ import uniqBy from 'lodash/uniqBy';
 import * as types from './suggestions.types';
 import {
     buildDoubleFaceCards,
-    fullCardsInfoLens
+    fullCardsInfoLens,
+    DOUBLE_FACED_TYPE
 } from 'helpers/mtgCard.helper';
 import {
     getSuggestions as requestGetSuggestions,
     getCardsByNames as requestGetCardsByNames,
 } from 'services/mtgApi/mtgApi.service';
-
-const DOUBLE_FACED_TYPE = 'double-faced';
 
 /**
  * @returns {function(*, *)}Success

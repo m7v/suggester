@@ -68,6 +68,7 @@ class CardFilter extends React.Component {
             'CardFilter__type': true,
             'CardFilter__typeSelected': !!this.props.types[cardType],
             'ms': true,
+            'ms-fw': true,
             [`ms-${cardType}`]: true,
         });
 
@@ -86,6 +87,7 @@ class CardFilter extends React.Component {
         const iconClass = classNames({
             'CardFilter__mana': true,
             'ms': true,
+            'ms-fw': true,
             [`ms-${manaMap[ mana ]}`]: true,
             [`CardFilter__mana-${manaMap[ mana ]}`]: !!this.props.colors[ color ],
         });
@@ -102,6 +104,7 @@ class CardFilter extends React.Component {
             'CardFilter__rarity': true,
             [`ss-${cardType}`]: !!this.props.rarity[cardType],
             'ss': true,
+            'ss-grad': true,
             [`ss-${this.props.currentSet}`]: true,
         });
         return (

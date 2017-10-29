@@ -1,9 +1,8 @@
 import React from 'react';
 import { shape, bool } from 'prop-types';
+import { DOUBLE_FACED_TYPE } from 'helpers/mtgCard.helper';
 import SimpleCard from 'components/SimpleCard/SimpleCard';
 import DoubleFacedCard from 'components/DoubleFacedCard/DoubleFacedCard';
-
-const DOUBLE_FACED_TYPE = 'double-faced';
 
 class Card extends React.PureComponent {
 

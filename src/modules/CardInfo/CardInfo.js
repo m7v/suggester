@@ -56,6 +56,13 @@ class CardInfo extends React.Component {
         }
     }
 
+    getManaClass = (mana) => {
+        if (manaMapping[mana]) {
+            return manaMapping[mana];
+        }
+        return mana.replace('/', '').toLowerCase();
+    };
+
     getSetIcon = (card) => {
         if (!card) {
             return '';
@@ -72,7 +79,14 @@ class CardInfo extends React.Component {
             return parsedMana.map((mana, index) => (
                 <span
                     key={index}
-                    className={`CardInfo__mana CardInfo__mana-${manaMapping[mana]} ms ms-${manaMapping[mana]}`}
+                    className={classNames({
+                        'CardInfo__mana': true,
+                        [`CardInfo__mana-${this.getManaClass(mana)}`]: true,
+                        'ms-split': mana.indexOf('/') >= 0,
+                        'ms-cost': true,
+                        'ms': true,
+                        [`ms-${this.getManaClass(mana)}`]: true
+                    })}
                 />
             ));
         }
@@ -92,6 +106,10 @@ class CardInfo extends React.Component {
             case '{C}':
             case '{X}':
                 return new RegExp(`${search}`, 'g');
+            case '{1/W}':
+            case '{2/W}':
+            case '{3/W}':
+                return new RegExp('{[0-9]\\/\\w+}', 'g');
             case '{1}':
             case '{2}':
             case '{3}':
@@ -120,7 +138,7 @@ class CardInfo extends React.Component {
 
             const iconMap = reduce(parsedMap, (agg, manaLetter, key) => {
                 const l = manaMapping[manaLetter];
-                agg[key] = `<span class="CardInfo__textSymbols CardInfo__textSymbols-${l} ms ms-${l}"></span>`;
+                agg[key] = `<span class="CardInfo__textSymbols CardInfo__textSymbols-${l} ms ms-cost ms-${l}"></span>`;
                 return agg;
             }, {});
 

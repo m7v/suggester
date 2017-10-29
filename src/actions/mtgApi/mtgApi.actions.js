@@ -11,10 +11,10 @@ import {
 import {
     buildDoubleFaceCards,
     fullCardsInfoLens,
-    getOversizedCardUrl
+    getOversizedCardUrl,
+    DOUBLE_FACED_TYPE
 } from 'helpers/mtgCard.helper';
 
-const DOUBLE_FACED_TYPE = 'double-faced';
 
 export function getCardById(cardId) {
     return (dispatch, getState) => {
