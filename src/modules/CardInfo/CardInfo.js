@@ -137,8 +137,14 @@ class CardInfo extends React.Component {
             }, {});
 
             const iconMap = reduce(parsedMap, (agg, manaLetter, key) => {
-                const l = manaMapping[manaLetter];
-                agg[key] = `<span class="CardInfo__textSymbols CardInfo__textSymbols-${l} ms ms-cost ms-${l}"></span>`;
+                const l = this.getManaClass(manaLetter);
+                let manaSpan = `<span 
+                    class="CardInfo__textSymbols CardInfo__textSymbols-${l} ms ms-cost ms-${l}"></span>`;
+                if (manaLetter.indexOf('/') >= 0) {
+                    manaSpan = `<span
+                        class="CardInfo__textSymbols CardInfo__textSymbols-${l} ms ms-split ms-cost ms-${l}"></span>`;
+                }
+                agg[key] = manaSpan;
                 return agg;
             }, {});
 
