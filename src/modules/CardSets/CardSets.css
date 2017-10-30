@@ -73,7 +73,17 @@
     margin: 10px 0;
     display: flex;
     justify-content: space-between;
+    text-decoration: none;
 }
+
+.CardSets__set:hover {
+    color: #b0680e;
+}
+
+.CardSets__set:hover .CardSets__setName {
+    color: #999;
+}
+
 
 .CardSets__sets {
     display: none;

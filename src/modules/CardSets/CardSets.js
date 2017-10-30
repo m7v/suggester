@@ -39,16 +39,16 @@ class CardSets extends React.PureComponent {
             </div>
             <div className={classNames({ 'CardSets__sets': true, '_open': this.state.blocks[title] })}>
                 {map(arrOfSets, set => (
-                    <div key={set.id} className="CardSets__set">
+                    <Link key={set.id} className="CardSets__set" to={`/browse/${set.code.toLowerCase()}`}>
                         <div className="CardSets__IconWrapper">
                             <i className={`CardSets__Icon ss ss-3x ss-${set.code.toLowerCase()}`} />
                         </div>
                         <div className="CardSets__setNameWrapper">
-                            <Link className="CardSets__setName" to={`/browse/${set.code.toLowerCase()}`}>
+                            <div className="CardSets__setName">
                                 {set.name}
-                            </Link>
+                            </div>
                         </div>
-                    </div>
+                    </Link>
                 ))}
             </div>
         </div>
