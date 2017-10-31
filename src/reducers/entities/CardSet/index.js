@@ -11,7 +11,10 @@ class CardSet extends Model {
     static reducer(action, set) {
         switch (action.type) {
             case ADD_CARDSET: {
-                set.upsert(action.payload.set);
+                set.upsert({
+                    id: action.payload.set.code,
+                    ...action.payload.set
+                });
                 break;
             }
             default:

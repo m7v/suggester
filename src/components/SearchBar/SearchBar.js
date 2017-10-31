@@ -14,9 +14,7 @@ class SearchBar extends React.PureComponent {
     };
 
     componentDidMount() {
-        if (this.state.searchingCard) {
-            this.searchInput.focus();
-        }
+        this.searchInput.focus();
     }
 
     onCardChange = event => {

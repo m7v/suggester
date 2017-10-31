@@ -1,16 +1,45 @@
 .CardFilter__inputWrapper,
+.CardFilter__header,
 .CardFilter__inputManaFilter,
 .CardFilter__inputRarityFilter,
 .CardFilter__inputTypeFilter {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
+}
+
+.CardFilter__header {
+    margin-bottom: 15px;
+    color: #eee;
+    font-family: "Beleren Bold";
+    font-size: 24px;
+    line-height: 30px;
+}
+
+.CardFilter__header:after {
+    content: ' ';
+    border-bottom: 1px solid #eee;
+    width: 90%;
+}
+
+.CardFilter__IconHeader,
+.CardFilter__headerTitle {
+    padding: 5px;
+}
+
+.ss-basicLand {
+    color: #111111;
 }
 
 .CardFilter__type,
 .CardFilter__rarity,
 .CardFilter__mana{
     transition: all 0.25s ease-in-out;
+}
+
+.CardFilter__rarity {
+    font-family: "Beleren Bold";
 }
 
 .CardFilter__result {

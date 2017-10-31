@@ -2,10 +2,17 @@
     overflow: hidden;
 }
 
+.CardSet__back {
+    position: absolute;
+    top: 22px;
+    left: 5px;
+    z-index: 1;
+}
+
 .CardSet__filter {
     position: absolute;
     top: 22px;
-    right: 20px;
+    right: 10px;
     z-index: 1;
 }
 

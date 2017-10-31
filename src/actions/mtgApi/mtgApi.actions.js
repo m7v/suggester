@@ -7,6 +7,7 @@ import {
     getCardsByNames as requestGetCardsByNames,
     getSetList as requestGetSetList,
     getSetCardsByCode as requestGetSetCardsByCode,
+    getSetByCode as requestGetSetByCode,
 } from 'services/mtgApi/mtgApi.service';
 import {
     buildDoubleFaceCards,
@@ -71,7 +72,7 @@ export function getSetList() {
 
         dispatch(appContextTypes.appCardSetsRequestStarted());
 
-        if (state.entities.CardSet.items.length !== 0) {
+        if (state.entities.CardSet.items.length > 10) {
             return dispatch(appContextTypes.appCardSetsRequestSuccess());
         }
 
@@ -83,6 +84,24 @@ export function getSetList() {
                 ]));
             })
             .catch((e) => dispatch(appContextTypes.appCardSetsRequestFailed(e)));
+    };
+}
+
+
+export function getSetByCode(code) {
+    return (dispatch, getState) => {
+        const state = getState();
+
+
+        const currentSet = state.entities.CardSet.itemsById[code.toUpperCase()];
+
+        if (currentSet) {
+            return Promise.resolve();
+        }
+
+        return requestGetSetByCode(code)
+            .then(set => dispatch(mtgApiTypes.addSet(set)))
+            .catch(() => Promise.resolve());
     };
 }
 

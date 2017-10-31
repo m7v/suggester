@@ -4,8 +4,10 @@ import { connect } from 'react-redux';
 import { bool, string, arrayOf, shape, func } from 'prop-types';
 import Async from 'modules/Async';
 import Loader from 'components/Loader';
+import ButtonBack from 'components/ButtonBack';
 import stateToProps from './connect/stateToProps';
 import dispatchToProps from './connect/dispatchToProps';
+
 const CardGridList = (props) => <Async load={import('components/CardGridList')} componentProps={props} />;
 const CardFilter = (props) => <Async load={import('components/CardFilter')} componentProps={props} />;
 
@@ -13,6 +15,7 @@ class CardSet extends React.Component {
 
     componentWillMount() {
         if (this.props.code) {
+            this.props.getSetByCode(this.props.code);
             this.props.getSetCardsByCode(this.props.code);
         }
     }
@@ -20,9 +23,10 @@ class CardSet extends React.Component {
     render() {
         return (
             <section className="CardSet">
+                <ButtonBack className="CardSet__back" path="/browse" />
                 <CardFilter
                     className={'CardSet__filter'}
-                    currentSet={this.props.code}
+                    currentSet={this.props.currentSet}
                     rarity={this.props.rarity}
                     types={this.props.types}
                     colors={this.props.colors}
@@ -52,10 +56,12 @@ class CardSet extends React.Component {
 CardSet.propTypes = {
     code: string.isRequired,
     history: shape({}).isRequired,
+    currentSet: shape({}).isRequired,
     rarity: shape({}).isRequired,
     colors: shape({}).isRequired,
     types: shape({}).isRequired,
     cards: arrayOf(shape({})).isRequired,
+    getSetByCode: func.isRequired,
     getSetCardsByCode: func.isRequired,
     appSetCardSetTypeFilter: func.isRequired,
     appSetCardSetColorFilter: func.isRequired,

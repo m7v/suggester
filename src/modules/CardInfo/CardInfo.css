@@ -10,6 +10,13 @@
     align-items: initial;
 }
 
+.CardInfo__back {
+    position: absolute;
+    top: 20px;
+    left: 5px;
+    z-index: 1;
+}
+
 .CardInfo__search {
     position: absolute;
     top: 20px;

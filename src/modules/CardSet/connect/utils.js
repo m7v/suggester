@@ -2,6 +2,7 @@ import intersection from 'lodash/intersection';
 import sortBy from 'lodash/sortBy';
 
 const rarityMap = {
+    basicLand: 'Basic Land',
     common: 'Common',
     uncommon: 'Uncommon',
     rare: 'Rare',

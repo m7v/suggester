@@ -179,6 +179,11 @@ export const getSetList = () =>
         .then(response => response.data.sets)
         .catch(() => null);
 
+export const getSetByCode = (code) =>
+    axios.get(`${serverApiUrl}sets/${code}`)
+        .then(response => response.data.set)
+        .catch(() => null);
+
 const getSetPlaneswalkerCardsByCode = (code) =>
     axios.get(
         `${serverApiUrl}cards?set=${code}&types=planeswalker&layout=${layouts}&contains=imageUrl`

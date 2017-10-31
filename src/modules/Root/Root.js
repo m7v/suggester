@@ -9,7 +9,6 @@ import {
     HashRouter as Router,
     Route,
 } from 'react-router-dom';
-import { AnimatedRoute } from 'react-router-transition';
 import Async from '../Async';
 import { mapStateToProps } from './connect/stateToProps';
 import { dispatchToProps } from './connect/dispatchToProps';
@@ -36,7 +35,7 @@ class Root extends React.PureComponent {
     }
 
     render() {
-        const { isMobile, isInitial } = this.props;
+        const { isInitial } = this.props;
         return (
             <Router>
                 <section className="Root">
@@ -68,16 +67,10 @@ class Root extends React.PureComponent {
                         path="/cards"
                         component={Cards}
                     />
-                    <AnimatedRoute
+                    <Route
                         exact
                         path="/cards/:id"
                         component={({match, history}) => <CardInfo cardId={match.params.id} history={history} />}
-                        atEnter={{ offset: -100 }}
-                        atLeave={{ offset: -110 }}
-                        atActive={{ offset: 0 }}
-                        mapStyles={(styles) => ({
-                            transform: isMobile ? `translateY(${styles.offset}%)` : `translateX(${styles.offset}%)`,
-                        })}
                     />
                     <Route
                         exact
@@ -107,7 +100,6 @@ class Root extends React.PureComponent {
 
 Root.propTypes = {
     isInitial: bool.isRequired,
-    isMobile: bool.isRequired,
     appInitialized: func.isRequired
 };
 

@@ -9,44 +9,11 @@ import isEmpty from 'lodash/isEmpty';
 import reduce from 'lodash/reduce';
 import { dispatchToProps } from './connect/dispatchToProps';
 import { stateToProps } from './connect/stateToProps';
+import { getManaClass } from 'helpers/mana.helper';
 import SearchBarMini from 'components/SearchBarMini';
 import Card from 'components/Card';
 import Loader from 'components/Loader/Loader';
-
-const manaMapping = {
-    U: 'u',
-    R: 'r',
-    B: 'b',
-    G: 'g',
-    W: 'w',
-    S: 's',
-    E: 'e',
-    C: 'c',
-    P: 'p',
-    X: 'x',
-    Y: 'y',
-    Z: 'z',
-    T: 'tap',
-    1: '1',
-    2: '2',
-    3: '3',
-    4: '4',
-    5: '5',
-    6: '6',
-    7: '7',
-    8: '8',
-    9: '9',
-    10: '10',
-    11: '11',
-    12: '12',
-    13: '13',
-    14: '14',
-    15: '15',
-    17: '17',
-    18: '18',
-    19: '19',
-    20: '20',
-};
+import ButtonBack from 'components/ButtonBack';
 
 class CardInfo extends React.Component {
 
@@ -55,13 +22,6 @@ class CardInfo extends React.Component {
             this.props.getCardById(this.props.cardId);
         }
     }
-
-    getManaClass = (mana) => {
-        if (manaMapping[mana]) {
-            return manaMapping[mana];
-        }
-        return mana.replace('/', '').toLowerCase();
-    };
 
     getSetIcon = (card) => {
         if (!card) {
@@ -81,11 +41,11 @@ class CardInfo extends React.Component {
                     key={index}
                     className={classNames({
                         'CardInfo__mana': true,
-                        [`CardInfo__mana-${this.getManaClass(mana)}`]: true,
+                        [`CardInfo__mana-${getManaClass(mana)}`]: true,
                         'ms-split': mana.indexOf('/') >= 0,
                         'ms-cost': true,
                         'ms': true,
-                        [`ms-${this.getManaClass(mana)}`]: true
+                        [`ms-${getManaClass(mana)}`]: true
                     })}
                 />
             ));
@@ -94,31 +54,36 @@ class CardInfo extends React.Component {
     };
 
     createRegExp = (search) => {
-        switch (search) {
-            case '{T}':
-            case '{P}':
-            case '{E}':
-            case '{W}':
-            case '{R}':
-            case '{B}':
-            case '{U}':
-            case '{G}':
-            case '{C}':
-            case '{X}':
+        const baseSearch = {
+            '{T}': true,
+            '{P}': true,
+            '{E}': true,
+            '{W}': true,
+            '{R}': true,
+            '{B}': true,
+            '{U}': true,
+            '{G}': true,
+            '{C}': true,
+            '{X}': true,
+        };
+        const numberSearch = {
+            '{1}': true,
+            '{2}': true,
+            '{3}': true,
+            '{4}': true,
+            '{5}': true,
+            '{6}': true,
+            '{7}': true,
+            '{8}': true,
+            '{9}': true,
+        };
+
+        switch (true) {
+            case baseSearch[search]:
                 return new RegExp(`${search}`, 'g');
-            case '{1/W}':
-            case '{2/W}':
-            case '{3/W}':
-                return new RegExp('{[0-9]\\/\\w+}', 'g');
-            case '{1}':
-            case '{2}':
-            case '{3}':
-            case '{4}':
-            case '{5}':
-            case '{6}':
-            case '{7}':
-            case '{8}':
-            case '{9}':
+            case !!search.match(new RegExp('{[0-9A-Z]\\/[0-9A-Z]}', 'g')):
+                return new RegExp('{[0-9A-Z]\\/[0-9A-Z]}', 'g');
+            case numberSearch[search]:
                 return new RegExp('{[0-9]}', 'g');
             default:
                 return search;
@@ -137,7 +102,7 @@ class CardInfo extends React.Component {
             }, {});
 
             const iconMap = reduce(parsedMap, (agg, manaLetter, key) => {
-                const l = this.getManaClass(manaLetter);
+                const l = getManaClass(manaLetter);
                 let manaSpan = `<span 
                     class="CardInfo__textSymbols CardInfo__textSymbols-${l} ms ms-cost ms-${l}"></span>`;
                 if (manaLetter.indexOf('/') >= 0) {
@@ -262,6 +227,9 @@ class CardInfo extends React.Component {
 
         return (
             <div className={root}>
+                {!loading && card.set &&
+                    <ButtonBack className="CardInfo__back" path={`/browse/${card.set.toLowerCase()}`} />
+                }
                 <SearchBarMini
                     className="CardInfo__search"
                     isMobile={isMobile}

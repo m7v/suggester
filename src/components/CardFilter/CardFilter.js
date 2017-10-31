@@ -3,9 +3,11 @@ import React from 'react';
 import { func, shape, string, number } from 'prop-types';
 import classNames from 'classnames';
 import map from 'lodash/map';
+import isEmpty from 'lodash/isEmpty';
 import compact from 'lodash/compact';
 import debounce from 'lodash/debounce';
 import IconButton from 'material-ui/IconButton';
+import Button from 'material-ui/Button';
 import IconFilter from 'material-ui-icons/FilterList';
 import Drawer from 'material-ui/Drawer';
 
@@ -14,6 +16,7 @@ const rarityMap = {
     uncommon: 'uncommon',
     rare: 'rare',
     mythic: 'mythic',
+    basicLand: 'basicland',
 };
 const manaMap = {
     white: 'w',
@@ -38,6 +41,17 @@ class CardFilter extends React.Component {
         super(props);
         this.state = {open: false};
     }
+
+    getSetIcon = (primary) => {
+        const iconClass = classNames({
+            [primary]: true,
+            'ss': true,
+            'ss-grad': true,
+            [`ss-${this.props.currentSet.code.toLowerCase()}`]: true,
+        });
+
+        return (<span className={iconClass} />);
+    };
 
     handleToggle = () => this.setState({open: !this.state.open});
 
@@ -103,24 +117,24 @@ class CardFilter extends React.Component {
         const iconClass = classNames({
             'CardFilter__rarity': true,
             [`ss-${cardType}`]: !!this.props.rarity[cardType],
-            'ss': true,
-            'ss-grad': true,
-            [`ss-${this.props.currentSet}`]: true,
         });
         return (
-            <IconButton
+            <Button
                 key={type}
+                color="contrast"
                 className="CardFilter__icon"
                 onClick={debounce(this.appSetRarityFilter(cardType), 100)}
             >
-                <div className={iconClass} />
-            </IconButton>
+                <span className={iconClass}>
+                    {rareTypes[cardType]}
+                </span>
+            </Button>
         );
     });
 
 
     render() {
-        const { colors, types, rarity, className } = this.props;
+        const { colors, types, rarity, className, currentSet, resultCount } = this.props;
         const hasColorFilter = compact(Object.values(colors)).length;
         const hasTypeFilter = compact(Object.values(types)).length;
         const hasRarityFilter = compact(Object.values(rarity)).length;
@@ -141,6 +155,12 @@ class CardFilter extends React.Component {
                 >
                     <div className="CardFilter__inputWrapper">
                         <div className="CardFilter__form">
+                            {!isEmpty(currentSet) &&
+                                <div className="CardFilter__header">
+                                    {this.getSetIcon('CardFilter__IconHeader')}
+                                    <span className="CardFilter__headerTitle">{currentSet.name}</span>
+                                </div>
+                            }
                             <div className="CardFilter__inputManaFilter">
                                 { this.renderColorFilter(manaMap) }
                             </div>
@@ -151,7 +171,7 @@ class CardFilter extends React.Component {
                                 { this.renderRarityFilter(rarityMap) }
                             </div>
                             <div className="CardFilter__result">
-                                {this.props.resultCount} cards
+                                {resultCount} cards
                             </div>
                         </div>
                     </div>
@@ -164,7 +184,7 @@ class CardFilter extends React.Component {
 CardFilter.propTypes = {
     resultCount: number,
     className: string,
-    currentSet: string,
+    currentSet: shape({}),
     rarity: shape({}).isRequired,
     appSetRarityFilter: func.isRequired,
     colors: shape({}).isRequired,
@@ -176,7 +196,7 @@ CardFilter.propTypes = {
 
 CardFilter.defaultProps = {
     className: '',
-    currentSet: '',
+    currentSet: {},
     resultCount: 0,
 };
 
