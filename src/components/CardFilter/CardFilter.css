@@ -25,6 +25,7 @@
 
 .CardFilter__IconHeader,
 .CardFilter__headerTitle {
+    text-align: center;
     padding: 5px;
 }
 
