@@ -6,41 +6,9 @@ import compact from 'lodash/compact';
 import pick from 'lodash/pick';
 import flatten from 'lodash/flatten';
 import { serverApiUrl } from './../config.service';
+import { fields, layouts } from './mtgApi.config';
 
 axios.defaults.adapter = httpAdapter;
-
-const fields = [
-    'count',
-    'artist',
-    'cmc',
-    'number',
-    'colorIndentity',
-    'colors',
-    'flavor',
-    'id',
-    'set',
-    'setName',
-    'layout',
-    'names',
-    'multiverseid',
-    'imageUrl',
-    'manaCost',
-    'name',
-    'text',
-    'type',
-    'types',
-    'supertypes',
-    'rarity'
-];
-
-const layouts = [
-    'normal',
-    'split',
-    'flip',
-    'double-faced',
-    'meld',
-    'aftermath',
-].join('|');
 
 /**
  * @param {Array} cardList

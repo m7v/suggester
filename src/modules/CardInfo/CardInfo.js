@@ -7,6 +7,8 @@ import { bool, string, func, shape } from 'prop-types';
 import classNames from 'classnames';
 import isEmpty from 'lodash/isEmpty';
 import reduce from 'lodash/reduce';
+import IconInfoOutline from 'material-ui-icons/InfoOutline';
+import IconButton from 'material-ui/IconButton';
 import { dispatchToProps } from './connect/dispatchToProps';
 import { stateToProps } from './connect/stateToProps';
 import { getManaClass } from 'helpers/mana.helper';
@@ -15,7 +17,7 @@ import Card from 'components/Card';
 import Loader from 'components/Loader/Loader';
 import ButtonBack from 'components/ButtonBack';
 
-class CardInfo extends React.Component {
+class CardInfo extends React.PureComponent {
 
     componentWillMount() {
         if (this.props.cardId) {
@@ -31,6 +33,7 @@ class CardInfo extends React.Component {
         return <i className={className} />;
     };
 
+    // @TODO Нужно вынести в отдельный компонент.
     getManaCost = () => {
         if (!isEmpty(this.props.card && this.props.card.manaCost)) {
             const parsedMana = this.props.card.manaCost.match(/\{(.*?)\}/g)
@@ -90,6 +93,7 @@ class CardInfo extends React.Component {
         }
     };
 
+    // @TODO Вынести в отдельный хелпер и компонент.
     formatText = (text) => {
         if (text) {
             const mana = text.match(/\{(.*?)\}/g);
@@ -124,6 +128,7 @@ class CardInfo extends React.Component {
         this.props.history.push(`/search?q=${searchedCard}`);
     };
 
+    // @TODO вынести в отдельный компонент
     renderDesktopCard = (card) => (
         <div className="CardInfo__container">
             <div className="CardInfo__card">
@@ -134,6 +139,11 @@ class CardInfo extends React.Component {
                 </Link>
             </div>
             <div className="CardInfo__fullInfo">
+                {card.rulings &&
+                    <IconButton className="CardInfo__IconInfoOutline" onClick={this.handleClick}>
+                        <IconInfoOutline />
+                    </IconButton>
+                }
                 <div className="CardInfo__title">
                     {card.name}
                 </div>
@@ -166,7 +176,7 @@ class CardInfo extends React.Component {
                             {card.text && card.text.split('\n').map((text, key) =>
                                 <div key={key} dangerouslySetInnerHTML={{ __html: this.formatText(text) }} />
                             )}
-                            <br />
+                            {card.flavor && <br />}
                             {card.flavor && <div className="CardInfo__textFlavor">{card.flavor}</div>}
                         </div>
                     }
@@ -175,6 +185,7 @@ class CardInfo extends React.Component {
         </div>
     );
 
+    // @TODO вынести в отдельный компонент
     renderMobileCard = (card) => (
         <div className="CardInfoMobile__container">
             <div className="CardInfoMobile__card">
@@ -210,7 +221,7 @@ class CardInfo extends React.Component {
                     {card.text && card.text.split('\n').map((text, key) =>
                         <div key={key} dangerouslySetInnerHTML={{__html: this.formatText(text)}} />
                     )}
-                    <br />
+                    {card.flavor && <br />}
                     {card.flavor && <div className="CardInfoMobile__textFlavor">{card.flavor}</div>}
                 </div>
             </div>
