@@ -7,15 +7,16 @@ import { bool, string, func, shape } from 'prop-types';
 import classNames from 'classnames';
 import isEmpty from 'lodash/isEmpty';
 import reduce from 'lodash/reduce';
-import IconInfoOutline from 'material-ui-icons/InfoOutline';
-import IconButton from 'material-ui/IconButton';
 import { dispatchToProps } from './connect/dispatchToProps';
 import { stateToProps } from './connect/stateToProps';
 import { getManaClass } from 'helpers/mana.helper';
+import Async from 'modules/Async';
 import SearchBarMini from 'components/SearchBarMini';
 import Card from 'components/Card';
 import Loader from 'components/Loader/Loader';
 import ButtonBack from 'components/ButtonBack';
+
+const CardRulings = (props) => <Async load={import('components/CardRulings')} componentProps={props} />;
 
 class CardInfo extends React.PureComponent {
 
@@ -140,9 +141,9 @@ class CardInfo extends React.PureComponent {
             </div>
             <div className="CardInfo__fullInfo">
                 {card.rulings &&
-                    <IconButton className="CardInfo__IconInfoOutline" onClick={this.handleClick}>
-                        <IconInfoOutline />
-                    </IconButton>
+                    <div className="CardInfo__IconInfoOutline">
+                        <CardRulings rulings={card.rulings} />
+                    </div>
                 }
                 <div className="CardInfo__title">
                     {card.name}

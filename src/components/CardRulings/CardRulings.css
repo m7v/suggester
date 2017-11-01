@@ -1,0 +1,19 @@
+.CardRulings__drawer {
+    padding: 20px 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: "Beleren Bold";
+    color: #eee;
+}
+
+.CardRulings__title {
+    text-align: center;
+    font-size: 28px;
+    line-height: 32px;
+}
+
+.CardRulings__item {
+    max-width: 800px;
+}
