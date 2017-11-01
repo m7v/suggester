@@ -1,0 +1,26 @@
+.ManaCost__mana.ms {
+    border-radius: 50%;
+    margin: 0 2px;
+    background-color: #9c9c9c;
+    color: #111;
+}
+
+.ManaCost__mana_r {
+    background-color: #e5a081 !important;
+}
+
+.ManaCost__mana_g {
+    background-color: #a3d1a3 !important;
+}
+
+.ManaCost__mana_b {
+    background-color: #919191 !important;
+}
+
+.ManaCost__mana_u {
+    background-color: #b2e6fb !important;
+}
+
+.ManaCost__mana_w {
+    background-color: #FFFFDA !important;
+}

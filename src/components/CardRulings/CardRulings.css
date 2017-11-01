@@ -46,6 +46,11 @@
     font-size: 14px;
 }
 
+.CardRulings__mana {
+    margin: 0 2px;
+    font-size: 12px;
+}
+
 .CardRulings__actions {
     display: flex;
     justify-content: center;

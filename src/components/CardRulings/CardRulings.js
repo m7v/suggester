@@ -1,7 +1,7 @@
 import './CardRulings.css';
 import React from 'react';
-import withRouter from 'react-router-dom/withRouter';
 import { arrayOf, shape, bool } from 'prop-types';
+import { formatText } from 'helpers/mana.helper';
 import IconInfoOutline from 'material-ui-icons/InfoOutline';
 import IconButton from 'material-ui/IconButton';
 import Dialog, { DialogActions, DialogContent } from 'material-ui/Dialog';
@@ -36,13 +36,18 @@ class CardRulings extends React.PureComponent {
                 >
                     <div className="CardRulings__title">Rulings</div>
                     <DialogContent className="CardRulings__drawer">
+                        {/* eslint-disable */}
                         <ul className="CardRulings__itemList">
                             {rulings && rulings.map(ruling => (
                                 <li key={ruling.text} className="CardRulings__item">
-                                    <div className="CardRulings__text">{ruling.text}</div>
+                                    <div
+                                        className="CardRulings__text"
+                                        dangerouslySetInnerHTML={{ __html: formatText(ruling.text, 'CardRulings__mana')}}
+                                    />
                                 </li>
                             ))}
                         </ul>
+                        {/*eslint-enable*/}
                     </DialogContent>
                     <DialogActions className="CardRulings__actions">
                         <Button className="CardRulings__closeButton" color="primary" onClick={this.handleRulingsClose}>
@@ -68,4 +73,4 @@ CardRulings.defaultProps = {
     isMobile: false,
 };
 
-export default withRouter(CardRulings);
+export default CardRulings;

@@ -150,12 +150,6 @@
     text-align: left;
 }
 
-.CardInfo__manaCost {
-    font-size: 14px;
-    color: #eee;
-    text-align: left;
-}
-
 .CardInfo__setName {
     font-size: 14px;
     color: #eee;
@@ -214,31 +208,10 @@
     background-color: #FFFFDA !important;
 }
 
-.CardInfo__mana.ms {
-    border-radius: 50%;
-    margin: 0 2px;
-    background-color: #9c9c9c;
-    color: #111;
-}
-
-.CardInfo__mana-r {
-    background-color: #e5a081 !important;
-}
-
-.CardInfo__mana-g {
-    background-color: #a3d1a3 !important;
-}
-
-.CardInfo__mana-b {
-    background-color: #919191 !important;
-}
-
-.CardInfo__mana-u {
-    background-color: #b2e6fb !important;
-}
-
-.CardInfo__mana-w {
-    background-color: #FFFFDA !important;
+.CardInfo__manaCost {
+    font-size: 14px;
+    color: #eee;
+    text-align: left;
 }
 
 .CardInfo__set {
