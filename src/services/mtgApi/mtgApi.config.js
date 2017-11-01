@@ -20,6 +20,8 @@ export const fields = [
     'types',
     'supertypes',
     'rulings',
+    'printings',
+    'legalities',
     'rarity'
 ];
 

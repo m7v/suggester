@@ -25,11 +25,11 @@ class CardInfo extends React.PureComponent {
         }
     }
 
-    getSetIcon = (card) => {
-        if (!card) {
+    getSetIcon = (set, rarity) => {
+        if (!set) {
             return '';
         }
-        const className = `CardInfo__cardSet ss ss-${card.set.toLowerCase()} _${card.rarity.toLowerCase()}`;
+        const className = `CardInfo__cardSet ss ss-${set.toLowerCase()} _${rarity.toLowerCase()}`;
         return <i className={className} />;
     };
 
@@ -78,12 +78,39 @@ class CardInfo extends React.PureComponent {
                                 <div className="CardInfo__detailTitle">Expansion</div>
                                 <Link className="CardInfo__setName" to={`/browse/${card.set.toLowerCase()}`}>
                                     {card.setName}
-                                    {this.getSetIcon(card)}
+                                    {this.getSetIcon(card.set, card.rarity)}
                                 </Link>
                             </div>
                         }
+                        {card.printings && card.printings.length &&
+                            <div className="CardInfo__printings">
+                                <div className="CardInfo__detailTitle">Printings</div>
+                                {card.printings && card.printings.map(printing => (
+                                    <Link
+                                        key={printing}
+                                        className="CardInfo__setName"
+                                        to={`/browse/${printing.toLowerCase()}`}
+                                    >
+                                        {this.getSetIcon(printing, card.rarity)}
+                                    </Link>
+                                ))}
+                            </div>
+                        }
+                        {/*{card.legalities && card.legalities.length &&*/}
+                            {/*<div className="CardInfo__legalities">*/}
+                                {/*<div className="CardInfo__detailTitle">Formats</div>*/}
+                                {/*<div className="CardInfo__legality">*/}
+                                    {/*{card.legalities && card.legalities.map(item => (*/}
+                                        {/*<div key={item.format} className="CardInfo__legalityName">*/}
+                                            {/*<span>{item.format}</span><span>{item.legality}</span>*/}
+                                        {/*</div>*/}
+                                    {/*))}*/}
+                                {/*</div>*/}
+                            {/*</div>*/}
+                        {/*}*/}
                     </div>
-                    {(card.text || card.flavor) &&
+                    <div>
+                        {(card.text || card.flavor) &&
                         <div className="CardInfo__textInfo">
                             {/* eslint-disable */}
                             {card.text && card.text.split('\n').map((text, key) => (
@@ -96,7 +123,8 @@ class CardInfo extends React.PureComponent {
                             {card.flavor && <br />}
                             {card.flavor && <div className="CardInfo__textFlavor">{card.flavor}</div>}
                         </div>
-                    }
+                        }
+                    </div>
                 </div>
             </div>
         </div>
@@ -137,7 +165,7 @@ class CardInfo extends React.PureComponent {
                             <Link className="CardInfoMobile__setName" to={`/browse/${card.set.toLowerCase()}`}>
                                 {card.setName}
                             </Link>
-                            <div>{this.getSetIcon(card)}</div>
+                            <div>{this.getSetIcon(card.set, card.rarity)}</div>
                         </div>
                     }
                 </div>
