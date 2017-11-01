@@ -1,12 +1,11 @@
 import './CardRulings.css';
 import React from 'react';
 import withRouter from 'react-router-dom/withRouter';
-import { arrayOf, shape } from 'prop-types';
+import { arrayOf, shape, bool } from 'prop-types';
 import IconInfoOutline from 'material-ui-icons/InfoOutline';
 import IconButton from 'material-ui/IconButton';
-import Drawer from 'material-ui/Drawer';
-import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
-import DoneIcon from 'material-ui-icons/Done';
+import Dialog, { DialogActions, DialogContent } from 'material-ui/Dialog';
+import Button from 'material-ui/Button';
 
 class CardRulings extends React.PureComponent {
 
@@ -26,28 +25,31 @@ class CardRulings extends React.PureComponent {
     };
 
     render() {
-        const { rulings } = this.props;
+        const { rulings, isMobile } = this.props;
         return (
             <div className="CardRulings__root">
-                <Drawer open={this.state.rulingsOpen} anchor="top" onRequestClose={this.handleRulingsClose}>
-                    <div className="CardRulings__drawer">
-                        <span className="CardRulings__title">Rulings</span>
-                        <List>
+                <Dialog
+                    fullScreen={isMobile}
+                    ignoreBackdropClick
+                    ignoreEscapeKeyUp
+                    open={this.state.rulingsOpen}
+                >
+                    <div className="CardRulings__title">Rulings</div>
+                    <DialogContent className="CardRulings__drawer">
+                        <ul className="CardRulings__itemList">
                             {rulings && rulings.map(ruling => (
-                                <ListItem key={ruling.text} className="CardRulings__item">
-                                    <ListItemIcon>
-                                        <DoneIcon />
-                                    </ListItemIcon>
-                                    <ListItemText
-                                        className="CardRulings__text"
-                                        primary={ruling.text}
-                                        secondary={ruling.date}
-                                    />
-                                </ListItem>
+                                <li key={ruling.text} className="CardRulings__item">
+                                    <div className="CardRulings__text">{ruling.text}</div>
+                                </li>
                             ))}
-                        </List>
-                    </div>
-                </Drawer>
+                        </ul>
+                    </DialogContent>
+                    <DialogActions className="CardRulings__actions">
+                        <Button className="CardRulings__closeButton" color="primary" onClick={this.handleRulingsClose}>
+                            Close
+                        </Button>
+                    </DialogActions>
+                </Dialog>
                 <IconButton className="CardRulings__IconInfo" onClick={this.handleRulingsOpen}>
                     <IconInfoOutline />
                 </IconButton>
@@ -57,11 +59,13 @@ class CardRulings extends React.PureComponent {
 }
 
 CardRulings.propTypes = {
+    isMobile: bool,
     rulings: arrayOf(shape({})),
 };
 
 CardRulings.defaultProps = {
-    rulings: []
+    rulings: [],
+    isMobile: false,
 };
 
 export default withRouter(CardRulings);

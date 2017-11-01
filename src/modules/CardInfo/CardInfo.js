@@ -190,6 +190,11 @@ class CardInfo extends React.PureComponent {
     renderMobileCard = (card) => (
         <div className="CardInfoMobile__container">
             <div className="CardInfoMobile__card">
+                {card.rulings &&
+                    <div className="CardInfoMobile__IconInfoOutline">
+                        <CardRulings rulings={card.rulings} isMobile />
+                    </div>
+                }
                 <div className="CardInfoMobile__title">
                     {card.name}
                 </div>
