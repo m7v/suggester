@@ -24,7 +24,7 @@ const CardInfo = (props) => <Async load={import('modules/CardInfo/container')} c
 const CardSets = (props) => <Async load={import('modules/CardSets/container')} componentProps={props} />;
 const CardSet = (props) => <Async load={import('modules/CardSet/container')} componentProps={props} />;
 
-class Root extends React.PureComponent {
+class Root extends React.Component {
 
     componentWillMount() {
         this.props.appInitialized();
@@ -89,8 +89,8 @@ class Root extends React.PureComponent {
                     />
                     <Route
                         exact
-                        path="/browse/:code"
-                        component={({match, history}) => <CardSet code={match.params.code} history={history} />}
+                        path="/browse/:setId"
+                        component={({match, history}) => <CardSet code={match.params.setId} history={history} />}
                     />
                 </section>
             </Router>
