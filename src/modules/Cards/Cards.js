@@ -5,7 +5,7 @@ import { bool, func, shape, arrayOf } from 'prop-types';
 import Loader from 'components/Loader';
 import { dispatchToProps } from './connect/dispatchToProps';
 import { stateToProps } from './connect/stateToProps';
-import Async from 'modules/Async';
+import Async from 'components/Async';
 const CardGridList = (props) => <Async load={import('components/CardGridList')} componentProps={props} />;
 const CardFilter = (props) => <Async load={import('components/CardFilter')} componentProps={props} />;
 

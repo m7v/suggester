@@ -2,7 +2,7 @@ import './CardSet.css';
 import React from 'react';
 import { connect } from 'react-redux';
 import { bool, string, arrayOf, shape, func } from 'prop-types';
-import Async from 'modules/Async';
+import Async from 'components/Async';
 import Loader from 'components/Loader';
 import ButtonBack from 'components/ButtonBack';
 import stateToProps from './connect/stateToProps';

@@ -8,7 +8,7 @@ import classNames from 'classnames';
 import { dispatchToProps } from './connect/dispatchToProps';
 import { stateToProps } from './connect/stateToProps';
 import { formatText } from 'helpers/mana.helper';
-import Async from 'modules/Async';
+import Async from 'components/Async';
 import SearchBarMini from 'components/SearchBarMini';
 import Card from 'components/Card';
 import Loader from 'components/Loader/Loader';
@@ -82,32 +82,6 @@ class CardInfo extends React.PureComponent {
                                 </Link>
                             </div>
                         }
-                        {card.printings && card.printings.length &&
-                            <div className="CardInfo__printings">
-                                <div className="CardInfo__detailTitle">Printings</div>
-                                {card.printings && card.printings.map(printing => (
-                                    <Link
-                                        key={printing}
-                                        className="CardInfo__setName"
-                                        to={`/browse/${printing.toLowerCase()}`}
-                                    >
-                                        {this.getSetIcon(printing, card.rarity)}
-                                    </Link>
-                                ))}
-                            </div>
-                        }
-                        {/*{card.legalities && card.legalities.length &&*/}
-                            {/*<div className="CardInfo__legalities">*/}
-                                {/*<div className="CardInfo__detailTitle">Formats</div>*/}
-                                {/*<div className="CardInfo__legality">*/}
-                                    {/*{card.legalities && card.legalities.map(item => (*/}
-                                        {/*<div key={item.format} className="CardInfo__legalityName">*/}
-                                            {/*<span>{item.format}</span><span>{item.legality}</span>*/}
-                                        {/*</div>*/}
-                                    {/*))}*/}
-                                {/*</div>*/}
-                            {/*</div>*/}
-                        {/*}*/}
                     </div>
                     <div>
                         {(card.text || card.flavor) &&

@@ -10,6 +10,8 @@ const getSetName = (set) => {
             return 'mpskld';
         case 'HOP':
             return 'pch';
+        case 'DRB':
+            return 'fvd';
         default:
             return set.replace('_', '').toLowerCase();
     }

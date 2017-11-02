@@ -3,11 +3,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bool, string, func, shape, arrayOf } from 'prop-types';
 import classNames from 'classnames';
-import Loader from '../../components/Loader';
-import SearchBar from '../../components/SearchBar';
+import Async from 'components/Async';
+import Loader from 'components/Loader';
+import SearchBar from 'components/SearchBar';
 import { mapDispatchToProps } from './connect/dispatchToProps';
 import { mapStateToProps } from './connect/stateToProps';
-import Async from '../Async';
 
 const CardGridList = (props) => <Async load={import('../../components/CardGridList')} componentProps={props} />;
 

@@ -87,7 +87,6 @@ export function getSetList() {
     };
 }
 
-
 export function getSetByCode(code) {
     return (dispatch, getState) => {
         const state = getState();

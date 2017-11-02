@@ -9,7 +9,7 @@ import {
     HashRouter as Router,
     Route,
 } from 'react-router-dom';
-import Async from '../Async';
+import Async from 'components/Async';
 import { mapStateToProps } from './connect/stateToProps';
 import { dispatchToProps } from './connect/dispatchToProps';
 import NavBar from 'components/NavBar';
