@@ -81,7 +81,7 @@ class DeckInfo extends React.PureComponent {
                         return (
                             <div
                                 key={mana}
-                                className={`DeckInfo__mana mana-${manaMap[mana]}`}
+                                className={`DeckInfo__mana DeckInfo__mana-${manaMap[mana]}`}
                                 style={{ width: `${(count / pureCardCount) * 100}%` }}
                             >
                                 <i key={mana} className={manaClass} />

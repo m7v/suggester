@@ -1,8 +1,8 @@
 import './Decks.css';
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { bool, shape, arrayOf, func } from 'prop-types';
-import LazyLoad from 'react-lazyload';
 import Loader from 'components/Loader';
 import Deck from 'components/Deck';
 import stateToProps from './connect/stateToProps';
@@ -24,6 +24,12 @@ class Decks extends React.Component {
         return (
             <section className="Decks">
                 <div className="Decks__main">
+                    {!decks.length &&
+                        <div className="Decks__noResults">
+                            You have no decks...
+                            <Link to={'/deck/add'} replace >Please add something</Link>
+                        </div>
+                    }
                     {loading &&
                         <div className="Decks_preloader">
                             <div className="Decks__circular">
@@ -31,12 +37,10 @@ class Decks extends React.Component {
                             </div>
                         </div>
                     }
-                    {!loading &&
+                    {!loading && !!decks.length &&
                         <div className="Decks__deckList">
                             {decks.map((deck) => (
-                                <LazyLoad key={deck.id} height={355} offset={100}>
-                                    <Deck deck={deck} mode={isMobile ? 'short' : 'full'} />
-                                </LazyLoad>
+                                <Deck key={deck.id} deck={deck} mode={isMobile ? 'short' : 'full'} />
                             ))}
                         </div>
                     }

@@ -6,6 +6,9 @@ import {
     APP_SET_CARDSET_COLORS_FILTERS,
     APP_SET_CARDSET_TYPES_FILTERS,
     APP_SET_CARDSET_RARITY_FILTERS,
+    APP_SET_FAVORITES_COLORS_FILTERS,
+    APP_SET_FAVORITES_TYPES_FILTERS,
+    APP_SET_FAVORITES_RARITY_FILTERS,
     APP_CARDS_REQUEST_STARTED,
     APP_CARDS_REQUEST_FAILED,
     APP_CARDS_REQUEST_SUCCESS,
@@ -73,6 +76,54 @@ function appSetRarityFilter(state, rarity) {
                 ...state.Cards.filters,
                 rarity: {
                     ...state.Cards.filters.rarity,
+                    ...rarity
+                }
+            }
+        }
+    };
+}
+
+function appSetFavoritesColorFilter(state, colors) {
+    return {
+        ...state,
+        Favorites: {
+            ...state.Favorites,
+            filters: {
+                ...state.Favorites.filters,
+                colors: {
+                    ...state.Favorites.filters.colors,
+                    ...colors
+                }
+            }
+        }
+    };
+}
+
+function appSetFavoritesTypeFilter(state, types) {
+    return {
+        ...state,
+        Favorites: {
+            ...state.Favorites,
+            filters: {
+                ...state.Favorites.filters,
+                types: {
+                    ...state.Favorites.filters.types,
+                    ...types
+                }
+            }
+        }
+    };
+}
+
+function appSetFavoritesRarityFilter(state, rarity) {
+    return {
+        ...state,
+        Favorites: {
+            ...state.Favorites,
+            filters: {
+                ...state.Favorites.filters,
+                rarity: {
+                    ...state.Favorites.filters.rarity,
                     ...rarity
                 }
             }
@@ -295,6 +346,12 @@ export default (state = {}, action) => {
     switch (action.type) {
         case APP_CONTEXT_INITIALIZED:
             return appInitialized(state);
+        case APP_SET_FAVORITES_COLORS_FILTERS:
+            return appSetFavoritesColorFilter(state, action.payload.colors);
+        case APP_SET_FAVORITES_RARITY_FILTERS:
+            return appSetFavoritesRarityFilter(state, action.payload.rarity);
+        case APP_SET_FAVORITES_TYPES_FILTERS:
+            return appSetFavoritesTypeFilter(state, action.payload.types);
         case APP_SET_CARDS_COLORS_FILTERS:
             return appSetColorFilter(state, action.payload.colors);
         case APP_SET_CARDS_RARITY_FILTERS:

@@ -8,6 +8,21 @@
     -webkit-overflow-scrolling: touch;
 }
 
+.Decks__noResults {
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    font-family: "Beleren Bold";
+    color: #eee;
+}
+
+.Decks__noResults a {
+    color: #eee;
+}
+
 .Decks__deckList {
     display: flex;
     height: 100vh;

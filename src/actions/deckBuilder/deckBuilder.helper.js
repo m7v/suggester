@@ -8,6 +8,7 @@ export function buildDeck(deckId, name, cards) {
         headliner: head(cards).imageUrl,
         name,
         cardCount: analytics.cardCount,
+        cards: analytics.cards,
         analytics: {
             colorComposition: analytics.colorComposition,
             cardRarity: analytics.cardRarity,
@@ -22,6 +23,7 @@ function buildDeckAnalytics(cards) {
         colorComposition: {},
         cardRarity: {},
         manaCurve: {},
+        cards: {},
         deckComposition: {},
         cardCount: 0,
     };
@@ -31,7 +33,12 @@ function buildDeckAnalytics(cards) {
         agg.cardRarity = buildCardRarity(card, agg.cardRarity);
         agg.manaCurve = buildManaCurve(card, agg.manaCurve);
         agg.deckComposition = buildDeckComposition(card, agg.deckComposition);
-        agg.cardCount = Number(card.cardCount) + agg.cardCount;
+        agg.cardCount += Number(card.count);
+        agg.cards[card.id] = {
+            id: card.id,
+            name: card.name,
+            count: Number(card.count),
+        };
 
         return agg;
     }, analytics);

@@ -15,6 +15,7 @@ import { dispatchToProps } from './connect/dispatchToProps';
 import NavBar from 'components/NavBar';
 import Loader from 'components/Loader';
 
+const Favorites = (props) => <Async load={import('../Favorites/container')} componentProps={props} />;
 const DeckBuilder = (props) => <Async load={import('../DeckBuilder/container')} componentProps={props} />;
 const Decks = (props) => <Async load={import('modules/Decks/container')} componentProps={props} />;
 const Cards = (props) => <Async load={import('modules/Cards/container')} componentProps={props} />;
@@ -64,6 +65,11 @@ class Root extends React.Component {
                     />
                     <Route
                         exact
+                        path="/decks/:id/edit"
+                        component={({match}) => <DeckBuilder deckId={match.params.id} />}
+                    />
+                    <Route
+                        exact
                         path="/cards"
                         component={Cards}
                     />
@@ -75,7 +81,7 @@ class Root extends React.Component {
                     <Route
                         exact
                         path="/favorites"
-                        component={() => <div className="Root__comingSoon"><div>Coming soon...</div></div>}
+                        component={Favorites}
                     />
                     <Route
                         exact

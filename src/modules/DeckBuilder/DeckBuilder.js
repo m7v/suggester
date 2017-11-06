@@ -1,31 +1,37 @@
 import './DeckBuilder.css';
 import React from 'react';
 import { connect } from 'react-redux';
-import { func } from 'prop-types';
+import { string, func, shape } from 'prop-types';
 import mtgparser from 'mtg-parser';
 import sum from 'lodash/sum';
 import { dispatchToProps } from './connect/dispatchToProps';
 import { stateToProps } from './connect/stateToProps';
 import CreateDeckForm from 'components/CreateDeckForm';
 
-class DeckBuilder extends React.Component {
+class DeckBuilder extends React.PureComponent {
 
     state = {
         deckList: '',
         deckTitle: '',
     };
 
+    componentDidMount() {
+        if (this.props.deckId) {
+            this.props.getDeckById(this.props.deckId);
+        }
+    }
+
     handleDeckListChange = (event) => this.setState({deckList: event.target.value});
     handleDeckTitleChange = (event) => this.setState({deckTitle: event.target.value});
 
     handleSubmitForm = () => {
         const decklist = mtgparser(this.state.deckList, 'mtgo');
-        if (decklist.cards.length >= 11 && sum(Object.values(decklist.cards))) {
+        if (decklist.cards.length >= 0 && sum(Object.values(decklist.cards))) {
             const deckFormated = decklist.cards.reduce((agg, card) => {
                 agg[card.name] = Number(card.number);
                 return agg;
             }, {});
-            this.props.getDeckListByCardNames(deckFormated, this.state.deckTitle);
+            this.props.getDeckListByCardNames(deckFormated, this.state.deckTitle, this.props.deck.id);
         }
     };
 
@@ -34,8 +40,8 @@ class DeckBuilder extends React.Component {
             <section className="DeckBuilder">
                 <div className="DeckBuilder__main">
                     <CreateDeckForm
-                        draftDeck={this.state.deckList}
-                        deckTitle={this.state.deckTitle}
+                        draftDeck={this.state.deckList || this.props.deckList}
+                        deckTitle={this.state.deckTitle || this.props.deckTitle}
                         handleDeckTitleChange={this.handleDeckTitleChange}
                         handleDeckListChange={this.handleDeckListChange}
                         handleSubmitForm={this.handleSubmitForm}
@@ -47,11 +53,20 @@ class DeckBuilder extends React.Component {
 }
 
 DeckBuilder.propTypes = {
+    deckList: string,
+    deckTitle: string,
+    deckId: string,
+    deck: shape({}),
+    getDeckById: func.isRequired,
     getDeckListByCardNames: func.isRequired,
 };
 
 DeckBuilder.defaultProps = {
-    loading: false
+    loading: false,
+    deckList: '',
+    deckTitle: '',
+    deckId: null,
+    deck: null
 };
 
 export default connect(stateToProps, dispatchToProps)(DeckBuilder);

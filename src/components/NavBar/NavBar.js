@@ -3,19 +3,21 @@ import React from 'react';
 import BottomNavigation, { BottomNavigationButton } from 'material-ui/BottomNavigation';
 import { shape } from 'prop-types';
 import withRouter from 'react-router-dom/withRouter';
-import classNames from 'classnames';
+import findIndex from 'lodash/findIndex';
 import Paper from 'material-ui/Paper';
 import IconViewModule from 'material-ui-icons/ViewModule';
-import IconViewCarousel from 'material-ui-icons/ViewCarousel';
+// import IconViewCarousel from 'material-ui-icons/ViewCarousel';
 import IconSearch from 'material-ui-icons/Search';
-// import IconFavorite from 'material-ui-icons/Favorite';
+import IconAddBox from 'material-ui-icons/AddBox';
+import IconFavorite from 'material-ui-icons/Favorite';
 import IconBrowse from 'material-ui-icons/Explore';
 
 const browseIcon = <IconBrowse />;
-// const favoritesIcon = <IconFavorite />;
+const AddIcon = <IconAddBox />;
+const favoritesIcon = <IconFavorite />;
 const searchIcon = <IconSearch />;
 const deckIcon = <IconViewModule />;
-const cardIcon = <IconViewCarousel />;
+// const cardIcon = <IconViewCarousel />;
 
 const navbarConfig = [
     {
@@ -23,21 +25,26 @@ const navbarConfig = [
         icon: searchIcon,
         label: 'Search',
     },
-    // {
-    //     path: '/favorites',
-    //     icon: favoritesIcon,
-    //     label: 'Favorites',
-    // },
     {
         path: '/browse',
         icon: browseIcon,
         label: 'Browse',
     },
     {
-        path: '/cards',
-        icon: cardIcon,
-        label: 'Library',
+        path: '/deck/add',
+        icon: AddIcon,
+        label: 'Add Deck',
     },
+    {
+        path: '/favorites',
+        icon: favoritesIcon,
+        label: 'Favorites',
+    },
+    // {
+    //     path: '/cards',
+    //     icon: cardIcon,
+    //     label: 'Library',
+    // },
     {
         path: '/decks',
         icon: deckIcon,
@@ -47,29 +54,20 @@ const navbarConfig = [
 
 class NavBar extends React.PureComponent {
 
-    state = {
-        // @TODO need for BrowserRouter
-        selectedNav: navbarConfig.findIndex(item => window.location.pathname.indexOf(item.path) !== -1)
-        // selectedNav: window.location.hash.split('#')[1]
-    };
-
-    getClassName = (index) =>
-        classNames({ 'NavBar__selectedIcon': this.state.selectedNav === index });
-
-    handleChange = (event, selectedNav) => {
-        this.setState({ selectedNav });
-    };
+    getRouteIndex(itemPath) {
+        const path = itemPath || this.props.location.pathname;
+        return findIndex(navbarConfig, (o) => path.indexOf(o.path) >= 0);
+    }
 
     renderNavigationLinks() {
-        return navbarConfig.map((item, index) => (
+        return navbarConfig.map((item) => (
             <BottomNavigationButton
                 key={item.path}
-                label={item.label}
                 icon={item.icon}
-                value={index}
+                value={this.getRouteIndex(item.path)}
+                className={'NavBar__button'}
                 onClick={() => {
-                    this.setState({ selectedNav: index });
-                    if (window.location.hash.indexOf(item.path) < 0) {
+                    if (this.props.location.pathname.indexOf(item.path) < 0) {
                         this.props.history.push(item.path);
                     }
                 }}
@@ -80,7 +78,7 @@ class NavBar extends React.PureComponent {
     render() {
         return (
             <Paper className="NavBar__root" elevation={4}>
-                <BottomNavigation value={this.state.selectedNav} onChange={this.handleChange}>
+                <BottomNavigation value={this.getRouteIndex()}>
                     { this.renderNavigationLinks() }
                 </BottomNavigation>
             </Paper>
@@ -89,6 +87,7 @@ class NavBar extends React.PureComponent {
 }
 
 NavBar.propTypes = {
+    location: shape({}).isRequired,
     history: shape({}).isRequired,
 };
 

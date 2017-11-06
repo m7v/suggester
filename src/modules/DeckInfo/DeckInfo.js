@@ -1,3 +1,4 @@
+import './DeckInfo.css';
 import React from 'react';
 import { connect } from 'react-redux';
 import { string, shape, func } from 'prop-types';
@@ -15,21 +16,26 @@ class DeckInfo extends React.Component {
         }
     }
 
+    removeDeck = () => this.props.removeDeck(this.props.deckId);
+
     render() {
         const { deck } = this.props;
         return (
             <div className="DeckInfo__root">
-                <Link to={'/decks'} replace >Назад</Link>
-                {!deck.id &&
-                    <div>Loading...</div>
-                }
                 {deck.id &&
-                    <DeckInfoComponent
-                        key={deck.id}
-                        deck={deck}
-                        openDeck={() => {}}
-                        removeDeck={() => {}}
-                    />
+                    <div className="DeckInfo__container">
+                        <div className="DeckInfo__links">
+                            <Link to={'/decks'} replace >Back</Link>
+                            <Link to={`/decks/${deck.id}/edit`} replace >Edit</Link>
+                            <Link to={'/decks'} replace onClick={this.removeDeck}>Delete</Link>
+                        </div>
+                        <DeckInfoComponent
+                            key={deck.id}
+                            deck={deck}
+                            openDeck={() => {}}
+                            removeDeck={() => {}}
+                        />
+                    </div>
                 }
             </div>
         );
@@ -39,6 +45,7 @@ class DeckInfo extends React.Component {
 DeckInfo.propTypes = {
     deckId: string.isRequired,
     deck: shape({}).isRequired,
+    removeDeck: func.isRequired,
     getDeckById: func.isRequired,
     getCardListByDeckId: func.isRequired,
 };

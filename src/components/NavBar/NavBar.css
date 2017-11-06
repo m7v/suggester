@@ -11,6 +11,10 @@
     min-width: 45px !important;
 }
 
+.NavBar__root .NavBar__button {
+    min-width: 60px;
+}
+
 .NavBar__selectedIcon svg,
 .NavBar__selectedIcon div {
     color: #e5a081 !important;

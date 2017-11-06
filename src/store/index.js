@@ -34,7 +34,14 @@ const initialState = {
             loading: false,
             error: false,
             items: []
-        }
+        },
+    },
+    favorites: {
+        meta: {
+            loading: false,
+            error: false,
+        },
+        items: [],
     },
     suggester: {
         meta: {
@@ -56,6 +63,35 @@ const initialState = {
         initial: false,
         isMobile: !!new MobileDetect(window.navigator.userAgent).mobile(),
         Suggestions: {
+            loading: false,
+            error: false,
+            filters: {
+                name: '',
+                rarity: {
+                    common: false,
+                    uncommon: false,
+                    rare: false,
+                    mythic: false,
+                },
+                colors: {
+                    w: !!colorFilter && !!colorFilter.w,
+                    u: !!colorFilter && !!colorFilter.u,
+                    b: !!colorFilter && !!colorFilter.b,
+                    r: !!colorFilter && !!colorFilter.r,
+                    g: !!colorFilter && !!colorFilter.g,
+                },
+                types: {
+                    planeswalker: false,
+                    creature: false,
+                    instant: false,
+                    sorcery: false,
+                    enchantment: false,
+                    artifact: false,
+                    land: false,
+                }
+            }
+        },
+        Favorites: {
             loading: false,
             error: false,
             filters: {
@@ -147,10 +183,6 @@ const initialState = {
             data: {}
         },
         Decks: {
-            loading: false,
-            error: false,
-        },
-        Favorites: {
             loading: false,
             error: false,
         },

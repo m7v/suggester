@@ -4,10 +4,24 @@ import { string, func } from 'prop-types';
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
 import Paper from 'material-ui/Paper';
-import Typography from 'material-ui/Typography';
 import MobileStepper from 'material-ui/MobileStepper';
 import KeyboardArrowLeft from 'material-ui-icons/KeyboardArrowLeft';
 import KeyboardArrowRight from 'material-ui-icons/KeyboardArrowRight';
+
+const hintDeckList = '' +
+    '4 Cryptbreaker\n' +
+    '4 Dread Wanderer\n' +
+    '4 Gisa and Geralf\n' +
+    '4 Haunted Dead\n' +
+    '4 Lord of the Accursed\n' +
+    '4 Prized Amalgam\n' +
+    '4 Liliana\'s Mastery\n' +
+    '2 Wander in Death\n' +
+    '2 Dark Salvation\n' +
+    '2 Grave Strength\n' +
+    '2 Gisa\'s Bidding\n' +
+    '10 Island\n' +
+    '14 Swamp';
 
 export default class CreateDeckForm extends React.PureComponent {
 
@@ -22,7 +36,7 @@ export default class CreateDeckForm extends React.PureComponent {
     getStepHeader = () => {
         switch (this.state.stepIndex) {
             case 0:
-                return 'Added Decklist';
+                return 'Enter Decklist';
             case 1:
                 return 'Enter the name';
             case 2:
@@ -36,37 +50,33 @@ export default class CreateDeckForm extends React.PureComponent {
         switch (this.state.stepIndex) {
             case 0:
                 return (
-                    <section>
-                        <div className="Decks__form">
-                            <div className="Decks__input">
-                                <TextField
-                                    id="multiline-static"
-                                    rows="16"
-                                    defaultValue="Default Value"
-                                    margin="normal"
-                                    multiline
-                                    label="Enter Deck list"
-                                    value={this.props.draftDeck}
-                                    onChange={this.props.handleDeckListChange}
-                                />
-                            </div>
+                    <div className="CreateDeckForm__form">
+                        <div className="CreateDeckForm__input">
+                            <TextField
+                                id="multiline-static"
+                                rows="16"
+                                margin="normal"
+                                multiline
+                                label="Enter Deck list"
+                                placeholder={hintDeckList}
+                                value={this.props.draftDeck}
+                                onChange={this.props.handleDeckListChange}
+                            />
                         </div>
-                    </section>
+                    </div>
                 );
             case 1:
                 return (
-                    <section>
-                        <div className="Decks__form">
-                            <div className="Decks__input">
-                                <TextField
-                                    margin="normal"
-                                    label="Enter deck's title"
-                                    value={this.props.deckTitle}
-                                    onChange={this.props.handleDeckTitleChange}
-                                />
-                            </div>
+                    <div className="CreateDeckForm__form">
+                        <div className="CreateDeckForm__input">
+                            <TextField
+                                margin="normal"
+                                label="Enter deck's title"
+                                value={this.props.deckTitle}
+                                onChange={this.props.handleDeckTitleChange}
+                            />
                         </div>
-                    </section>
+                    </div>
                 );
             case 2:
                 return 'This is the bit I really care about!';
@@ -112,9 +122,9 @@ export default class CreateDeckForm extends React.PureComponent {
 
     render() {
         return (
-            <div>
-                <Paper square elevation={0} className="">
-                    <Typography>{this.getStepHeader()}</Typography>
+            <div className="CreateDeckForm__root">
+                <Paper square elevation={0} className="CreateDeckForm__header">
+                    <div className="CreateDeckForm__title">{this.getStepHeader()}</div>
                 </Paper>
                 <div>{this.getStepContent()}</div>
                 <MobileStepper
@@ -124,7 +134,7 @@ export default class CreateDeckForm extends React.PureComponent {
                     activeStep={this.state.stepIndex}
                     nextButton={
                         <Button dense onClick={this.handleStepAction()} disabled={this.state.stepIndex === 3}>
-                            Next
+                            {this.getButtonLabel()}
                             <KeyboardArrowRight />
                         </Button>
                     }

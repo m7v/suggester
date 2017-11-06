@@ -31,3 +31,15 @@ export function appSetCardSetTypeFilter(cardTypes) {
 export function appSetCardSetRarityFilter(cardRarity) {
     return dispatch => dispatch(types.appSetCardSetRarityFilter(cardRarity));
 }
+
+export function appSetFavoritesColorFilter(colors) {
+    return dispatch => dispatch(types.appSetFavoritesColorFilter(colors));
+}
+
+export function appSetFavoritesTypeFilter(cardTypes) {
+    return dispatch => dispatch(types.appSetFavoritesTypeFilter(cardTypes));
+}
+
+export function appSetFavoritesRarityFilter(cardRarity) {
+    return dispatch => dispatch(types.appSetFavoritesRarityFilter(cardRarity));
+}

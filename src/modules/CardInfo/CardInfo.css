@@ -83,10 +83,9 @@
     position: relative;
 }
 
-.CardInfo__IconInfoOutline {
-    position: absolute;
-    top: 0;
-    right: 16px;
+.CardInfo__icons {
+    display: flex;
+    justify-content: flex-end;
 }
 
 .CardInfo__card {

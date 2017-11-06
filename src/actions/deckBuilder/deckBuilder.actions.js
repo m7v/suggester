@@ -12,6 +12,8 @@ import {
     getCardById as requestGetCardById,
     getDeckById as requestGetDeckById,
     getDeckList as requestGetDeckList,
+    saveDeck as requestSaveDeck,
+    removeDeck as requestRemoveDeck,
     getCardByIds as requestGetCardByIds,
     getCardsByDeckId as requestGetCardsByDeckId,
 } from 'services/deckBuilder/deckBuilder.service';
@@ -22,11 +24,12 @@ import {
 /**
  * @param {Array} cardList
  * @param {String} name
+ * @param {String} currentDeckId
  * @return {function(*, *)}
  */
-export function getDeckListByCardNames(cardList, name = 'newDeck') {
+export function getDeckListByCardNames(cardList, name = 'newDeck', currentDeckId = null) {
     return (dispatch, getState) => {
-        const deckId = uniqueId(`deck${(new Date()).getTime()}`);
+        const deckId = currentDeckId || uniqueId(`deck${(new Date()).getTime()}`);
 
         dispatch(appContextTypes.appDecksRequestStarted());
         const session = orm.mutableSession(getState().entities);
@@ -34,6 +37,7 @@ export function getDeckListByCardNames(cardList, name = 'newDeck') {
         return requestGetDeckListByCardNames(cardList, session)
             .then(cards => {
                 const deck = buildDeck(deckId, name, cards);
+                requestSaveDeck(deck);
                 dispatch(batchActions([
                     deckBuilderTypes.createDeck(deck),
                     ...cards.map(card => deckBuilderTypes.addCard(card, deckId)),
@@ -46,6 +50,7 @@ export function getDeckListByCardNames(cardList, name = 'newDeck') {
 
 export function removeDeck(deckId) {
     return dispatch => {
+        requestRemoveDeck(deckId);
         dispatch(deckBuilderTypes.deleteDeck(deckId));
     };
 }

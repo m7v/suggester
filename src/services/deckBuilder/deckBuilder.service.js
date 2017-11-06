@@ -30,21 +30,39 @@ axios.defaults.adapter = httpAdapter;
 //     'rarity'
 // ];
 
+const getDecks = () => JSON.parse(window.localStorage.getItem('decks')) || {};
+
 /**
  * @returns {Promise}
  */
 export const getDeckList = () =>
-    axios.get(`${databaseApiUrl}entities/Deck/itemsById.json`)
-        .then(response => response.data)
-        .catch(() => []);
+    // axios.get(`${databaseApiUrl}entities/Deck/itemsById.json`)
+    //     .then(response => response.data)
+    //     .catch(() => []);
+    Promise.resolve(getDecks());
+
+export const saveDeck = (deck) => {
+    const decks = getDecks();
+    decks[deck.id] = deck;
+    window.localStorage.setItem('decks', JSON.stringify(decks));
+};
+
+export const removeDeck = (deckId) => {
+    const decks = getDecks();
+    delete decks[deckId];
+    window.localStorage.setItem('decks', JSON.stringify(decks));
+};
 
 /**
  * @param deckId
  */
-export const getDeckById = (deckId) =>
-    axios.get(`${databaseApiUrl}entities/Deck/itemsById/${deckId}.json`)
-        .then(response => response.data)
-        .catch(() => []);
+export const getDeckById = (deckId) => {
+    // axios.get(`${databaseApiUrl}entities/Deck/itemsById/${deckId}.json`)
+    //     .then(response => response.data)
+    //     .catch(() => []);
+    const decks = getDecks();
+    return Promise.resolve(decks[deckId]);
+};
 
 /**
  * @param deckId

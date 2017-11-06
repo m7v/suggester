@@ -2,9 +2,14 @@
     background-color: #222 !important;
     position: relative;
     width: 290px;
+    height: 354px;
     margin: 15px;
     padding: 10px;
     box-shadow: rgba(0, 0, 0, 0.16) 0 3px 10px, rgba(0, 0, 0, 0.23) 0 3px 10px;
+}
+
+.Deck__deckCard._short {
+    height: 200px;
 }
 
 .Deck__deckHead {

@@ -18,13 +18,12 @@ import {
     APP_SET_CARDS_RARITY_FILTERS,
     APP_SET_CARDSET_COLORS_FILTERS,
     APP_SET_CARDSET_RARITY_FILTERS,
-    APP_SET_CARDSET_TYPES_FILTERS
+    APP_SET_CARDSET_TYPES_FILTERS,
+    APP_SET_FAVORITES_COLORS_FILTERS,
+    APP_SET_FAVORITES_RARITY_FILTERS,
+    APP_SET_FAVORITES_TYPES_FILTERS
 } from 'reducers/appContext/appContext.helper';
 
-/**
- * @param suggestions
- * @returns {{type, photoList: *}}
- */
 export function appInitialized() {
     return {
         type: APP_CONTEXT_INITIALIZED,
@@ -170,6 +169,30 @@ export function appSetCardSetTypeFilter(types) {
 export function appSetCardSetRarityFilter(rarity) {
     return {
         type: APP_SET_CARDSET_RARITY_FILTERS,
+        payload: {rarity},
+        meta: {}
+    };
+}
+
+export function appSetFavoritesColorFilter(colors) {
+    return {
+        type: APP_SET_FAVORITES_COLORS_FILTERS,
+        payload: {colors},
+        meta: {}
+    };
+}
+
+export function appSetFavoritesTypeFilter(types) {
+    return {
+        type: APP_SET_FAVORITES_TYPES_FILTERS,
+        payload: {types},
+        meta: {}
+    };
+}
+
+export function appSetFavoritesRarityFilter(rarity) {
+    return {
+        type: APP_SET_FAVORITES_RARITY_FILTERS,
         payload: {rarity},
         meta: {}
     };

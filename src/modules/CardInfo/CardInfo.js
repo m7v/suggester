@@ -13,6 +13,9 @@ import SearchBarMini from 'components/SearchBarMini';
 import Card from 'components/Card';
 import Loader from 'components/Loader/Loader';
 import ButtonBack from 'components/ButtonBack';
+import IconButton from 'material-ui/IconButton';
+import StarBorderIcon from 'material-ui-icons/StarBorder';
+import StarIcon from 'material-ui-icons/Star';
 
 const CardRulings = (props) => <Async load={import('components/CardRulings')} componentProps={props} />;
 const ManaCost = (props) => <Async load={import('components/ManaCost')} componentProps={props} />;
@@ -49,11 +52,27 @@ class CardInfo extends React.PureComponent {
                 </Link>
             </div>
             <div className="CardInfo__fullInfo">
-                {card.rulings &&
-                    <div className="CardInfo__IconInfoOutline">
-                        <CardRulings rulings={card.rulings} />
-                    </div>
-                }
+                <div className="CardInfo__icons">
+                    {card.rulings &&
+                        <div className="CardInfo__IconRulings">
+                            <CardRulings rulings={card.rulings} />
+                        </div>
+                    }
+                    {this.props.isFavorite &&
+                        <div className="CardInfo__IconRemoveFavorite">
+                            <IconButton onClick={() => this.props.cardDelete(card.id)}>
+                                <StarIcon color="white" />
+                            </IconButton>
+                        </div>
+                    }
+                    {!this.props.isFavorite &&
+                        <div className="CardInfo__IconAddFavorite">
+                            <IconButton onClick={() => this.props.cardAdd(card)}>
+                                <StarBorderIcon color="white" />
+                            </IconButton>
+                        </div>
+                    }
+                </div>
                 <div className="CardInfo__title">
                     {card.name}
                 </div>
@@ -203,11 +222,15 @@ CardInfo.propTypes = {
     card: shape({}).isRequired,
     setQueryString: func.isRequired,
     getCardById: func.isRequired,
+    cardAdd: func.isRequired,
+    cardDelete: func.isRequired,
+    isFavorite: bool,
     isMobile: bool,
     loading: bool,
 };
 
 CardInfo.defaultProps = {
+    isFavorite: false,
     isMobile: false,
     loading: false
 };

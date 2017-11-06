@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { shape, string } from 'prop-types';
 import { Bar as BarChart } from 'react-chartjs';
+import classNames from 'classnames';
 import map from 'lodash/map';
 import sum from 'lodash/sum';
 import { chartOptions } from './config';
@@ -31,8 +32,13 @@ class Deck extends React.PureComponent {
             datasets: [{data: curve}]
         };
 
+        const mainClass = classNames({
+            'Deck__deckCard': true,
+            '_short': mode === 'short',
+        });
+
         return (
-            <div className="Deck__deckCard">
+            <div className={mainClass}>
                 {mode === 'short' &&
                     <div className="Deck__deckShortHead" >
                         <div className="Deck__cardManaPool">
