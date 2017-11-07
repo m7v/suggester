@@ -28,6 +28,12 @@
     align-items: center;
 }
 
+.CardInfoMobile__icons {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+}
+
 .CardInfoMobile__title {
     text-align: center;
     display: block;
