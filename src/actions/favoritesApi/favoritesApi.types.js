@@ -42,7 +42,7 @@ export function favoritesCardDelete(cardId) {
         meta: {}
     };
 }
-export function favoritesCardGetList(cards) {
+export function getFavoritesCardList(cards) {
     return {
         type: FAVORITES_CARD_GET_LIST,
         payload: {cards},

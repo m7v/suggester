@@ -2,6 +2,9 @@ import {bindActionCreators} from 'redux';
 import {
     getCardById,
 } from 'actions/mtgApi/mtgApi.actions';
+import {
+    getFavoritesCardList,
+} from 'actions/favoritesApi/favoritesApi.actions';
 import { setQueryString } from 'actions/suggestions/suggestions.types';
 import {
     favoritesCardAdd as cardAdd,
@@ -13,6 +16,7 @@ export function dispatchToProps(dispatch) {
         cardAdd,
         cardDelete,
         getCardById,
+        getFavoritesCardList,
         setQueryString
     }, dispatch);
 }

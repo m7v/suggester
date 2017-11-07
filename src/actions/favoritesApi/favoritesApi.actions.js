@@ -40,7 +40,7 @@ export function favoritesCardDelete(cardId) {
     };
 }
 
-export function favoritesCardGetList() {
+export function getFavoritesCardList() {
     return dispatch => {
         dispatch(types.favoritesCardRequestStarted());
 
@@ -48,7 +48,7 @@ export function favoritesCardGetList() {
             .then((cards) => {
                 dispatch(
                     batchActions([
-                        types.favoritesCardGetList(cards),
+                        types.getFavoritesCardList(cards),
                         types.favoritesCardRequestSuccess()
                     ])
                 );

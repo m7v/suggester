@@ -25,6 +25,7 @@ class CardInfo extends React.PureComponent {
     componentWillMount() {
         if (this.props.cardId) {
             this.props.getCardById(this.props.cardId);
+            this.props.getFavoritesCardList();
         }
     }
 
@@ -224,6 +225,7 @@ CardInfo.propTypes = {
     getCardById: func.isRequired,
     cardAdd: func.isRequired,
     cardDelete: func.isRequired,
+    getFavoritesCardList: func.isRequired,
     isFavorite: bool,
     isMobile: bool,
     loading: bool,

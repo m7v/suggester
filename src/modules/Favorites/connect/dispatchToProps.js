@@ -1,6 +1,6 @@
 import { bindActionCreators } from 'redux';
 import {
-    favoritesCardGetList as getCardList,
+    getFavoritesCardList as getCardList,
 } from 'actions/favoritesApi/favoritesApi.actions';
 import {
     appSetFavoritesColorFilter as appSetColorFilter,

@@ -59,7 +59,7 @@ function favoritesCardDelete(state, cardId) {
     };
 }
 
-function favoritesCardGetList(state, cards) {
+function getFavoritesCardList(state, cards) {
     return {
         ...state,
         items: {
@@ -81,7 +81,7 @@ export default (state = {}, action) => {
         case FAVORITES_CARD_DELETE:
             return favoritesCardDelete(state, action.payload.cardId);
         case FAVORITES_CARD_GET_LIST:
-            return favoritesCardGetList(state, action.payload.cards);
+            return getFavoritesCardList(state, action.payload.cards);
         default:
             return state;
     }
