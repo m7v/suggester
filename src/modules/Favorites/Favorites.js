@@ -34,6 +34,7 @@ class Favorites extends React.PureComponent {
             <section className="Favorites__root">
                 <CardFilter
                     className={'Favorites__filter'}
+                    currentSet={{name: 'Favorites'}}
                     types={types}
                     rarity={rarity}
                     colors={colors}
@@ -52,10 +53,10 @@ class Favorites extends React.PureComponent {
                     </div>
                 }
                 <div className="Favorites__main">
-                    {!loading && !!cards.length &&
+                    {!loading &&
                         <CardGridList cards={cards} />
                     }
-                    {this.props.loading &&
+                    {loading &&
                         <div className="Favorites__preloader">
                             <div className="Favorites__circular">
                                 <Loader />

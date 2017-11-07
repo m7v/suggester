@@ -128,11 +128,25 @@ class CardInfo extends React.PureComponent {
     renderMobileCard = (card) => (
         <div className="CardInfoMobile__container">
             <div className="CardInfoMobile__card">
-                {card.rulings &&
-                    <div className="CardInfoMobile__IconInfoOutline">
+                <div className="CardInfoMobile__icons">
+                    {card.rulings &&
                         <CardRulings rulings={card.rulings} isMobile />
-                    </div>
-                }
+                    }
+                    {this.props.isFavorite &&
+                        <div className="CardInfo__IconRemoveFavorite">
+                            <IconButton onClick={() => this.props.cardDelete(card.id)}>
+                                <StarIcon color="white" />
+                            </IconButton>
+                        </div>
+                    }
+                    {!this.props.isFavorite &&
+                        <div className="CardInfo__IconAddFavorite">
+                            <IconButton onClick={() => this.props.cardAdd(card)}>
+                                <StarBorderIcon color="white" />
+                            </IconButton>
+                        </div>
+                    }
+                </div>
                 <div className="CardInfoMobile__title">
                     {card.name}
                 </div>
