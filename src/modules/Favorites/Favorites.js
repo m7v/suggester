@@ -52,10 +52,10 @@ class Favorites extends React.PureComponent {
                     </div>
                 }
                 <div className="Favorites__main">
-                    {!loading && !!cards.length &&
+                    {!loading &&
                         <CardGridList cards={cards} />
                     }
-                    {this.props.loading &&
+                    {loading &&
                         <div className="Favorites__preloader">
                             <div className="Favorites__circular">
                                 <Loader />
