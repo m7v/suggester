@@ -157,7 +157,7 @@ class CardFilter extends React.Component {
                         <div className="CardFilter__form">
                             {!isEmpty(currentSet) &&
                                 <div className="CardFilter__header">
-                                    {this.getSetIcon('CardFilter__IconHeader')}
+                                    {currentSet.code && this.getSetIcon('CardFilter__IconHeader')}
                                     <span className="CardFilter__headerTitle">{currentSet.name}</span>
                                 </div>
                             }

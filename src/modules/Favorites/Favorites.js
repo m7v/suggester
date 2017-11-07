@@ -34,6 +34,7 @@ class Favorites extends React.PureComponent {
             <section className="Favorites__root">
                 <CardFilter
                     className={'Favorites__filter'}
+                    currentSet={{name: 'Favorites'}}
                     types={types}
                     rarity={rarity}
                     colors={colors}
