@@ -35,9 +35,9 @@ class CardInfo extends React.PureComponent {
             <meta charSet="utf-8" />
             <title>{`${card.name} | MTG Manager`}</title>
             <link rel="canonical" href={`https://m7v.github.io/suggester/#/cards/${card.id}`} />
-            <meta name="twitter:image" content={`https://m7v.github.io/suggester/#/cards/${card.id}`} />
+            <meta name="twitter:image" content={card.imageUrl} />
             <meta name="twitter:title" content={`${card.name} | MTG Manager`} />
-            <meta property="og:image" content={`https://m7v.github.io/suggester/#/cards/${card.id}`} />
+            <meta property="og:image" content={card.imageUrl} />
             <meta property="og:title" content={`${card.name} | MTG Manager`} />
         </Helmet>
     );
