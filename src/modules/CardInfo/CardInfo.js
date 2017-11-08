@@ -1,6 +1,7 @@
 import './CardInfo.css';
 import './CardInfoMobile.css';
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { bool, string, func, shape } from 'prop-types';
@@ -29,6 +30,18 @@ class CardInfo extends React.PureComponent {
         }
     }
 
+    setMetaTags = (card) => (
+        <Helmet>
+            <meta charSet="utf-8" />
+            <title>{`${card.name} | MTG Manager`}</title>
+            <link rel="canonical" href={`https://m7v.github.io/suggester/#/cards/${card.id}`} />
+            <meta name="twitter:image" content={`https://m7v.github.io/suggester/#/cards/${card.id}`} />
+            <meta name="twitter:title" content={`${card.name} | MTG Manager`} />
+            <meta property="og:image" content={`https://m7v.github.io/suggester/#/cards/${card.id}`} />
+            <meta property="og:title" content={`${card.name} | MTG Manager`} />
+        </Helmet>
+    );
+
     getSetIcon = (set, rarity) => {
         if (!set) {
             return '';
@@ -45,6 +58,7 @@ class CardInfo extends React.PureComponent {
     // @TODO вынести в отдельный компонент
     renderDesktopCard = (card) => (
         <div className="CardInfo__container">
+            { this.setMetaTags(card) }
             <div className="CardInfo__card">
                 <Card card={card} needForceCheck oversize />
                 <Link className="CardInfo__artist" to={`/search?q=${card.artist}`}>
@@ -127,6 +141,7 @@ class CardInfo extends React.PureComponent {
     // @TODO вынести в отдельный компонент
     renderMobileCard = (card) => (
         <div className="CardInfoMobile__container">
+            { this.setMetaTags(card) }
             <div className="CardInfoMobile__card">
                 <div className="CardInfoMobile__icons">
                     {card.rulings &&
@@ -201,7 +216,7 @@ class CardInfo extends React.PureComponent {
         return (
             <div className={root}>
                 {!loading && card.set &&
-                    <ButtonBack className="CardInfo__back" path={`/browse/${card.set.toLowerCase()}`} />
+                    <ButtonBack className="CardInfo__back" />
                 }
                 <SearchBarMini
                     className="CardInfo__search"

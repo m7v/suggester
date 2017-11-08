@@ -72,6 +72,7 @@ const initialState = {
                     uncommon: false,
                     rare: false,
                     mythic: false,
+                    basicLand: false,
                 },
                 colors: {
                     w: !!colorFilter && !!colorFilter.w,
@@ -130,6 +131,7 @@ const initialState = {
                     uncommon: false,
                     rare: false,
                     mythic: false,
+                    basicLand: false,
                 },
                 colors: {
                     w: !!colorFilter && !!colorFilter.w,
@@ -158,6 +160,7 @@ const initialState = {
                     uncommon: false,
                     rare: false,
                     mythic: false,
+                    basicLand: false,
                 },
                 colors: {
                     w: !!colorFilter && !!colorFilter.w,

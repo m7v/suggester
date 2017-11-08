@@ -23,7 +23,7 @@ class CardSet extends React.Component {
     render() {
         return (
             <section className="CardSet">
-                <ButtonBack className="CardSet__back" path="/browse" />
+                <ButtonBack className="CardSet__back" />
                 <CardFilter
                     className={'CardSet__filter'}
                     currentSet={this.props.currentSet}
