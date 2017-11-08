@@ -1,7 +1,7 @@
 import './Favorites.css';
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { bool, func, shape, arrayOf } from 'prop-types';
 import Loader from 'components/Loader';
 import { dispatchToProps } from './connect/dispatchToProps';
@@ -14,7 +14,9 @@ const CardFilter = (props) => <Async load={import('components/CardFilter')} comp
 class Favorites extends React.PureComponent {
 
     componentWillMount() {
-        this.props.getCardList();
+        if (!this.props.cards.length) {
+            this.props.getCardList();
+        }
     }
 
     render() {
@@ -44,15 +46,15 @@ class Favorites extends React.PureComponent {
                     appSetRarityFilter={appSetRarityFilter}
                     resultCount={cards.length}
                 />
-                {!loading && !cards.length &&
-                    <div className="Favorites__noResults">
-                        <div>
-                            <div>You have no favorites...</div>
-                            <Link to={'/browse'} replace >Please add something</Link>
-                        </div>
-                    </div>
-                }
                 <div className="Favorites__main">
+                    {/*{!loading && !cards.length &&*/}
+                        {/*<div className="Favorites__noResults">*/}
+                            {/*<div>*/}
+                                {/*<div>You have no favorites...</div>*/}
+                                {/*<Link to={'/browse'} replace >Please add something</Link>*/}
+                            {/*</div>*/}
+                        {/*</div>*/}
+                    {/*}*/}
                     {!loading &&
                         <CardGridList cards={cards} />
                     }
