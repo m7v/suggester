@@ -1,6 +1,6 @@
 import { createSelector } from 'redux-orm';
 import map from 'lodash/map';
-import orm from 'reducers/entities';
+import orm from '../../../reducers/entities';
 
 const getDecks = (state) => state.entities;
 

@@ -2,7 +2,7 @@ import './CardGridList.css';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { arrayOf, shape } from 'prop-types';
-import Card from 'components/Card';
+import Card from '../../components/Card';
 
 const COUNT_RERENDER_CARDS = 12;
 

@@ -5,7 +5,7 @@ import {
     FAVORITES_CARD_ADD,
     FAVORITES_CARD_DELETE,
     FAVORITES_CARD_GET_LIST,
-} from 'reducers/favorites/favorites.helper';
+} from '../../reducers/favorites/favorites.helper';
 
 export function favoritesCardRequestSuccess() {
     return {
