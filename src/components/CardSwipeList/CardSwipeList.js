@@ -3,7 +3,7 @@ import React from 'react';
 import SwipeableViews from 'react-swipeable-views';
 import { virtualize } from 'react-swipeable-views-utils';
 import { arrayOf, shape } from 'prop-types';
-import SimpleCard from 'components/SimpleCard';
+import SimpleCard from '../../components/SimpleCard';
 
 const Views = virtualize(SwipeableViews);
 

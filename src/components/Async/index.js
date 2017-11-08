@@ -2,7 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class Async extends React.Component {
-    componentWillMount = () => {
+    constructor(props) {
+        super(props);
+        this.cancelUpdate = false;
+    }
+
+    componentWillMount() {
         this.cancelUpdate = false;
         this.props.load.then((c) => {
             this.C = c;
@@ -10,13 +15,13 @@ class Async extends React.Component {
                 this.forceUpdate();
             }
         });
-    };
+    }
 
-    componentWillUnmount = () => {
+    componentWillUnmount() {
         this.cancelUpdate = true;
-    };
+    }
 
-    render = () => {
+    render() {
         const { componentProps } = this.props;
         /* eslint-disable */
         return this.C
@@ -25,7 +30,7 @@ class Async extends React.Component {
                 : <this.C {...componentProps} />
             : null;
         /* eslint-enable */
-    };
+    }
 }
 
 Async.propTypes = {

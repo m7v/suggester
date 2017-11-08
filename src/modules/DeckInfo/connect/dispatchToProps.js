@@ -3,7 +3,7 @@ import {
     getCardListByDeckId,
     getDeckById,
     removeDeck,
-} from 'actions/deckBuilder/deckBuilder.actions';
+} from '../../../actions/deckBuilder/deckBuilder.actions';
 
 export function dispatchToProps(dispatch) {
     return bindActionCreators({

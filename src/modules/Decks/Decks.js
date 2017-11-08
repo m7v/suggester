@@ -3,8 +3,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { bool, shape, arrayOf, func } from 'prop-types';
-import Loader from 'components/Loader';
-import Deck from 'components/Deck';
+import Loader from '../../components/Loader';
+import Deck from '../../components/Deck';
 import stateToProps from './connect/stateToProps';
 import dispatchToProps from './connect/dispatchToProps';
 

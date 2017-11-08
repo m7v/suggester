@@ -22,7 +22,7 @@ import {
     APP_SET_FAVORITES_COLORS_FILTERS,
     APP_SET_FAVORITES_RARITY_FILTERS,
     APP_SET_FAVORITES_TYPES_FILTERS
-} from 'reducers/appContext/appContext.helper';
+} from '../../reducers/appContext/appContext.helper';
 
 export function appInitialized() {
     return {

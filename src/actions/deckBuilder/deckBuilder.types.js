@@ -4,7 +4,7 @@ import {
     ADD_CARD,
     ADD_DECK,
     DELETE_DECK,
-} from 'reducers/deckBuilder/deckBuilder.helper';
+} from '../../reducers/deckBuilder/deckBuilder.helper';
 
 /**
  * @param decks

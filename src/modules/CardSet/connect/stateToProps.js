@@ -1,7 +1,7 @@
 import { createSelector as createSelectorORM } from 'redux-orm';
 import { createSelector } from 'reselect';
 import filter from 'lodash/filter';
-import orm from 'reducers/entities';
+import orm from '../../../reducers/entities';
 import sortBy from 'lodash/sortBy';
 import {
     createCardFilter,

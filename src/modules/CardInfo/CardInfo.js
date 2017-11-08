@@ -8,18 +8,18 @@ import { bool, string, func, shape } from 'prop-types';
 import classNames from 'classnames';
 import { dispatchToProps } from './connect/dispatchToProps';
 import { stateToProps } from './connect/stateToProps';
-import { formatText } from 'helpers/mana.helper';
-import Async from 'components/Async';
-import SearchBarMini from 'components/SearchBarMini';
-import Card from 'components/Card';
-import Loader from 'components/Loader/Loader';
-import ButtonBack from 'components/ButtonBack';
+import { formatText } from '../../helpers/mana.helper';
+import Async from '../../components/Async';
+import SearchBarMini from '../../components/SearchBarMini';
+import Card from '../../components/Card';
+import Loader from '../../components/Loader/Loader';
+import ButtonBack from '../../components/ButtonBack';
 import IconButton from 'material-ui/IconButton';
 import StarBorderIcon from 'material-ui-icons/StarBorder';
 import StarIcon from 'material-ui-icons/Star';
 
-const CardRulings = (props) => <Async load={import('components/CardRulings')} componentProps={props} />;
-const ManaCost = (props) => <Async load={import('components/ManaCost')} componentProps={props} />;
+const CardRulings = (props) => <Async load={import('../../components/CardRulings')} componentProps={props} />;
+const ManaCost = (props) => <Async load={import('../../components/ManaCost')} componentProps={props} />;
 
 class CardInfo extends React.PureComponent {
 

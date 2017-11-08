@@ -1,7 +1,7 @@
 import './CardRulings.css';
 import React from 'react';
 import { arrayOf, shape, bool } from 'prop-types';
-import { formatText } from 'helpers/mana.helper';
+import { formatText } from '../../helpers/mana.helper';
 import IconInfoOutline from 'material-ui-icons/InfoOutline';
 import IconButton from 'material-ui/IconButton';
 import Dialog, { DialogActions, DialogContent } from 'material-ui/Dialog';
