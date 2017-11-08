@@ -6,7 +6,7 @@ import mtgparser from 'mtg-parser';
 import sum from 'lodash/sum';
 import { dispatchToProps } from './connect/dispatchToProps';
 import { stateToProps } from './connect/stateToProps';
-import CreateDeckForm from 'components/CreateDeckForm';
+import CreateDeckForm from '../../components/CreateDeckForm';
 
 class DeckBuilder extends React.PureComponent {
 

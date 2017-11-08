@@ -9,11 +9,11 @@ import {
     HashRouter as Router,
     Route,
 } from 'react-router-dom';
-import Async from 'components/Async';
+import Async from '../../components/Async';
 import { mapStateToProps } from './connect/stateToProps';
 import { dispatchToProps } from './connect/dispatchToProps';
-import NavBar from 'components/NavBar';
-import Loader from 'components/Loader';
+import NavBar from '../../components/NavBar';
+import Loader from '../../components/Loader';
 
 const Favorites = (props) => <Async load={import('../Favorites/container')} componentProps={props} />;
 const DeckBuilder = (props) => <Async load={import('../DeckBuilder/container')} componentProps={props} />;

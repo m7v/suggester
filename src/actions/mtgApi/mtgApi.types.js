@@ -1,9 +1,9 @@
 import {
     ADD_CARDSET
-} from 'reducers/browse/browse.helper';
+} from '../../reducers/browse/browse.helper';
 import {
     APP_CARDSET_ADD_CARDS
-} from 'reducers/appContext/appContext.helper';
+} from '../../reducers/appContext/appContext.helper';
 
 export function addSet(set) {
     return {

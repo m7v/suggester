@@ -5,11 +5,11 @@ import {
     buildDoubleFaceCards,
     fullCardsInfoLens,
     DOUBLE_FACED_TYPE
-} from 'helpers/mtgCard.helper';
+} from '../../helpers/mtgCard.helper';
 import {
     getSuggestions as requestGetSuggestions,
     getCardsByNames as requestGetCardsByNames,
-} from 'services/mtgApi/mtgApi.service';
+} from '../../services/mtgApi/mtgApi.service';
 
 /**
  * @returns {function(*, *)}Success

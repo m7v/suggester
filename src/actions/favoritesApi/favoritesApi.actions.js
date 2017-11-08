@@ -4,7 +4,7 @@ import {
     getCardList,
     addCard,
     removeCard
-} from 'services/favoritesApi/favoritesApi.service';
+} from '../../services/favoritesApi/favoritesApi.service';
 
 export function favoritesCardAdd(card) {
     return dispatch => {

@@ -6,7 +6,7 @@ import IconArrowBack from 'material-ui-icons/ArrowBack';
 
 class ButtonBack extends React.PureComponent {
 
-    handleClick = () => {
+    handleClick() {
         this.props.history.goBack();
     };
 
