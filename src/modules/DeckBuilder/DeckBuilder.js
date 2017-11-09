@@ -7,6 +7,7 @@ import sum from 'lodash/sum';
 import { dispatchToProps } from './connect/dispatchToProps';
 import { stateToProps } from './connect/stateToProps';
 import CreateDeckForm from '../../components/CreateDeckForm';
+import MetaHelmet from '../../components/MetaHelmet/MetaHelmet';
 
 class DeckBuilder extends React.PureComponent {
 
@@ -38,6 +39,7 @@ class DeckBuilder extends React.PureComponent {
     render() {
         return (
             <section className="DeckBuilder">
+                <MetaHelmet type={'deckbuilder'} />
                 <div className="DeckBuilder__main">
                     <CreateDeckForm
                         draftDeck={this.state.deckList || this.props.deckList}

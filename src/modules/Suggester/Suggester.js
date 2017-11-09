@@ -8,6 +8,7 @@ import Loader from '../../components/Loader';
 import SearchBar from '../../components/SearchBar';
 import { mapDispatchToProps } from './connect/dispatchToProps';
 import { mapStateToProps } from './connect/stateToProps';
+import MetaHelmet from '../../components/MetaHelmet/MetaHelmet';
 
 const CardGridList = (props) => <Async load={import('../../components/CardGridList')} componentProps={props} />;
 
@@ -40,6 +41,7 @@ class Suggester extends React.Component {
         const { isMobile, suggestions, loading, searchingCard } = this.props;
         return (
             <section className="Suggester">
+                <MetaHelmet type={'search'} />
                 <div className={classNames({
                     'Suggester__background': true,
                     '_inited': !!searchingCard,

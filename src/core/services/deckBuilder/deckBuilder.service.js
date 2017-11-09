@@ -3,7 +3,7 @@ import httpAdapter from 'axios/lib/adapters/http';
 import map from 'lodash/map';
 import compact from 'lodash/compact';
 import { databaseApiUrl } from './../config.service';
-import orm from '../../reducers/entities';
+import orm from '../../../core/reducers/entities';
 
 axios.defaults.adapter = httpAdapter;
 //

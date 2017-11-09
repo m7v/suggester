@@ -1,6 +1,6 @@
 import { bindActionCreators } from 'redux';
-import { getSuggestions } from '../../../actions/suggestions/suggestions.actions';
-import { setQueryString } from '../../../actions/suggestions/suggestions.types';
+import { getSuggestions } from '../../../core/actions/suggestions/suggestions.actions';
+import { setQueryString } from '../../../core/actions/suggestions/suggestions.types';
 
 export function mapDispatchToProps(dispatch) {
     return bindActionCreators({

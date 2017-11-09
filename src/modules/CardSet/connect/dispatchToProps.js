@@ -2,12 +2,12 @@ import { bindActionCreators } from 'redux';
 import {
     getSetByCode,
     getSetCardsByCode
-} from '../../../actions/mtgApi/mtgApi.actions';
+} from '../../../core/actions/mtgApi/mtgApi.actions';
 import {
     appSetCardSetColorFilter,
     appSetCardSetTypeFilter,
     appSetCardSetRarityFilter
-} from '../../../actions/appContext/appContext.actions';
+} from '../../../core/actions/appContext/appContext.actions';
 
 export default function dispatchToProps(dispatch) {
     return bindActionCreators({

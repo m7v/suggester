@@ -2,7 +2,7 @@ import './ManaCost.css';
 import React from 'react';
 import classNames from 'classnames';
 import { string } from 'prop-types';
-import { getManaClass } from '../../helpers/mana.helper';
+import { getManaClass } from '../../core/helpers/mana.helper';
 
 class ManaCost extends React.PureComponent {
 

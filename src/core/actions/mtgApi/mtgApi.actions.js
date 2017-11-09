@@ -1,7 +1,7 @@
 import { batchActions } from 'redux-batched-actions';
 import map from 'lodash/map';
-import * as appContextTypes from '../../actions/appContext/appContext.types';
-import * as mtgApiTypes from '../../actions/mtgApi/mtgApi.types';
+import * as appContextTypes from '../../../core/actions/appContext/appContext.types';
+import * as mtgApiTypes from '../../../core/actions/mtgApi/mtgApi.types';
 import {
     getCardById as requestGetCardById,
     getCardsByNames as requestGetCardsByNames,

@@ -7,6 +7,7 @@ import { bool, shape, func } from 'prop-types';
 import map from 'lodash/map';
 import classNames from 'classnames';
 import Loader from '../../components/Loader';
+import MetaHelmet from '../../components/MetaHelmet/MetaHelmet';
 import stateToProps from './connect/stateToProps';
 import dispatchToProps from './connect/dispatchToProps';
 
@@ -59,6 +60,7 @@ class CardSets extends React.PureComponent {
 
         return (
             <section className="CardSets">
+                <MetaHelmet type={'sets'} />
                 <div className="CardSets__main">
                     {loading &&
                         <div className="CardSets__preloader">

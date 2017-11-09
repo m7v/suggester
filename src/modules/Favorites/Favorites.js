@@ -7,6 +7,7 @@ import Loader from '../../components/Loader';
 import { dispatchToProps } from './connect/dispatchToProps';
 import { stateToProps } from './connect/stateToProps';
 import Async from '../../components/Async';
+import MetaHelmet from '../../components/MetaHelmet/MetaHelmet';
 
 const CardGridList = (props) => <Async load={import('../../components/CardGridList')} componentProps={props} />;
 const CardFilter = (props) => <Async load={import('../../components/CardFilter')} componentProps={props} />;
@@ -34,6 +35,7 @@ class Favorites extends React.PureComponent {
 
         return (
             <section className="Favorites__root">
+                <MetaHelmet type={'favorites'} />
                 <CardFilter
                     className={'Favorites__filter'}
                     currentSet={{name: 'Favorites'}}
