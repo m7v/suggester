@@ -25,7 +25,7 @@ class DoubleFacedCard extends React.PureComponent {
     showFront = debounce(() => this.setState({ isFlipped: false }), 150);
 
     render() {
-        const { card, oversize } = this.props;
+        const { card, oversize, foil } = this.props;
         const imageUrl = oversize ? card.imageUrlLarge : card.imageUrl;
         const imageUrlFromBackSide = oversize ? card.doubleFace.imageUrlLarge : card.doubleFace.imageUrl;
 
@@ -44,7 +44,8 @@ class DoubleFacedCard extends React.PureComponent {
                                 className={classNames({
                                     'DoubleFacedCard__img': true,
                                     '_default': !oversize,
-                                    '_oversize': oversize
+                                    '_oversize': oversize,
+                                    '_foil': foil
                                 })}
                                 src={imageUrl}
                                 loader={<DefaultCard oversize={oversize} />}
@@ -56,7 +57,8 @@ class DoubleFacedCard extends React.PureComponent {
                                 className={classNames({
                                     'DoubleFacedCard__img': true,
                                     '_default': !oversize,
-                                    '_oversize': oversize
+                                    '_oversize': oversize,
+                                    '_foil': foil
                                 })}
                                 src={imageUrlFromBackSide}
                                 loader={<DefaultCard oversize={oversize} />}
@@ -73,10 +75,12 @@ class DoubleFacedCard extends React.PureComponent {
 DoubleFacedCard.propTypes = {
     card: shape({}).isRequired,
     needForceCheck: bool,
+    foil: bool,
     oversize: bool,
 };
 
 DoubleFacedCard.defaultProps = {
+    foil: false,
     needForceCheck: false,
     oversize: false,
 };

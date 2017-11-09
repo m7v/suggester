@@ -7,18 +7,18 @@ import DoubleFacedCard from '../../components/DoubleFacedCard/DoubleFacedCard';
 class Card extends React.PureComponent {
 
     render() {
-        const { card, needForceCheck, oversize } = this.props;
+        const { card, needForceCheck, oversize, foil } = this.props;
 
         return (
-            <div>
+            <div className="Card__root">
                 {card.layout && card.layout !== DOUBLE_FACED_TYPE &&
-                    <SimpleCard card={card} oversize={oversize} needForceCheck={needForceCheck} />
+                    <SimpleCard card={card} foil={foil} oversize={oversize} needForceCheck={needForceCheck} />
                 }
                 {card.layout && card.layout === DOUBLE_FACED_TYPE &&
-                    <DoubleFacedCard card={card} oversize={oversize} needForceCheck={needForceCheck} />
+                    <DoubleFacedCard card={card} foil={foil} oversize={oversize} needForceCheck={needForceCheck} />
                 }
                 {!card.layout &&
-                    <SimpleCard card={card} oversize={oversize} needForceCheck={needForceCheck} />
+                    <SimpleCard card={card} foil={foil} oversize={oversize} needForceCheck={needForceCheck} />
                 }
             </div>
         );
@@ -28,12 +28,14 @@ class Card extends React.PureComponent {
 Card.propTypes = {
     needForceCheck: bool,
     oversize: bool,
+    foil: bool,
     card: shape({}).isRequired,
 };
 
 Card.defaultProps = {
     needForceCheck: false,
     oversize: false,
+    foil: false,
 };
 
 export default Card;

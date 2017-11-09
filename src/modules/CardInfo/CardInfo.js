@@ -38,18 +38,19 @@ class CardInfo extends React.PureComponent {
         return <i className={className} />;
     }
 
-    handleSearchCardByKeyPress(searchedCard) {
+    handleSearchCardByKeyPress = (searchedCard) => {
         this.props.setQueryString(searchedCard);
         this.props.history.push(`/search?q=${searchedCard}`);
-    }
+    };
 
     // @TODO вынести в отдельный компонент
     renderDesktopCard(card) {
+        const isFoil = card.rarity === 'Mythic Rare' || card.rarity === 'Rare';
         return (
             <div className="CardInfo__container">
                 <MetaHelmet type={'card'} card={card} />
                 <div className="CardInfo__card">
-                    <Card card={card} needForceCheck oversize />
+                    <Card card={card} foil={isFoil} needForceCheck oversize />
                     <Link className="CardInfo__artist" to={`/search?q=${card.artist}`}>
                         Artist <span className="CardInfo__artistName">{card.artist}</span>
                         {card.number && <span> #{card.number}</span>}
@@ -130,37 +131,36 @@ class CardInfo extends React.PureComponent {
 
     // @TODO вынести в отдельный компонент
     renderMobileCard(card) {
+        const isFoil = card.rarity === 'Mythic Rare' || card.rarity === 'Rare';
         return (
             <div className="CardInfoMobile__container">
                 <MetaHelmet type={'card'} card={card} />
                 <div className="CardInfoMobile__card">
                     <div className="CardInfoMobile__icons">
                         {card.rulings &&
-                        <CardRulings rulings={card.rulings} isMobile />
+                            <CardRulings rulings={card.rulings} isMobile />
                         }
                         {this.props.isFavorite &&
-                        <div className="CardInfo__IconRemoveFavorite">
-                            <IconButton onClick={() => this.props.cardDelete(card.id)}>
-                                <StarIcon color="white" />
-                            </IconButton>
-                        </div>
+                            <div className="CardInfo__IconRemoveFavorite">
+                                <IconButton onClick={() => this.props.cardDelete(card.id)}>
+                                    <StarIcon color="white" />
+                                </IconButton>
+                            </div>
                         }
                         {!this.props.isFavorite &&
-                        <div className="CardInfo__IconAddFavorite">
-                            <IconButton onClick={() => this.props.cardAdd(card)}>
-                                <StarBorderIcon color="white" />
-                            </IconButton>
-                        </div>
+                            <div className="CardInfo__IconAddFavorite">
+                                <IconButton onClick={() => this.props.cardAdd(card)}>
+                                    <StarBorderIcon color="white" />
+                                </IconButton>
+                            </div>
                         }
                     </div>
                     <div className="CardInfoMobile__title">
                         {card.name}
                     </div>
-                    <Card card={card} needForceCheck />
+                    <Card card={card} foil={isFoil} needForceCheck />
                     <Link className="CardInfoMobile__artist" to={`/search?q=${card.artist}`}>
-                        Artist
-                        <span className="CardInfoMobile__artistName">{card.artist}</span>
-                        <span>#{card.number}</span>
+                        Artist <span className="CardInfoMobile__artistName">{card.artist}</span> <span>#{card.number}</span>
                     </Link>
                     <div className="CardInfoMobile__details">
                         <div className="CardInfoMobile__type">
@@ -168,21 +168,21 @@ class CardInfo extends React.PureComponent {
                             {card.type}
                         </div>
                         {card.manaCost &&
-                        <div className="CardInfoMobile__manaCost">
-                            <div className="CardInfoMobile__detailTitle">Mana cost</div>
-                            <div className="CardInfoMobile__manaCostIcon">
-                                <ManaCost manaCost={card.manaCost} />
+                            <div className="CardInfoMobile__manaCost">
+                                <div className="CardInfoMobile__detailTitle">Mana cost</div>
+                                <div className="CardInfoMobile__manaCostIcon">
+                                    <ManaCost manaCost={card.manaCost} />
+                                </div>
                             </div>
-                        </div>
                         }
                         {card.setName &&
-                        <div className="CardInfoMobile__set">
-                            <div className="CardInfoMobile__detailTitle">Expansion</div>
-                            <Link className="CardInfoMobile__setName" to={`/browse/${card.set.toLowerCase()}`}>
-                                {card.setName}
-                            </Link>
-                            <div>{this.getSetIcon(card.set, card.rarity)}</div>
-                        </div>
+                            <div className="CardInfoMobile__set">
+                                <div className="CardInfoMobile__detailTitle">Expansion</div>
+                                <Link className="CardInfoMobile__setName" to={`/browse/${card.set.toLowerCase()}`}>
+                                    {card.setName}
+                                </Link>
+                                <div>{this.getSetIcon(card.set, card.rarity)}</div>
+                            </div>
                         }
                     </div>
                     <div className="CardInfoMobile__textInfo">

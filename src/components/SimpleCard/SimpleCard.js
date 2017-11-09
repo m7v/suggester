@@ -15,7 +15,7 @@ class SimpleCard extends React.PureComponent {
     }
 
     render() {
-        const { card, oversize } = this.props;
+        const { card, oversize, foil } = this.props;
         const imageUrl = oversize ? card.imageUrlLarge : card.imageUrl;
 
         return (
@@ -25,7 +25,8 @@ class SimpleCard extends React.PureComponent {
                         className={classNames({
                             'SimpleCard__img': true,
                             '_default': !oversize,
-                            '_oversize': oversize
+                            '_oversize': oversize,
+                            '_foil': foil
                         })}
                         src={imageUrl}
                         loader={<DefaultCard oversize={oversize} />}
@@ -40,12 +41,14 @@ class SimpleCard extends React.PureComponent {
 SimpleCard.propTypes = {
     needForceCheck: bool,
     oversize: bool,
+    foil: bool,
     card: shape({}).isRequired,
 };
 
 SimpleCard.defaultProps = {
     needForceCheck: false,
     oversize: false,
+    foil: false,
 };
 
 export default SimpleCard;
