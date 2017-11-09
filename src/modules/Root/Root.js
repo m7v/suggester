@@ -8,6 +8,7 @@ import {
     // BrowserRouter as Router,
     HashRouter as Router,
     Route,
+    Switch
 } from 'react-router-dom';
 import Async from '../../components/Async';
 import { mapStateToProps } from './connect/stateToProps';
@@ -48,56 +49,58 @@ class Root extends React.Component {
                         </div>
                     }
                     <NavBar />
-                    <Route
-                        exact
-                        path="/search"
-                        component={Suggester}
-                    />
-                    <Route
-                        exact
-                        path="/decks"
-                        component={Decks}
-                    />
-                    <Route
-                        exact
-                        path="/decks/:id"
-                        component={({match}) => <DeckInfo deckId={match.params.id} />}
-                    />
-                    <Route
-                        exact
-                        path="/decks/:id/edit"
-                        component={({match}) => <DeckBuilder deckId={match.params.id} />}
-                    />
-                    <Route
-                        exact
-                        path="/cards"
-                        component={Cards}
-                    />
-                    <Route
-                        exact
-                        path="/cards/:id"
-                        component={({match, history}) => <CardInfo cardId={match.params.id} history={history} />}
-                    />
-                    <Route
-                        exact
-                        path="/favorites"
-                        component={Favorites}
-                    />
-                    <Route
-                        exact
-                        path="/deck/add"
-                        component={DeckBuilder}
-                    />
-                    <Route
-                        exact
-                        path="/browse"
-                        component={CardSets}
-                    />
-                    <Route
-                        exact
-                        path="/browse/:setId"
-                        component={({match, history}) => <CardSet code={match.params.setId} history={history} />}
-                    />
+                    <Switch>
+                        <Route
+                            exact
+                            path="/search"
+                            component={Suggester}
+                        />
+                        <Route
+                            exact
+                            path="/decks"
+                            component={Decks}
+                        />
+                        <Route
+                            exact
+                            path="/decks/:id"
+                            component={({match}) => <DeckInfo deckId={match.params.id} />}
+                        />
+                        <Route
+                            exact
+                            path="/decks/:id/edit"
+                            component={({match}) => <DeckBuilder deckId={match.params.id} />}
+                        />
+                        <Route
+                            exact
+                            path="/cards"
+                            component={Cards}
+                        />
+                        <Route
+                            exact
+                            path="/cards/:id"
+                            component={({match, history}) => <CardInfo cardId={match.params.id} history={history} />}
+                        />
+                        <Route
+                            exact
+                            path="/favorites"
+                            component={Favorites}
+                        />
+                        <Route
+                            exact
+                            path="/deck/add"
+                            component={DeckBuilder}
+                        />
+                        <Route
+                            exact
+                            path="/browse"
+                            component={CardSets}
+                        />
+                        <Route
+                            exact
+                            path="/browse/:setId"
+                            component={({match, history}) => <CardSet code={match.params.setId} history={history} />}
+                        />
+                    </Switch>
                 </section>
             </Router>
         );

@@ -5,6 +5,7 @@ import { bool, string, arrayOf, shape, func } from 'prop-types';
 import Async from '../../components/Async';
 import Loader from '../../components/Loader';
 import ButtonBack from '../../components/ButtonBack';
+import MetaHelmet from '../../components/MetaHelmet/MetaHelmet';
 import stateToProps from './connect/stateToProps';
 import dispatchToProps from './connect/dispatchToProps';
 
@@ -23,6 +24,7 @@ class CardSet extends React.Component {
     render() {
         return (
             <section className="CardSet">
+                <MetaHelmet type={'set'} set={this.props.currentSet} />
                 <ButtonBack className="CardSet__back" />
                 <CardFilter
                     className={'CardSet__filter'}
@@ -38,7 +40,9 @@ class CardSet extends React.Component {
                 />
                 <div className="CardSet__main">
                     {!this.props.loading &&
-                        <CardGridList cards={this.props.cards} />
+                        <div>
+                            <CardGridList cards={this.props.cards} />
+                        </div>
                     }
                     {this.props.loading &&
                     <div className="CardSet__preloader">

@@ -2,8 +2,8 @@ import { batchActions } from 'redux-batched-actions';
 import uniqueId from 'lodash/uniqueId';
 import map from 'lodash/map';
 import * as deckBuilderTypes from './deckBuilder.types';
-import * as appContextTypes from '../../actions/appContext/appContext.types';
-import orm from '../../reducers/entities';
+import * as appContextTypes from '../../../core/actions/appContext/appContext.types';
+import orm from '../../../core/reducers/entities';
 import {
     buildDeck,
 } from './deckBuilder.helper';

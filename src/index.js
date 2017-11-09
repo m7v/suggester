@@ -4,7 +4,7 @@ import {Provider} from 'react-redux';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import red from 'material-ui/colors/red';
-import store from './store';
+import store from './core/store';
 import Root from './modules/Root/container';
 
 injectTapEventPlugin();
