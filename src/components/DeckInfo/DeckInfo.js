@@ -89,6 +89,13 @@ class DeckInfo extends React.PureComponent {
                         );
                     })}
                 </div>
+                <div className="DeckInfo__legality">
+                    {map(deck.legality, (item) => (
+                        <div key={item.format} className="DeckInfo__legalityName">
+                            <span>{item.format}</span><span>{item.legality}</span>
+                        </div>
+                    ))}
+                </div>
                 <div className="DeckInfo__composition">
                     {map(deck.analytics.deckComposition, (count, type) => {
                         const className = `type type-${type} ms ms-${type}`;

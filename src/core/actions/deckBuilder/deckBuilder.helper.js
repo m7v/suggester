@@ -1,5 +1,7 @@
 import size from 'lodash/size';
 import head from 'lodash/head';
+import isEqual from 'lodash/isEqual';
+import intersectionWith from 'lodash/intersectionWith';
 
 export function buildDeck(deckId, name, cards) {
     const analytics = buildDeckAnalytics(cards);
@@ -9,6 +11,7 @@ export function buildDeck(deckId, name, cards) {
         name,
         cardCount: analytics.cardCount,
         cards: analytics.cards,
+        legality: analytics.legality,
         analytics: {
             colorComposition: analytics.colorComposition,
             cardRarity: analytics.cardRarity,
@@ -21,6 +24,7 @@ export function buildDeck(deckId, name, cards) {
 function buildDeckAnalytics(cards) {
     const analytics = {
         colorComposition: {},
+        legality: [],
         cardRarity: {},
         manaCurve: {},
         cards: {},
@@ -29,6 +33,7 @@ function buildDeckAnalytics(cards) {
     };
 
     return cards.reduce((agg, card) => {
+        agg.legality = buildLegality(card, agg.legality);
         agg.colorComposition = buildColorComposition(card, agg.colorComposition);
         agg.cardRarity = buildCardRarity(card, agg.cardRarity);
         agg.manaCurve = buildManaCurve(card, agg.manaCurve);
@@ -42,6 +47,13 @@ function buildDeckAnalytics(cards) {
 
         return agg;
     }, analytics);
+}
+
+function buildLegality(card, legality) {
+    if (size(card.legalities)) {
+        return legality.length ? intersectionWith(legality, card.legalities, isEqual) : card.legalities;
+    }
+    return legality;
 }
 
 function buildColorComposition(card, colorComposition) {
