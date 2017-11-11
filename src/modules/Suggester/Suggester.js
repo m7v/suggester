@@ -14,9 +14,17 @@ const CardGridList = (props) => <Async load={import('../../components/CardGridLi
 
 class Suggester extends React.Component {
 
-    state = {
-        searchingQuery: this.getSearchQuery(this.props.location)
-    };
+    constructor(props) {
+        super(props);
+        const { history, searchingQuery } = this.props;
+        const query = this.getSearchQuery(this.props.location) || searchingQuery;
+        this.state = {
+            searchingQuery: query
+        };
+        if (query) {
+            history.replace(`${history.location.pathname}?q=${query.replace(' ', '%20')}`);
+        }
+    }
 
     componentWillMount() {
         if (this.state.searchingQuery) {
@@ -26,21 +34,22 @@ class Suggester extends React.Component {
 
     componentWillUpdate(_, nextState) {
         if (this.state.searchingQuery !== nextState.searchingQuery) {
-            this.props.getSuggestions(this.state.searchingQuery);
+            this.props.getSuggestions(nextState.searchingQuery);
         }
     }
-
-    handleSearchCardByKeyPress = (searchingQuery) => {
-        if (this.state.searchingQuery !== searchingQuery && this.props.location.search.indexOf(searchingQuery) < 0) {
-            this.props.setQueryString(searchingQuery);
-            this.props.history.push(`${this.props.history.location.pathname}?q=${searchingQuery}`);
-        }
-    };
 
     getSearchQuery(location) {
         const searchString = location.search.split('?q=')[1] || '';
         return searchString.replace('%20', ' ');
     }
+
+    handleSearchCardByKeyPress = (searchingQuery) => {
+        if (this.state.searchingQuery !== searchingQuery) {
+            this.props.setQueryString(searchingQuery);
+            this.props.history.push(`${this.props.history.location.pathname}?q=${searchingQuery}`);
+            this.setState({ searchingQuery });
+        }
+    };
 
     render() {
         const { isMobile, suggestions, loading } = this.props;
@@ -86,6 +95,7 @@ class Suggester extends React.Component {
 Suggester.propTypes = {
     history: shape({}).isRequired,
     location: shape({}).isRequired,
+    searchingQuery: string,
     loading: bool,
     isMobile: bool,
     suggestions: arrayOf(shape({
