@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import { string, func, shape } from 'prop-types';
 import mtgparser from 'mtg-parser';
 import sum from 'lodash/sum';
+import CreateDeckForm from '../../components/CreateDeckForm';
+import MetaHelmet from '../../components/MetaHelmet';
 import { dispatchToProps } from './connect/dispatchToProps';
 import { stateToProps } from './connect/stateToProps';
-import CreateDeckForm from '../../components/CreateDeckForm';
-import MetaHelmet from '../../components/MetaHelmet/MetaHelmet';
 
 class DeckBuilder extends React.PureComponent {
 

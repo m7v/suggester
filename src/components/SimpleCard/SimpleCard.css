@@ -17,7 +17,7 @@
 }
 
 .SimpleCard__img._foil {
-    animation: holo 2s infinite;
+    animation: holo 2s infinite ease-out;
 }
 
 @keyframes holo{

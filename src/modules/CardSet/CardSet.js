@@ -5,7 +5,7 @@ import { bool, string, arrayOf, shape, func } from 'prop-types';
 import Async from '../../components/Async';
 import Loader from '../../components/Loader';
 import ButtonBack from '../../components/ButtonBack';
-import MetaHelmet from '../../components/MetaHelmet/MetaHelmet';
+import MetaHelmet from '../../components/MetaHelmet';
 import stateToProps from './connect/stateToProps';
 import dispatchToProps from './connect/dispatchToProps';
 

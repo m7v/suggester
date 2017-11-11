@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { bool, shape, arrayOf, func } from 'prop-types';
 import Loader from '../../components/Loader';
 import Deck from '../../components/Deck';
-import MetaHelmet from '../../components/MetaHelmet/MetaHelmet';
+import MetaHelmet from '../../components/MetaHelmet';
 import stateToProps from './connect/stateToProps';
 import dispatchToProps from './connect/dispatchToProps';
 

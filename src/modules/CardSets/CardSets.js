@@ -7,7 +7,7 @@ import { bool, shape, func } from 'prop-types';
 import map from 'lodash/map';
 import classNames from 'classnames';
 import Loader from '../../components/Loader';
-import MetaHelmet from '../../components/MetaHelmet/MetaHelmet';
+import MetaHelmet from '../../components/MetaHelmet';
 import stateToProps from './connect/stateToProps';
 import dispatchToProps from './connect/dispatchToProps';
 

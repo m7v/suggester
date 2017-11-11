@@ -6,9 +6,9 @@ import classNames from 'classnames';
 import Async from '../../components/Async';
 import Loader from '../../components/Loader';
 import SearchBar from '../../components/SearchBar';
+import MetaHelmet from '../../components/MetaHelmet';
 import { mapDispatchToProps } from './connect/dispatchToProps';
 import { mapStateToProps } from './connect/stateToProps';
-import MetaHelmet from '../../components/MetaHelmet/MetaHelmet';
 
 const CardGridList = (props) => <Async load={import('../../components/CardGridList')} componentProps={props} />;
 
