@@ -4,6 +4,7 @@ import * as appContextTypes from '../../../core/actions/appContext/appContext.ty
 import * as mtgApiTypes from '../../../core/actions/mtgApi/mtgApi.types';
 import {
     getCardById as requestGetCardById,
+    getCardByNameAndSet as requestGetCardByNameAndSet,
     getCardsByNames as requestGetCardsByNames,
     getSetList as requestGetSetList,
     getSetCardsByCode as requestGetSetCardsByCode,
@@ -15,7 +16,6 @@ import {
     getOversizedCardUrl,
     DOUBLE_FACED_TYPE
 } from '../../helpers/mtgCard.helper';
-
 
 export function getCardById(cardId) {
     return (dispatch, getState) => {
@@ -47,21 +47,36 @@ export function getCardById(cardId) {
                             if (shortDoubleFaceInfo[ card.id ]) {
                                 newCard.info = { ...newCard.info, doubleFace: shortDoubleFaceInfo[ card.id ] };
                             }
-                            return dispatch(batchActions([
-                                appContextTypes.appAddCardInfo(newCard.info),
-                                appContextTypes.appCardsRequestSuccess(),
-                            ]));
-                        })
-                        .catch((e) => dispatch(appContextTypes.appCardsRequestFailed(e)));
+                            return newCard.info;
+                        });
                 }
-                return dispatch(batchActions([
-                    appContextTypes.appAddCardInfo({
-                        ...card,
-                        imageUrlLarge: getOversizedCardUrl(card)
-                    }),
-                    appContextTypes.appCardsRequestSuccess(),
-                ]));
+                return {
+                    ...card,
+                    imageUrlLarge: getOversizedCardUrl(card)
+                };
             })
+            .then((card) => {
+                card.printings = card.printings.filter((set) => !set.match(/(^p.+)/));
+                if (card.printings.length > 1)  {
+                    const requests = card.printings.map((set) => requestGetCardByNameAndSet(card.name, set));
+                    return Promise
+                        .all(requests)
+                        .then((cards) => {
+                            card.printingsMap = {};
+                            cards.forEach((item) => {
+                                card.printingsMap[item.set] = item.id;
+                            });
+
+                            return card;
+                        });
+                }
+
+                return card;
+            })
+            .then((card) => dispatch(batchActions([
+                appContextTypes.appAddCardInfo(card),
+                appContextTypes.appCardsRequestSuccess(),
+            ])))
             .catch((e) => dispatch(appContextTypes.appCardsRequestFailed(e)));
     };
 }

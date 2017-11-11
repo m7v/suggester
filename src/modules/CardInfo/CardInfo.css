@@ -76,10 +76,11 @@
     justify-content: space-around;
     flex-direction: row;
     flex-wrap: nowrap;
-    width: 750px;
+    max-width: 990px;
 }
 
 .CardInfo__fullInfo {
+    padding: 15px;
     position: relative;
 }
 
@@ -89,7 +90,7 @@
 }
 
 .CardInfo__card {
-    padding: 30px;
+    padding: 15px;
 }
 
 .CardInfo__artist {
@@ -109,10 +110,15 @@
     text-transform: none;
 }
 
+.CardInfo__head {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+}
+
 .CardInfo__title {
     min-width: 300px;
     min-height: 50px;
-    margin: 30px 23px 0;
     text-align: left;
     display: block;
     font-size: 65px;
@@ -122,30 +128,24 @@
 }
 
 .CardInfo__cardBlock {
-    padding: 0 27px;
+    padding-top: 15px;
     display: flex;
 }
 
 .CardInfo__details {
-    max-width: 200px;
-    min-width: 200px;
+    max-width: 250px;
+    min-width: 250px;
     min-height: 130px;
     display: flex;
     flex-direction: column;
 }
 
 .CardInfo__detailTitle {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: bold;
-    line-height: 30px;
+    line-height: 20px;
     text-transform: uppercase;
     color: #888;
-    text-align: left;
-}
-
-.CardInfo__type {
-    font-size: 14px;
-    color: #eee;
     text-align: left;
 }
 
@@ -184,6 +184,7 @@
     flex-direction: column;
     justify-content: flex-start;
     width: 245px;
+    font-size: 14px;
     color: #eee;
 }
 
@@ -221,21 +222,41 @@
     background-color: #FFFFDA !important;
 }
 
+.CardInfo__textBlock {
+    padding: 0 15px;
+}
+
+.CardInfo__type {
+    font-size: 14px;
+    color: #eee;
+    text-align: left;
+    padding-bottom: 12px;
+}
+
 .CardInfo__manaCost {
     font-size: 14px;
     color: #eee;
     text-align: left;
+    padding-bottom: 12px;
 }
 
 .CardInfo__set {
     font-size: 12px;
     color: #eee;
     text-align: left;
+    padding-bottom: 12px;
 }
 
 .CardInfo__printings {
     text-align: left;
+    padding-bottom: 12px;
 }
+
+.CardInfo__legalities {
+    text-align: left;
+    padding-bottom: 12px;
+}
+
 .CardInfo__textInfo {
     max-width: 300px;
     min-width: 300px;

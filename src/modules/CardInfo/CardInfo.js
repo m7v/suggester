@@ -4,6 +4,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { bool, string, func, shape } from 'prop-types';
+import map from 'lodash/map';
 import classNames from 'classnames';
 import IconButton from 'material-ui/IconButton';
 import StarBorderIcon from 'material-ui-icons/StarBorder';
@@ -30,6 +31,12 @@ class CardInfo extends React.PureComponent {
         }
     }
 
+    componentWillUpdate(nextProps) {
+        if (this.props.cardId !== nextProps.cardId) {
+            this.props.getCardById(nextProps.cardId);
+        }
+    }
+
     getSetIcon(set, rarity) {
         if (!set) {
             return '';
@@ -46,6 +53,7 @@ class CardInfo extends React.PureComponent {
     // @TODO вынести в отдельный компонент
     renderDesktopCard(card) {
         const isFoil = card.rarity === 'Mythic Rare' || card.rarity === 'Rare';
+
         return (
             <div className="CardInfo__container">
                 <MetaHelmet type={'card'} card={card} />
@@ -57,29 +65,31 @@ class CardInfo extends React.PureComponent {
                     </Link>
                 </div>
                 <div className="CardInfo__fullInfo">
-                    <div className="CardInfo__icons">
-                        {card.rulings &&
-                        <div className="CardInfo__IconRulings">
-                            <CardRulings rulings={card.rulings} />
+                    <div className="CardInfo__head">
+                        <div className="CardInfo__icons">
+                            {card.rulings &&
+                            <div className="CardInfo__IconRulings">
+                                <CardRulings rulings={card.rulings} />
+                            </div>
+                            }
+                            {this.props.isFavorite &&
+                            <div className="CardInfo__IconRemoveFavorite">
+                                <IconButton onClick={() => this.props.cardDelete(card.id)}>
+                                    <StarIcon color="white" />
+                                </IconButton>
+                            </div>
+                            }
+                            {!this.props.isFavorite &&
+                            <div className="CardInfo__IconAddFavorite">
+                                <IconButton onClick={() => this.props.cardAdd(card)}>
+                                    <StarBorderIcon color="white" />
+                                </IconButton>
+                            </div>
+                            }
                         </div>
-                        }
-                        {this.props.isFavorite &&
-                        <div className="CardInfo__IconRemoveFavorite">
-                            <IconButton onClick={() => this.props.cardDelete(card.id)}>
-                                <StarIcon color="white" />
-                            </IconButton>
+                        <div className="CardInfo__title">
+                            {card.name}
                         </div>
-                        }
-                        {!this.props.isFavorite &&
-                        <div className="CardInfo__IconAddFavorite">
-                            <IconButton onClick={() => this.props.cardAdd(card)}>
-                                <StarBorderIcon color="white" />
-                            </IconButton>
-                        </div>
-                        }
-                    </div>
-                    <div className="CardInfo__title">
-                        {card.name}
                     </div>
                     <div className="CardInfo__cardBlock">
                         <div className="CardInfo__details">
@@ -106,8 +116,34 @@ class CardInfo extends React.PureComponent {
                                 </Link>
                             </div>
                             }
+                            {card.printings && card.printings.length > 1 &&
+                            <div className="CardInfo__printings">
+                                <div className="CardInfo__detailTitle">Printings</div>
+                                {map(card.printingsMap, (id, set) => (
+                                    <Link
+                                        key={id}
+                                        className="CardInfo__setName"
+                                        to={`/cards/${id}`}
+                                    >
+                                        {this.getSetIcon(set, card.rarity)}
+                                    </Link>
+                                ))}
+                            </div>
+                            }
+                            {card.legalities && card.legalities.length &&
+                            <div className="CardInfo__legalities">
+                                <div className="CardInfo__detailTitle">Formats</div>
+                                <div className="CardInfo__legality">
+                                    {card.legalities && card.legalities.map(item => (
+                                        <div key={item.format} className="CardInfo__legalityName">
+                                            <span>{item.format}</span><span>{item.legality}</span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                            }
                         </div>
-                        <div>
+                        <div className="CardInfo__textBlock">
                             {(card.text || card.flavor) &&
                             <div className="CardInfo__textInfo">
                                 {/* eslint-disable */}

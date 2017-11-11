@@ -138,8 +138,13 @@ export const getCardsByNames = cards => {
  * @param cardId
  */
 export const getCardById = (cardId) =>
-    axios.get(`${serverApiUrl}cards/${cardId}`)
+    axios.get(`${serverApiUrl}cards/${cardId}?contains=imageUrl`)
         .then(response => pick(response.data.card, fields))
+        .catch(() => null);
+
+export const getCardByNameAndSet = (name, set) =>
+    axios.get(`${serverApiUrl}cards?name=${name}&set=${set}&contains=imageUrl`)
+        .then(response => pick(response.data.cards[0], ['id', 'set']))
         .catch(() => null);
 
 export const getSetList = () =>
