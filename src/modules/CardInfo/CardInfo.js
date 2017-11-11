@@ -59,10 +59,12 @@ class CardInfo extends React.PureComponent {
                 <MetaHelmet type={'card'} card={card} />
                 <div className="CardInfo__card">
                     <Card card={card} foil={isFoil} needForceCheck oversize />
-                    <Link className="CardInfo__artist" to={`/search?q=${card.artist}`}>
+                    {card.artist &&
+                    <Link className="CardInfo__artist" to={`/search?q=${card.artist.replace(' ', '%20')}`}>
                         Artist <span className="CardInfo__artistName">{card.artist}</span>
                         {card.number && <span> #{card.number}</span>}
                     </Link>
+                    }
                 </div>
                 <div className="CardInfo__fullInfo">
                     <div className="CardInfo__head">

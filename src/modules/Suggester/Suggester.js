@@ -6,45 +6,51 @@ import classNames from 'classnames';
 import Async from '../../components/Async';
 import Loader from '../../components/Loader';
 import SearchBar from '../../components/SearchBar';
-import MetaHelmet from '../../components/MetaHelmet';
 import { mapDispatchToProps } from './connect/dispatchToProps';
 import { mapStateToProps } from './connect/stateToProps';
+import MetaHelmet from '../../components/MetaHelmet/MetaHelmet';
 
 const CardGridList = (props) => <Async load={import('../../components/CardGridList')} componentProps={props} />;
 
 class Suggester extends React.Component {
 
+    state = {
+        searchingQuery: this.getSearchQuery(this.props.location)
+    };
+
     componentWillMount() {
-        if (this.props.searchingCard) {
-            this.props.getSuggestions(this.props.searchingCard);
+        if (this.state.searchingQuery) {
+            this.props.getSuggestions(this.state.searchingQuery);
         }
     }
 
-    shouldComponentUpdate(nextProps) {
-        return this.props.suggestions.length !== nextProps.suggestions;
-    }
-
-    componentWillUpdate(nextProps) {
-        if (!nextProps.loading && this.props.searchingCard !== nextProps.searchingCard) {
-            nextProps.getSuggestions(nextProps.searchingCard);
+    componentWillUpdate(_, nextState) {
+        if (this.state.searchingQuery !== nextState.searchingQuery) {
+            this.props.getSuggestions(this.state.searchingQuery);
         }
     }
 
-    handleSearchCardByKeyPress = (searchingCard) => {
-        if (this.props.searchingCard !== searchingCard && window.location.search.indexOf(searchingCard) < 0) {
-            this.props.setQueryString(searchingCard);
-            this.props.history.push(`${this.props.history.location.pathname}?q=${searchingCard}`);
+    handleSearchCardByKeyPress = (searchingQuery) => {
+        if (this.state.searchingQuery !== searchingQuery && this.props.location.search.indexOf(searchingQuery) < 0) {
+            this.props.setQueryString(searchingQuery);
+            this.props.history.push(`${this.props.history.location.pathname}?q=${searchingQuery}`);
         }
     };
 
+    getSearchQuery(location) {
+        const searchString = location.search.split('?q=')[1] || '';
+        return searchString.replace('%20', ' ');
+    }
+
     render() {
-        const { isMobile, suggestions, loading, searchingCard } = this.props;
+        const { isMobile, suggestions, loading } = this.props;
+        const { searchingQuery } = this.state;
         return (
             <section className="Suggester">
                 <MetaHelmet type={'search'} />
                 <div className={classNames({
                     'Suggester__background': true,
-                    '_inited': !!searchingCard,
+                    '_inited': !!searchingQuery,
                 })}
                 >
                     <div className="Suggester__img" />
@@ -54,11 +60,11 @@ class Suggester extends React.Component {
                     <SearchBar
                         className={classNames({
                             'Suggester__search': true,
-                            '_submitted': !!searchingCard,
+                            '_submitted': !!searchingQuery,
                         })}
                         isMobile={isMobile}
-                        searchingCard={searchingCard}
-                        isSubmitted={!!searchingCard}
+                        searchingQuery={searchingQuery}
+                        isSubmitted={!!searchingQuery}
                         handleSearchCardByKeyPress={this.handleSearchCardByKeyPress}
                     />
                     {!loading &&
@@ -79,9 +85,9 @@ class Suggester extends React.Component {
 
 Suggester.propTypes = {
     history: shape({}).isRequired,
+    location: shape({}).isRequired,
     loading: bool,
     isMobile: bool,
-    searchingCard: string,
     suggestions: arrayOf(shape({
         id: string,
         imageUrl: string,

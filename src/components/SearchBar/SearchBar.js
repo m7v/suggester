@@ -10,15 +10,17 @@ const MAX_INPUT_LENGTH = 30;
 class SearchBar extends React.PureComponent {
 
     state = {
-        searchingCard: this.props.searchingCard,
+        searchingQuery: this.props.searchingQuery,
     };
 
     componentDidMount() {
-        this.searchInput.focus();
+        if (!this.props.isMobile) {
+            this.searchInput.focus();
+        }
     }
 
     onCardChange = event => {
-        this.setState({ searchingCard: event.target.value });
+        this.setState({ searchingQuery: event.target.value });
     };
 
     onFocusInput = () => {
@@ -34,7 +36,7 @@ class SearchBar extends React.PureComponent {
         }
         if (event.keyCode === ENTER_KEY_CODE) {
             event.preventDefault();
-            this.props.handleSearchCardByKeyPress(this.state.searchingCard);
+            this.props.handleSearchCardByKeyPress(this.state.searchingQuery);
             this.searchInput.blur();
         }
     };
@@ -55,7 +57,7 @@ class SearchBar extends React.PureComponent {
                         '_desktop': !this.props.isMobile,
                     })}
                     type="search"
-                    value={this.state.searchingCard}
+                    value={this.state.searchingQuery}
                     maxLength={MAX_INPUT_LENGTH}
                     placeholder="Search card"
                     onChange={this.onCardChange}
@@ -69,14 +71,14 @@ class SearchBar extends React.PureComponent {
 
 SearchBar.propTypes = {
     className: string,
-    searchingCard: string,
+    searchingQuery: string,
     isSubmitted: bool,
     isMobile: bool,
     handleSearchCardByKeyPress: func.isRequired,
 };
 
 SearchBar.defaultProps = {
-    searchingCard: '',
+    searchingQuery: '',
     isSubmitted: false,
     isMobile: false,
     className: '',
