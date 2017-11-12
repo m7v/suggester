@@ -292,7 +292,7 @@ class CardInfo extends React.PureComponent {
                 />
                 <div className="CardInfo__background">
                     <div className="CardInfo__backgroundComposition">
-                        {loading &&
+                        {!loading &&
                             <div
                                 className="CardInfo__backgroundImage"
                                 style={{backgroundImage: `url(${card.imageUrlLarge})`}}

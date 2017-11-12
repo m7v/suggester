@@ -52,6 +52,7 @@
     border-bottom: 103vh solid #242424;
     border-left: 50vw solid transparent;
     z-index: 1;
+    background: rgba(33, 33, 33, .3)
 }
 
 .CardInfo__preloader {
