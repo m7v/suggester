@@ -13,7 +13,9 @@ class DeckBuilder extends React.PureComponent {
 
     state = {
         deckList: '',
+        deckListFormatted: {},
         deckTitle: '',
+        isValidDeck: false,
     };
 
     componentDidMount() {
@@ -22,18 +24,34 @@ class DeckBuilder extends React.PureComponent {
         }
     }
 
-    handleDeckListChange = (event) => this.setState({deckList: event.target.value});
+    handleDeckListChange = (event) => {
+        const deckList = event.target.value;
+        const decklistFormatted = mtgparser(deckList, 'mtgo');
+        let isValid = true;
+        const deckFormated = decklistFormatted.cards.reduce((agg, card) => {
+            agg[card.name] = Number(card.number);
+            if (card.rarity !== 'Basic Land') {
+                isValid = isValid && (card.number >= 1 || card.number <= 4);
+            }
+            return agg;
+        }, {});
+        const cardCount = Object.values(deckFormated).length
+            ? sum(Object.values(deckFormated))
+            : 0;
+        this.setState({
+            deckList,
+            isValidDeck: !!decklistFormatted.cards.length && cardCount >= 60 && isValid
+        });
+    };
     handleDeckTitleChange = (event) => this.setState({deckTitle: event.target.value});
 
     handleSubmitForm = () => {
         const decklist = mtgparser(this.state.deckList, 'mtgo');
-        if (decklist.cards.length >= 0 && sum(Object.values(decklist.cards))) {
-            const deckFormated = decklist.cards.reduce((agg, card) => {
-                agg[card.name] = Number(card.number);
-                return agg;
-            }, {});
-            this.props.getDeckListByCardNames(deckFormated, this.state.deckTitle, this.props.deck.id);
-        }
+        const deckFormated = decklist.cards.reduce((agg, card) => {
+            agg[card.name] = Number(card.number);
+            return agg;
+        }, {});
+        this.props.getDeckListByCardNames(deckFormated, this.state.deckTitle, this.props.deck.id);
     };
 
     render() {
@@ -43,6 +61,7 @@ class DeckBuilder extends React.PureComponent {
                 <div className="DeckBuilder__main">
                     <CreateDeckForm
                         draftDeck={this.state.deckList || this.props.deckList}
+                        isValidDeck={this.state.isValidDeck}
                         deckTitle={this.state.deckTitle || this.props.deckTitle}
                         handleDeckTitleChange={this.handleDeckTitleChange}
                         handleDeckListChange={this.handleDeckListChange}

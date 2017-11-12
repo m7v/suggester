@@ -1,6 +1,6 @@
 import './CreateDeckForm.css';
 import React from 'react';
-import { string, func } from 'prop-types';
+import { string, func, bool } from 'prop-types';
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
 import Paper from 'material-ui/Paper';
@@ -78,8 +78,6 @@ export default class CreateDeckForm extends React.PureComponent {
                         </div>
                     </div>
                 );
-            case 2:
-                return 'This is the bit I really care about!';
             default:
                 return 'Deck is created';
         }
@@ -87,16 +85,12 @@ export default class CreateDeckForm extends React.PureComponent {
 
     getButtonLabel = () => {
         const { stepIndex } = this.state;
-        return stepIndex === 2 ? 'Finish' : 'Next';
+        return stepIndex >= 1 ? 'Create Deck' : 'Next';
     };
-
-    isValidCard = () => !!this.props.draftDeck.length;
-
-    isDisabled = () => !this.isValidCard();
 
     handleStepAction = () => {
         const { stepIndex } = this.state;
-        return stepIndex === 2 ? this.handleSubmitForm : this.handleNext;
+        return stepIndex === 1 ? this.handleSubmitForm : this.handleNext;
     };
 
     handleNext = () => {
@@ -120,6 +114,28 @@ export default class CreateDeckForm extends React.PureComponent {
         this.props.handleSubmitForm();
     };
 
+    isDisabledButton = (type, index) => {
+        if (type === 'next') {
+            switch (index) {
+                case 0:
+                    return !!this.props.draftDeck && this.props.isValidDeck;
+                case 1:
+                    return !!this.props.deckTitle;
+                default:
+                    return false;
+            }
+        }
+        if (type === 'prev') {
+            switch (index) {
+                case 0:
+                    return this.state.stepIndex !== 0;
+                default:
+                    return true;
+            }
+        }
+        return false;
+    };
+
     render() {
         return (
             <div className="CreateDeckForm__root">
@@ -133,13 +149,21 @@ export default class CreateDeckForm extends React.PureComponent {
                     className="CreateDeckForm__stepper"
                     activeStep={this.state.stepIndex}
                     nextButton={
-                        <Button dense onClick={this.handleStepAction()} disabled={this.state.stepIndex === 3}>
+                        <Button
+                            dense
+                            onClick={this.handleStepAction()}
+                            disabled={!this.isDisabledButton('next', this.state.stepIndex)}
+                        >
                             {this.getButtonLabel()}
                             <KeyboardArrowRight />
                         </Button>
                     }
                     backButton={
-                        <Button dense onClick={this.handlePrev} disabled={this.state.stepIndex === 0}>
+                        <Button
+                            dense
+                            onClick={this.handlePrev}
+                            disabled={!this.isDisabledButton('prev', this.state.stepIndex)}
+                        >
                             <KeyboardArrowLeft />
                             Back
                         </Button>
@@ -151,6 +175,7 @@ export default class CreateDeckForm extends React.PureComponent {
 }
 
 CreateDeckForm.propTypes = {
+    isValidDeck: bool.isRequired,
     draftDeck: string.isRequired,
     deckTitle: string.isRequired,
     handleDeckListChange: func.isRequired,
