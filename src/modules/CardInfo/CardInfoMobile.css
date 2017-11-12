@@ -60,6 +60,7 @@
 }
 
 .CardInfoMobile__details {
+    margin-bottom: 150px;
     display: flex;
     flex-direction: column;
 }
@@ -88,6 +89,14 @@
     color: #eee;
     text-decoration: none;
     cursor: pointer;
+    font-size: 15px;
+    line-height: 20px;
+    padding: 5px;
+}
+
+.CardInfoMobile__setIcon {
+    display: inline-block;
+    padding: 0 10px 10px;
 }
 
 .CardInfoMobile__set {
@@ -95,12 +104,26 @@
     color: #eee;
     text-align: center;
 }
+
+.CardInfoMobile__textBlock,
+.CardInfoMobile__type,
+.CardInfoMobile__manaCost,
+.CardInfoMobile__set,
+.CardInfoMobile__printings,
+.CardInfoMobile__legalities {
+    padding: 0 0 15px 0;
+}
+
+.CardInfoMobile__textBlock {
+    display: flex;
+    justify-content: center;
+}
+
 .CardInfoMobile__textInfo {
     max-width: 250px;
     min-width: 250px;
     min-height: 130px;
     padding: 7px;
-    margin-bottom: 150px;
     border: 2px solid #333;
     font-size: 14px;
     line-height: 22px;
@@ -192,3 +215,23 @@
     background-color: #FFFFDA !important;
 }
 
+.CardInfoMobile__legalities {
+    text-align: left;
+    padding-bottom: 12px;
+}
+
+.CardInfoMobile__legality {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 30px;
+    width: 245px;
+    font-size: 14px;
+    color: #eee;
+}
+
+.CardInfoMobile__legalityName {
+    padding: 2px 0;
+    display: flex;
+    justify-content: space-between;
+}

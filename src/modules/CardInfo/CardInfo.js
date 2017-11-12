@@ -41,7 +41,14 @@ class CardInfo extends React.PureComponent {
         if (!set) {
             return '';
         }
-        const className = `CardInfo__cardSet ss ss-${set.toLowerCase()} _${rarity.toLowerCase()}`;
+        const className = classNames({
+            'CardInfo__cardSet': true,
+            'ss': true,
+            [`ss-${set.toLowerCase()}`]: true,
+            'ss-2x': this.props.isMobile,
+            [`_${rarity.toLowerCase()}`]: true,
+        });
+
         return <i className={className} />;
     }
 
@@ -124,7 +131,7 @@ class CardInfo extends React.PureComponent {
                                 {map(card.printingsMap, (id, set) => (
                                     <Link
                                         key={id}
-                                        className="CardInfo__setName"
+                                        className="CardInfo__setIcon"
                                         to={`/cards/${id}`}
                                     >
                                         {this.getSetIcon(set, card.rarity)}
@@ -201,6 +208,17 @@ class CardInfo extends React.PureComponent {
                         Artist <span className="CardInfoMobile__artistName">{card.artist}</span> <span>#{card.number}</span>
                     </Link>
                     <div className="CardInfoMobile__details">
+                        <div className="CardInfoMobile__textBlock">
+                            <div className="CardInfoMobile__textInfo">
+                                {/* eslint-disable */}
+                                {card.text && card.text.split('\n').map((text, key) =>
+                                    <div key={key} dangerouslySetInnerHTML={{__html: formatText(text, 'CardInfo__textSymbols')}} />
+                                )}
+                                {/* eslint-enable */}
+                                {card.flavor && <br />}
+                                {card.flavor && <div className="CardInfoMobile__textFlavor">{card.flavor}</div>}
+                            </div>
+                        </div>
                         <div className="CardInfoMobile__type">
                             <div className="CardInfoMobile__detailTitle">Types</div>
                             {card.type}
@@ -222,15 +240,32 @@ class CardInfo extends React.PureComponent {
                                 <div>{this.getSetIcon(card.set, card.rarity)}</div>
                             </div>
                         }
-                    </div>
-                    <div className="CardInfoMobile__textInfo">
-                        {/* eslint-disable */}
-                        {card.text && card.text.split('\n').map((text, key) =>
-                            <div key={key} dangerouslySetInnerHTML={{__html: formatText(text, 'CardInfo__textSymbols')}} />
-                        )}
-                        {/* eslint-enable */}
-                        {card.flavor && <br />}
-                        {card.flavor && <div className="CardInfoMobile__textFlavor">{card.flavor}</div>}
+                        {card.printings && card.printings.length > 1 &&
+                        <div className="CardInfoMobile__printings">
+                            <div className="CardInfoMobile__detailTitle">Printings</div>
+                            {map(card.printingsMap, (id, set) => (
+                                <Link
+                                    key={id}
+                                    className="CardInfoMobile__setIcon"
+                                    to={`/cards/${id}`}
+                                >
+                                    {this.getSetIcon(set, card.rarity)}
+                                </Link>
+                            ))}
+                        </div>
+                        }
+                        {card.legalities && card.legalities.length &&
+                        <div className="CardInfoMobile__legalities">
+                            <div className="CardInfoMobile__detailTitle">Formats</div>
+                            <div className="CardInfoMobile__legality">
+                                {card.legalities && card.legalities.map(item => (
+                                    <div key={item.format} className="CardInfoMobile__legalityName">
+                                        <span>{item.format}</span><span>{item.legality}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                        }
                     </div>
                 </div>
             </div>

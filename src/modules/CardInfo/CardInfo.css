@@ -157,9 +157,6 @@
 }
 
 .CardInfo__cardSet.ss {
-    height: 17px;
-    width: 17px;
-    font-size: 16px;
     margin: 0 5px;
 }
 
@@ -177,6 +174,16 @@
 
 .CardInfo__cardSet.ss._common {
     color: #eee;
+}
+
+.CardInfo__setIcon {
+    display: inline-block;
+    padding: 0 3px 5px;
+}
+
+.CardInfo__legalities {
+    text-align: left;
+    padding-bottom: 12px;
 }
 
 .CardInfo__legality {
@@ -248,11 +255,6 @@
 }
 
 .CardInfo__printings {
-    text-align: left;
-    padding-bottom: 12px;
-}
-
-.CardInfo__legalities {
     text-align: left;
     padding-bottom: 12px;
 }
