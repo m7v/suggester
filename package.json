@@ -21,8 +21,6 @@
     "react": "^15.5.4",
     "react-chartjs": "^0.8.0",
     "react-dom": "^15.5.4",
-    "react-easter": "^1.0.6",
-    "react-flipcard": "^0.2.1",
     "react-helmet": "^5.2.0",
     "react-image": "^1.0.1",
     "react-lazyload": "^2.2.7",

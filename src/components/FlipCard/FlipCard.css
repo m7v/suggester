@@ -1,0 +1,37 @@
+.FlipCard {
+    perspective: 1000px;
+    transform: perspective(1000px);
+    display: inline-block;
+}
+
+.FlipCard__flipped .FlipCard__Back {
+    transform: rotateY(0deg);
+}
+
+.FlipCard__flipped .FlipCard__Front {
+    transform: rotateY(180deg);
+}
+
+.FlipCard__Flipper {
+    transition: 0.6s;
+    transform-style: preserve-3d;
+    position: relative;
+}
+
+.FlipCard__Front, .FlipCard__Back {
+    backface-visibility: hidden;
+    transition: 0.6s;
+    transform-style: preserve-3d;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.FlipCard__Front {
+    transform: rotateY(0deg);
+    z-index: 2;
+}
+
+.FlipCard__Back {
+    transform: rotateY(-180deg);
+}
