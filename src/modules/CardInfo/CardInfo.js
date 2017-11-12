@@ -292,10 +292,12 @@ class CardInfo extends React.PureComponent {
                 />
                 <div className="CardInfo__background">
                     <div className="CardInfo__backgroundComposition">
-                        <div
-                            className="CardInfo__backgroundImage"
-                            style={{backgroundImage: `url(${card.imageUrlLarge})`}}
-                        />
+                        {loading &&
+                            <div
+                                className="CardInfo__backgroundImage"
+                                style={{backgroundImage: `url(${card.imageUrlLarge})`}}
+                            />
+                        }
                         <div className="CardInfo__backgroundTrapezoid" />
                     </div>
                 </div>
