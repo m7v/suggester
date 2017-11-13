@@ -5,17 +5,17 @@ import rootReducer from '../reducers';
 import middlewares from '../middlewares';
 import { getDefaultState } from './database';
 
-const colorSearch = window.location.hash.split('colors=')[1];
-let colorFilter;
-if (colorSearch) {
-    colorFilter = decodeURI(colorSearch)
-        .split('|')
-        .map(i => i.split('='))
-        .reduce((agg, item) => {
-            agg[item[0]] = item[1] === 'true';
-            return agg;
-        }, {});
-}
+// const colorSearch = window.location.hash.split('colors=')[1];
+// let colorFilter;
+// if (colorSearch) {
+//     colorFilter = decodeURI(colorSearch)
+//         .split('|')
+//         .map(i => i.split('='))
+//         .reduce((agg, item) => {
+//             agg[item[0]] = item[1] === 'true';
+//             return agg;
+//         }, {});
+// }
 
 const initialState = {
     entities: getDefaultState(),
@@ -70,11 +70,11 @@ const initialState = {
                     basicLand: false,
                 },
                 colors: {
-                    w: !!colorFilter && !!colorFilter.w,
-                    u: !!colorFilter && !!colorFilter.u,
-                    b: !!colorFilter && !!colorFilter.b,
-                    r: !!colorFilter && !!colorFilter.r,
-                    g: !!colorFilter && !!colorFilter.g,
+                    w: false,
+                    u: false,
+                    b: false,
+                    r: false,
+                    g: false,
                 },
                 types: {
                     planeswalker: false,
@@ -99,11 +99,11 @@ const initialState = {
                     mythic: false,
                 },
                 colors: {
-                    w: !!colorFilter && !!colorFilter.w,
-                    u: !!colorFilter && !!colorFilter.u,
-                    b: !!colorFilter && !!colorFilter.b,
-                    r: !!colorFilter && !!colorFilter.r,
-                    g: !!colorFilter && !!colorFilter.g,
+                    w: false,
+                    u: false,
+                    b: false,
+                    r: false,
+                    g: false,
                 },
                 types: {
                     planeswalker: false,
@@ -129,11 +129,11 @@ const initialState = {
                     basicLand: false,
                 },
                 colors: {
-                    w: !!colorFilter && !!colorFilter.w,
-                    u: !!colorFilter && !!colorFilter.u,
-                    b: !!colorFilter && !!colorFilter.b,
-                    r: !!colorFilter && !!colorFilter.r,
-                    g: !!colorFilter && !!colorFilter.g,
+                    w: false,
+                    u: false,
+                    b: false,
+                    r: false,
+                    g: false,
                 },
                 types: {
                     planeswalker: false,
@@ -158,11 +158,11 @@ const initialState = {
                     basicLand: false,
                 },
                 colors: {
-                    w: !!colorFilter && !!colorFilter.w,
-                    u: !!colorFilter && !!colorFilter.u,
-                    b: !!colorFilter && !!colorFilter.b,
-                    r: !!colorFilter && !!colorFilter.r,
-                    g: !!colorFilter && !!colorFilter.g,
+                    w: false,
+                    u: false,
+                    b: false,
+                    r: false,
+                    g: false,
                 },
                 types: {
                     planeswalker: false,

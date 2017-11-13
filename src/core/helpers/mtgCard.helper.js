@@ -13,7 +13,7 @@ const getSetName = (set) => {
         case 'DRB':
             return 'fvd';
         default:
-            return set.replace('_', '').toLowerCase();
+            return set.replace(/_/g, '').toLowerCase();
     }
 };
 

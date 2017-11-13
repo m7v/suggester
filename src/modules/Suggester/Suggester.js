@@ -22,7 +22,7 @@ class Suggester extends React.Component {
             searchingQuery: query
         };
         if (query) {
-            history.replace(`${history.location.pathname}?q=${query.replace(' ', '%20')}`);
+            history.replace(`${history.location.pathname}?q=${query.replace(/ /g, '%20')}`);
         }
     }
 
@@ -40,13 +40,15 @@ class Suggester extends React.Component {
 
     getSearchQuery(location) {
         const searchString = location.search.split('?q=')[1] || '';
-        return searchString.replace('%20', ' ');
+        return searchString.replace(/%20/g, ' ');
     }
 
     handleSearchCardByKeyPress = (searchingQuery) => {
         if (this.state.searchingQuery !== searchingQuery) {
             this.props.setQueryString(searchingQuery);
-            this.props.history.push(`${this.props.history.location.pathname}?q=${searchingQuery}`);
+            this.props.history.push(
+                `${this.props.history.location.pathname}?q=${searchingQuery.replace(/ /g, '%20')}`
+            );
             this.setState({ searchingQuery });
         }
     };
@@ -109,7 +111,7 @@ Suggester.propTypes = {
 Suggester.defaultProps = {
     loading: false,
     isMobile: false,
-    searchingCard: '',
+    searchingQuery: '',
     suggestions: [],
 };
 
