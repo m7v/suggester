@@ -16,7 +16,7 @@ class ManaCost extends React.PureComponent {
                     .map(rawMana => rawMana.replace('{', '').replace('}', ''))
                     .map((mana, index) => (
                         <span
-                            key={index}
+                            key={`${index}_${mana}_${(new Date()).getTime()}`}
                             className={classNames({
                                 'ManaCost__mana': true,
                                 [`ManaCost__mana_${getManaClass(mana)}`]: true,

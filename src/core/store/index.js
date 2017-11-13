@@ -1,11 +1,8 @@
-import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
+import { createStore } from 'redux';
 import { enableBatching } from 'redux-batched-actions';
-import { createLogger } from 'redux-logger';
-import { composeWithDevTools } from 'redux-devtools-extension';
 import MobileDetect from 'mobile-detect';
 import rootReducer from '../reducers';
-import { ping } from '../middlewares/ping';
+import middlewares from '../middlewares';
 import { getDefaultState } from './database';
 
 const colorSearch = window.location.hash.split('colors=')[1];
@@ -197,13 +194,7 @@ const initialState = {
 const store = createStore(
     enableBatching(rootReducer),
     initialState,
-    composeWithDevTools(
-        applyMiddleware(
-            thunk,
-            ping,
-            createLogger(),
-        ),
-    ),
+    middlewares
 );
 
 export default store;
