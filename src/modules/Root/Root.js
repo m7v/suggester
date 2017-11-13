@@ -4,7 +4,7 @@ import 'keyrune/css/keyrune.min.css';
 import React from 'react';
 import { connect } from 'react-redux';
 import { bool, func } from 'prop-types';
-import Router from 'react-router-dom/HashRouter';
+import Router from 'react-router-dom/BrowserRouter';
 import Route from 'react-router-dom/Route';
 import Switch from 'react-router-dom/Switch';
 import Async from '../../components/Async';
@@ -51,7 +51,7 @@ class Root extends React.Component {
                         <Route
                             exact
                             path="/cards/:id"
-                            component={({match, history}) => <CardInfo cardId={match.params.id} history={history} />}
+                            compHashRouteronent={({match, history}) => <CardInfo cardId={match.params.id} history={history} />}
                         />
                         <Route
                             exact

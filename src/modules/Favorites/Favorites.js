@@ -3,14 +3,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 // import Link from 'react-router-dom/Link';
 import { bool, func, shape, arrayOf } from 'prop-types';
-import Async from '../../components/Async';
 import Loader from '../../components/Loader';
 import MetaHelmet from '../../components/MetaHelmet';
 import { dispatchToProps } from './connect/dispatchToProps';
 import { stateToProps } from './connect/stateToProps';
 
-const CardGridList = (props) => <Async load={import('../../components/CardGridList')} componentProps={props} />;
-const CardFilter = (props) => <Async load={import('../../components/CardFilter')} componentProps={props} />;
+import CardGridList from '../../components/CardGridList';
+import CardFilter from '../../components/CardFilter';
 
 class Favorites extends React.PureComponent {
 

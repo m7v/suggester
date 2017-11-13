@@ -16,13 +16,8 @@
     <link rel="icon" type="image/png" href="%PUBLIC_URL%/touch-icon-114.png">
     <link rel="icon" type="image/png" href="%PUBLIC_URL%/touch-icon-144.png">
     <link rel="shortlink" href="https://m7v.github.io/suggester"/>
-    <meta property="og:site_name" content="MTG Manager"/>
-    <meta property="og:type" content="site"/>
-    <meta property="og:url" content="https://m7v.github.io/suggester"/>
-    <meta name="twitter:description" content="Card manager for MTG">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@m7v.github.io/suggester">
     <meta name="twitter:creator" content="@mikhailovcom">
+    <meta-head />
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -35,13 +30,14 @@
     <title>MTG Manager</title>
 </head>
 <body>
+    <noscript>
+        You need to enable JavaScript to run this app.
+    </noscript>
     <div id="root">
-        <noscript>
-            You need to enable JavaScript to run this app.
-        </noscript>
-        <div style="height: 56px; display: flex; justify-content: center; background-color: #424242; position: fixed; width: 100%; bottom: 0;">
-
-        </div>
+        {{SSR}}
     </div>
+    <script type="text/javascript">
+        window.__STORE__ = '{{DATA}}'
+    </script>
 </body>
 </html>
