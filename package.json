@@ -71,9 +71,9 @@
   "scripts": {
     "lint": "eslint ./src",
     "flow": "flow",
-    "start": "react-scripts start",
+    "start:dev": "react-scripts start",
     "start:dev:server": "NODE_ENV=development nodemon server/index.js",
-    "start:prod:server": "NODE_ENV=production node server/index.js",
+    "start": "NODE_ENV=production node server/index.js",
     "build": "react-scripts build",
     "analyze:main": "source-map-explorer build/static/js/main.*",
     "analyze:0": "source-map-explorer build/static/js/0.*",
