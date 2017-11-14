@@ -16,178 +16,186 @@ import middlewares from '../middlewares';
 //         }, {});
 // }
 const device = (new UAParser()).getDevice();
-const initialState = {
-    data: {
-        cards: {
-            loading: false,
-            error: false,
-            items: []
+let initialState = {};
+if (typeof window !== 'undefined' && window.__STORE__ !== '{{DATA}}') {
+    const initStore = JSON.parse(window.atob(window.__STORE__));
+    initialState = {
+        ...initStore,
+    };
+} else {
+    initialState = {
+        data: {
+            cards: {
+                loading: false,
+                error: false,
+                items: []
+            },
+            decks: {
+                loading: false,
+                error: false,
+                items: []
+            },
         },
-        decks: {
-            loading: false,
-            error: false,
-            items: []
+        favorites: {
+            meta: {
+                loading: false,
+                error: false,
+            },
+            items: [],
         },
-    },
-    favorites: {
-        meta: {
-            loading: false,
-            error: false,
+        suggester: {
+            meta: {
+                loading: false,
+                error: false,
+            },
+            query: '',
+            suggestions: [],
+            latestQuery: {}
         },
-        items: [],
-    },
-    suggester: {
-        meta: {
-            loading: false,
-            error: false,
+        deckBuilder: {
+            meta: {
+                loading: false,
+                error: false,
+            },
+            draftDeck: '',
         },
-        query: '',
-        suggestions: [],
-        latestQuery: {}
-    },
-    deckBuilder: {
-        meta: {
-            loading: false,
-            error: false,
-        },
-        draftDeck: '',
-    },
-    appContext: {
-        initial: false,
-        isMobile: device.type === 'tablet' || device.type === 'mobile',
-        Suggestions: {
-            loading: false,
-            error: false,
-            filters: {
-                name: '',
-                rarity: {
-                    common: false,
-                    uncommon: false,
-                    rare: false,
-                    mythic: false,
-                    basicLand: false,
-                },
-                colors: {
-                    w: false,
-                    u: false,
-                    b: false,
-                    r: false,
-                    g: false,
-                },
-                types: {
-                    planeswalker: false,
-                    creature: false,
-                    instant: false,
-                    sorcery: false,
-                    enchantment: false,
-                    artifact: false,
-                    land: false,
-                }
-            }
-        },
-        Favorites: {
-            loading: false,
-            error: false,
-            filters: {
-                name: '',
-                rarity: {
-                    common: false,
-                    uncommon: false,
-                    rare: false,
-                    mythic: false,
-                },
-                colors: {
-                    w: false,
-                    u: false,
-                    b: false,
-                    r: false,
-                    g: false,
-                },
-                types: {
-                    planeswalker: false,
-                    creature: false,
-                    instant: false,
-                    sorcery: false,
-                    enchantment: false,
-                    artifact: false,
-                    land: false,
-                }
-            }
-        },
-        Cards: {
-            loading: false,
-            error: false,
-            filters: {
-                name: '',
-                rarity: {
-                    common: false,
-                    uncommon: false,
-                    rare: false,
-                    mythic: false,
-                    basicLand: false,
-                },
-                colors: {
-                    w: false,
-                    u: false,
-                    b: false,
-                    r: false,
-                    g: false,
-                },
-                types: {
-                    planeswalker: false,
-                    creature: false,
-                    instant: false,
-                    sorcery: false,
-                    enchantment: false,
-                    artifact: false,
-                    land: false,
-                }
-            }
-        },
-        CardSets: {
-            data: {},
-            filters: {
-                name: '',
-                rarity: {
-                    common: false,
-                    uncommon: false,
-                    rare: false,
-                    mythic: false,
-                    basicLand: false,
-                },
-                colors: {
-                    w: false,
-                    u: false,
-                    b: false,
-                    r: false,
-                    g: false,
-                },
-                types: {
-                    planeswalker: false,
-                    creature: false,
-                    instant: false,
-                    sorcery: false,
-                    enchantment: false,
-                    artifact: false,
-                    land: false,
+        appContext: {
+            initial: false,
+            isMobile: device.type === 'tablet' || device.type === 'mobile',
+            Suggestions: {
+                loading: false,
+                error: false,
+                filters: {
+                    name: '',
+                    rarity: {
+                        common: false,
+                        uncommon: false,
+                        rare: false,
+                        mythic: false,
+                        basicLand: false,
+                    },
+                    colors: {
+                        w: false,
+                        u: false,
+                        b: false,
+                        r: false,
+                        g: false,
+                    },
+                    types: {
+                        planeswalker: false,
+                        creature: false,
+                        instant: false,
+                        sorcery: false,
+                        enchantment: false,
+                        artifact: false,
+                        land: false,
+                    }
                 }
             },
-            loading: false,
-            error: false,
-        },
-        CardInfo: {
-            data: {}
-        },
-        Decks: {
-            loading: false,
-            error: false,
-        },
-        DeckBuilder: {
-            loading: false,
-            error: false,
-        },
-    }
-};
+            Favorites: {
+                loading: false,
+                error: false,
+                filters: {
+                    name: '',
+                    rarity: {
+                        common: false,
+                        uncommon: false,
+                        rare: false,
+                        mythic: false,
+                    },
+                    colors: {
+                        w: false,
+                        u: false,
+                        b: false,
+                        r: false,
+                        g: false,
+                    },
+                    types: {
+                        planeswalker: false,
+                        creature: false,
+                        instant: false,
+                        sorcery: false,
+                        enchantment: false,
+                        artifact: false,
+                        land: false,
+                    }
+                }
+            },
+            Cards: {
+                loading: false,
+                error: false,
+                filters: {
+                    name: '',
+                    rarity: {
+                        common: false,
+                        uncommon: false,
+                        rare: false,
+                        mythic: false,
+                        basicLand: false,
+                    },
+                    colors: {
+                        w: false,
+                        u: false,
+                        b: false,
+                        r: false,
+                        g: false,
+                    },
+                    types: {
+                        planeswalker: false,
+                        creature: false,
+                        instant: false,
+                        sorcery: false,
+                        enchantment: false,
+                        artifact: false,
+                        land: false,
+                    }
+                }
+            },
+            CardSets: {
+                data: {},
+                filters: {
+                    name: '',
+                    rarity: {
+                        common: false,
+                        uncommon: false,
+                        rare: false,
+                        mythic: false,
+                        basicLand: false,
+                    },
+                    colors: {
+                        w: false,
+                        u: false,
+                        b: false,
+                        r: false,
+                        g: false,
+                    },
+                    types: {
+                        planeswalker: false,
+                        creature: false,
+                        instant: false,
+                        sorcery: false,
+                        enchantment: false,
+                        artifact: false,
+                        land: false,
+                    }
+                },
+                loading: false,
+                error: false,
+            },
+            CardInfo: {
+                data: {}
+            },
+            Decks: {
+                loading: false,
+                error: false,
+            },
+            DeckBuilder: {
+                loading: false,
+                error: false,
+            },
+        }
+    };
+}
 
 const store = createStore(
     enableBatching(rootReducer),
