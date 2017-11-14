@@ -1,7 +1,0 @@
-{
-  "name": "Suggester",
-  "description": "MTG Manager",
-  "repository": "https://github.com/m7v/suggester",
-  "keywords": ["node", "express", "heroku"],
-  "image": "heroku/nodejs"
-}
