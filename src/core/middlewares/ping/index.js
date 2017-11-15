@@ -1,7 +1,1 @@
-export const ping = () => {
-    return next => {
-        return action => {
-            return next(action);
-        };
-    };
-};
+export const ping = () => next => action => next(action);

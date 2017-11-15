@@ -59,14 +59,14 @@ const createRegExp = (search) => {
         '{8}': true,
         '{9}': true,
     };
-
+    const number = search.replace('{', '').replace('}', '');
     switch (true) {
         case baseSearch[search]:
             return new RegExp(`${search}`, 'g');
         case !!search.match(new RegExp('{[0-9A-Z]\\/[0-9A-Z]}', 'g')):
             return new RegExp('{[0-9A-Z]\\/[0-9A-Z]}', 'g');
         case numberSearch[search]:
-            return new RegExp('{[0-9]}', 'g');
+            return new RegExp(`{[${number}]}`, 'g');
         default:
             return search;
     }
