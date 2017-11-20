@@ -1,8 +1,9 @@
 const path = require('path');
 const fs = require('fs');
 const { default: Helmet } = require('react-helmet');
+const { matchPath } = require('react-router-dom');
 
-const { render } = require('./serverRender');
+const { render, routes } = require('./serverRender');
 const { default: configuredStore } = require('../src/core/store');
 
 module.exports = function universalLoader(req, res) {

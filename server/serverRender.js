@@ -12,6 +12,67 @@ const { default: Favorites } = require('./../src/modules/Favorites/container');
 const { default: CardSets } = require('./../src/modules/CardSets/container');
 const { default: CardSet } = require('./../src/modules/CardSet/container');
 const { default: NavBar } = require('./../src/components/NavBar/index');
+const { getFavoritesCardList } = require('./../src/core/actions/favoritesApi/favoritesApi.actions');
+const { getSetList } = require('./../src/core/actions/mtgApi/mtgApi.actions');
+const routes = [
+    {
+        exact: true,
+        path: '/search',
+        component: Suggester,
+    },
+    {
+        exact: true,
+        path: '/decks',
+        component: Decks,
+    },
+    {
+        exact: true,
+        path: '/decks/:id',
+        component: ({ match }) => <DeckInfo deckId={match.params.id} />,
+        // loadData: () => getSomeData(),
+    },
+    {
+        exact: true,
+        path: '/decks/:id/edit',
+        component: ({ match }) => <DeckBuilder deckId={match.params.id} />,
+        // loadData: () => getSomeData(),
+    },
+    {
+        exact: true,
+        path: '/cards',
+        component: Cards,
+        // loadData: () => getSomeData(),
+    },
+    {
+        exact: true,
+        path: '/cards/:id',
+        component: ({ match, history }) => <CardInfo cardId={match.params.id} history={history} />,
+        // loadData: () => getSomeData(),
+    },
+    {
+        exact: true,
+        path: '/favorites',
+        component: Favorites,
+        // loadData: () => getFavoritesCardList(),
+    },
+    {
+        exact: true,
+        path: '/deck/add',
+        component: DeckBuilder,
+    },
+    {
+        exact: true,
+        path: '/browse',
+        component: CardSets,
+        // loadData: () => getSetList(),
+    },
+    {
+        exact: true,
+        path: '/browse/:setId',
+        component: ({ match, history }) => <CardSet code={match.params.setId} history={history} />,
+        // loadData: () => getSomeData(),
+    },
+];
 
 function render(req, store, context) {
     return ReactDOMServer.renderToString(
@@ -23,60 +84,9 @@ function render(req, store, context) {
                 <section className="Root">
                     <NavBar />
                     <Switch>
-                        <Route
-                            exact
-                            path="/search"
-                            component={Suggester}
-                        />
-                        <Route
-                            exact
-                            path="/decks"
-                            component={Decks}
-                        />
-                        <Route
-                            exact
-                            path="/decks/:id"
-                            component={({match}) => <DeckInfo deckId={match.params.id} />}
-                        />
-                        <Route
-                            exact
-                            path="/decks/:id/edit"
-                            component={({match}) => <DeckBuilder deckId={match.params.id} />}
-                        />
-                        <Route
-                            exact
-                            path="/cards"
-                            component={Cards}
-                        />
-                        <Route
-                            exact
-                            path="/cards/:id"
-                            component={
-                                ({match, history}) => <CardInfo cardId={match.params.id} history={history} />
-                            }
-                        />
-                        <Route
-                            exact
-                            path="/favorites"
-                            component={Favorites}
-                        />
-                        <Route
-                            exact
-                            path="/deck/add"
-                            component={DeckBuilder}
-                        />
-                        <Route
-                            exact
-                            path="/browse"
-                            component={CardSets}
-                        />
-                        <Route
-                            exact
-                            path="/browse/:setId"
-                            component={
-                                ({match, history}) => <CardSet code={match.params.setId} history={history} />
-                            }
-                        />
+                        {routes.map(route =>
+                            <Route key={route.path} {...route} />
+                        )}
                     </Switch>
                 </section>
             </StaticRouter>
@@ -85,5 +95,6 @@ function render(req, store, context) {
 }
 
 module.exports = {
-    render
+    render,
+    routes
 };
