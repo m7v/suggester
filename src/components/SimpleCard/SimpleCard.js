@@ -30,7 +30,7 @@ class SimpleCard extends React.PureComponent {
                         })}
                         src={imageUrl}
                         loader={<DefaultCard oversize={oversize} />}
-                        unloader={<DefaultCard oversize={oversize} />}
+                        unloader={<SimpleCard card={card} needForceCheck={this.props.needForceCheck} foil={foil} />}
                     />
                 </LazyLoad>
             </div>
