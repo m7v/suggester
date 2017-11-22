@@ -47,7 +47,7 @@ class CardRulings extends React.PureComponent {
                                 </li>
                             ))}
                         </ul>
-                        {/*eslint-enable*/}
+                        {/* eslint-enable*/}
                     </DialogContent>
                     <DialogActions className="CardRulings__actions">
                         <Button className="CardRulings__closeButton" color="primary" onClick={this.handleRulingsClose}>

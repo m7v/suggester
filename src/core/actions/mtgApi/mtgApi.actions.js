@@ -14,7 +14,7 @@ import {
     buildDoubleFaceCards,
     fullCardsInfoLens,
     getOversizedCardUrl,
-    DOUBLE_FACED_TYPE
+    DOUBLE_FACED_TYPE,
 } from '../../helpers/mtgCard.helper';
 
 export function getCardById(cardId) {
@@ -40,10 +40,12 @@ export function getCardById(cardId) {
                         .then((searchedDoubleFacedCards) => {
                             const getFullCardsInfo = fullCardsInfoLens(needToSearchCards);
                             const shortDoubleFaceInfo = getFullCardsInfo(searchedDoubleFacedCards);
-                            const newCard = { info: {
-                                ...card,
-                                imageUrlLarge: getOversizedCardUrl(card)
-                            }};
+                            const newCard = {
+                                info: {
+                                    ...card,
+                                    imageUrlLarge: getOversizedCardUrl(card),
+                                },
+                            };
                             if (shortDoubleFaceInfo[ card.id ]) {
                                 newCard.info = { ...newCard.info, doubleFace: shortDoubleFaceInfo[ card.id ] };
                             }
@@ -52,19 +54,19 @@ export function getCardById(cardId) {
                 }
                 return {
                     ...card,
-                    imageUrlLarge: getOversizedCardUrl(card)
+                    imageUrlLarge: getOversizedCardUrl(card),
                 };
             })
             .then((card) => {
                 card.printings = card.printings.filter((set) => !set.match(/(^p.+)/));
-                if (card.printings.length > 1)  {
+                if (card.printings.length > 1) {
                     const requests = card.printings.map((set) => requestGetCardByNameAndSet(card.name, set));
                     return Promise
                         .all(requests)
                         .then((cards) => {
                             card.printingsMap = {};
                             cards.forEach((item) => {
-                                card.printingsMap[item.set] = item.id;
+                                card.printingsMap[ item.set ] = item.id;
                             });
 
                             return card;
@@ -107,7 +109,7 @@ export function getSetByCode(code) {
         const state = getState();
 
 
-        const currentSet = state.entities.CardSet.itemsById[code.toUpperCase()];
+        const currentSet = state.entities.CardSet.itemsById[ code.toUpperCase() ];
 
         if (currentSet) {
             return Promise.resolve();

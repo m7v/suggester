@@ -49,14 +49,6 @@ class Favorites extends React.PureComponent {
                     resultCount={cards.length}
                 />
                 <div className="Favorites__main">
-                    {/*{!loading && !cards.length &&*/}
-                        {/*<div className="Favorites__noResults">*/}
-                            {/*<div>*/}
-                                {/*<div>You have no favorites...</div>*/}
-                                {/*<Link to={'/browse'} replace >Please add something</Link>*/}
-                            {/*</div>*/}
-                        {/*</div>*/}
-                    {/*}*/}
                     {!loading &&
                         <CardGridList cards={cards} />
                     }

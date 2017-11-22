@@ -205,7 +205,8 @@ class CardInfo extends React.PureComponent {
                     </div>
                     <Card card={card} foil={isFoil} needForceCheck />
                     <Link className="CardInfoMobile__artist" to={`/search?q=${card.artist}`}>
-                        Artist <span className="CardInfoMobile__artistName">{card.artist}</span> <span>#{card.number}</span>
+                        Artist <span className="CardInfoMobile__artistName">{card.artist}</span>
+                        <span>#{card.number}</span>
                     </Link>
                     <div className="CardInfoMobile__details">
                         <div className="CardInfoMobile__textBlock">

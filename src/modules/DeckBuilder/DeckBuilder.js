@@ -35,9 +35,7 @@ class DeckBuilder extends React.PureComponent {
             }
             return agg;
         }, {});
-        const cardCount = Object.values(deckFormated).length
-            ? sum(Object.values(deckFormated))
-            : 0;
+        const cardCount = Object.values(deckFormated).length ? sum(Object.values(deckFormated)) : 0;
         this.setState({
             deckList,
             isValidDeck: !!decklistFormatted.cards.length && cardCount >= 60 && isValid
