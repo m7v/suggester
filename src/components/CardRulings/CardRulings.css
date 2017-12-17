@@ -18,7 +18,9 @@
 .CardRulings__itemList {
     padding: 10px 5px;
     list-style: none;
-    overflow: auto;
+    width: 95%;
+    overflow: hidden;
+    word-wrap: break-word;
     -webkit-overflow-scrolling: touch;
 }
 

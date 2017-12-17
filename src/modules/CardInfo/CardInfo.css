@@ -161,6 +161,7 @@
     margin: 0 5px;
 }
 
+.CardInfo__cardSet.ss._special,
 .CardInfo__cardSet.ss._mythic {
     color: #f58d14;
 }
