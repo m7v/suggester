@@ -66,13 +66,20 @@
     "flow": "flow",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "analyze": "source-map-explorer build/static/js/main.*",
+    "analyze:main": "source-map-explorer build/static/js/main.*",
+    "analyze:0": "source-map-explorer build/static/js/0.*",
+    "analyze:1": "source-map-explorer build/static/js/1.*",
+    "analyze:2": "source-map-explorer build/static/js/2.*",
+    "analyze:3": "source-map-explorer build/static/js/3.*",
+    "analyze:4": "source-map-explorer build/static/js/4.*",
+    "analyze:5": "source-map-explorer build/static/js/5.*",
+    "analyze:all": "yarn analyze:main;yarn analyze:0;yarn analyze:1;yarn analyze:2;yarn analyze:3;yarn analyze:4;yarn analyze:5",
     "test": "NODE_ENV=test react-scripts test --env=jsdom",
     "test:ci": "CI=true react-scripts test --env=jsdom",
-    "check:all": "npm run lint && npm run test:ci",
+    "check:all": "yarn lint && yarn test:ci",
     "eject": "react-scripts eject",
     "serve": "serve -s build",
-    "predeploy": "npm run build",
+    "predeploy": "yarn build",
     "deploy": "gh-pages -d build"
   }
 }

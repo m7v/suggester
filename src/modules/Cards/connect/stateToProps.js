@@ -4,7 +4,7 @@ import {
     getActiveColorFilter,
     getActiveTypeFilter,
     getActiveRarityFilter
-} from './utils';
+} from '../../../core/helpers/filter.helper';
 
 const cardsSelector = function(state) {
     return state.appContext.Cards;

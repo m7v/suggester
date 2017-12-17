@@ -4,7 +4,7 @@ import {
     getActiveColorFilter,
     getActiveTypeFilter,
     getActiveRarityFilter
-} from './utils';
+} from './../../../core/helpers/filter.helper';
 
 const cardSelector = (state) => state.favorites.items;
 const getColorFilter = (state) => state.appContext.Favorites.filters.colors;

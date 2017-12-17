@@ -6,7 +6,7 @@ import {
     getActiveColorFilter,
     getActiveTypeFilter,
     getActiveRarityFilter,
-} from './utils';
+} from './../../../core/helpers/filter.helper';
 
 const getColorFilter = (state) => state.appContext.CardSets.filters.colors;
 const getTypeFilter = (state) => state.appContext.CardSets.filters.types;

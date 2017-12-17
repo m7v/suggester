@@ -12,15 +12,13 @@ import StarIcon from 'material-ui-icons/Star';
 import { dispatchToProps } from './connect/dispatchToProps';
 import { stateToProps } from './connect/stateToProps';
 import { formatText } from '../../core/helpers/mana.helper';
-import Async from '../../components/Async';
 import SearchBarMini from '../../components/SearchBarMini';
 import Card from '../../components/Card';
 import Loader from '../../components/Loader/Loader';
 import ButtonBack from '../../components/ButtonBack';
 import MetaHelmet from '../../components/MetaHelmet';
-
-const CardRulings = (props) => <Async load={import('../../components/CardRulings')} componentProps={props} />;
-const ManaCost = (props) => <Async load={import('../../components/ManaCost')} componentProps={props} />;
+import CardRulings from '../../components/CardRulings';
+import ManaCost from '../../components/ManaCost';
 
 class CardInfo extends React.PureComponent {
 
