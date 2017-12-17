@@ -1,6 +1,6 @@
 import { createStore } from 'redux';
 import { enableBatching } from 'redux-batched-actions';
-import MobileDetect from 'mobile-detect';
+import UAParser from 'ua-parser-js';
 import rootReducer from '../reducers';
 import middlewares from '../middlewares';
 import { getDefaultState } from './database';
@@ -16,7 +16,7 @@ import { getDefaultState } from './database';
 //             return agg;
 //         }, {});
 // }
-
+const device = (new UAParser()).getDevice();
 const initialState = {
     entities: getDefaultState(),
     data: {
@@ -56,7 +56,7 @@ const initialState = {
     },
     appContext: {
         initial: false,
-        isMobile: !!new MobileDetect(window.navigator.userAgent).mobile(),
+        isMobile: device.type === 'tablet' || device.type === 'mobile',
         Suggestions: {
             loading: false,
             error: false,
