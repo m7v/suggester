@@ -34,7 +34,8 @@
     "redux-logger": "^3.0.1",
     "redux-orm": "^0.9.4",
     "redux-thunk": "^2.2.0",
-    "reselect": "^3.0.1"
+    "reselect": "^3.0.1",
+    "source-map-explorer": "^1.5.0"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
@@ -65,6 +66,7 @@
     "flow": "flow",
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "analyze": "source-map-explorer build/static/js/main.*",
     "test": "NODE_ENV=test react-scripts test --env=jsdom",
     "test:ci": "CI=true react-scripts test --env=jsdom",
     "check:all": "npm run lint && npm run test:ci",
