@@ -19,7 +19,7 @@
     padding: 10px 5px;
     list-style: none;
     width: 95%;
-    overflow: hidden;
+    overflow-x: hidden;
     word-wrap: break-word;
     -webkit-overflow-scrolling: touch;
 }
