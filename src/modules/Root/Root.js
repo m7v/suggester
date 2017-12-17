@@ -51,7 +51,7 @@ class Root extends React.Component {
                         <Route
                             exact
                             path="/cards/:id"
-                            compHashRouteronent={({match, history}) => <CardInfo cardId={match.params.id} history={history} />}
+                            component={({match, history}) => <CardInfo cardId={match.params.id} history={history} />}
                         />
                         <Route
                             exact
