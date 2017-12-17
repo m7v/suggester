@@ -1,12 +1,10 @@
-import { createSelector } from 'redux-orm';
-import orm from '../../../core/reducers/entities';
+import { createSelector } from 'reselect';
 
 const getDecks = function(state) {
-    return state.entities;
+    return state.appContext.Decks;
 };
 
-const deckSelector = createSelector(orm, getDecks, (session) => {
-    const decks = session.Deck.all().toModelArray();
+const deckSelector = createSelector(getDecks, (decks) => {
     return decks.map(deckRef => ({
         ...deckRef.ref,
         cards: deckRef.cardList.all().toRefArray(),

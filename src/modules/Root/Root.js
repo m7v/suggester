@@ -4,12 +4,9 @@ import 'keyrune/css/keyrune.min.css';
 import React from 'react';
 import { connect } from 'react-redux';
 import { bool, func } from 'prop-types';
-import {
-    // BrowserRouter as Router,
-    HashRouter as Router,
-    Route,
-    Switch
-} from 'react-router-dom';
+import Router from 'react-router-dom/HashRouter';
+import Route from 'react-router-dom/Route';
+import Switch from 'react-router-dom/Switch';
 import Async from '../../components/Async';
 import { mapStateToProps } from './connect/stateToProps';
 import { dispatchToProps } from './connect/dispatchToProps';
@@ -17,11 +14,7 @@ import NavBar from '../../components/NavBar';
 import Loader from '../../components/Loader';
 
 const Favorites = (props) => <Async load={import('../Favorites/container')} componentProps={props} />;
-const DeckBuilder = (props) => <Async load={import('../DeckBuilder/container')} componentProps={props} />;
-const Decks = (props) => <Async load={import('../Decks/container')} componentProps={props} />;
-const Cards = (props) => <Async load={import('../Cards/container')} componentProps={props} />;
 const Suggester = (props) => <Async load={import('../Suggester/container')} componentProps={props} />;
-const DeckInfo = (props) => <Async load={import('../DeckInfo/container')} componentProps={props} />;
 const CardInfo = (props) => <Async load={import('../CardInfo/container')} componentProps={props} />;
 const CardSets = (props) => <Async load={import('../CardSets/container')} componentProps={props} />;
 const CardSet = (props) => <Async load={import('../CardSet/container')} componentProps={props} />;
@@ -57,26 +50,6 @@ class Root extends React.Component {
                         />
                         <Route
                             exact
-                            path="/decks"
-                            component={Decks}
-                        />
-                        <Route
-                            exact
-                            path="/decks/:id"
-                            component={({match}) => <DeckInfo deckId={match.params.id} />}
-                        />
-                        <Route
-                            exact
-                            path="/decks/:id/edit"
-                            component={({match}) => <DeckBuilder deckId={match.params.id} />}
-                        />
-                        <Route
-                            exact
-                            path="/cards"
-                            component={Cards}
-                        />
-                        <Route
-                            exact
                             path="/cards/:id"
                             component={({match, history}) => <CardInfo cardId={match.params.id} history={history} />}
                         />
@@ -84,11 +57,6 @@ class Root extends React.Component {
                             exact
                             path="/favorites"
                             component={Favorites}
-                        />
-                        <Route
-                            exact
-                            path="/deck/add"
-                            component={DeckBuilder}
                         />
                         <Route
                             exact

@@ -1,10 +1,9 @@
-import { createSelector } from 'redux-orm';
+import { createSelector } from 'reselect';
 import map from 'lodash/map';
-import orm from '../../../core/reducers/entities';
 
-const getDecks = (state) => state.entities;
+const getDecks = (state) => state.entities.Decks;
 
-const deckSelector = createSelector(orm, getDecks, (session) => session.Deck.all().toRefArray());
+const deckSelector = createSelector(getDecks, (decks) => decks);
 
 const getDeck = (decks, deckId) => {
     const currentDeck = decks.find(deck => deck.id === deckId);

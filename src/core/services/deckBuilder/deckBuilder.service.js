@@ -3,7 +3,6 @@ import httpAdapter from 'axios/lib/adapters/http';
 import map from 'lodash/map';
 import compact from 'lodash/compact';
 import { databaseApiUrl } from './../config.service';
-import orm from '../../../core/reducers/entities';
 
 axios.defaults.adapter = httpAdapter;
 //
@@ -94,23 +93,16 @@ export const getCardById = (cardId) =>
 
 /**
  * @param cardIds
- * @param state
  * @returns {Promise.<TResult>}
  */
-export const getCardByIds = (cardIds, state) => {
+export const getCardByIds = (cardIds) => {
     const requests = [];
-    const session = orm.mutableSession(state.entities);
     map(cardIds, cardId => {
         const promise = new Promise((fulfil) => {
-            try {
-                const card = session.Card.get({ cardId }).ref;
-                fulfil(card);
-            } catch (e) {
-                const request = axios.get(`${databaseApiUrl}entities/Card/itemsById/${cardId}.json`)
-                    .then(response => response.data)
-                    .catch(() => new Promise((resolve) => resolve(null)));
-                fulfil(request);
-            }
+            const request = axios.get(`${databaseApiUrl}entities/Card/itemsById/${cardId}.json`)
+                .then(response => response.data)
+                .catch(() => new Promise((resolve) => resolve(null)));
+            fulfil(request);
         });
         requests.push(promise);
     });

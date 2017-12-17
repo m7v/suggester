@@ -1,19 +1,17 @@
-import { createSelector } from 'redux-orm';
-import orm from '../../../core/reducers/entities';
+import { createSelector } from 'reselect';
 
-const ormSelector = function(state) {
-    return state.entities;
+const decksSelector = function(state) {
+    return state.appContext.Decks;
 };
 
-const deckSelector = createSelector(orm, ormSelector, session => {
-    const decks = session.Deck.all().toModelArray();
+const deckSelector = createSelector(decksSelector, (decks) => {
     return decks.map(deckRef => ({
         ...deckRef.ref,
         cards: deckRef.cardList.all().toRefArray(),
     }));
 });
 
-const cardSelector = createSelector(orm, ormSelector, session => session.Card.all().toRefArray());
+const cardSelector = createSelector(deckSelector, decks => decks);
 
 export default function stateToProps(state) {
     return {

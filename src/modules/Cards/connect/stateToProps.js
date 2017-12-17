@@ -1,6 +1,4 @@
-import { createSelector as createSelectorORM } from 'redux-orm';
 import { createSelector } from 'reselect';
-import orm from '../../../core/reducers/entities';
 import {
     createCardFilter,
     getActiveColorFilter,
@@ -8,11 +6,11 @@ import {
     getActiveRarityFilter
 } from './utils';
 
-const ormSelector = function(state) {
-    return state.entities;
+const cardsSelector = function(state) {
+    return state.appContext.Cards;
 };
 
-const cardSelector = createSelectorORM(orm, ormSelector, session => session.Card.all().toRefArray());
+const cardSelector = createSelector(cardsSelector, cards => cards);
 const getColorFilter = (state) => state.appContext.Cards.filters.colors;
 const getTypeFilter = (state) => state.appContext.Cards.filters.types;
 const getRarityFilter = (state) => state.appContext.Cards.filters.rarity;

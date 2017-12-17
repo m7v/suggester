@@ -30,11 +30,11 @@ const navbarConfig = [
         icon: browseIcon,
         label: 'Browse',
     },
-    {
-        path: '/deck/add',
-        icon: AddIcon,
-        label: 'Add Deck',
-    },
+    // {
+    //     path: '/deck/add',
+    //     icon: AddIcon,
+    //     label: 'Add Deck',
+    // },
     {
         path: '/favorites',
         icon: favoritesIcon,
@@ -45,11 +45,11 @@ const navbarConfig = [
     //     icon: cardIcon,
     //     label: 'Library',
     // },
-    {
-        path: '/decks',
-        icon: deckIcon,
-        label: 'Decks',
-    }
+    // {
+    //     path: '/decks',
+    //     icon: deckIcon,
+    //     label: 'Decks',
+    // }
 ];
 
 class NavBar extends React.PureComponent {

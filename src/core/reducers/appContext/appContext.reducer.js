@@ -20,6 +20,7 @@ import {
     APP_FAVORITES_REQUEST_FAILED,
     APP_CARD_ADD_INFO,
     APP_CARDSET_ADD_CARDS,
+    APP_CARDSET_ADD_CARDSET,
     APP_CARDSETS_REQUEST_STARTED,
     APP_CARDSETS_REQUEST_SUCCESS,
     APP_CARDSETS_REQUEST_FAILED
@@ -331,7 +332,26 @@ function appCardSetsAddCards(state, code, cards) {
             ...state.CardSets,
             data: {
                 ...state.CardSets.data,
-                [code]: cards
+                [code.toLowerCase()]: {
+                    ...state.CardSets.data[code],
+                    items: cards
+                }
+            }
+        }
+    };
+}
+
+function appCardSetsAddSet(state, code, set) {
+    return {
+        ...state,
+        CardSets: {
+            ...state.CardSets,
+            data: {
+                ...state.CardSets.data,
+                [code.toLowerCase()]: {
+                    ...state.CardSets.data[code],
+                    ...set,
+                },
             }
         }
     };
@@ -390,6 +410,8 @@ export default (state = {}, action) => {
             return appCardSetsRequestSuccess(state);
         case APP_CARDSETS_REQUEST_FAILED:
             return appCardSetsRequestFailed(state);
+        case APP_CARDSET_ADD_CARDSET:
+            return appCardSetsAddSet(state, action.payload.set.code, action.payload.set);
         case APP_CARDSET_ADD_CARDS:
             return appCardSetsAddCards(state, action.payload.setCode, action.payload.cards);
         default:

@@ -1,5 +1,4 @@
-import { createSelector } from 'redux-orm';
-import orm from '../../../core/reducers/entities';
+import { createSelector } from 'reselect';
 import sortBy from 'lodash/sortBy';
 import reduce from 'lodash/reduce';
 import reverse from 'lodash/reverse';
@@ -18,13 +17,13 @@ const setList = {
     'masters': true,
 };
 
-const ormSelector = function(state) {
-    return state.entities;
-};
+const cardSetsSelector = createSelector([
+    (state) => state.appContext.CardSets.data,
+], (cardSets) => cardSets);
 
-const cardsetSelector = createSelector(orm, ormSelector, session => {
-    const sets = reverse(sortBy(session.CardSet.all().toRefArray(), ['set', 'releaseDate']));
-    return reduce(sets, (agg, set) => {
+const cardsetSelector = createSelector([cardSetsSelector], sets => {
+    const sortedSets = reverse(sortBy(sets, ['set', 'releaseDate']));
+    return reduce(sortedSets, (agg, set) => {
         if (setList[set.type]) {
             if (typeof agg[set.type] === 'boolean') {
                 agg[set.type] = [];

@@ -3,7 +3,6 @@ import uniqueId from 'lodash/uniqueId';
 import map from 'lodash/map';
 import * as deckBuilderTypes from './deckBuilder.types';
 import * as appContextTypes from '../../../core/actions/appContext/appContext.types';
-import orm from '../../../core/reducers/entities';
 import {
     buildDeck,
 } from './deckBuilder.helper';
@@ -28,13 +27,12 @@ import {
  * @return {function(*, *)}
  */
 export function getDeckListByCardNames(cardList, name = 'newDeck', currentDeckId = null) {
-    return (dispatch, getState) => {
+    return (dispatch) => {
         const deckId = currentDeckId || uniqueId(`deck${(new Date()).getTime()}`);
 
         dispatch(appContextTypes.appDecksRequestStarted());
-        const session = orm.mutableSession(getState().entities);
 
-        return requestGetDeckListByCardNames(cardList, session)
+        return requestGetDeckListByCardNames(cardList)
             .then(cards => {
                 const deck = buildDeck(deckId, name, cards);
                 requestSaveDeck(deck);
@@ -84,7 +82,7 @@ export function getCardListByDeckId(deckId) {
 
         return requestGetCardsByDeckId(deckId)
             .then((cardIds) => {
-                requestGetCardByIds(cardIds, getState())
+                requestGetCardByIds(cardIds)
                     .then(cards => {
                         dispatch(batchActions([
                             ...map(cards, card => deckBuilderTypes.addCard(card, deckId)),

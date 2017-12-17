@@ -1,20 +1,12 @@
-import { createSelector as createSelectorORM } from 'redux-orm';
 import { createSelector } from 'reselect';
-import filter from 'lodash/filter';
-import orm from '../../../core/reducers/entities';
 import sortBy from 'lodash/sortBy';
+import get from 'lodash/get';
 import {
     createCardFilter,
     getActiveColorFilter,
     getActiveTypeFilter,
     getActiveRarityFilter,
 } from './utils';
-
-const ormSelector = function(state) {
-    return state.entities;
-};
-
-const setSelector = createSelectorORM(orm, ormSelector, session => session.CardSet.all().toRefArray());
 
 const getColorFilter = (state) => state.appContext.CardSets.filters.colors;
 const getTypeFilter = (state) => state.appContext.CardSets.filters.types;
@@ -24,16 +16,11 @@ const getCardSetsSelector = createSelector([
     (state) => state.appContext.CardSets.data,
 ], (cardSets) => cardSets);
 
-const getCurrentSetSelector = (sets, code) => {
-    const [ currentSet ] = filter(sets, (set) => set.code.toLowerCase() === code);
-
-    return currentSet || {};
-};
+const getCurrentSetSelector = (sets, code) => sets[code] || {};
 
 const getCardsByCode = (cardSets, code, typeFilter, rarityFilter, colorFilter) => {
-    if (cardSets && cardSets[ code ]) {
-        const cards = cardSets[ code ];
-
+    if (get(cardSets, `${code}.items`, []).length) {
+        const cards = cardSets[code].items;
         const selectedColorFilters = getActiveColorFilter(colorFilter);
         const selectedTypeFilters = getActiveTypeFilter(typeFilter);
         const selectedRarityFilters = getActiveRarityFilter(rarityFilter);
@@ -51,7 +38,7 @@ export default function stateToProps(state, props) {
     const colorFilter = getColorFilter(state);
     const typeFilter = getTypeFilter(state);
     const rarityFilter = getRarityFilter(state);
-    const currentSet = getCurrentSetSelector(setSelector(state), props.code);
+    const currentSet = getCurrentSetSelector(getCardSetsSelector(state), props.code);
 
     return {
         colors: colorFilter,

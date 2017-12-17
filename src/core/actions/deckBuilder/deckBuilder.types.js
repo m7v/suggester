@@ -56,18 +56,6 @@ export function getCardList(cards) {
 
 /**
  * @param card
- * @returns {{type, photoList: *}}
- */
-export function createCard(card) {
-    return {
-        type: ADD_CARD,
-        payload: {card},
-        meta: {}
-    };
-}
-
-/**
- * @param card
  * @param deckId
  * @returns {{type, photoList: *}}
  */

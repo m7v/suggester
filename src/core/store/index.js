@@ -3,7 +3,6 @@ import { enableBatching } from 'redux-batched-actions';
 import UAParser from 'ua-parser-js';
 import rootReducer from '../reducers';
 import middlewares from '../middlewares';
-import { getDefaultState } from './database';
 
 // const colorSearch = window.location.hash.split('colors=')[1];
 // let colorFilter;
@@ -18,7 +17,6 @@ import { getDefaultState } from './database';
 // }
 const device = (new UAParser()).getDevice();
 const initialState = {
-    entities: getDefaultState(),
     data: {
         cards: {
             loading: false,

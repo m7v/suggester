@@ -12,33 +12,32 @@ axios.defaults.adapter = httpAdapter;
 
 /**
  * @param {Array} cardList
- * @param {getState} session
  * @returns {Promise}
  */
-export const getDeckListByCardNames = (cardList, session) => {
+export const getDeckListByCardNames = (cardList) => {
     const requests = [];
 
     map(Object.keys(cardList), cardName => {
         const requestUrl = `${serverApiUrl}cards?name="${cardName}"&layout=${layouts}&contains=imageUrl&pageSize=1`;
         const promise = new Promise((fulfil) => {
-            try {
-                const card = session.Card.get({name: cardName}).ref;
-                card.count = cardList[cardName];
-                fulfil(card);
-            } catch (e) {
-                const request = axios.get(requestUrl)
-                    .then(response => {
-                        if (response.data.cards[0]) {
-                            response.data.cards[0].count = cardList[cardName];
-                            return new Promise(resolve => resolve(
-                                pick(response.data.cards[0], fields)
-                            ));
-                        }
-                        return new Promise(resolve => resolve(null));
-                    })
-                    .catch(() => new Promise((resolve) => resolve(null)));
-                fulfil(request);
-            }
+            // try {
+                // const card = session.Card.get({name: cardName}).ref;
+                // card.count = cardList[cardName];
+                // fulfil(card);
+            // } catch (e) {
+            const request = axios.get(requestUrl)
+                .then(response => {
+                    if (response.data.cards[0]) {
+                        response.data.cards[0].count = cardList[cardName];
+                        return new Promise(resolve => resolve(
+                            pick(response.data.cards[0], fields)
+                        ));
+                    }
+                    return new Promise(resolve => resolve(null));
+                })
+                .catch(() => new Promise((resolve) => resolve(null)));
+            fulfil(request);
+            // }
         });
         requests.push(promise);
     });

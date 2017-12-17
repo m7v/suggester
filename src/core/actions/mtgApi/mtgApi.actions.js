@@ -57,7 +57,7 @@ export function getCardById(cardId) {
             })
             .then((card) => {
                 card.printings = card.printings.filter((set) => !set.match(/(^p.+)/));
-                if (card.printings.length > 1)  {
+                if (card.printings.length > 1) {
                     const requests = card.printings.map((set) => requestGetCardByNameAndSet(card.name, set));
                     return Promise
                         .all(requests)
@@ -82,14 +82,8 @@ export function getCardById(cardId) {
 }
 
 export function getSetList() {
-    return (dispatch, getState) => {
-        const state = getState();
-
+    return (dispatch) => {
         dispatch(appContextTypes.appCardSetsRequestStarted());
-
-        if (state.entities.CardSet.items.length > 10) {
-            return dispatch(appContextTypes.appCardSetsRequestSuccess());
-        }
 
         return requestGetSetList()
             .then(sets => {
@@ -106,10 +100,9 @@ export function getSetByCode(code) {
     return (dispatch, getState) => {
         const state = getState();
 
+        const currentSet = state.appContext.CardSets.data[code.toLowerCase()];
 
-        const currentSet = state.entities.CardSet.itemsById[code.toUpperCase()];
-
-        if (currentSet) {
+        if (currentSet && currentSet.items) {
             return Promise.resolve();
         }
 
@@ -124,8 +117,8 @@ export function getSetCardsByCode(code) {
         const state = getState();
 
         dispatch(appContextTypes.appCardSetsRequestStarted());
-
-        if (state.appContext.CardSets.data[ code ]) {
+        const currentSet = state.appContext.CardSets.data[code];
+        if (currentSet && currentSet.items) {
             return dispatch(appContextTypes.appCardSetsRequestSuccess());
         }
 
