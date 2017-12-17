@@ -2,7 +2,7 @@ import './CardInfo.css';
 import './CardInfoMobile.css';
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import Link from 'react-router-dom/Link';
 import { bool, string, func, shape } from 'prop-types';
 import map from 'lodash/map';
 import classNames from 'classnames';

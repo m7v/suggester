@@ -1,6 +1,6 @@
 import './Deck.css';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'react-router-dom/Link';
 import { shape, string } from 'prop-types';
 import { Bar as BarChart } from 'react-chartjs';
 import classNames from 'classnames';

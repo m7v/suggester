@@ -1,6 +1,6 @@
 import './CardGridList.css';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'react-router-dom/Link';
 import { arrayOf, shape } from 'prop-types';
 import SimpleCard from '../../components/SimpleCard';
 

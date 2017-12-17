@@ -2,7 +2,7 @@ import './CardSets.css';
 import 'keyrune/css/keyrune.min.css';
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import Link from 'react-router-dom/Link';
 import { bool, shape, func } from 'prop-types';
 import map from 'lodash/map';
 import classNames from 'classnames';

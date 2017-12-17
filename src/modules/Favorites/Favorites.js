@@ -1,7 +1,7 @@
 import './Favorites.css';
 import React from 'react';
 import { connect } from 'react-redux';
-// import { Link } from 'react-router-dom';
+// import Link from 'react-router-dom/Link';
 import { bool, func, shape, arrayOf } from 'prop-types';
 import Async from '../../components/Async';
 import Loader from '../../components/Loader';

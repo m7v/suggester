@@ -1,7 +1,7 @@
 import './Decks.css';
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import Link from 'react-router-dom/Link';
 import { bool, shape, arrayOf, func } from 'prop-types';
 import Loader from '../../components/Loader';
 import Deck from '../../components/Deck';
