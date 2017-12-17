@@ -14,7 +14,7 @@ import {
     dataCardUpdate,
     dataCardDelete,
     dataCardGetList,
-} from '../../../core/actions/data/data.types';
+} from '../../../actions/data/data.types';
 import reducers from './../data.reducer';
 
 /* eslint-disable */

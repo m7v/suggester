@@ -32,9 +32,9 @@ class Suggester extends React.Component {
         }
     }
 
-    componentWillUpdate(_, nextState) {
+    componentWillUpdate(nextProps, nextState) {
         if (this.state.searchingQuery !== nextState.searchingQuery) {
-            this.props.getSuggestions(nextState.searchingQuery);
+            nextProps.getSuggestions(nextState.searchingQuery);
         }
     }
 
@@ -59,11 +59,7 @@ class Suggester extends React.Component {
         return (
             <section className="Suggester">
                 <MetaHelmet type={'search'} />
-                <div className={classNames({
-                    'Suggester__background': true,
-                    '_inited': !!searchingQuery,
-                })}
-                >
+                <div className={classNames({'Suggester__background': true, '_inited': !!searchingQuery})}>
                     <div className="Suggester__img" />
                     <div className="Suggester__cover" />
                 </div>
