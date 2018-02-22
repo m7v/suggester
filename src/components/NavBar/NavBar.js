@@ -5,18 +5,18 @@ import { shape } from 'prop-types';
 import withRouter from 'react-router-dom/withRouter';
 import findIndex from 'lodash/findIndex';
 import Paper from 'material-ui/Paper';
-import IconViewModule from 'material-ui-icons/ViewModule';
+// import IconViewModule from 'material-ui-icons/ViewModule';
 // import IconViewCarousel from 'material-ui-icons/ViewCarousel';
 import IconSearch from 'material-ui-icons/Search';
-import IconAddBox from 'material-ui-icons/AddBox';
+// import IconAddBox from 'material-ui-icons/AddBox';
 import IconFavorite from 'material-ui-icons/Favorite';
 import IconBrowse from 'material-ui-icons/Explore';
 
 const browseIcon = <IconBrowse />;
-const AddIcon = <IconAddBox />;
+// const AddIcon = <IconAddBox />;
 const favoritesIcon = <IconFavorite />;
 const searchIcon = <IconSearch />;
-const deckIcon = <IconViewModule />;
+// const deckIcon = <IconViewModule />;
 // const cardIcon = <IconViewCarousel />;
 
 const navbarConfig = [
