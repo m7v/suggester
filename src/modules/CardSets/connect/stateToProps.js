@@ -15,6 +15,7 @@ const setList = {
     'conspiracy': true,
     'reprint': true,
     'masters': true,
+    'un': true,
 };
 
 const cardSetsSelector = createSelector([
