@@ -11,7 +11,8 @@ import {
 function suggestionsSetSWData(state, payload) {
     return {
         ...state,
-        ...payload
+        ...payload,
+        query: ''
     };
 }
 
