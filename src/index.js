@@ -9,6 +9,7 @@ import store from './core/store';
 import { sendMessageToSW } from './core/middlewares/swStore';
 import Root from './modules/Root/container';
 import { appContextSetSWData } from './core/actions/appContext/appContext.types';
+import { suggestionsSetSWData } from './core/actions/suggestions/suggestions.types';
 
 injectTapEventPlugin();
 
@@ -22,6 +23,7 @@ const muiTheme = createMuiTheme({
 sendMessageToSW('getStore')
     .then((data) => {
         store.dispatch(appContextSetSWData(data.appContext));
+        store.dispatch(suggestionsSetSWData(data.suggester));
     });
 
 ReactDOM.render(

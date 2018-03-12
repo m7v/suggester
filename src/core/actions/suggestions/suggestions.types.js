@@ -1,11 +1,20 @@
 import {
     GET_SUGGESTIONS,
+    SUGGESTIONS_SET_SW_DATA,
     CACHED_SUGGESTIONS,
     SUGGESTIONS_QUERY_SET,
     SUGGESTIONS_REQUEST_STARTED,
     SUGGESTIONS_REQUEST_SUCCESS,
     SUGGESTIONS_REQUEST_FAILED
 } from '../../../core/reducers/suggester/suggester.helper';
+
+export function suggestionsSetSWData(dataFromSW) {
+    return {
+        type: SUGGESTIONS_SET_SW_DATA,
+        payload: dataFromSW,
+        meta: {}
+    };
+}
 
 /**
  * @param suggestions

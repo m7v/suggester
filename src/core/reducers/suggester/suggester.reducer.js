@@ -1,11 +1,19 @@
 import {
     GET_SUGGESTIONS,
+    SUGGESTIONS_SET_SW_DATA,
     SUGGESTIONS_QUERY_SET,
     CACHED_SUGGESTIONS,
     SUGGESTIONS_REQUEST_STARTED,
     SUGGESTIONS_REQUEST_SUCCESS,
     SUGGESTIONS_REQUEST_FAILED
 } from './suggester.helper';
+
+function suggestionsSetSWData(state, payload) {
+    return {
+        ...state,
+        ...payload
+    };
+}
 
 function setQueryString(state, queryString) {
     return {
@@ -88,6 +96,8 @@ function suggestionsRequestFailed(state) {
  */
 export default (state = {}, action) => {
     switch (action.type) {
+        case SUGGESTIONS_SET_SW_DATA:
+            return suggestionsSetSWData(state, action.payload);
         case GET_SUGGESTIONS:
             return getSuggestions(state, action.payload.suggestions);
         case SUGGESTIONS_QUERY_SET:
