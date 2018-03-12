@@ -6,7 +6,9 @@ import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import red from 'material-ui/colors/red';
 import registerServiceWorker from './registerServiceWorker';
 import store from './core/store';
+import { sendMessageToSW } from './core/middlewares/swStore';
 import Root from './modules/Root/container';
+import { appContextSetSWData } from './core/actions/appContext/appContext.types';
 
 injectTapEventPlugin();
 
@@ -16,6 +18,11 @@ const muiTheme = createMuiTheme({
         primary: red,
     },
 });
+
+sendMessageToSW('getStore')
+    .then((data) => {
+        store.dispatch(appContextSetSWData(data.appContext));
+    });
 
 ReactDOM.render(
     <Provider store={store}>

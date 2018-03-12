@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { ping } from './ping';
+import { swStore } from './swStore';
 
 let middlewares;
 if (process.env.NODE_ENV !== 'production') {
@@ -10,12 +11,17 @@ if (process.env.NODE_ENV !== 'production') {
         applyMiddleware(
             thunk,
             ping,
+            swStore,
             createLogger(),
         ),
     );
 } else {
-    middlewares = applyMiddleware(
-        thunk
+    middlewares = composeWithDevTools(
+        applyMiddleware(
+            thunk,
+            swStore,
+            createLogger(),
+        )
     );
 }
 

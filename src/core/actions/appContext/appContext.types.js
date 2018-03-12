@@ -1,5 +1,6 @@
 import {
     APP_CONTEXT_INITIALIZED,
+    APP_CONTEXT_SET_SW_DATA,
     APP_CARDS_REQUEST_STARTED,
     APP_CARDS_REQUEST_FAILED,
     APP_CARDS_REQUEST_SUCCESS,
@@ -28,6 +29,14 @@ export function appInitialized() {
     return {
         type: APP_CONTEXT_INITIALIZED,
         payload: {},
+        meta: {}
+    };
+}
+
+export function appContextSetSWData(dataFromSW) {
+    return {
+        type: APP_CONTEXT_SET_SW_DATA,
+        payload: dataFromSW,
         meta: {}
     };
 }

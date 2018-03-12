@@ -1,5 +1,6 @@
 import {
     APP_CONTEXT_INITIALIZED,
+    APP_CONTEXT_SET_SW_DATA,
     APP_SET_CARDS_COLORS_FILTERS,
     APP_SET_CARDS_TYPES_FILTERS,
     APP_SET_CARDS_RARITY_FILTERS,
@@ -33,6 +34,13 @@ function appInitialized(state) {
     return {
         ...state,
         initial: true
+    };
+}
+
+function appContextSetSWData(state, payload) {
+    return {
+        ...state,
+        ...payload
     };
 }
 
@@ -349,7 +357,7 @@ function appCardSetsAddSet(state, code, set) {
             data: {
                 ...state.CardSets.data,
                 [code.toLowerCase()]: {
-                    ...state.CardSets.data[code],
+                    ...state.CardSets.data[code.toLowerCase()],
                     ...set,
                 },
             }
@@ -364,6 +372,8 @@ function appCardSetsAddSet(state, code, set) {
  */
 export default (state = {}, action) => {
     switch (action.type) {
+        case APP_CONTEXT_SET_SW_DATA:
+            return appContextSetSWData(state, action.payload);
         case APP_CONTEXT_INITIALIZED:
             return appInitialized(state);
         case APP_SET_FAVORITES_COLORS_FILTERS:
