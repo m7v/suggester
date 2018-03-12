@@ -30,7 +30,7 @@
 }
 
 .CardSets__setList::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     background-color: #696969;
 }
 
@@ -83,7 +83,6 @@
 .CardSets__set:hover .CardSets__setName {
     color: #999;
 }
-
 
 .CardSets__sets {
     display: none;
