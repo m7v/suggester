@@ -6,6 +6,7 @@ import {
     getCardById as requestGetCardById,
     getCardByNameAndSet as requestGetCardByNameAndSet,
     getCardsByNames as requestGetCardsByNames,
+    getDoubleFaceCards as requestGetDoubleFaceCards,
     getSetList as requestGetSetList,
     getSetCardsByCode as requestGetSetCardsByCode,
     getSetByCode as requestGetSetByCode,
@@ -34,9 +35,10 @@ export function getCardById(cardId) {
                     const [ searched ] = card.names.filter(name => name !== card.name);
                     needToSearchCards.push({
                         id: card.id,
+                        set: card.set,
                         doubleName: searched,
                     });
-                    return requestGetCardsByNames(needToSearchCards)
+                    return requestGetDoubleFaceCards(needToSearchCards)
                         .then((searchedDoubleFacedCards) => {
                             const getFullCardsInfo = fullCardsInfoLens(needToSearchCards);
                             const shortDoubleFaceInfo = getFullCardsInfo(searchedDoubleFacedCards);

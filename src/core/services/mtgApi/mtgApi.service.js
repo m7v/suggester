@@ -21,9 +21,9 @@ export const getDeckListByCardNames = (cardList) => {
         const requestUrl = `${serverApiUrl}cards?name="${cardName}"&layout=${layouts}&contains=imageUrl&pageSize=1`;
         const promise = new Promise((fulfil) => {
             // try {
-                // const card = session.Card.get({name: cardName}).ref;
-                // card.count = cardList[cardName];
-                // fulfil(card);
+            // const card = session.Card.get({name: cardName}).ref;
+            // card.count = cardList[cardName];
+            // fulfil(card);
             // } catch (e) {
             const request = axios.get(requestUrl)
                 .then(response => {
@@ -80,6 +80,16 @@ const getCardRequestByTypeAndCode = (code, type) => {
         .catch(() => ({cards: []}));
 };
 
+
+/**
+ * @param card
+ * @returns {Promise}
+ */
+const getDoubleFaceCard = (card) =>
+    axios.get(`${serverApiUrl}cards?name=${card.doubleName}&set=${card.set}&layout=${layouts}&contains=imageUrl`)
+        .then(response => new Promise(resolve => resolve(response.data)))
+        .catch(() => new Promise((resolve) => resolve([])));
+
 /**
  * @param query
  * @returns {Promise}
@@ -128,6 +138,13 @@ const getCardsBySubtype = query =>
 export const getCardsByNames = cards => {
     const queries = map(cards, card => getCardsByName(card.doubleName));
     return axios.all(queries)
+        .then(axios.spread(function() {
+            return uniqBy(flatten(map(arguments, response => response.cards)), 'id');
+        }));
+};
+
+export const getDoubleFaceCards = cards => {
+    return axios.all(map(cards, getDoubleFaceCard))
         .then(axios.spread(function() {
             return uniqBy(flatten(map(arguments, response => response.cards)), 'id');
         }));

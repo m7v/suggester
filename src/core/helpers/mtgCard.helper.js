@@ -8,6 +8,8 @@ const getSetName = (set) => {
     switch (set) {
         case 'MPS':
             return 'mpskld';
+        case 'MPS_AKH':
+            return 'mpsakh';
         case 'HOP':
             return 'pch';
         case 'DRB':

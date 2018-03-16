@@ -21,6 +21,17 @@ class CardSets extends React.PureComponent {
         this.props.getSetList();
     }
 
+    getSetName = (setCode) => {
+        switch (setCode) {
+            case 'MPS':
+                return 'mp1';
+            case 'MPS_AKH':
+                return 'mp2';
+            default:
+                return setCode.toLowerCase();
+        }
+    };
+
     openBlock = (title) => {
         this.setState({
             blocks: {
@@ -42,7 +53,7 @@ class CardSets extends React.PureComponent {
                 {map(arrOfSets, set => (
                     <Link key={set.code} className="CardSets__set" to={`/browse/${set.code.toLowerCase()}`}>
                         <div className="CardSets__IconWrapper">
-                            <i className={`CardSets__Icon ss ss-3x ss-${set.code.toLowerCase()}`} />
+                            <i className={`CardSets__Icon ss ss-3x ss-${this.getSetName(set.code)}`} />
                         </div>
                         <div className="CardSets__setNameWrapper">
                             <div className="CardSets__setName">
