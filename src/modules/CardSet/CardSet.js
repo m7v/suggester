@@ -6,6 +6,7 @@ import Async from '../../components/Async';
 import Loader from '../../components/Loader';
 import ButtonBack from '../../components/ButtonBack';
 import MetaHelmet from '../../components/MetaHelmet';
+import ErrorPage from '../../components/ErrorPage/ErrorPage';
 import stateToProps from './connect/stateToProps';
 import dispatchToProps from './connect/dispatchToProps';
 
@@ -22,6 +23,12 @@ class CardSet extends React.Component {
     }
 
     render() {
+        if (!this.props.loading && !this.props.cards.length) {
+            return (
+                <ErrorPage />
+            );
+        }
+
         return (
             <section className="CardSet">
                 <MetaHelmet type={'set'} set={this.props.currentSet} />

@@ -1,0 +1,36 @@
+.ErrorPage__errorWrapper {
+
+}
+.ErrorPage__img {
+    height: 100%;
+    width: 100%;
+    background-color: #222;
+    background-position: 80%;
+    background-size: cover;
+    position: fixed;
+}
+
+.ErrorPage__error {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    position: fixed;
+    background: rgba(0,0,0,.5);
+}
+
+.ErrorPage__errorText {
+    width: 100vw;
+    height: calc(100vh - 56px);
+    font-size: 40px;
+    line-height: 45px;
+    font-family: "Beleren Bold";
+    color: #eee;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    user-select: none;
+    cursor: pointer;
+}

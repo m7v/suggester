@@ -21,6 +21,7 @@ import MetaHelmet from '../../components/MetaHelmet';
 import CardRulings from '../../components/CardRulings';
 import ManaCost from '../../components/ManaCost';
 import IconSet from '../../components/IconSet/IconSet';
+import ErrorPage from '../../components/ErrorPage/ErrorPage';
 
 class CardInfo extends React.PureComponent {
 
@@ -262,7 +263,13 @@ class CardInfo extends React.PureComponent {
     }
 
     render() {
-        const { card, isMobile, loading } = this.props;
+        const { card, isMobile, loading, error } = this.props;
+
+        if (error) {
+            return (
+                <ErrorPage />
+            );
+        }
 
         const root = classNames({
             'CardInfo__root': true,
@@ -316,6 +323,7 @@ CardInfo.propTypes = {
     isFavorite: bool,
     isMobile: bool,
     loading: bool,
+    error: bool,
 };
 
 CardInfo.defaultProps = {
