@@ -3,8 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "homepage": "https://m7v.github.io/suggester",
+  "bundlesize": [
+    {
+      "path": "./build/static/js/main.*.js",
+      "maxSize": "430 kB"
+    },
+    {
+      "path": "./build/static/js/*.chunk.js",
+      "maxSize": "75 kB"
+    }
+  ],
   "dependencies": {
     "axios": "^0.16.1",
+    "bundlesize": "^0.16.0",
     "chart.js": "^1.1.1",
     "classnames": "^2.2.5",
     "flow-bin": "^0.57.3",
@@ -52,7 +63,6 @@
     "mocha-lcov-reporter": "^1.3.0",
     "nock": "^9.0.13",
     "pre-push": "^0.1.1",
-    "react-scripts": "1.0.7",
     "react-snapshot": "^1.1.0",
     "react-test-renderer": "^15.6.1",
     "redux-devtools-extension": "^2.13.2",
@@ -64,6 +74,7 @@
   "scripts": {
     "lint": "eslint ./src",
     "flow": "flow",
+    "bundlesize": "bundlesize",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "analyze:main": "source-map-explorer build/static/js/main.*",
@@ -74,7 +85,7 @@
     "analyze:4": "source-map-explorer build/static/js/4.*",
     "analyze:5": "source-map-explorer build/static/js/5.*",
     "analyze:all": "yarn analyze:main;yarn analyze:0;yarn analyze:1;yarn analyze:2;yarn analyze:3;yarn analyze:4;yarn analyze:5",
-    "test": "NODE_ENV=test CI=true react-scripts test --env=jsdom",
+    "test": "NODE_ENV=test CI=true react-scripts test --env=jsdom && bundlesize",
     "test:ci": "CI=true react-scripts test --env=jsdom",
     "check:all": "yarn lint && yarn test:ci",
     "eject": "react-scripts eject",
