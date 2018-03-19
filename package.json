@@ -3,16 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "homepage": "https://m7v.github.io/suggester",
-  "bundlesize": [
-    {
-      "path": "./build/static/js/main.*.js",
-      "maxSize": "430 kB"
-    },
-    {
-      "path": "./build/static/js/*.chunk.js",
-      "maxSize": "75 kB"
-    }
-  ],
   "dependencies": {
     "axios": "^0.16.1",
     "bundlesize": "^0.16.0",
@@ -71,6 +61,16 @@
     "stylelint": "^7.10.1",
     "stylelint-config-standard": "^16.0.0"
   },
+  "bundlesize": [
+    {
+      "path": "./build/static/js/main.*.js",
+      "maxSize": "130 kB"
+    },
+    {
+      "path": "./build/static/js/*.chunk.js",
+      "maxSize": "45 kB"
+    }
+  ],
   "scripts": {
     "lint": "eslint ./src",
     "flow": "flow",
@@ -85,7 +85,7 @@
     "analyze:4": "source-map-explorer build/static/js/4.*",
     "analyze:5": "source-map-explorer build/static/js/5.*",
     "analyze:all": "yarn analyze:main;yarn analyze:0;yarn analyze:1;yarn analyze:2;yarn analyze:3;yarn analyze:4;yarn analyze:5",
-    "test": "NODE_ENV=test CI=true react-scripts test --env=jsdom && bundlesize",
+    "test": "NODE_ENV=test CI=true react-scripts test --env=jsdom; bundlesize",
     "test:ci": "CI=true react-scripts test --env=jsdom",
     "check:all": "yarn lint && yarn test:ci",
     "eject": "react-scripts eject",
