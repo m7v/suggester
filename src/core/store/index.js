@@ -54,6 +54,7 @@ const initialState = {
     },
     appContext: {
         initial: false,
+        isOffline: false,
         isMobile: device.type === 'tablet' || device.type === 'mobile',
         Suggestions: {
             loading: false,

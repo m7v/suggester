@@ -11,16 +11,14 @@ if (process.env.NODE_ENV !== 'production') {
         applyMiddleware(
             thunk,
             ping,
-            swStore,
-            createLogger(),
+            swStore
         ),
     );
 } else {
     middlewares = composeWithDevTools(
         applyMiddleware(
             thunk,
-            swStore,
-            createLogger(),
+            swStore
         )
     );
 }
