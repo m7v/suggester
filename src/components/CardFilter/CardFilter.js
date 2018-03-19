@@ -7,6 +7,7 @@ import isEmpty from 'lodash/isEmpty';
 import compact from 'lodash/compact';
 import debounce from 'lodash/debounce';
 import IconButton from 'material-ui/IconButton';
+import Tooltip from 'material-ui/Tooltip';
 import Button from 'material-ui/Button';
 import IconFilter from 'material-ui-icons/FilterList';
 import Drawer from 'material-ui/Drawer';
@@ -87,13 +88,14 @@ class CardFilter extends React.Component {
         });
 
         return (
-            <IconButton
-                key={type}
-                className="CardFilter__icon"
-                onClick={debounce(this.appSetTypeFilter(cardType), 100)}
-            >
-                <div className={iconClass} />
-            </IconButton>
+            <Tooltip key={type} className='CardFilter__label' title={cardType}>
+                <IconButton
+                    className="CardFilter__icon"
+                    onClick={debounce(this.appSetTypeFilter(cardType), 100)}
+                >
+                    <div className={iconClass} />
+                </IconButton>
+            </Tooltip>
         );
     });
 
@@ -107,9 +109,11 @@ class CardFilter extends React.Component {
         });
 
         return (
-            <IconButton key={color} className="CardFilter__icon" onClick={debounce(this.appSetColorFilter(color), 100)}>
-                <div className={iconClass} />
-            </IconButton>
+            <Tooltip key={color} className='CardFilter__label' title={color}>
+                <IconButton className="CardFilter__icon" onClick={debounce(this.appSetColorFilter(color), 100)}>
+                    <div className={iconClass} />
+                </IconButton>
+            </Tooltip>
         );
     });
 

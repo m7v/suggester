@@ -2,8 +2,9 @@ import './CardRulings.css';
 import React from 'react';
 import { arrayOf, shape, bool } from 'prop-types';
 import { formatText } from '../../core/helpers/mana.helper';
-import IconInfoOutline from 'material-ui-icons/InfoOutline';
+import Tooltip from 'material-ui/Tooltip';
 import IconButton from 'material-ui/IconButton';
+import IconInfoOutline from 'material-ui-icons/InfoOutline';
 import Dialog, { DialogActions, DialogContent } from 'material-ui/Dialog';
 import Button from 'material-ui/Button';
 
@@ -55,9 +56,11 @@ class CardRulings extends React.PureComponent {
                         </Button>
                     </DialogActions>
                 </Dialog>
-                <IconButton className="CardRulings__IconInfo" onClick={this.handleRulingsOpen}>
-                    <IconInfoOutline />
-                </IconButton>
+                <Tooltip className='CardRulings__label' title='Card rulings' placement='top'>
+                    <IconButton className="CardRulings__IconInfo" onClick={this.handleRulingsOpen}>
+                        <IconInfoOutline />
+                    </IconButton>
+                </Tooltip>
             </div>
         );
     }

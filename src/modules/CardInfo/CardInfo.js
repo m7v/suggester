@@ -6,6 +6,7 @@ import Link from 'react-router-dom/Link';
 import { bool, string, func, shape } from 'prop-types';
 import map from 'lodash/map';
 import classNames from 'classnames';
+import Tooltip from 'material-ui/Tooltip';
 import IconButton from 'material-ui/IconButton';
 import StarBorderIcon from 'material-ui-icons/StarBorder';
 import StarIcon from 'material-ui-icons/Star';
@@ -81,16 +82,20 @@ class CardInfo extends React.PureComponent {
                             }
                             {this.props.isFavorite &&
                             <div className="CardInfo__IconRemoveFavorite">
-                                <IconButton onClick={() => this.props.cardDelete(card.id)}>
-                                    <StarIcon color="white" />
-                                </IconButton>
+                                <Tooltip className='CardInfo__label' title='Remove from Favorites' placement='top'>
+                                    <IconButton onClick={() => this.props.cardDelete(card.id)}>
+                                        <StarIcon color="white" />
+                                    </IconButton>
+                                </Tooltip>
                             </div>
                             }
                             {!this.props.isFavorite &&
                             <div className="CardInfo__IconAddFavorite">
-                                <IconButton onClick={() => this.props.cardAdd(card)}>
-                                    <StarBorderIcon color="white" />
-                                </IconButton>
+                                <Tooltip className='CardInfo__label' title='Add to Favorites' placement='top'>
+                                    <IconButton onClick={() => this.props.cardAdd(card)}>
+                                        <StarBorderIcon color="white" />
+                                    </IconButton>
+                                </Tooltip>
                             </div>
                             }
                         </div>
