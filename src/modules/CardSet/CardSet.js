@@ -23,12 +23,6 @@ class CardSet extends React.Component {
     }
 
     render() {
-        if (!this.props.loading && !this.props.cards.length) {
-            return (
-                <ErrorPage />
-            );
-        }
-
         return (
             <section className="CardSet">
                 <MetaHelmet type={'set'} set={this.props.currentSet} />

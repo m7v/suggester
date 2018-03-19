@@ -14,6 +14,10 @@ const getSetName = (set) => {
             return 'pch';
         case 'DRB':
             return 'fvd';
+        case 'CON':
+            return 'cfx';
+        case 'GPT':
+            return 'gp';
         default:
             return set.replace(/_/g, '').toLowerCase();
     }
