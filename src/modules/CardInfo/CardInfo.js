@@ -20,6 +20,7 @@ import ButtonBack from '../../components/ButtonBack';
 import MetaHelmet from '../../components/MetaHelmet';
 import CardRulings from '../../components/CardRulings';
 import ManaCost from '../../components/ManaCost';
+import IconSet from '../../components/IconSet/IconSet';
 
 class CardInfo extends React.PureComponent {
 
@@ -34,21 +35,6 @@ class CardInfo extends React.PureComponent {
         if (this.props.cardId !== nextProps.cardId) {
             this.props.getCardById(nextProps.cardId);
         }
-    }
-
-    getSetIcon(set, rarity) {
-        if (!set) {
-            return '';
-        }
-        const className = classNames({
-            'CardInfo__cardSet': true,
-            'ss': true,
-            [`ss-${set.toLowerCase()}`]: true,
-            'ss-2x': this.props.isMobile,
-            [`_${rarity.toLowerCase()}`]: true,
-        });
-
-        return <i className={className} />;
     }
 
     handleSearchCardByKeyPress = (searchedCard) => {
@@ -124,7 +110,7 @@ class CardInfo extends React.PureComponent {
                                 <div className="CardInfo__detailTitle">Expansion</div>
                                 <Link className="CardInfo__setName" to={`/browse/${card.set.toLowerCase()}`}>
                                     {card.setName}
-                                    {this.getSetIcon(card.set, card.rarity)}
+                                    <IconSet set={card.set} rarity={card.rarity} />
                                 </Link>
                             </div>
                             }
@@ -137,7 +123,7 @@ class CardInfo extends React.PureComponent {
                                         className="CardInfo__setIcon"
                                         to={`/cards/${id}`}
                                     >
-                                        {this.getSetIcon(set, card.rarity)}
+                                        <IconSet set={set} rarity={card.rarity} />
                                     </Link>
                                 ))}
                             </div>
@@ -240,7 +226,7 @@ class CardInfo extends React.PureComponent {
                                 <Link className="CardInfoMobile__setName" to={`/browse/${card.set.toLowerCase()}`}>
                                     {card.setName}
                                 </Link>
-                                <div>{this.getSetIcon(card.set, card.rarity)}</div>
+                                <div><IconSet set={card.set} rarity={card.rarity} isMobile /></div>
                             </div>
                         }
                         {card.printings && card.printings.length > 1 &&
@@ -252,7 +238,7 @@ class CardInfo extends React.PureComponent {
                                     className="CardInfoMobile__setIcon"
                                     to={`/cards/${id}`}
                                 >
-                                    {this.getSetIcon(set, card.rarity)}
+                                    <IconSet set={set} rarity={card.rarity} isMobile />
                                 </Link>
                             ))}
                         </div>

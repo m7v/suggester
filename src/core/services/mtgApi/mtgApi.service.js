@@ -143,12 +143,11 @@ export const getCardsByNames = cards => {
         }));
 };
 
-export const getDoubleFaceCards = cards => {
-    return axios.all(map(cards, getDoubleFaceCard))
+export const getDoubleFaceCards = cards =>
+    axios.all(map(cards, getDoubleFaceCard))
         .then(axios.spread(function() {
             return uniqBy(flatten(map(arguments, response => response.cards)), 'id');
         }));
-};
 
 /**
  * @param cardId

@@ -10,6 +10,7 @@ import Loader from '../../components/Loader';
 import MetaHelmet from '../../components/MetaHelmet';
 import stateToProps from './connect/stateToProps';
 import dispatchToProps from './connect/dispatchToProps';
+import IconSet from '../../components/IconSet/IconSet';
 
 class CardSets extends React.PureComponent {
 
@@ -20,17 +21,6 @@ class CardSets extends React.PureComponent {
     componentWillMount() {
         this.props.getSetList();
     }
-
-    getSetName = (setCode) => {
-        switch (setCode) {
-            case 'MPS':
-                return 'mp1';
-            case 'MPS_AKH':
-                return 'mp2';
-            default:
-                return setCode.toLowerCase();
-        }
-    };
 
     openBlock = (title) => {
         this.setState({
@@ -53,7 +43,7 @@ class CardSets extends React.PureComponent {
                 {map(arrOfSets, set => (
                     <Link key={set.code} className="CardSets__set" to={`/browse/${set.code.toLowerCase()}`}>
                         <div className="CardSets__IconWrapper">
-                            <i className={`CardSets__Icon ss ss-3x ss-${this.getSetName(set.code)}`} />
+                            <IconSet set={set.code} isSet />
                         </div>
                         <div className="CardSets__setNameWrapper">
                             <div className="CardSets__setName">

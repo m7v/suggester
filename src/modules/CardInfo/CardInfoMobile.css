@@ -137,29 +137,6 @@
     color: #bbb;
 }
 
-.CardInfoMobile__cardSet.ss {
-    height: 17px;
-    width: 17px;
-    font-size: 16px;
-    margin: 0 5px;
-}
-
-.CardInfoMobile__cardSet.ss._mythic {
-    color: #f58d14;
-}
-
-.CardInfoMobile__cardSet.ss._rare {
-    color: #f5ee60;
-}
-
-.CardInfoMobile__cardSet.ss._uncommon {
-    color: #9baac3;
-}
-
-.CardInfoMobile__cardSet.ss._common {
-    color: #eee;
-}
-
 .CardInfoMobile__textSymbols.ms {
     border-radius: 50%;
     margin: 0 2px;

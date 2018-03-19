@@ -40,7 +40,8 @@ function appInitialized(state) {
 function appContextSetSWData(state, payload) {
     return {
         ...state,
-        ...payload
+        ...payload,
+        isMobile: state.isMobile
     };
 }
 

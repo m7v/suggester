@@ -2,7 +2,7 @@ import './ManaCost.css';
 import React from 'react';
 import classNames from 'classnames';
 import { string } from 'prop-types';
-import { getManaClass } from '../../core/helpers/mana.helper';
+import { getManaClass, getManaIcon, isSplit } from '../../core/helpers/mana.helper';
 
 class ManaCost extends React.PureComponent {
 
@@ -15,15 +15,15 @@ class ManaCost extends React.PureComponent {
                 {this.props.manaCost.match(/\{(.*?)\}/g)
                     .map(rawMana => rawMana.replace('{', '').replace('}', ''))
                     .map((mana, index) => (
-                        <span
+                        <i
                             key={`${index}_${mana}_${(new Date()).getTime()}`}
                             className={classNames({
                                 'ManaCost__mana': true,
                                 [`ManaCost__mana_${getManaClass(mana)}`]: true,
-                                'ms-split': mana.indexOf('/') >= 0,
+                                'ms-split': isSplit(mana),
                                 'ms-cost': true,
                                 'ms': true,
-                                [`ms-${getManaClass(mana)}`]: true,
+                                [`ms-${getManaIcon(mana)}`]: true,
                             })}
                         />
                     ))

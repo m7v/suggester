@@ -157,27 +157,6 @@
     cursor: pointer;
 }
 
-.CardInfo__cardSet.ss {
-    margin: 0 5px;
-}
-
-.CardInfo__cardSet.ss._special,
-.CardInfo__cardSet.ss._mythic {
-    color: #f58d14;
-}
-
-.CardInfo__cardSet.ss._rare {
-    color: #f5ee60;
-}
-
-.CardInfo__cardSet.ss._uncommon {
-    color: #9baac3;
-}
-
-.CardInfo__cardSet.ss._common {
-    color: #eee;
-}
-
 .CardInfo__setIcon {
     display: inline-block;
     padding: 0 3px 5px;

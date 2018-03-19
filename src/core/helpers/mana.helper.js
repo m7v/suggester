@@ -76,7 +76,26 @@ export const getManaClass = (mana) => {
     if (manaMapping[mana]) {
         return manaMapping[mana];
     }
+    if (mana.indexOf('/P') >= 0) {
+        return mana.replace('/P', '').toLowerCase();
+    }
+
     return mana.replace('/', '').toLowerCase();
+};
+
+export const getManaIcon = (mana) => {
+    if (manaMapping[mana]) {
+        return manaMapping[mana];
+    }
+    return mana.replace('/', '').toLowerCase();
+};
+
+export const isSplit = (mana) => {
+    if (mana.indexOf('/P') >= 0) {
+        return false;
+    }
+
+    return mana.indexOf('/') >= 0;
 };
 
 export const formatText = (text, rootClass) => {
@@ -91,11 +110,12 @@ export const formatText = (text, rootClass) => {
         }, {});
 
         const iconMap = reduce(parsedMap, (agg, manaLetter, key) => {
+            const i = getManaIcon(manaLetter);
             const l = getManaClass(manaLetter);
             /* eslint-disable */
-            agg[ key ] = manaLetter.indexOf('/') >= 0
-                ? `<span class="${rootClass} ${rootClass}-${l} ms ms-split ms-cost ms-${l}"></span>`
-                : `<span class="${rootClass} ${rootClass}-${l} ms ms-cost ms-${l}"></span>`;
+            agg[ key ] = isSplit(manaLetter)
+                ? `<i class="${rootClass} ${rootClass}-${l} ms ms-split ms-cost ms-${i}"></i>`
+                : `<i class="${rootClass} ${rootClass}-${l} ms ms-cost ms-${i}"></i>`;
             /* eslint-enable */
             return agg;
         }, {});

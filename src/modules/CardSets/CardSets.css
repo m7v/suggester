@@ -21,7 +21,7 @@
 }
 
 .CardSets__setList {
-    height: 92vh;
+    height: calc(100% - 56px);
     width: 100vw;
     overflow: auto;
     -webkit-overflow-scrolling: touch;

@@ -1,0 +1,50 @@
+.IconSet__setName {
+    font-size: 14px;
+    color: #eee;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.IconSet__cardSet.ss {
+    margin: 0 5px;
+}
+
+.IconSet__cardSet.ss._special,
+.IconSet__cardSet.ss._mythic {
+    color: #f58d14;
+}
+
+.IconSet__cardSet.ss._rare {
+    color: #f5ee60;
+}
+
+.IconSet__cardSet.ss._uncommon {
+    color: #9baac3;
+}
+
+.IconSet__cardSet.ss._common {
+    color: #eee;
+}
+
+.CardInfoMobile__cardSet.ss {
+    height: 17px;
+    width: 17px;
+    font-size: 16px;
+    margin: 0 5px;
+}
+
+.CardInfoMobile__cardSet.ss._mythic {
+    color: #f58d14;
+}
+
+.CardInfoMobile__cardSet.ss._rare {
+    color: #f5ee60;
+}
+
+.CardInfoMobile__cardSet.ss._uncommon {
+    color: #9baac3;
+}
+
+.CardInfoMobile__cardSet.ss._common {
+    color: #eee;
+}

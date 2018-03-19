@@ -11,6 +11,7 @@ import Tooltip from 'material-ui/Tooltip';
 import Button from 'material-ui/Button';
 import IconFilter from 'material-ui-icons/FilterList';
 import Drawer from 'material-ui/Drawer';
+import IconSet from '../IconSet/IconSet';
 
 const rarityMap = {
     common: 'common',
@@ -42,17 +43,6 @@ class CardFilter extends React.Component {
         super(props);
         this.state = {open: false};
     }
-
-    getSetIcon = (primary) => {
-        const iconClass = classNames({
-            [primary]: true,
-            'ss': true,
-            'ss-grad': true,
-            [`ss-${this.props.currentSet.code.toLowerCase()}`]: true,
-        });
-
-        return (<span className={iconClass} />);
-    };
 
     handleToggle = () => this.setState({open: !this.state.open});
 
@@ -161,7 +151,9 @@ class CardFilter extends React.Component {
                         <div className="CardFilter__form">
                             {!isEmpty(currentSet) &&
                                 <div className="CardFilter__header">
-                                    {currentSet.code && this.getSetIcon('CardFilter__IconHeader')}
+                                    {currentSet.code &&
+                                        <IconSet set={this.props.currentSet.code} rarity="common" isGradient />
+                                    }
                                     <span className="CardFilter__headerTitle">{currentSet.name}</span>
                                 </div>
                             }
@@ -188,7 +180,7 @@ class CardFilter extends React.Component {
 CardFilter.propTypes = {
     resultCount: number,
     className: string,
-    currentSet: shape({}),
+    currentSet: shape({ code: string }),
     rarity: shape({}).isRequired,
     appSetRarityFilter: func.isRequired,
     colors: shape({}).isRequired,
