@@ -6,6 +6,7 @@ import map from 'lodash/map';
 import isEmpty from 'lodash/isEmpty';
 import compact from 'lodash/compact';
 import debounce from 'lodash/debounce';
+import upperFirst from 'lodash/upperFirst';
 import IconButton from 'material-ui/IconButton';
 import Tooltip from 'material-ui/Tooltip';
 import Button from 'material-ui/Button';
@@ -78,7 +79,7 @@ class CardFilter extends React.Component {
         });
 
         return (
-            <Tooltip key={type} className='CardFilter__label' title={cardType}>
+            <Tooltip key={type} className='CardFilter__label' title={upperFirst(cardType)}>
                 <IconButton
                     className="CardFilter__icon"
                     onClick={debounce(this.appSetTypeFilter(cardType), 100)}
@@ -99,7 +100,7 @@ class CardFilter extends React.Component {
         });
 
         return (
-            <Tooltip key={color} className='CardFilter__label' title={color}>
+            <Tooltip key={color} className='CardFilter__label' title={upperFirst(mana)}>
                 <IconButton className="CardFilter__icon" onClick={debounce(this.appSetColorFilter(color), 100)}>
                     <div className={iconClass} />
                 </IconButton>
