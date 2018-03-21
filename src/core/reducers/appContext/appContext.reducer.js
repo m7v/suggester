@@ -41,6 +41,26 @@ function appContextSetSWData(state, payload) {
     return {
         ...state,
         ...payload,
+        Cards: {
+            ...state.Cards,
+            ...payload.Cards,
+            loading: false,
+        },
+        CardSets: {
+            ...state.CardSets,
+            ...payload.CardSets,
+            loading: false,
+        },
+        Favorites: {
+            ...state.Favorites,
+            ...payload.Favorites,
+            loading: false,
+        },
+        CardInfo: {
+            ...state.CardInfo,
+            ...payload.CardInfo,
+            loading: false,
+        },
         isMobile: state.isMobile
     };
 }
