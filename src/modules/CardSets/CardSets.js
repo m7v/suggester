@@ -11,6 +11,7 @@ import MetaHelmet from '../../components/MetaHelmet';
 import stateToProps from './connect/stateToProps';
 import dispatchToProps from './connect/dispatchToProps';
 import IconSet from '../../components/IconSet/IconSet';
+import ErrorPage from '../../components/ErrorPage/ErrorPage';
 
 class CardSets extends React.PureComponent {
 
@@ -57,7 +58,7 @@ class CardSets extends React.PureComponent {
     ));
 
     render() {
-        const { loading } = this.props;
+        const { loading, error } = this.props;
 
         return (
             <section className="CardSets">
@@ -70,7 +71,10 @@ class CardSets extends React.PureComponent {
                             </div>
                         </div>
                     }
-                    {!loading &&
+                    {!loading && error &&
+                        <ErrorPage />
+                    }
+                    {!loading && !error &&
                         <div className="CardSets__setList">
                             { this.renderSets() }
                         </div>
@@ -83,6 +87,7 @@ class CardSets extends React.PureComponent {
 
 CardSets.propTypes = {
     loading: bool,
+    error: bool,
     sets: shape({}),
     getSetList: func.isRequired,
 };
@@ -90,6 +95,7 @@ CardSets.propTypes = {
 CardSets.defaultProps = {
     isMobile: false,
     loading: false,
+    error: false,
     sets: [],
 };
 

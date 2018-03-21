@@ -23,6 +23,10 @@ class CardSet extends React.Component {
     }
 
     render() {
+        if (!this.props.loading && this.props.error) {
+            return (<ErrorPage />);
+        }
+
         return (
             <section className="CardSet">
                 <MetaHelmet type={'set'} set={this.props.currentSet} />
@@ -72,10 +76,12 @@ CardSet.propTypes = {
     appSetCardSetColorFilter: func.isRequired,
     appSetCardSetRarityFilter: func.isRequired,
     loading: bool,
+    error: bool,
 };
 
 CardSet.defaultProps = {
     loading: false,
+    error: false,
 };
 
 export default connect(stateToProps, dispatchToProps)(CardSet);

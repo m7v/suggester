@@ -9,6 +9,10 @@ import { serverApiUrl } from './../config.service';
 import { fields, layouts } from './mtgApi.config';
 
 axios.defaults.adapter = httpAdapter;
+const mtgInstance = axios.create({
+    baseURL: serverApiUrl,
+    timeout: 10000
+});
 
 /**
  * @param {Array} cardList
@@ -18,14 +22,14 @@ export const getDeckListByCardNames = (cardList) => {
     const requests = [];
 
     map(Object.keys(cardList), cardName => {
-        const requestUrl = `${serverApiUrl}cards?name="${cardName}"&layout=${layouts}&contains=imageUrl&pageSize=1`;
+        const requestUrl = `cards?name="${cardName}"&layout=${layouts}&contains=imageUrl&pageSize=1`;
         const promise = new Promise((fulfil) => {
             // try {
             // const card = session.Card.get({name: cardName}).ref;
             // card.count = cardList[cardName];
             // fulfil(card);
             // } catch (e) {
-            const request = axios.get(requestUrl)
+            const request = mtgInstance.get(requestUrl)
                 .then(response => {
                     if (response.data.cards[0]) {
                         response.data.cards[0].count = cardList[cardName];
@@ -50,20 +54,20 @@ export const getDeckListByCardNames = (cardList) => {
 
 const getCardRequestByTypeAndCode = (code, type) => {
     const queries = [
-        axios.get(
-            `${serverApiUrl}cards?colors=black&set=${code}&types=${type}&layout=${layouts}&contains=imageUrl`
+        mtgInstance.get(
+            `cards?colors=black&set=${code}&types=${type}&layout=${layouts}&contains=imageUrl`
         ),
-        axios.get(
-            `${serverApiUrl}cards?colors=red&set=${code}&types=${type}&layout=${layouts}&contains=imageUrl`
+        mtgInstance.get(
+            `cards?colors=red&set=${code}&types=${type}&layout=${layouts}&contains=imageUrl`
         ),
-        axios.get(
-            `${serverApiUrl}cards?colors=blue&set=${code}&types=${type}&layout=${layouts}&contains=imageUrl`
+        mtgInstance.get(
+            `cards?colors=blue&set=${code}&types=${type}&layout=${layouts}&contains=imageUrl`
         ),
-        axios.get(
-            `${serverApiUrl}cards?colors=white&set=${code}&types=${type}&layout=${layouts}&contains=imageUrl`
+        mtgInstance.get(
+            `cards?colors=white&set=${code}&types=${type}&layout=${layouts}&contains=imageUrl`
         ),
-        axios.get(
-            `${serverApiUrl}cards?colors=green&set=${code}&types=${type}&layout=${layouts}&contains=imageUrl`
+        mtgInstance.get(
+            `cards?colors=green&set=${code}&types=${type}&layout=${layouts}&contains=imageUrl`
         )
     ];
 
@@ -76,8 +80,7 @@ const getCardRequestByTypeAndCode = (code, type) => {
                 ...white.data.cards,
                 ...green.data.cards,
             ]
-        })))
-        .catch(() => ({cards: []}));
+        })));
 };
 
 
@@ -86,7 +89,7 @@ const getCardRequestByTypeAndCode = (code, type) => {
  * @returns {Promise}
  */
 const getDoubleFaceCard = (card) =>
-    axios.get(`${serverApiUrl}cards?name=${card.doubleName}&set=${card.set}&layout=${layouts}&contains=imageUrl`)
+    mtgInstance.get(`cards?name=${card.doubleName}&set=${card.set}&layout=${layouts}&contains=imageUrl`)
         .then(response => new Promise(resolve => resolve(response.data)))
         .catch(() => new Promise((resolve) => resolve([])));
 
@@ -95,7 +98,7 @@ const getDoubleFaceCard = (card) =>
  * @returns {Promise}
  */
 const getCardsByName = query =>
-    axios.get(`${serverApiUrl}cards?name=${query}&layout=${layouts}&contains=imageUrl`)
+    mtgInstance.get(`cards?name=${query}&layout=${layouts}&contains=imageUrl`)
         .then(response => new Promise(resolve => resolve(response.data)))
         .catch(() => new Promise((resolve) => resolve([])));
 
@@ -104,7 +107,7 @@ const getCardsByName = query =>
  * @returns {Promise}
  */
 const getCardsByArtist = query =>
-    axios.get(`${serverApiUrl}cards?artist=${query}&layout=${layouts}&contains=imageUrl`)
+    mtgInstance.get(`cards?artist=${query}&layout=${layouts}&contains=imageUrl`)
         .then(response => new Promise(resolve => resolve(response.data)))
         .catch(() => new Promise((resolve) => resolve([])));
 
@@ -113,7 +116,7 @@ const getCardsByArtist = query =>
  * @returns {Promise}
  */
 const getCardsByFlavor = query =>
-    axios.get(`${serverApiUrl}cards?flavor=${query}&layout=${layouts}&contains=imageUrl`)
+    mtgInstance.get(`cards?flavor=${query}&layout=${layouts}&contains=imageUrl`)
         .then(response => new Promise(resolve => resolve(response.data)))
         .catch(() => new Promise((resolve) => resolve([])));
 
@@ -122,7 +125,7 @@ const getCardsByFlavor = query =>
  * @returns {Promise}
  */
 const getCardsByText = query =>
-    axios.get(`${serverApiUrl}cards?text=${query}&layout=${layouts}&contains=imageUrl`)
+    mtgInstance.get(`cards?text=${query}&layout=${layouts}&contains=imageUrl`)
         .then(response => new Promise(resolve => resolve(response.data)))
         .catch(() => new Promise((resolve) => resolve([])));
 
@@ -131,7 +134,7 @@ const getCardsByText = query =>
  * @returns {Promise}
  */
 const getCardsBySubtype = query =>
-    axios.get(`${serverApiUrl}cards?subtypes=${query}&layout=${layouts}&contains=imageUrl`)
+    mtgInstance.get(`cards?subtypes=${query}&layout=${layouts}&contains=imageUrl`)
         .then(response => new Promise(resolve => resolve(response.data)))
         .catch(() => new Promise((resolve) => resolve([])));
 
@@ -153,60 +156,52 @@ export const getDoubleFaceCards = cards =>
  * @param cardId
  */
 export const getCardById = (cardId) =>
-    axios.get(`${serverApiUrl}cards/${cardId}?contains=imageUrl`)
+    mtgInstance.get(`cards/${cardId}?contains=imageUrl`)
         .then(response => pick(response.data.card, fields))
         .catch(() => null);
 
 export const getCardByNameAndSet = (name, set) =>
-    axios.get(`${serverApiUrl}cards?name=${name}&set=${set}&contains=imageUrl`)
+    mtgInstance.get(`cards?name=${name}&set=${set}&contains=imageUrl`)
         .then(response => pick(response.data.cards[0], ['id', 'set']))
         .catch(() => null);
 
 export const getSetList = () =>
-    axios.get(`${serverApiUrl}sets`)
-        .then(response => response.data.sets)
-        .catch(() => null);
+    mtgInstance.get('sets')
+        .then(response => response.data.sets);
 
 export const getSetByCode = (code) =>
-    axios.get(`${serverApiUrl}sets/${code}`)
-        .then(response => response.data.set)
-        .catch(() => null);
+    mtgInstance.get(`sets/${code}`)
+        .then(response => response.data.set);
 
 const getSetPlaneswalkerCardsByCode = (code) =>
-    axios.get(
-        `${serverApiUrl}cards?set=${code}&types=planeswalker&layout=${layouts}&contains=imageUrl`
+    mtgInstance.get(
+        `cards?set=${code}&types=planeswalker&layout=${layouts}&contains=imageUrl`
     )
-        .then(response => response.data)
-        .catch(() => ({cards: []}));
+        .then(response => response.data);
 
 const getSetCreatureCardsByCode = (code) => getCardRequestByTypeAndCode(code, 'creature');
 
 const getSetInstantCardsByCode = (code) =>
-    axios.get(`${serverApiUrl}cards?set=${code}&types=instant&layout=${layouts}&contains=imageUrl`)
-        .then(response => response.data)
-        .catch(() => ({cards: []}));
+    mtgInstance.get(`cards?set=${code}&types=instant&layout=${layouts}&contains=imageUrl`)
+        .then(response => response.data);
 
 const getSetSorceryCardsByCode = (code) =>
-    axios.get(`${serverApiUrl}cards?set=${code}&types=sorcery&layout=${layouts}&contains=imageUrl`)
-        .then(response => response.data)
-        .catch(() => ({cards: []}));
+    mtgInstance.get(`cards?set=${code}&types=sorcery&layout=${layouts}&contains=imageUrl`)
+        .then(response => response.data);
 
 const getSetEnchantmentCardsByCode = (code) =>
-    axios.get(
-        `${serverApiUrl}cards?set=${code}&types=enchantment&layout=${layouts}&contains=imageUrl`
+    mtgInstance.get(
+        `cards?set=${code}&types=enchantment&layout=${layouts}&contains=imageUrl`
     )
-        .then(response => response.data)
-        .catch(() => ({cards: []}));
+        .then(response => response.data);
 
 const getSetArtifactCardsByCode = (code) =>
-    axios.get(`${serverApiUrl}cards?set=${code}&types=artifact&layout=${layouts}&contains=imageUrl`)
-        .then(response => response.data)
-        .catch(() => ({cards: []}));
+    mtgInstance.get(`cards?set=${code}&types=artifact&layout=${layouts}&contains=imageUrl`)
+        .then(response => response.data);
 
 const getSetLandCardsByCode = (code) =>
-    axios.get(`${serverApiUrl}cards?set=${code}&types=land&layout=${layouts}&contains=imageUrl`)
-        .then(response => response.data)
-        .catch(() => ({cards: []}));
+    mtgInstance.get(`cards?set=${code}&types=land&layout=${layouts}&contains=imageUrl`)
+        .then(response => response.data);
 
 export const getSetCardsByCode = (code) => {
     const queries = [
@@ -231,8 +226,7 @@ export const getSetCardsByCode = (code) => {
                 ...land.cards
             ], 'id')
         ))
-        .then(cards => map(cards, card => pick(card, fields)))
-        .catch(() => null);
+        .then(cards => map(cards, card => pick(card, fields)));
 };
 
 /**

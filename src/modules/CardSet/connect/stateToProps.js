@@ -51,5 +51,6 @@ export default function stateToProps(state, props) {
             o => Number(o.number),
         ),
         loading: state.appContext.CardSets.loading,
+        error: state.appContext.CardSets.error,
     };
 }
