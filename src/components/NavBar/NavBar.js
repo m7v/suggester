@@ -67,7 +67,7 @@ class NavBar extends React.PureComponent {
                 value={this.getRouteIndex(item.path)}
                 className={'NavBar__button'}
                 onClick={() => {
-                    if (this.props.location.pathname.indexOf(item.path) < 0) {
+                    if (this.props.location.pathname !== item.path) {
                         this.props.history.push(item.path);
                     }
                 }}

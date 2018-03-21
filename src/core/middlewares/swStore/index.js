@@ -1,3 +1,6 @@
+import debounce from 'lodash/debounce';
+import { IndexedDBStorage } from '../../lib/IndexedDBStorage';
+
 export const sendMessageToSW = function(msg) {
     return new Promise((resolve, reject) => {
         // Create a Message Channel
@@ -21,8 +24,11 @@ export const sendMessageToSW = function(msg) {
 
 export const swStore = (store) => next => action => {
     if ('serviceWorker' in navigator) {
-        const state = store.getState();
-        sendMessageToSW(JSON.stringify(state));
+        debounce(() => {
+            const state = store.getState();
+            const storage = new IndexedDBStorage('mtg-manager', 1);
+            storage.setItem('store', JSON.stringify(state));
+        }, 500);
     }
 
     return next(action);

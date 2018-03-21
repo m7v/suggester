@@ -6,10 +6,10 @@ import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import red from 'material-ui/colors/red';
 import registerServiceWorker from './registerServiceWorker';
 import store from './core/store';
-import { sendMessageToSW } from './core/middlewares/swStore';
 import Root from './modules/Root/container';
 import { appContextSetSWData } from './core/actions/appContext/appContext.types';
 import { suggestionsSetSWData } from './core/actions/suggestions/suggestions.types';
+import { IndexedDBStorage } from './core/lib/IndexedDBStorage';
 
 injectTapEventPlugin();
 
@@ -20,11 +20,14 @@ const muiTheme = createMuiTheme({
     },
 });
 
-sendMessageToSW('getStore')
-    .then((data) => {
-        store.dispatch(appContextSetSWData(data.appContext));
-        store.dispatch(suggestionsSetSWData(data.suggester));
-    });
+const storage = new IndexedDBStorage('mtg-manager', 1);
+storage.getItem('store')
+    .then(data => {
+        const state = JSON.parse(data);
+        store.dispatch(appContextSetSWData(state.appContext));
+        store.dispatch(suggestionsSetSWData(state.suggester));
+    })
+    .catch(() => {});
 
 ReactDOM.render(
     <Provider store={store}>

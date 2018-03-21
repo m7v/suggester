@@ -84,7 +84,13 @@ export function getCardById(cardId) {
 }
 
 export function getSetList() {
-    return (dispatch) => {
+    return (dispatch, getState) => {
+        const state = getState();
+
+        if (Object.keys(state.appContext.CardSets.data).length > 100) {
+            return Promise.resolve();
+        }
+
         dispatch(appContextTypes.appCardSetsRequestStarted());
 
         return requestGetSetList()
