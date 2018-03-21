@@ -22,12 +22,13 @@ export const sendMessageToSW = function(msg) {
     });
 };
 
+const saveState = debounce((state) => {
+    const storage = new IndexedDBStorage('mtg-manager', 1);
+    storage.setItem('store', JSON.stringify(state));
+}, 500);
+
 export const swStore = (store) => next => action => {
-    debounce(() => {
-        const state = store.getState();
-        const storage = new IndexedDBStorage('mtg-manager', 1);
-        storage.setItem('store', JSON.stringify(state));
-    }, 500);
+    saveState(store.getState());
 
     return next(action);
 };
