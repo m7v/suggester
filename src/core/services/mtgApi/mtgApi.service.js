@@ -5,12 +5,16 @@ import map from 'lodash/map';
 import compact from 'lodash/compact';
 import pick from 'lodash/pick';
 import flatten from 'lodash/flatten';
-import { serverApiUrl } from './../config.service';
+import { serverApiUrl, popcornServerApiUrl } from './../config.service';
 import { fields, layouts } from './mtgApi.config';
 
 axios.defaults.adapter = httpAdapter;
 const mtgInstance = axios.create({
     baseURL: serverApiUrl,
+    timeout: 10000
+});
+const popcornInstance = axios.create({
+    baseURL: popcornServerApiUrl,
     timeout: 10000
 });
 
@@ -253,3 +257,36 @@ export const getSuggestions = (query) => {
             ], 'multiverseid')
         ));
 };
+
+export const getLocationById = (id) =>
+    // popcornInstance.get(`location/${id}`)
+    popcornInstance.get('location')
+        .then(response => response.data)
+        .catch(() => {
+            return JSON.parse('{"id": 1,"title": "Какая-то локация","timetable":\n' +
+                '[{"title": "Лекция по любой херне", "locationID": 1, "period": {"startTime": "29/04/2018 10:00:00", "endTime": "29/04/2018 11:00:00"}, "imageUrl": "http://placehold.it/200x100", "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"},\n' +
+                '{"title": "Лекция по другой херне", "locationID": 1, "period": {"startTime": "29/04/2018 11:00:00", "endTime": "29/04/2018 12:00:00"}, "imageUrl": "http://placehold.it/200x100", "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"}\n' +
+            ']}');
+        });
+
+export const getNewsList = () =>
+    popcornInstance.get('news')
+        .then(response => response.data)
+        .catch(() => {
+            return JSON.parse(
+                '[{"title": "Нарга и Аоки на Попкорне!", "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", "image": "http://placehold.it/600x300", "date": "1523107479"},\n' +
+                '{"title": "Нарга и Аоки на Попкорне!", "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", "image": "http://placehold.it/600x300", "date": "1523107479"},\n' +
+                '{"title": "Нарга и Аоки на Попкорне!", "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", "image": "http://placehold.it/600x300", "date": "1523107479"}]'
+            );
+        });
+
+export const getTimetable = () =>
+    popcornInstance.get('timetable')
+        .then(response => response.data)
+        .catch(() => {
+            return JSON.parse(
+                '[{"title": "Лекция по любой херне", "locationID": 1, "period": {"startTime": "29/04/2018 10:00:00", "endTime": "29/04/2018 11:00:00"}, "imageUrl": "http://placehold.it/200x100", "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"},\n' +
+                '{"title": "Лекция по другой херне", "locationID": 1, "period": {"startTime": "29/04/2018 11:00:00", "endTime": "29/04/2018 12:00:00"}, "imageUrl": "http://placehold.it/200x100", "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"}\n' +
+                ']'
+            );
+        });

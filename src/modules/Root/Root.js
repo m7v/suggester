@@ -13,10 +13,11 @@ import { dispatchToProps } from './connect/dispatchToProps';
 import NavBar from '../../components/NavBar';
 import Loader from '../../components/Loader';
 
-const Favorites = (props) => <Async load={import('../Favorites/container')} componentProps={props} />;
+const Timetable = (props) => <Async load={import('../Timetable/container')} componentProps={props} />;
 const Suggester = (props) => <Async load={import('../Suggester/container')} componentProps={props} />;
 const CardInfo = (props) => <Async load={import('../CardInfo/container')} componentProps={props} />;
-const CardSets = (props) => <Async load={import('../CardSets/container')} componentProps={props} />;
+const LocationInfo = (props) => <Async load={import('../LocationInfo/container')} componentProps={props} />;
+const NewsList = (props) => <Async load={import('../NewsList/container')} componentProps={props} />;
 const CardSet = (props) => <Async load={import('../CardSet/container')} componentProps={props} />;
 
 class Root extends React.Component {
@@ -55,13 +56,23 @@ class Root extends React.Component {
                         />
                         <Route
                             exact
-                            path="/favorites"
-                            component={Favorites}
+                            path="/location/:id"
+                            component={({match, history}) => <LocationInfo locationId={match.params.id} history={history} />}
+                        />
+                        <Route
+                            exact
+                            path="/timetable"
+                            component={Timetable}
                         />
                         <Route
                             exact
                             path="/browse"
-                            component={CardSets}
+                            component={NewsList}
+                        />
+                        <Route
+                            exact
+                            path="/news"
+                            component={NewsList}
                         />
                         <Route
                             exact

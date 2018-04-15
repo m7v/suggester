@@ -9,6 +9,25 @@ class MetaHelmet extends React.PureComponent {
         const {type, set, card } = this.props;
 
         switch (type) {
+            case 'news':
+                return (
+                    <Helmet>
+                        <title>{'Новости | PopCorn\'18'}</title>
+                        <link rel="canonical" href={'https://m7v.github.io/suggester/#/browse'} />
+                        <meta name="twitter:title" content={'Новости | PopCorn\'18'} />
+                        <meta property="og:title" content={'Новости | PopCorn\'18'} />
+                    </Helmet>
+                );
+            case 'schedule':
+                return (
+                    <Helmet>
+                        <title>{'Расписание | PopCorn\'18'}</title>
+                        <link rel="canonical" href={'https://m7v.github.io/suggester/#/browse'} />
+                        <meta name="twitter:title" content={'Расписание | PopCorn\'18'} />
+                        <meta property="og:title" content={'Расписание | PopCorn\'18'} />
+                    </Helmet>
+                );
+
             case 'decks':
                 return (
                     <Helmet>

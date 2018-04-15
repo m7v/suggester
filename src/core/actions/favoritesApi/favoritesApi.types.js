@@ -5,6 +5,10 @@ import {
     FAVORITES_CARD_ADD,
     FAVORITES_CARD_DELETE,
     FAVORITES_CARD_GET_LIST,
+
+    FAVORITES_LOCATION_ADD,
+    FAVORITES_LOCATION_DELETE,
+    FAVORITES_LOCATION_GET_LIST,
 } from '../../../core/reducers/favorites/favorites.helper';
 
 export function favoritesCardRequestSuccess() {
@@ -46,6 +50,28 @@ export function getFavoritesCardList(cards) {
     return {
         type: FAVORITES_CARD_GET_LIST,
         payload: {cards},
+        meta: {}
+    };
+}
+
+export function favoritesLocationAdd(location) {
+    return {
+        type: FAVORITES_LOCATION_ADD,
+        payload: {location},
+        meta: {}
+    };
+}
+export function favoritesLocationDelete(locationId) {
+    return {
+        type: FAVORITES_LOCATION_DELETE,
+        payload: {locationId},
+        meta: {}
+    };
+}
+export function getFavoritesLocationList(locations) {
+    return {
+        type: FAVORITES_LOCATION_GET_LIST,
+        payload: {locations},
         meta: {}
     };
 }

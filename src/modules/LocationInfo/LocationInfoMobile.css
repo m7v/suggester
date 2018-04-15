@@ -1,0 +1,214 @@
+.CardInfoMobile__container {
+    width: 100vw;
+    background: rgba(33, 33, 33, .3);
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.CardInfoMobile__container::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    background-color: #696969;
+}
+
+.CardInfoMobile__container::-webkit-scrollbar {
+    width: 10px;
+    background-color: #696969;
+}
+
+.CardInfoMobile__container::-webkit-scrollbar-thumb {
+    background-color: #303030;
+    border: 2px solid #303030;
+}
+
+.CardInfoMobile__card {
+    display: flex;
+    flex-direction: column;
+    padding: 30px 0 0 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.CardInfoMobile__icons {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+}
+
+.CardInfoMobile__title {
+    text-align: center;
+    display: block;
+    font-size: 25px;
+    font-family: "Beleren Bold";
+    color: #eee;
+}
+
+.CardInfoMobile__artist {
+    padding: 8px;
+    color: #888;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 16px;
+    text-transform: uppercase;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.CardInfoMobile__artistName {
+    color: #eee;
+    text-transform: none;
+}
+
+.CardInfoMobile__details {
+    margin-bottom: 150px;
+    display: flex;
+    flex-direction: column;
+}
+
+.CardInfoMobile__detailTitle {
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 30px;
+    text-transform: uppercase;
+    color: #888;
+    text-align: center;
+}
+
+.CardInfoMobile__type {
+    font-size: 14px;
+    color: #eee;
+    text-align: center;
+}
+
+.CardInfoMobile__manaCost {
+    color: #eee;
+    text-align: center;
+}
+
+.CardInfoMobile__setName {
+    color: #eee;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 15px;
+    line-height: 20px;
+    padding: 5px;
+}
+
+.CardInfoMobile__setIcon {
+    display: inline-block;
+    padding: 0 10px 10px;
+}
+
+.CardInfoMobile__set {
+    font-size: 14px;
+    color: #eee;
+    text-align: center;
+}
+
+.CardInfoMobile__textBlock,
+.CardInfoMobile__type,
+.CardInfoMobile__manaCost,
+.CardInfoMobile__set,
+.CardInfoMobile__printings,
+.CardInfoMobile__legalities {
+    padding: 0 0 15px 0;
+}
+
+.CardInfoMobile__textBlock {
+    display: flex;
+    justify-content: center;
+}
+
+.CardInfoMobile__textInfo {
+    max-width: 250px;
+    min-width: 250px;
+    min-height: 130px;
+    padding: 7px;
+    border: 2px solid #333;
+    font-size: 14px;
+    line-height: 22px;
+    text-align: left;
+    color: #eee;
+}
+
+.CardInfoMobile__textFlavor {
+    font-size: 12px;
+    font-style: italic;
+    color: #bbb;
+}
+
+.CardInfoMobile__textSymbols.ms {
+    border-radius: 50%;
+    margin: 0 2px;
+    background-color: #9c9c9c;
+    color: #111;
+    font-size: 12px;
+}
+
+.CardInfoMobile__textSymbols-r {
+    background-color: #e5a081 !important;
+}
+
+.CardInfoMobile__textSymbols-g {
+    background-color: #a3d1a3 !important;
+}
+
+.CardInfoMobile__textSymbols-b {
+    background-color: #919191 !important;
+}
+
+.CardInfoMobile__textSymbols-u {
+    background-color: #b2e6fb !important;
+}
+
+.CardInfoMobile__textSymbols-w {
+    background-color: #FFFFDA !important;
+}
+
+.CardInfoMobile__mana.ms {
+    border-radius: 50%;
+    margin: 0 2px;
+    background-color: #9c9c9c;
+    color: #111;
+}
+
+.CardInfoMobile__mana-r {
+    background-color: #e5a081 !important;
+}
+
+.CardInfoMobile__mana-g {
+    background-color: #a3d1a3 !important;
+}
+
+.CardInfoMobile__mana-b {
+    background-color: #919191 !important;
+}
+
+.CardInfoMobile__mana-u {
+    background-color: #b2e6fb !important;
+}
+
+.CardInfoMobile__mana-w {
+    background-color: #FFFFDA !important;
+}
+
+.CardInfoMobile__legalities {
+    text-align: left;
+    padding-bottom: 12px;
+}
+
+.CardInfoMobile__legality {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 30px;
+    width: 245px;
+    font-size: 14px;
+    color: #eee;
+}
+
+.CardInfoMobile__legalityName {
+    padding: 2px 0;
+    display: flex;
+    justify-content: space-between;
+}

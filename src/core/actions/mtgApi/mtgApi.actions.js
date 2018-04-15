@@ -8,6 +8,9 @@ import {
     getCardsByNames as requestGetCardsByNames,
     getDoubleFaceCards as requestGetDoubleFaceCards,
     getSetList as requestGetSetList,
+    getNewsList as requestGetNewsList,
+    getTimetable as requestGetTimetable,
+    getLocationById as requestGetLocationById,
     getSetCardsByCode as requestGetSetCardsByCode,
     getSetByCode as requestGetSetByCode,
 } from '../../services/mtgApi/mtgApi.service';
@@ -83,6 +86,27 @@ export function getCardById(cardId) {
     };
 }
 
+export function getLocationById(locationId) {
+    return (dispatch, getState) => {
+        const state = getState();
+
+        dispatch(appContextTypes.appLocationRequestStarted());
+
+        if (state.appContext.LocationInfo.data[ locationId ]) {
+            return dispatch(appContextTypes.appLocationRequestSuccess());
+        }
+
+        return requestGetLocationById(locationId)
+            .then(location => {
+                dispatch(batchActions([
+                    mtgApiTypes.addLocation(location),
+                    appContextTypes.appLocationRequestSuccess(),
+                ]));
+            })
+            .catch((e) => dispatch(appContextTypes.appLocationRequestFailed(e)));
+    };
+}
+
 export function getSetList() {
     return (dispatch, getState) => {
         const state = getState();
@@ -101,6 +125,49 @@ export function getSetList() {
                 ]));
             })
             .catch((e) => dispatch(appContextTypes.appCardSetsRequestFailed(e)));
+    };
+}
+
+
+export function getNewsList() {
+    return (dispatch, getState) => {
+        const state = getState();
+
+        if (Object.keys(state.appContext.News.data).length > 0) {
+            return Promise.resolve();
+        }
+
+        dispatch(appContextTypes.appNewsRequestStarted());
+
+        return requestGetNewsList()
+            .then(news => {
+                dispatch(batchActions([
+                    mtgApiTypes.addNews(news),
+                    appContextTypes.appNewsRequestSuccess(),
+                ]));
+            })
+            .catch((e) => dispatch(appContextTypes.appNewsRequestFailed(e)));
+    };
+}
+
+export function getTimetable() {
+    return (dispatch, getState) => {
+        const state = getState();
+
+        if (Object.keys(state.appContext.Timetable.data).length > 0) {
+            return Promise.resolve();
+        }
+
+        dispatch(appContextTypes.appTimetableRequestStarted());
+
+        return requestGetTimetable()
+            .then(schedule => {
+                dispatch(batchActions([
+                    mtgApiTypes.addTimetable(schedule),
+                    appContextTypes.appTimetableRequestSuccess(),
+                ]));
+            })
+            .catch((e) => dispatch(appContextTypes.appTimetableRequestFailed(e)));
     };
 }
 

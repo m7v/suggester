@@ -22,7 +22,17 @@ import {
     APP_SET_CARDSET_TYPES_FILTERS,
     APP_SET_FAVORITES_COLORS_FILTERS,
     APP_SET_FAVORITES_RARITY_FILTERS,
-    APP_SET_FAVORITES_TYPES_FILTERS
+    APP_SET_FAVORITES_TYPES_FILTERS,
+
+    APP_NEWS_REQUEST_STARTED,
+    APP_NEWS_REQUEST_SUCCESS,
+    APP_NEWS_REQUEST_FAILED,
+    APP_TIMETABLE_REQUEST_STARTED,
+    APP_TIMETABLE_REQUEST_SUCCESS,
+    APP_TIMETABLE_REQUEST_FAILED,
+    APP_LOCATION_REQUEST_STARTED,
+    APP_LOCATION_REQUEST_SUCCESS,
+    APP_LOCATION_REQUEST_FAILED
 } from '../../../core/reducers/appContext/appContext.helper';
 
 export function appInitialized() {
@@ -113,6 +123,73 @@ export function appCardSetsRequestFailed(error) {
         meta: {}
     };
 }
+
+export function appNewsRequestStarted() {
+    return {
+        type: APP_NEWS_REQUEST_STARTED,
+        payload: {},
+        meta: {}
+    };
+}
+export function appNewsRequestSuccess() {
+    return {
+        type: APP_NEWS_REQUEST_SUCCESS,
+        payload: {},
+        meta: {}
+    };
+}
+export function appNewsRequestFailed(error) {
+    return {
+        type: APP_NEWS_REQUEST_FAILED,
+        payload: {error},
+        meta: {}
+    };
+}
+
+export function appTimetableRequestStarted() {
+    return {
+        type: APP_TIMETABLE_REQUEST_STARTED,
+        payload: {},
+        meta: {}
+    };
+}
+export function appTimetableRequestSuccess() {
+    return {
+        type: APP_TIMETABLE_REQUEST_SUCCESS,
+        payload: {},
+        meta: {}
+    };
+}
+export function appTimetableRequestFailed(error) {
+    return {
+        type: APP_TIMETABLE_REQUEST_FAILED,
+        payload: {error},
+        meta: {}
+    };
+}
+
+export function appLocationRequestStarted() {
+    return {
+        type: APP_LOCATION_REQUEST_STARTED,
+        payload: {},
+        meta: {}
+    };
+}
+export function appLocationRequestSuccess() {
+    return {
+        type: APP_LOCATION_REQUEST_SUCCESS,
+        payload: {},
+        meta: {}
+    };
+}
+export function appLocationRequestFailed(error) {
+    return {
+        type: APP_LOCATION_REQUEST_FAILED,
+        payload: {error},
+        meta: {}
+    };
+}
+
 export function appFavoritesRequestStarted() {
     return {
         type: APP_FAVORITES_REQUEST_STARTED,

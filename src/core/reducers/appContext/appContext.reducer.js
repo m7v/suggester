@@ -24,7 +24,20 @@ import {
     APP_CARDSET_ADD_CARDSET,
     APP_CARDSETS_REQUEST_STARTED,
     APP_CARDSETS_REQUEST_SUCCESS,
-    APP_CARDSETS_REQUEST_FAILED
+    APP_CARDSETS_REQUEST_FAILED,
+
+    APP_NEWS_ADD_NEWS,
+    APP_LOCATION_ADD_LOCATION,
+    APP_TIMETABLE_ADD_SCHEDULE,
+    APP_NEWS_REQUEST_STARTED,
+    APP_NEWS_REQUEST_SUCCESS,
+    APP_NEWS_REQUEST_FAILED,
+    APP_TIMETABLE_REQUEST_STARTED,
+    APP_TIMETABLE_REQUEST_SUCCESS,
+    APP_TIMETABLE_REQUEST_FAILED,
+    APP_LOCATION_REQUEST_STARTED,
+    APP_LOCATION_REQUEST_SUCCESS,
+    APP_LOCATION_REQUEST_FAILED,
 } from './appContext.helper';
 
 /**
@@ -321,6 +334,37 @@ function appFavoritesRequestFailed(state) {
     };
 }
 
+function appNewsRequestStarted(state) {
+    return {
+        ...state,
+        News: {
+            ...state.News,
+            loading: true,
+            error: false
+        }
+    };
+}
+function appNewsRequestSuccess(state) {
+    return {
+        ...state,
+        News: {
+            ...state.News,
+            loading: false,
+            error: false
+        }
+    };
+}
+function appNewsRequestFailed(state) {
+    return {
+        ...state,
+        News: {
+            ...state.News,
+            loading: false,
+            error: true
+        }
+    };
+}
+
 function appCardSetsRequestStarted(state) {
     return {
         ...state,
@@ -386,6 +430,108 @@ function appCardSetsAddSet(state, code, set) {
     };
 }
 
+
+function appLocationRequestStarted(state) {
+    return {
+        ...state,
+        LocationInfo: {
+            ...state.LocationInfo,
+            loading: true,
+            error: false
+        }
+    };
+}
+function appLocationRequestSuccess(state) {
+    return {
+        ...state,
+        LocationInfo: {
+            ...state.LocationInfo,
+            loading: false,
+            error: false
+        }
+    };
+}
+function appLocationRequestFailed(state) {
+    return {
+        ...state,
+        LocationInfo: {
+            ...state.LocationInfo,
+            loading: false,
+            error: true
+        }
+    };
+}
+
+function appNewsAddNews(state, news) {
+    return {
+        ...state,
+        News: {
+            ...state.News,
+            data: [
+                ...news
+            ]
+        }
+    };
+}
+
+function appLocationAddLocation(state, location) {
+    return {
+        ...state,
+        LocationInfo: {
+            ...state.LocationInfo,
+            data: {
+                ...state.LocationInfo.data,
+                [location.id]: {
+                    ...state.LocationInfo.data[location.id],
+                    ...location
+                }
+            }
+        }
+    };
+}
+
+
+function appTimetableRequestStarted(state) {
+    return {
+        ...state,
+        Timetable: {
+            ...state.Timetable,
+            loading: true,
+            error: false
+        }
+    };
+}
+function appTimetableRequestSuccess(state) {
+    return {
+        ...state,
+        Timetable: {
+            ...state.Timetable,
+            loading: false,
+            error: false
+        }
+    };
+}
+function appTimetableRequestFailed(state) {
+    return {
+        ...state,
+        Timetable: {
+            ...state.Timetable,
+            loading: false,
+            error: true
+        }
+    };
+}
+
+function appTimetableAddSchedule(state, schedule) {
+    return {
+        ...state,
+        Timetable: {
+            ...state.Timetable,
+            data: schedule
+        }
+    };
+}
+
 /**
  * @param state
  * @param action
@@ -441,8 +587,32 @@ export default (state = {}, action) => {
             return appCardSetsRequestSuccess(state);
         case APP_CARDSETS_REQUEST_FAILED:
             return appCardSetsRequestFailed(state);
+        case APP_NEWS_REQUEST_STARTED:
+            return appNewsRequestStarted(state);
+        case APP_NEWS_REQUEST_SUCCESS:
+            return appNewsRequestSuccess(state);
+        case APP_NEWS_REQUEST_FAILED:
+            return appNewsRequestFailed(state);
         case APP_CARDSET_ADD_CARDSET:
             return appCardSetsAddSet(state, action.payload.set.code, action.payload.set);
+        case APP_NEWS_ADD_NEWS:
+            return appNewsAddNews(state, action.payload.news);
+        case APP_LOCATION_ADD_LOCATION:
+            return appLocationAddLocation(state, action.payload.location);
+        case APP_TIMETABLE_ADD_SCHEDULE:
+            return appTimetableAddSchedule(state, action.payload.schedule);
+        case APP_TIMETABLE_REQUEST_STARTED:
+            return appTimetableRequestStarted(state);
+        case APP_TIMETABLE_REQUEST_SUCCESS:
+            return appTimetableRequestSuccess(state);
+        case APP_TIMETABLE_REQUEST_FAILED:
+            return appTimetableRequestFailed(state);
+        case APP_LOCATION_REQUEST_STARTED:
+            return appLocationRequestStarted(state);
+        case APP_LOCATION_REQUEST_SUCCESS:
+            return appLocationRequestSuccess(state);
+        case APP_LOCATION_REQUEST_FAILED:
+            return appLocationRequestFailed(state);
         case APP_CARDSET_ADD_CARDS:
             return appCardSetsAddCards(state, action.payload.setCode, action.payload.cards);
         default:

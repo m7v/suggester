@@ -3,7 +3,11 @@ import { batchActions } from 'redux-batched-actions';
 import {
     getCardList,
     addCard,
-    removeCard
+    removeCard,
+
+    getLocationList,
+    addLocation,
+    removeLocation
 } from '../../services/favoritesApi/favoritesApi.service';
 
 export function favoritesCardAdd(card) {
@@ -49,6 +53,57 @@ export function getFavoritesCardList() {
                 dispatch(
                     batchActions([
                         types.getFavoritesCardList(cards),
+                        types.favoritesCardRequestSuccess()
+                    ])
+                );
+            })
+            .catch(() => types.favoritesCardRequestFailed());
+    };
+}
+
+export function favoritesLocationAdd(card) {
+    return dispatch => {
+        dispatch(types.favoritesCardRequestStarted());
+
+        return addLocation(card)
+            .then(() => {
+                dispatch(
+                    batchActions([
+                        types.favoritesLocationAdd(card),
+                        types.favoritesCardRequestSuccess()
+                    ])
+                );
+            })
+            .catch(() => types.favoritesCardRequestFailed());
+    };
+}
+
+export function favoritesLocationDelete(cardId) {
+    return dispatch => {
+        dispatch(types.favoritesCardRequestStarted());
+
+        return removeLocation(cardId)
+            .then(() => {
+                dispatch(
+                    batchActions([
+                        types.favoritesLocationDelete(cardId),
+                        types.favoritesCardRequestSuccess()
+                    ])
+                );
+            })
+            .catch(() => types.favoritesCardRequestFailed());
+    };
+}
+
+export function getFavoritesLocationList() {
+    return dispatch => {
+        dispatch(types.favoritesCardRequestStarted());
+
+        return getLocationList()
+            .then((cards) => {
+                dispatch(
+                    batchActions([
+                        types.getFavoritesLocationList(cards),
                         types.favoritesCardRequestSuccess()
                     ])
                 );

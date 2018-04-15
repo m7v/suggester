@@ -25,10 +25,15 @@ const navbarConfig = [
         icon: searchIcon,
         label: 'Search',
     },
+    // {
+    //     path: '/browse',
+    //     icon: browseIcon,
+    //     label: 'Browse',
+    // },
     {
-        path: '/browse',
+        path: '/news',
         icon: browseIcon,
-        label: 'Browse',
+        label: 'news',
     },
     // {
     //     path: '/deck/add',
@@ -36,9 +41,9 @@ const navbarConfig = [
     //     label: 'Add Deck',
     // },
     {
-        path: '/favorites',
+        path: '/timetable',
         icon: favoritesIcon,
-        label: 'Favorites',
+        label: 'Timetable',
     },
     // {
     //     path: '/cards',
