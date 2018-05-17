@@ -8,6 +8,7 @@ import ButtonBack from '../../components/ButtonBack';
 import MetaHelmet from '../../components/MetaHelmet';
 import stateToProps from './connect/stateToProps';
 import dispatchToProps from './connect/dispatchToProps';
+import ErrorPage from '../../components/ErrorPage/ErrorPage';
 
 const CardGridList = (props) => <Async load={import('../../components/CardGridList')} componentProps={props} />;
 const CardFilter = (props) => <Async load={import('../../components/CardFilter')} componentProps={props} />;

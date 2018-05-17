@@ -20,14 +20,14 @@ const muiTheme = createMuiTheme({
     },
 });
 
-const storage = new IndexedDBStorage('mtg-manager', 1);
-storage.getItem('store')
-    .then(data => {
-        const state = JSON.parse(data);
-        store.dispatch(appContextSetSWData(state.appContext));
-        store.dispatch(suggestionsSetSWData(state.suggester));
-    })
-    .catch(() => {});
+// const storage = new IndexedDBStorage('mtg-manager', 1);
+// storage.getItem('store')
+//     .then(data => {
+//         const state = JSON.parse(data);
+//         store.dispatch(appContextSetSWData(state.appContext));
+//         store.dispatch(suggestionsSetSWData(state.suggester));
+//     })
+//     .catch(() => {});
 
 ReactDOM.render(
     <Provider store={store}>
