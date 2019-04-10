@@ -2,11 +2,11 @@ import './CardRulings.css';
 import React from 'react';
 import { arrayOf, shape, bool } from 'prop-types';
 import { formatText } from '../../core/helpers/mana.helper';
-import Tooltip from 'material-ui/Tooltip';
-import IconButton from 'material-ui/IconButton';
+import Tooltip from '@material-ui/core/Tooltip';
+import IconButton from '@material-ui/core/IconButton';
 import IconInfoOutline from 'material-ui-icons/InfoOutline';
 import Dialog, { DialogActions, DialogContent } from 'material-ui/Dialog';
-import Button from 'material-ui/Button';
+import Button from '@material-ui/core/Button';
 
 class CardRulings extends React.PureComponent {
 

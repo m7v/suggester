@@ -1,6 +1,7 @@
 import './NavBar.css';
 import React from 'react';
-import BottomNavigation, { BottomNavigationButton } from 'material-ui/BottomNavigation';
+import BottomNavigation from '@material-ui/core/BottomNavigation';
+import BottomNavigationButton from '@material-ui/core/BottomNavigationAction';
 import { shape } from 'prop-types';
 import withRouter from 'react-router-dom/withRouter';
 import findIndex from 'lodash/findIndex';

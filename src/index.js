@@ -1,17 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
-import injectTapEventPlugin from 'react-tap-event-plugin';
-import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
-import red from 'material-ui/colors/red';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import red from '@material-ui/core/colors/red';
 import registerServiceWorker from './registerServiceWorker';
 import store from './core/store';
 import Root from './modules/Root/container';
 // import { appContextSetSWData } from './core/actions/appContext/appContext.types';
 // import { suggestionsSetSWData } from './core/actions/suggestions/suggestions.types';
 // import { IndexedDBStorage } from './core/lib/IndexedDBStorage';
-
-injectTapEventPlugin();
 
 const muiTheme = createMuiTheme({
     palette: {

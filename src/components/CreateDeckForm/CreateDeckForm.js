@@ -2,7 +2,7 @@ import './CreateDeckForm.css';
 import React from 'react';
 import { string, func, bool } from 'prop-types';
 import TextField from 'material-ui/TextField';
-import Button from 'material-ui/Button';
+import Button from '@material-ui/core/Button';
 import Paper from 'material-ui/Paper';
 import MobileStepper from 'material-ui/MobileStepper';
 import KeyboardArrowLeft from 'material-ui-icons/KeyboardArrowLeft';

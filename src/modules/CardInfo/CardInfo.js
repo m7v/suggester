@@ -6,7 +6,7 @@ import Link from 'react-router-dom/Link';
 import { bool, string, func, shape } from 'prop-types';
 import map from 'lodash/map';
 import classNames from 'classnames';
-import Tooltip from 'material-ui/Tooltip';
+import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from 'material-ui/IconButton';
 import StarBorderIcon from 'material-ui-icons/StarBorder';
 import StarIcon from 'material-ui-icons/Star';
