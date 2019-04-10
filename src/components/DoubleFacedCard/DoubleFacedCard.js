@@ -19,8 +19,10 @@ class DoubleFacedCard extends React.PureComponent {
 
     render() {
         const { card, oversize, foil } = this.props;
-        const imageUrl = oversize ? card.imageUrlLarge : card.imageUrl;
-        const imageUrlFromBackSide = oversize ? card.doubleFace.imageUrlLarge : card.doubleFace.imageUrl;
+        // const imageUrl = oversize ? card.imageUrlLarge : card.imageUrl;
+        const imageUrl = card.imageUrl;
+        // const imageUrlFromBackSide = oversize ? card.doubleFace.imageUrlLarge : card.doubleFace.imageUrl;
+        const imageUrlFromBackSide = card.doubleFace.imageUrl;
         const cardClass = classNames({
             'DoubleFacedCard__img': true,
             '_default': !oversize,

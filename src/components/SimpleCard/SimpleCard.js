@@ -16,7 +16,8 @@ class SimpleCard extends React.PureComponent {
 
     render() {
         const { card, oversize, foil } = this.props;
-        const imageUrl = oversize ? card.imageUrlLarge : card.imageUrl;
+        // const imageUrl = oversize ? card.imageUrlLarge : card.imageUrl;
+        const imageUrl = card.imageUrl;
 
         return (
             <div className="SimpleCard__root">

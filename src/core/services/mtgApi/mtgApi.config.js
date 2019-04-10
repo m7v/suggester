@@ -30,6 +30,7 @@ export const layouts = [
     'split',
     'flip',
     'double-faced',
+    'transform',
     'meld',
     'aftermath',
 ].join('|');

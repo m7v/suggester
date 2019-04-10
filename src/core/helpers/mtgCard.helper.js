@@ -2,7 +2,7 @@ import compact from 'lodash/compact';
 import uniqBy from 'lodash/uniqBy';
 import findIndex from 'lodash/findIndex';
 
-export const DOUBLE_FACED_TYPE = 'double-faced';
+export const DOUBLE_FACED_TYPE = 'transform';
 
 const getSetName = (set) => {
     switch (set) {
